@@ -11,15 +11,17 @@ class AppDynamicsJob(unittest.TestCase):
     def setUp(self):
         # AppDynamics will automatically override this web driver
         # as documented in https://docs.appdynamics.com/display/PRO44/Write+Your+First+Script
-        self.driver = webdriver.Firefox()
+        #self.driver = webdriver.Firefox()  #firfox
+        self.driver = webdriver.Chrome()
         self.driver.implicitly_wait(30)
-        self.base_url = "https://www.katalon.com/"
+        self.base_url = ""
         self.verificationErrors = []
         self.accept_next_alert = True
     
     def test_app_dynamics_job(self):
         driver = self.driver
         driver.get("http://192.168.0.10:3080/asg/admin/logout.do")
+        driver.maximize_window()   #set_window_size(1366,768)
         driver.find_element_by_id("loginname").click()
         driver.find_element_by_id("loginname").clear()
         driver.find_element_by_id("loginname").send_keys("admin")
