@@ -2,7 +2,7 @@
 from common import Http
 from common import readexcel as reader,writeexcel as writer
 
-srcfile="E:\\myworkspace\\mygit\\mygitworkspace\\autoAPI\\autoTestApi\\datadir\\myHttp.xls"
+srcfile="E:\\myworkspace\\mygit\\mygitworkspace\\autoAPI\\autoTestApi\\datadir\\myapp_Http.xls"
 desfile="E:\\myworkspace\\mygit\\mygitworkspace\\autoAPI\\autoTestApi\\datadir\\myHttp_result.xls"
 
 #执行方法

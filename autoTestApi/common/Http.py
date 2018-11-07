@@ -22,6 +22,7 @@ def post(url,param):
     #param_json() 
     #调用post发送请求
     #res=session.post(url,data=params,verify=False,timeout=30)
+    print
     res=session.post(url,data=param,verify=False,timeout=30)
     response=res.content.decode('utf8')
 
