@@ -193,4 +193,17 @@ def get_code(self):
     return code
 
 
+def re_compile(src):
+    findword="({{[a-zA-Z]+}})"  
+    pattern = re.compile(findword)
+    results =  pattern.findall(temp)    
+    for result in results: 
+        print (result)  
+    
+    return results
+    #替代 {{id}}
+    if len(results)!=0:
+        pass
+        
+    
 
