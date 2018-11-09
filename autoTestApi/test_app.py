@@ -10,6 +10,9 @@ def run(line):
     if line[3]=='post':
         Http.post(line[4],line[5])
         return
+    if line[3]=='get':
+        Http.get(line[4],line[5])
+        return
     if line[3]=='addheader':
         Http.add_header(line[4],line[5])
         return
@@ -22,6 +25,16 @@ def run(line):
     if  line[3]=='seturl':
         Http.seturl(line[4])
         return
+    if  line[3]=='settimeout':
+        Http.settimeout(line[4])
+        return
+    if  line[3]=='addparam':
+        Http.add_param(line[4],line[5])
+        return
+    if  line[3]=='removeheader':
+        Http.remove_header(line[4])
+        return
+        
     
                     
 reader.open_excel(srcfile)
