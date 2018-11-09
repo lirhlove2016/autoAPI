@@ -1,17 +1,28 @@
 # coding:utf-8
-from common import Http
+from common import Http as Http
 from common import readexcel as reader,writeexcel as writer
+import json
+import jsonpath
+import re
 
-srcfile="E:\\myworkspace\\mygit\\mygitworkspace\\autoAPI\\autoTestApi\\datadir\\myapp_Http.xls"
-desfile="E:\\myworkspace\\mygit\\mygitworkspace\\autoAPI\\autoTestApi\\datadir\\myHttp_result.xls"
+#jsonpath.jsonpath(json,"$['store']['book'][0]['author']")
 
-#执行方法
+srcfile=r"D:\workdtation\mygitwork\autoAPI\autoTestApi\datadir\myapp_Http.xls"
+desfile=r"D:\workdtation\mygitwork\autoAPI\autoTestApi\datadir\myapp_HTTP_result.xls"
+
 def run(line):
     if line[3]=='post':
-        Http.post(line[4],line[5])
+        Http.api_request('post',line[4],line[5])
         return
     if line[3]=='get':
-        Http.get(line[4],line[5])
+        Http.api_request('get',line[4],line[5])
+        return
+    if line[3]=='put':
+        Http.api_request('put',line[4],line[5])
+        return
+        return
+    if line[3]=='delete':
+        Http.api_request('delete',line[4],line[5])
         return
     if line[3]=='addheader':
         Http.add_header(line[4],line[5])
@@ -19,7 +30,7 @@ def run(line):
     if line[3]=='assertequals':
         Http.assert_equals(line[4],line[5])
         return
-    if line[3]=='savajson':
+    if line[3]=='savejson':
         Http.saveJson(line[4],line[5])
         return
     if  line[3]=='seturl':
@@ -34,9 +45,8 @@ def run(line):
     if  line[3]=='removeheader':
         Http.remove_header(line[4])
         return
-        
-    
-                    
+
+
 reader.open_excel(srcfile)
 writer.copy_open(srcfile,desfile)
 
@@ -49,6 +59,8 @@ for i in range(0,reader.r):
     else:
         #执行
         run(line)
+        pass
                                                         
 writer.save_close()
+
 

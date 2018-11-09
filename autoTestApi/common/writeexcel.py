@@ -32,37 +32,43 @@ def copy_open(srcfile,desfile):
     #拷贝
     wb=copy(workbook)
     #
-    sheet=wb.get_sheet("Sheet1")
+    print(workbook.sheet_names())
+    
+    #sheet=wb.get_sheet("Sheet1")
     return
+    
+
 
 #写入指定的单元格，保留格式
 def write(r,c,value):
-    global workbook
-    global sheet
+    global workbook,sheet,wb
 
-    #获取要写入的单元格
-    def _getCell(sheet,r,c):
-        #获取行
-        row=sheet._Worksheet__rows.get(r)
-        if not row:
-            return None
-        #获取单元格
-        cell=row._Row__cells.get(c)
-        return cell
+    sheets=workbook.sheet_names()
+    for s in sheets:       
+        sheet=wb.get_sheet(s)
+            
+        #获取要写入的单元格
+        def _getCell(sheet,r,c):
+                #获取行
+                row=sheet._Worksheet__rows.get(r)
+                if not row:
+                        return None
+                #获取单元格
+                cell=row._Row__cells.get(c)
+                return cell
 
-    #获取要写入的单元格
-    cell=_getCell(sheet,r,c)
-    
-    #写入值
-    sheet.write(r,c,value)
-    #指定写入的格式
-    if cell:
-        ncell=_getCell(sheet,r,c)
-        if ncell:
-            #设置写入后的格式和写入前一样
-            ncell.xf_idx=cell.xf_idx
+        #获取要写入的单元格
+        cell=_getCell(sheet,r,c)
+
+        #写入值
+        sheet.write(r,c,value)
+        #指定写入的格式
+        if cell:
+                ncell=_getCell(sheet,r,c)
+                if ncell:
+                        #设置写入后的格式和写入前一样
+                        ncell.xf_idx=cell.xf_idx
     return 
-
 #保存
 def save_close():
     global wb,df
@@ -71,11 +77,11 @@ def save_close():
 
 def write_excel(filepath,datas,names):
     """写入数据"""
-    f = xlwt.Workbook(encoding='utf-8', style_compression=0)             
+    f = xlwt.Workbook(encoding='utf-8', style_compression=0)
+    
     sheet= f.add_sheet(u'sheet1',cell_overwrite_ok=True) 
     n=[]
-    for i in range(len(names)):
-        
+    for i in range(len(names)):        
         sheet.write(0,i,names[i])
         n.append(names[i])
    
@@ -97,8 +103,9 @@ def write_excel(filepath,datas,names):
     print ("write finished")
 
 if __name__=="__main__":
-    srcfile="D:\\workdtation\\mygitwork\\project\\autoTestApi\\myHttpxls.xls"
-    desfile="D:\\workdtation\\mygitwork\\project\\autoTestApi\\myHttp_result.xls"
+    srcfile=r"D:\workdtation\mygitwork\autoAPI\autoTestApi\datadir\myapp_Http.xls"
+    desfile=r"D:\workdtation\mygitwork\autoAPI\autoTestApi\datadir\myapp_HTTP123_result.xls"
+
     copy_open(srcfile,desfile)
     
     write(3,7,'PASS')
