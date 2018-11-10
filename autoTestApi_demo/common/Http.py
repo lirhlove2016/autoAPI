@@ -170,7 +170,8 @@ def assert_equals(key,value):
     global  json_res    
     print('正在校验------------------------------------')
     #用jsonpath取值    
-    jsonStr=json_path(key)    
+    jsonStr=json_path(key)
+    
      
     #如果有取值就用保存的参数
     value=re_compile(value)        
@@ -183,14 +184,14 @@ def assert_equals(key,value):
     else:
         print('校验结果是 Fail')
         writer.write(reader.rr-1,7,'Fail')
-        writer.write(reader.rr-1,8,json_res[key])
+        writer.write(reader.rr-1,8,value)
 
 
 #jsonpath
 def json_path(path):
     global json_res
 
-    #print('------------------------',jsonpath.jsonpath(json_res,path))
+    print('--------JSONPATH----------------',jsonpath.jsonpath(json_res,path))
     if jsonpath.jsonpath(json_res,path):
         jsonData=jsonpath.jsonpath(json_res,path)
         #print(jsonData)
@@ -199,6 +200,7 @@ def json_path(path):
         return  jsonStr
     else:
         return  path
+
 
 #从参数取值：
 def get_savejson(key):
