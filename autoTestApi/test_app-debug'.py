@@ -66,10 +66,8 @@ Http.api_request('get',url,"")
 
 '''
 
-srcfile=r"D:\workdtation\mygitwork\autoAPI\autoTestApi\datadir\myapp_Http.xls"
-desfile=r"D:\workdtation\mygitwork\autoAPI\autoTestApi\datadir\myapp_HTTP_result.xls"
-
-
+srcfile=r"E:\myworkspace\mygit\mygitworkspace\autoAPI\autoTestApi\datadir\myHttp.xls"
+desfile=r"E:\myworkspace\mygit\mygitworkspace\autoAPI\autoTestApi\datadir\myHttp123_result.xls"
 
 def run(line):
     if line[3]=='post':
@@ -81,10 +79,7 @@ def run(line):
     if line[3]=='put':
         Http.api_request('put',line[4],line[5])
         return
-        return
-    if line[3]=='delete':
-        Http.api_request('delete',line[4],line[5])
-        return
+
     if line[3]=='addheader':
         Http.add_header(line[4],line[5])
         return
