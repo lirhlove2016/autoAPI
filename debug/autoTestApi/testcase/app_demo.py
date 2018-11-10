@@ -1,16 +1,14 @@
 # coding:utf-8
-from common import Http
+from common import Http as Http
 from common import readexcel as reader,writeexcel as writer
 import json
 import jsonpath
 import re
-import os
-#srcfile=r"E:\autoTestApi\datadir\myHttp.xls"
-#desfile=r"E:\autoTestApi\datadir\myHttp123_result.xls"
-filepath=os.path.abspath(os.getcwd())
-#print(filepath)
-srcfile=os.path.join(filepath,'datadir/myHttp.xls')
-desfile=os.path.join(filepath,'datadir/myHttp_result.xls')
+
+#jsonpath.jsonpath(json,"$['store']['book'][0]['author']")
+
+srcfile=r"D:\workdtation\mygitwork\autoAPI\autoTestApi\datadir\myapp_Http.xls"
+desfile=r"D:\workdtation\mygitwork\autoAPI\autoTestApi\datadir\myapp_HTTP_result.xls"
 
 def run(line):
     if line[3]=='post':
@@ -21,6 +19,10 @@ def run(line):
         return
     if line[3]=='put':
         Http.api_request('put',line[4],line[5])
+        return
+        return
+    if line[3]=='delete':
+        Http.api_request('delete',line[4],line[5])
         return
     if line[3]=='addheader':
         Http.add_header(line[4],line[5])

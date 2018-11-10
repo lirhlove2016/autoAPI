@@ -81,6 +81,50 @@ def api_request(method,url,param):
     print("response--",json_res)
 
 
+'''
+
+#发送post请求的关键字
+def post(url,param):
+    global session,response,json_res  #引用全局变量
+    global paramJson   #读取存储的入参
+
+    #参数不为空
+    #json格式的转换
+    if param.startswith('{'):
+        print('----------------------',type(param))
+        if param:
+            #从参数取{{}}
+            param=re_compile(param)
+            params=json_paser(param)
+            
+        else:
+            params=param
+   
+    #参数是&格式，将字符串转换为json
+    else:
+        params=param_json(param)
+
+    print('正在发送post请求-----------------------------')
+    print('url--',url)
+    print('param--',param)
+    print('header--',session.headers)
+    res=session.post(url,data=params,verify=False,timeout=timeouts)
+    response=res.content.decode('utf8')
+    #print("response--",response)
+    #writer.write(reader.rr-1,7,'PASS')
+    #writer.write(reader.rr-1,8,response)
+
+    #print(res,type(res.json()))
+    #json_res=res.json()
+    
+    #调用json_paser
+    json_res=json_paser(response)
+    print("response--",json_res)
+
+'''
+
+
+
 #存储url地址
 def seturl(url):
     global baseUrl
@@ -109,6 +153,7 @@ def json_paser(value):
     global json_res
     #把json字符串解析为字典
     params=json.loads(value)
+    print('------json.loads------------------',params)
     return params
 
 
@@ -120,6 +165,8 @@ def add_header(hkey,jkey):
     if len(jkey)!=0:
         #取值，未取到就原来的值
         jsonStr=json_path(jkey)
+        #print('----------jsonStr---------------',jsonStr)
+
         if jsonStr:
             session.headers[hkey]=jsonStr
             writer.write(reader.rr-1,7,'PASS')
@@ -141,6 +188,7 @@ def add_header(hkey,jkey):
 #删除请求头信息
 def remove_header(key):
     global json_res,session
+    print('------------------------------',session.headers)
     del session.headers[key]
 
     writer.write(reader.rr-1,7,'PASS')
@@ -167,13 +215,21 @@ def param_json(param):
 
 #断言
 def assert_equals(key,value):
-    global  json_res    
+    global  json_res
+    
     print('正在校验------------------------------------')
     #用jsonpath取值    
     jsonStr=json_path(key)    
      
     #如果有取值就用保存的参数
-    value=re_compile(value)        
+    value=re_compile(value)
+        
+    '''
+    #期望值从参数取
+    if value.startswith('{{'):
+        value=get_savejson(value)
+        print(value)
+    '''    
     print("realresult is %s. the expectedreslut id %s."%(jsonStr,value))
 
     if jsonStr==value:
@@ -206,7 +262,9 @@ def get_savejson(key):
 
     #取参数key
     key=key[2:len(key)-2]    
+    print("正在取参数------------------------------------")
     print('the key is %s and value is %s '%(key,saveData[key]))
+
     return  saveData[key]
     
 
@@ -225,7 +283,6 @@ def saveJson(jkey,key):
     print("保存参数 %s 的值为%s "%(key,jsonStr))
 
 
-
 #parse.quote(str1) 编码
 def ulr_decode(url):
     urldecode=parse.unquote(url) #解码字符串
@@ -240,18 +297,18 @@ def get_code(self):
 
 #正则匹配取参数值{{token}}
 def re_compile(srcStr):
-    #print('正则匹配-----------------',type(srcStr))
+    print('正则匹配-----------------',type(srcStr))
     findword="({{[a-zA-Z]+}})"  
     pattern = re.compile(findword)
     results =pattern.findall(srcStr)    
 
-    #for result in results: 
-        #print (result)     
+    for result in results: 
+        print (result)     
     
     #找到匹配的参数,替换参数值,未找到就原来的
     if len(results)!=0:
         for result in results: 
-            #print ('--正在替换---------------------',result)
+            print ('--正在替换---------------------',result)
             temp=get_savejson(result)           
             srcStr=srcStr.replace(result,temp)
 

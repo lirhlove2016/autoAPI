@@ -5,12 +5,14 @@ import json
 import jsonpath
 import re
 import os
-#srcfile=r"E:\autoTestApi\datadir\myHttp.xls"
-#desfile=r"E:\autoTestApi\datadir\myHttp123_result.xls"
+
+srcfile=r"E:\myworkspace\mygit\mygitworkspace\autoAPI\autoTestApi\datadir\myHttp.xls"
+desfile=r"E:\myworkspace\mygit\mygitworkspace\autoAPI\autoTestApi\datadir\myHttp123_result.xls"
+
 filepath=os.path.abspath(os.getcwd())
-#print(filepath)
-srcfile=os.path.join(filepath,'datadir/myHttp.xls')
-desfile=os.path.join(filepath,'datadir/myHttp_result.xls')
+print(filepath)
+srcfile=os.path.join(filepath,'datadir/myapp_xigua.xls')
+desfile=os.path.join(filepath,'datadir/myapp_xigua_result.xls')
 
 def run(line):
     if line[3]=='post':

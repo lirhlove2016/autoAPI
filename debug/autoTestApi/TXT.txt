@@ -7,4 +7,4 @@
 7	savejson	保存参数				
 8	settimeout	设置超时时长,秒				
 9	addparam	添加参数	没有传值			
-						
+10						
