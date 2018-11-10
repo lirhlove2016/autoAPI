@@ -9,13 +9,6 @@ from conf.conf import dataDir,resultDir
 import os
 import unittest
 
-
-#jsonpath.jsonpath(json,"$['store']['book'][0]['author']")
-
-srcfile=r"D:\workdtation\mygitwork\autoAPI\autoTestApi\datadir\myapp_Http.xls"
-desfile=r"D:\workdtation\mygitwork\autoAPI\autoTestApi\datadir\myapp_HTTP_result.xls"
-
-
 class testAPI(unittest.TestCase):
 
     def test_app_api(self):

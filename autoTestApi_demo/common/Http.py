@@ -245,8 +245,8 @@ def re_compile(srcStr):
     pattern = re.compile(findword)
     results =pattern.findall(srcStr)    
 
-    for result in results: 
-        print (result)     
+    #for result in results: 
+        #print (result)     
     
     #找到匹配的参数,替换参数值,未找到就原来的
     if len(results)!=0:
