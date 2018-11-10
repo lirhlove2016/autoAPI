@@ -20,6 +20,8 @@ paramJson={}
 #设置超时
 timeouts=30
 
+
+	
 #根据不同方法访问接口
 def api_method(method,url,param):
 	#print('start request-----------------------------------------------')
@@ -67,9 +69,6 @@ def api_request(method,url,param):
     res=api_method(method,url,params)
     response=res.content.decode('utf8')
     #print("response--",response)
-    writer.write(reader.rr-1,7,'PASS')
-    writer.write(reader.rr-1,8,response)
-
     #print(res,type(res.json()))
     #json_res=res.json()
 
@@ -79,29 +78,37 @@ def api_request(method,url,param):
     else:
          json_res=response
     print("response--",json_res)
+	
+	#调用写入
+	to_write("PASS",response)
 
-
+#写入
+def to_write(flag,value):
+    writer.write(reader.rr-1,7,flag)
+    writer.write(reader.rr-1,8,value)	
+	
 #存储url地址
 def seturl(url):
     global baseUrl
     baseUrl=url
-    writer.write(reader.rr-1,7,'PASS')
-    writer.write(reader.rr-1,8,baseUrl)
-    
+	#调用写入
+	to_write("PASS",baseUrl)
+	
 #存储#存储url地址
 def settimeout(num):
     global timeouts
     timeouts=int(num)
     print('timeout is setting %s',timeouts)
-    writer.write(reader.rr-1,7,'PASS')
-    writer.write(reader.rr-1,8,timeouts)  
+
+	#调用写入
+	to_write("PASS",timeouts)
 
 #add param
 def add_param(key,value):
     global paramJson
     paramJson[key]=value
-    writer.write(reader.rr-1,7,'PASS')
-    writer.write(reader.rr-1,8,value)      
+	#调用写入
+	to_write("PASS",value)
 
     
 #json字符串解析,把json字符串解析为字典josn.loads
@@ -122,29 +129,29 @@ def add_header(hkey,jkey):
         jsonStr=json_path(jkey)
         if jsonStr:
             session.headers[hkey]=jsonStr
-            writer.write(reader.rr-1,7,'PASS')
-            writer.write(reader.rr-1,8,jsonStr)
+			#调用写入
+			to_write("PASS",jsonStr)
             print('header[%s]:'%(hkey),session.headers[hkey])
 
         #取参数值
         elif jkey.startswith('{{'):        
             session.headers[hkey]=get_savejson(jkey)
-            writer.write(reader.rr-1,7,'PASS')
-            writer.write(reader.rr-1,8,session.headers[hkey])
+			#调用写入
+			to_write("PASS",session.headers[hkey])
+
     #jkey为空
     else:
         session.headers[hkey]=jkey
-        writer.write(reader.rr-1,7,'PASS')
-        writer.write(reader.rr-1,8,session.headers[hkey])
-           
+		#调用写入
+		to_write("PASS",session.headers[hkey])
+
   
 #删除请求头信息
 def remove_header(key):
     global json_res,session
     del session.headers[key]
-
-    writer.write(reader.rr-1,7,'PASS')
-    writer.write(reader.rr-1,8,json_res[jkey])
+	#调用写入
+	to_write("PASS",json_res[jkey])
     print('remove  header[%s] success.'%(key),session.headers)
 
     
@@ -161,8 +168,7 @@ def param_json(param):
         for pp in p:
             ppp=pp.split('=')
             params[ppp[0]]=ppp[1]
-        print(params)
-    
+        print(params)    
     return params
 
 #断言
@@ -179,12 +185,14 @@ def assert_equals(key,value):
 
     if jsonStr==value:
         print('校验结果是 PASS')
+		#调用写入
+		to_write("PASS",value)
         writer.write(reader.rr-1,7,'PASS')
         writer.write(reader.rr-1,8,value)
     else:
         print('校验结果是 Fail')
-        writer.write(reader.rr-1,7,'Fail')
-        writer.write(reader.rr-1,8,value)
+		#调用写入
+		to_write("Fail",value)
 
 
 #jsonpath
@@ -219,8 +227,8 @@ def saveJson(jkey,key):
     print("正在保存参数------------------------------------")
     jsonStr=json_path(jkey)    
     saveData[key]=jsonStr
-    writer.write(reader.rr-1,7,'PASS')
-    writer.write(reader.rr-1,8,jsonStr)
+	#调用写入
+	to_write("PASS",jsonStr)
 
     #print('the key is %s \nthe value is : %s'%(key,jsonStr))
 
@@ -231,8 +239,10 @@ def saveJson(jkey,key):
 #parse.quote(str1) 编码
 def ulr_decode(url):
     urldecode=parse.unquote(url) #解码字符串
-    writer.write(reader.rr-1,7,'PASS')
-    writer.write(reader.rr-1,8,urldecode)
+
+	#调用写入
+	to_write("PASS",urldecode)
+
 
 def get_code(self):
     #获取返回接口的状态码
