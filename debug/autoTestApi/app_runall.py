@@ -26,7 +26,6 @@ class testAPI(unittest.TestCase):
             srcfile=file_name
             desfile=file_name_result
 
-
             #调用
             def run(line):
                 if line[3]=='post':
