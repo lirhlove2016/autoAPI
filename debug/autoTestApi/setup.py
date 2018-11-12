@@ -15,3 +15,12 @@ try:
     import xlwt
 except :
     os.system('pip install xlwt')
+try:
+    import xlutils
+except :
+    os.system('pip install xlutils==2.0.0')
+	
+try:
+    import jsonpatht
+except :
+    os.system('pip install jsonpath==0.80')

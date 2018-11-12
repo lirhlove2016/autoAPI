@@ -4,11 +4,13 @@ from common import readexcel as reader,writeexcel as writer
 import json
 import jsonpath
 import re
+import os
 
 
-srcfile=r"E:\myworkspace\mygit\mygitworkspace\autoAPI\autoTestApi\datadir\myHttp.xls"
-desfile=r"E:\myworkspace\mygit\mygitworkspace\autoAPI\autoTestApi\datadir\myHttp123_result.xls"
-
+filepath=os.path.abspath(os.getcwd())
+print(filepath)
+srcfile=os.path.join(filepath,'datadir/myHttp.xls')
+desfile=os.path.join(filepath,'datadir/myHttp_result.xls')
 
 def run(line):
     if line[3]=='post':
@@ -45,17 +47,20 @@ def run(line):
 
 reader.open_excel(srcfile)
 writer.copy_open(srcfile,desfile)
-
-for i in range(0,reader.r):
+num=1
+for i in range(1,reader.r):
     line=reader.readline()
-    print(line)
+    #print(line)
     if len(line[0])>2 or len(line[1])>2:
         #不去执行的行
         pass
     else:
         #执行
+        print(line)        
+        print('正在执行第%s个-----------------------------------'%num) 
         run(line)
-        pass
+        num=num+1
+       
                                                         
 writer.save_close()
 

@@ -33,8 +33,4 @@ def readline():
 
         
 if __name__ == "__main__":
-   filename="D:\\workdtation\\mygitwork\\project\\autoTestApi\\myHttpdata.xlsx"
-   open_excel(filename)
-   #循环读取excel中所有内容，并打印出来
-   for i in range(0,r):
-       print(readline())
+   pass

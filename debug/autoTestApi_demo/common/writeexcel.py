@@ -75,15 +75,7 @@ def save_close():
 
 
 if __name__=="__main__":
-    srcfile=r"E:\myworkspace\mygit\mygitworkspace\autoAPI\autoTestApi\datadir\myapp_Http.xls"
-    desfile=r"E:\myworkspace\mygit\mygitworkspace\autoAPI\autoTestApi\datadirr\myapp_HTTP123_result.xls"
-
-    copy_open(srcfile,desfile)
-    
-    write(3,7,'PASS')
-    write(4,7,'Fail')
-    
-    save_close()
+	pass
 
 
 
