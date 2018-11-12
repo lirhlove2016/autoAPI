@@ -48,7 +48,7 @@ def run(line):
 reader.open_excel(srcfile)
 writer.copy_open(srcfile,desfile)
 num=1
-for i in range(1,reader.r):
+for i in range(0,reader.r):
     line=reader.readline()
     #print(line)
     if len(line[0])>2 or len(line[1])>2:
@@ -57,7 +57,7 @@ for i in range(1,reader.r):
     else:
         #执行
         print(line)        
-        print('正在执行第%s个-----------------------------------'%num) 
+        #print('正在执行第%s个-----------------------------------'%num) 
         run(line)
         num=num+1
        

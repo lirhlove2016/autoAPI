@@ -43,6 +43,12 @@ def api_request(method,url,param):
     global session,response,json_res  #引用全局变量
     global paramJson   #读取存储的入参
 
+    #url取值
+    if url.startswith('http://'):
+            pass
+    else:
+            url=baseUrl+"/"+url
+        
     #参数不为空
     #json格式的转换
     if param.startswith('{'):
@@ -51,9 +57,14 @@ def api_request(method,url,param):
             #从参数取{{}}
             param=re_compile(param)
             params=json_paser(param)
-            
+
+        #从addparam中取值    
+        elif param=="paramJson":
+            params=paramJson
+
         else:
             params=param
+        
    
     #参数是&格式，将字符串转换为json
     else:

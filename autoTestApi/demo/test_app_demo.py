@@ -6,8 +6,8 @@ import jsonpath
 import re
 
 
-srcfile=r"E:\myworkspace\mygit\mygitworkspace\autoAPI\autoTestApi\datadir\myHttp.xls"
-desfile=r"E:\myworkspace\mygit\mygitworkspace\autoAPI\autoTestApi\datadir\myHttp123_result.xls"
+srcfile=r"E:\myworkspace\mygit\mygitworkspace\autoAPI\autoTestApi\demo\myHttp.xls"
+desfile=r"E:\myworkspace\mygit\mygitworkspace\autoAPI\autoTestApi\demo\myHttp123_result.xls"
 
 
 def run(line):
