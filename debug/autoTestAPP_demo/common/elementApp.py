@@ -53,9 +53,10 @@ def start(adddress,time):
 def get_element(method,element,index="",name=""):
     global elements,driver
     global e
+    
+    print('定位元素----------------------------')
     print('定位---%s------%s-----'%(method,element))
-
-
+    
     if method=="id":
         e=driver.find_element_by_id(element)       
     elif method=="class":
@@ -79,34 +80,103 @@ def get_element(method,element,index="",name=""):
 
     if name!="":
         elements[name]=e
+        print('elements[%s]'%(name),elements[name],'e:',e)
         
-    print(method,element)
-    print('定位元素--------------------------')
-    print('elements[%s]'%(name),elements[name],'e:',e)
 
 
-#操作
-def click(act,element,value="",name=""):
+
+
+#操作click
+def click(element,value="",name=""):
     global elements,driver
     global e
     print('点击click--------------------------')
-    print(act,element)
+    print(element)
+    print(e,elements)
+    if element!="":
+        el=elements[element]
+    else:
+        el=e
+    print('点击的元素-------------------------',el)
+    
+    if element!="":
+        result=elements[element].click()
+           
+    else:
+        result=e.click()
+        
+    if name!="":
+        saveValue[name]=result
+         
+
+#操作clear
+def clear(element,value="",name=""):
+    global elements,driver
+    global e
+    print('点击clear--------------------------')
+    print(element)
     print(e,elements)
 
     el=elements[element]
     print('点击的元素-------------------------',el)
     
-    if act=="click":
-        if element!="":        
-            result=elements[element].click()
+    if element!="":        
+        result=elements[element].click()
             
-        else:
-            result=e.click()
+    else:
+        result=e.click()
         
     if name!="":
         saveValue[name]=result
          
-      
+#操作sendkeys
+def sendkeys(element,value="",name=""):
+    global elements,driver
+    global e
+    print('sendkeys--------------------------')
+    print(element)
+    print(e,elements)
+
+    el=elements[element]
+    print('输入的元素-------------------------',el)
+    
+    if element!="":        
+        result=elements[element].sendkeys(value)
+            
+    else:
+        result=e.sendkeys(value)
+        
+    if name!="":
+        saveValue[name]=result        
+         
+#assertequals
+def assertequals(key,value):
+    global elements,driver
+    global e
+ 
+    print('正在校验------------------------------------')
+     
+    #如果有取值就用保存的参数
+    
+    value=re_compile(value)        
+    print("realresult is %s. the expectedreslut id %s."%(jsonStr,value))
+
+    if key.startswith('{{'):
+        key=saveValue[key]
+    
+        
+    if key==value:
+        print('校验结果是 PASS')
+        writer.write(reader.rr-1,7,'PASS')
+        writer.write(reader.rr-1,8,value)
+        
+    else:
+        print('校验结果是 Fail')
+        writer.write(reader.rr-1,7,'Fail')
+        writer.write(reader.rr-1,8,value)
+
+
+               
 #滑动
 def swip(method,num):
     num=int(num)
@@ -120,6 +190,7 @@ def swip(method,num):
 
 #sleep
 def sleep(time):
+    global driver
     time.sleep(time)
     
         

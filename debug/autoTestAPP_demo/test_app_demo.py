@@ -1,45 +1,58 @@
 # coding:utf-8
-from common import Http
+from common import elementApp as app
 from common import readexcel as reader,writeexcel as writer
 import json
 import jsonpath
 import re
+import time
 
-
-srcfile=r"E:\myworkspace\mygit\mygitworkspace\autoAPI\autoTestApi\datadir\myHttp.xls"
-desfile=r"E:\myworkspace\mygit\mygitworkspace\autoAPI\autoTestApi\datadir\myHttp123_result.xls"
+srcfile=r"E:\myworkspace\mygit\mygitworkspace\autoAPI\debug\autoTestAPP_demo\datadir\myApp.xls"
+desfile=r":\myworkspace\mygit\mygitworkspace\autoAPI\debug\autoTestAPP_demo\datadir\myApp_result.xls"
 
 
 def run(line):
-    if line[3]=='post':
-        Http.api_request('post',line[4],line[5])
+    if line[3]=='caps':
+        app.update_capability(line[4],line[5])
         return
-    if line[3]=='get':
-        Http.api_request('get',line[4],line[5])
+    if line[3]=='start':
+        app.start(line[4],line[5])
         return
-    if line[3]=='put':
-        Http.api_request('put',line[4],line[5])
+    if line[3]=='sleep':
+        app.sleep(line[4])
         return
-    if line[3]=='addheader':
-        Http.add_header(line[4],line[5])
+    if line[3]=='swip':
+        app.swip(line[4],line[5])
         return
-    if line[3]=='assertequals':
-        Http.assert_equals(line[4],line[5])
+    if line[3]=='id':
+        app.get_element("id",line[4],line[5],line[6])
         return
-    if line[3]=='savejson':
-        Http.saveJson(line[4],line[5])
+    if line[3]=='name':
+        app.get_element("name",line[4],line[5],line[6])
         return
-    if  line[3]=='seturl':
-        Http.seturl(line[4])
+    if line[3]=='text':
+        app.get_element("text",line[4],line[5],line[6])
         return
-    if  line[3]=='settimeout':
-        Http.settimeout(line[4])
+    if line[3]=='css':
+        app.get_element("css",line[4],line[5],line[6])
         return
-    if  line[3]=='addparam':
-        Http.add_param(line[4],line[5])
+    if line[3]=='xpath':
+        app.get_element("xpath",line[4],line[5],line[6])
         return
-    if  line[3]=='removeheader':
-        Http.remove_header(line[4])
+    if line[3]=='class':
+        app.get_element("class",line[4],line[5],line[6])
+        return     
+    if line[3]=='click':
+        app.click(line[4],line[5],line[6])
+        return
+    if line[3]=='clear':
+        Happ.clear("clear",line[4],line[5],line[6])
+        return
+    if line[3]=='sendkeys':
+        Happ.sendkeys(line[4],line[5],line[6])
+        return    
+
+    if  line[3]=='assertequals':
+        app.assertequals(line[4],line[5])
         return
 
 
