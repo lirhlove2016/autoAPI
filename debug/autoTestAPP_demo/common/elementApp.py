@@ -53,10 +53,9 @@ def start(adddress,time):
 def get_element(method,element,index="",name=""):
     global elements,driver
     global e
-    
-    print('定位元素----------------------------')
     print('定位---%s------%s-----'%(method,element))
-    
+
+
     if method=="id":
         e=driver.find_element_by_id(element)       
     elif method=="class":
@@ -80,10 +79,10 @@ def get_element(method,element,index="",name=""):
 
     if name!="":
         elements[name]=e
-        print('elements[%s]'%(name),elements[name],'e:',e)
         
-
-
+    print(method,element)
+    print('定位元素--------------------------')
+    print('elements[%s]'%(name),elements[name],'e:',e)
 
 
 #操作click
@@ -93,20 +92,19 @@ def click(element,value="",name=""):
     print('点击click--------------------------')
     print(element)
     print(e,elements)
-    if element!="":
-        el=elements[element]
-    else:
-        el=e
+
+    el=elements[element]
     print('点击的元素-------------------------',el)
     
-    if element!="":
+    if element!="":        
         result=elements[element].click()
-           
+            
     else:
         result=e.click()
         
     if name!="":
         saveValue[name]=result
+
          
 
 #操作clear
@@ -191,7 +189,7 @@ def swip(method,num):
 #sleep
 def sleep(time):
     global driver
-    time.sleep(time)
+    time.sleep(int(time))
     
         
 #获取屏幕宽度和高度
