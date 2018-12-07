@@ -1,10 +1,9 @@
-1	seturl	设置url，前缀				
-2	post	post请求	传参 	直接给值&,json	取存储值 替换	
-3	get	get请求				
-1	addheader	添加头	值：直接给值	取存储值	从jsonpath
-5	removeheader	删除头key				
-1	assertequals	校验	期望值	取存储值 直接给值	
-7	savejson	保存参数				
-8	settimeout	设置超时时长,秒				
-9	addparam	添加参数	没有传值			
-						
+1.caps
+2.start
+3.swip
+4.id,class,name,text,css,xpath
+5.click
+6.clear
+7.sendkeys
+8.assertequals
+9.sleep

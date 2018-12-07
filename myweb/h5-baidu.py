@@ -1,6 +1,8 @@
 #coding: utf-8
 from selenium import webdriver
 from time import sleep
+
+#1.
 '''
 mobile_emulation = {'deviceName':'iPhone X'}
 options = webdriver.ChromeOptions()
@@ -10,7 +12,7 @@ driver.maximize_window()
 driver.get("http://www.baidu.com")
 
 '''
-
+#2.
 #指定了宽度、高度、分辨率以及ua标识
 WIDTH = 320
 HEIGHT = 640
