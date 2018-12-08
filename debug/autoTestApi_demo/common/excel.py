@@ -18,6 +18,19 @@ class ExcelUtil():
         print(self.rowNum)
 
     def dict_data(self):
+
+        for x in list(range(self.colNum)):
+            self.keys[0]="platform"
+            self.keys[1]="menu"
+            self.keys[2]="casename"
+            self.keys[3]="keyword"
+            self.keys[4]="arg1"
+            self.keys[5]="arg2"
+            self.keys[6]="arg3"
+            self.keys[7]="result"
+            self.keys[8]="realresult"
+            
+                      
         
         if self.rowNum <= 1:
             print("总行数小于1")
@@ -39,53 +52,47 @@ class ExcelUtil():
                 
             return r,self.keys
 
-
-    def write_excel(self,filepath,datas,names):
+    def write_excel(self,wb,datas,names,df):
         """写入数据"""
-        f = xlwt.Workbook(encoding='utf-8', style_compression=0)             
-        sheet= f.add_sheet(u'sheet1',cell_overwrite_ok=True) 
-
-
-
-
-       
-        #写入数据
-        d=[]
+        
+        sheet=wb.get_sheet("Sheet1")
         for i in range(len(datas)):
             value=datas[i]
+                    
             #print("正在写入第{0}行，数据{1}".format(i+1,value)) 
             for j in range(len(names)):
-
-               #获取要写入的单元格
-                def _getCell(sheet,r,c):
-                        #获取行
-                        row=sheet._Worksheet__rows.get(i)
-                        if not row:
-                                return None
-                        #获取单元格
-                        cell=row._Row__cells.get(j)
-                        return cell
-
-                #获取要写入的单元格
-                cell=_getCell(sheet,i,j)
-
-                #
                 key=names[j]
-                if key=='执行状态':
-                    strValue=str(value[key])
-                    sheet.write(i+1,j,strValue) 
+                #不写入的行
+                if len(value[names[0]])<1 or len(value[names[1]])<1:                    
+            
+                   #获取要写入的单元格，保留样式1
+                    def _getCell(sheet,i,j):
+                            #获取行
+                            row=sheet._Worksheet__rows.get(i)
+                            if not row:
+                                    return None
+                            #获取单元格
+                            cell=row._Row__cells.get(j)
+                            return cell
+                    #获取要写入的单元格，保留样式2
+                    cell=_getCell(sheet,i,j)
 
-                #指定写入的格式
-                if cell:
-                        ncell=_getCell(sheet,i,j)
-                        if ncell:
-                                #设置写入后的格式和写入前一样
-                                ncell.xf_idx=cell.xf_idx
+                    #写入数据
+                    key=names[j]
+                    if key=='realresult' or key=='result':
+                        if value[key]!="":
+                            strValue=str(value[key])
+                            sheet.write(i,j,strValue)
 
-
-                    
-               
-        f.save(filepath)
+                    #指定写入的格式，保留样式3
+                    if cell:
+                            ncell=_getCell(sheet,i,j)
+                            if ncell:
+                                    #设置写入后的格式和写入前一样
+                                    ncell.xf_idx=cell.xf_idx
+                   
+        #保存文件       
+        wb.save(df)
         print ("write finished")
 
 
@@ -106,7 +113,9 @@ class ExcelUtil():
         #print(workbook.sheet_names())
         
         sheet=wb.get_sheet("Sheet1")
-        wb.save(desfile)
+        return  wb
+    
+        #wb.save(desfile)
 
 
        

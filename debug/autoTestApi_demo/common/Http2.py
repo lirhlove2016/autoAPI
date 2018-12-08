@@ -21,7 +21,7 @@ paramJson={}
 timeouts=30
 
 #写入结果
-def wirte_result(result,value):        
+def wirte_result(result,value):
         writer.write(reader.rr-1,7,result)
         writer.write(reader.rr-1,8,value)
                      
@@ -86,7 +86,7 @@ def api_request(method,url,param):
     #print("response--",response)
 
     #写入
-    wirte_result('PASS',response)
+    #wirte_result('PASS',response)
 
     #print(res,type(res.json()))
     #json_res=res.json()
@@ -98,12 +98,14 @@ def api_request(method,url,param):
          json_res=response
     print("response--",json_res)
 
+    return  'PASS',response
 
 #存储url地址
 def seturl(url):
     global baseUrl
     baseUrl=url
-    wirte_result('PASS',baseUrl)
+    #wirte_result('PASS',baseUrl)
+    return  'PASS',baseUrl
     
 #存储#存储url地址
 def settimeout(num):
@@ -111,7 +113,8 @@ def settimeout(num):
     timeouts=int(num)
     print('timeout is setting %s',timeouts)
     #写入
-    wirte_result('PASS',timeouts)
+    #wirte_result('PASS',timeouts)
+    return  'PASS',timeouts
 
 #add param
 def add_param(key,value):
@@ -119,7 +122,8 @@ def add_param(key,value):
     paramJson[key]=value
 
     #写入
-    wirte_result('PASS',value)
+    #wirte_result('PASS',value)
+    return  'PASS',value
     
 #json字符串解析,把json字符串解析为字典josn.loads
 def json_paser(value):
@@ -141,30 +145,42 @@ def add_header(hkey,jkey):
             session.headers[hkey]=jsonStr
 
             #写入
-            wirte_result('PASS',jsonStr)
+            #wirte_result('PASS',jsonStr)
             print('header[%s]:'%(hkey),session.headers[hkey])
+            result="PASS"
+            value=jsonStr
 
         #取参数值
         elif jkey.startswith('{{'):        
             session.headers[hkey]=get_savejson(jkey)
             #写入
-            wirte_result('PASS',session.headers[hkey)
+            #wirte_result('PASS',session.headers[hkey])
+            result="PASS"
+            value=session.headers[hkey]        
+            
+
     #jkey为空
     else:
         session.headers[hkey]=jkey
         #写入
-        wirte_result('PASS',session.headers[hkey])
+        #wirte_result('PASS',session.headers[hkey])
 
+        result="PASS"
+        value=session.headers[hkey]
+
+
+    return  result,value
   
 #删除请求头信息
 def remove_header(key):
     global json_res,session
     del session.headers[key]
     #写入
-    wirte_result('PASS',json_res[jkey])
+    #wirte_result('PASS',json_res[jkey])
                          
     print('remove  header[%s] success.'%(key),session.headers)
 
+    return  'PASS',json_res[jkey]
     
 #参数&格式转换为字典
 def param_json(param):
@@ -196,10 +212,14 @@ def assert_equals(key,value):
 
     if jsonStr==value:
         print('校验结果是 PASS')
-        wirte_result('PASS',value)
+        #wirte_result('PASS',value)
+
+        return  'PASS',value
     else:
         print('校验结果是 Fail')
-        wirte_result('Fail',json_res[key])
+        #wirte_result('Fail',json_res[key])
+
+        return  'PASS',value
 
 
 #jsonpath
@@ -233,19 +253,23 @@ def saveJson(jkey,key):
     print("正在保存参数------------------------------------")
     jsonStr=json_path(jkey)    
     saveData[key]=jsonStr
-    writer.write(reader.rr-1,7,'PASS')
-    writer.write(reader.rr-1,8,jsonStr)
+    #writer.write(reader.rr-1,7,'PASS')
+    #writer.write(reader.rr-1,8,jsonStr)
 
     #print('the key is %s \nthe value is : %s'%(key,jsonStr))
 
     print("保存参数 %s 的值为%s "%(key,jsonStr))
+
+    return  'PASS',jsonStr
 
 
 
 #parse.quote(str1) 编码
 def ulr_decode(url):
     urldecode=parse.unquote(url) #解码字符串
-    wirte_result('PASS',urldecode)
+    #wirte_result('PASS',urldecode)
+
+    return  'PASS',urldecode
                          
 def get_code(self):
     #获取返回接口的状态码
@@ -259,9 +283,7 @@ def re_compile(srcStr):
     findword="({{[a-zA-Z]+}})"  
     pattern = re.compile(findword)
     results =pattern.findall(srcStr)    
-
-    #for result in results: 
-        #print (result)     
+  
     
     #找到匹配的参数,替换参数值,未找到就原来的
     if len(results)!=0:
