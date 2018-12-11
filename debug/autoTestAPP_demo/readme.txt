@@ -1,0 +1,16 @@
+目前支持的关键字
+1.caps
+2.start
+3.swip，左，右，次数
+4.id,class,name,text,css,xpath
+5.click
+6.clear
+7.input
+8.assertequals
+9.sleep
+10.savephoto，屏幕截图
+11.失败重试
+12.提取页面，选择true,文字，按钮图标，
+13.点击手机返回键
+14.上滑，下滑
+15.log

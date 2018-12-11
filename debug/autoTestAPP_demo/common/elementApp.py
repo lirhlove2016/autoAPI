@@ -27,10 +27,12 @@ desired_caps = {
             #'app': PATH(r'E:\download\385.apk'), #安装目录
             'appPackage': 'com.ishugui',  
             'appActivity': 'com.dzbook.activity.LogoActivity',
-            #'resetKeyboard': 'True'   
-            #'unicodeKeyboard': 'True',  
-            #'noReset':'true', #不清数据
-            #'fullReset':'true',  #保留账号
+            #'unicodeKeyboard': True,  #是使用unicode编码方式发送字符串
+            #'resetKeyboard': True,      #隐藏键盘            
+            #'noReset':True, #在会话前是否重置app状态。默认是false
+            #'fullReset':'true',  #
+            #'autoLaunch'：'false',  #Appium是否要自动启动或安装app，默认true
+            #'newCommandTimeout':1800 #设置未接收到新命令的超时时间，默认60s,
         }
 
 
@@ -38,6 +40,7 @@ desired_caps = {
 def update_capability(key,value):
     global desired_caps
     desired_caps[key]=value
+
 
 #启动设备
 def start(adddress,time):
@@ -47,6 +50,7 @@ def start(adddress,time):
     
     driver = webdriver.Remote(url, desired_caps)
     driver.implicitly_wait(timeout)
+
 
    
 #定位元素：index,取一组中[] name保存的命       
@@ -77,35 +81,66 @@ def get_element(method,element,index="",name=""):
         new='new UiSelector().text(\"'+element+'\")'        
         e=driver.find_element_by_android_uiautomator(new)
 
+
+    print('定位元素--------------------------')
+    print('e:',e)
+    
     if name!="":
         elements[name]=e
-        
-    print(method,element)
-    print('定位元素--------------------------')
-    print('elements[%s]'%(name),elements[name],'e:',e)
 
+#操作集合
+def clicks(act,element,value="",name=""):
+    global elements,driver
+    global e
+    print('正在执行点击操作--------------------------')
+    print(element)
+
+    #不为空，提取保存的值；为空点击上一个定位元素
+    if element!="":
+        el=elements[element]
+    else:
+        el=e
+    print('点击的元素是：%s-------------------------'%el)
+
+    #根据act执行不同到操作
+    if act=="click":
+        result=el.click()
+    elif act=="clear":
+        result=el.clear()
+    elif act=="input":
+        result=el.send_keys(value)
+
+    #name保存操作
+    if name!="":
+        saveValue[name]=result
+
+#获取当前页所有元素
+def get_pages_source():
+    global elements,driver
+    sources=driver.find_element_by_xpath("//*")
+    
+    
 
 #操作click
 def click(element,value="",name=""):
     global elements,driver
     global e
-    print('点击click--------------------------')
+    print('正在执行点击操作--------------------------')
     print(element)
-    print(e,elements)
 
-    el=elements[element]
-    print('点击的元素-------------------------',el)
-    
-    if element!="":        
-        result=elements[element].click()
-            
+    #不为空，提取保存的值；为空点击上一个定位元素
+    if element!="":
+        el=elements[element]
     else:
-        result=e.click()
-        
+        el=e
+    print('点击的元素是：%s-------------------------'%el)
+    
+    result=el.click()
+
+    #name保存操作
     if name!="":
         saveValue[name]=result
 
-         
 
 #操作clear
 def clear(element,value="",name=""):
@@ -119,8 +154,7 @@ def clear(element,value="",name=""):
     print('点击的元素-------------------------',el)
     
     if element!="":        
-        result=elements[element].click()
-            
+        result=elements[element].click()           
     else:
         result=e.click()
         
@@ -139,13 +173,14 @@ def sendkeys(element,value="",name=""):
     print('输入的元素-------------------------',el)
     
     if element!="":        
-        result=elements[element].sendkeys(value)
-            
+        result=elements[element].send_keys(value)            
     else:
-        result=e.sendkeys(value)
-        
+        result=e.send_keys(value)        
+
     if name!="":
         saveValue[name]=result        
+
+
          
 #assertequals
 def assertequals(key,value):
@@ -173,7 +208,6 @@ def assertequals(key,value):
         writer.write(reader.rr-1,7,'Fail')
         writer.write(reader.rr-1,8,value)
 
-
                
 #滑动
 def swip(method,num):
@@ -186,12 +220,45 @@ def swip(method,num):
             swipeRight()            
         i=i+1
 
-#sleep
-def sleep(time):
-    global driver
-    time.sleep(int(time))
-    
+#scroll
+def scroll(ori_el,des_el):
+    global elements,driver
+    deriver.scroll(ori_el,des_el)
         
+#scroll
+def current_context():
+    global driver
+    driver.current_context
+
+
+#获得所有contexts
+def contexts():
+    global driver    
+    driver.contexts
+
+
+#sleep
+def sleep(t):
+    global driver
+    t=int(t)    
+    time.sleep(t)
+
+
+#保存图片到本文件夹,暂时不用
+def save_screenshot(filename):
+    global driver
+    driver.save_screenshot(filename)
+
+
+#保存图片到指定文件夹
+def get_screenshot(filepath,filename):
+    global driver
+    filename=filepath+filename
+    print('------------------------------保存图片',filename)
+    driver.get_screenshot_as_file(filename)
+
+
+    
 #获取屏幕宽度和高度
 def getSize():
 	x = driver.get_window_size()['width']

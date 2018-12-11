@@ -66,6 +66,7 @@ el10 = driver.find_element_by_id("com.ishugui:id/imageview_back")
 el10.click()
 el11 = driver.find_element_by_id("com.ishugui:id/imageview_back")
 el11.click()
+
 #
 el12 = driver.find_element_by_id("com.ishugui:id/tv_sign_status")
 el12.click()
