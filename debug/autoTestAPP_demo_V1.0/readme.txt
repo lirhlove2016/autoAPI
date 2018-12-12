@@ -18,6 +18,14 @@
 二、环境
 1.Java，安卓sdk,appium
 2.python 3.x以上
-3.运行脚本
-先将excel数据存放到目录下
-再执行runAPPtest.py,命令行执行脚本目录下，执行python runAPPtest.py
+3.python插件安装，运行，setup.py
+命令行执行，python setup.py
+
+三、启动设备
+1.启动appium
+2.连接设备，adb devices，显示设备连接状态
+
+四.运行脚本
+1.先将excel数据存放到目录下，目录为datadir
+2.再执行runAPPtest.py
+命令行执行脚本目录下，执行python runAPPtest.py

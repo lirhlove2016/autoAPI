@@ -5,76 +5,24 @@ import json
 import jsonpath
 import re
 import time
+import os
 
+#-文件目录配置----------------------------
+#1.配置data文件目录,手动配置
+filepath=r"E:\myworkspace\mygit\autoTestAPP_demo\datadir"
 
-
-srcfile=r"E:\myworkspace\mygit\autoTestAPP_demo\datadir\myApp.xls"
-desfile=r"E:\myworkspace\mygit\autoTestAPP_demo\datadir\myApp_result.xls"
-
-resultfile=r"E:\myworkspace\mygit\autoTestAPP_demo\result\screenshot\screenshot__"
-
-#配置data文件目录
-filepaht=r"E:\myworkspace\mygit\autoTestAPP_demo\datadir"
 srcfile=filepath+"\myApp.xls"
 desfile=filepath+"\myApp_result.xls"
 resultfile=filepath+"\result\screenshot\screenshot_"
 
+#2.配置data文件目录,取当前目录
+filepath=os.path.abspath(os.getcwd())
+srcfile=os.path.join(filepath,'datadir/myApp.xls')
+desfile=os.path.join(filepath,'datadir/myApp_result.xls')
+resultfile=os.path.join(filepath,'result/screenshot/screenshot_')
 
-
-'''
-#app.update_capability("appPackage","diankan")
-print(app.desired_caps)
-
-url="http://localhost:4723/wd/hub"
-timeout=5
-print('正在启动...')
-app.start(url,timeout)
-
-print('启动客户端.....')
-
-time.sleep(5)
-
-print('打开客户端了')
-
-#启动页向左滑动
-app.swip("left","3")
-
-
-
-#点击男
-print('已经滑动到第3页，正在选择男 女 ...')
-app.get_element("id","com.ishugui:id/tv_man","","man")
-app.click("man",)
-print('选择男生，进入主界面')
-'''
-
-'''
-driver=app.driver
-el=driver.find_element_by_id("com.ishugui:id/tv_man")
-result=el.click()
-
-print('定位元素-----------------',el,result)
-print('点击结果-----------------',result)
-'''
-
-#重试（三次）
-count = 0
-def rerun(func):
-    global count
-    count = count + 1
-    if count <= 3:
-        print("重试第%d次" % count)
-        func()
-    else:
-        print("结束")
-        pass
-        print("结束成功")
-        count = 0
-        return count
-
-
+#-脚本-----------------------------------
 def run(line):
-    try:
         if line[3]=='caps':
             app.update_capability(line[4],line[5])
             return
@@ -122,13 +70,7 @@ def run(line):
             app.get_screenshot(resultfile,line[4])
             return
 
-    except BaseException as e:
-        print(e.args)
-        app.get_screenshot(resultfile+'error_',line[4])
-        
-        rerun(run)
 
-        
 reader.open_excel(srcfile)
 writer.copy_open(srcfile,desfile)
 
@@ -145,4 +87,4 @@ for i in range(0,reader.r):
                                                         
 writer.save_close()
 
-
+#----end------------------------------------------
