@@ -6,24 +6,20 @@ import jsonpath
 import re
 import time
 import os
-from selenium.webdriver.support.ui import WebDriverWait
-from selenium.webdriver.support import expected_conditions as EC
-from conf.conf import *
 
 #-文件目录配置----------------------------
+#1.配置data文件目录,手动配置
+filepath=r"E:\myworkspace\mygit\autoTestAPP_demo\datadir"
+srcfile=filepath+"\myApp.xls"
+desfile=filepath+"\myApp_result.xls"
+resultfile=filepath+"\result\screenshot\screenshot_"
+
 #2.配置data文件目录,取当前目录
-'''
 filepath=os.path.abspath(os.getcwd())
 srcfile=os.path.join(filepath,'datadir/myApp.xls')
 desfile=os.path.join(filepath,'datadir/myApp_result.xls')
 resultfile=os.path.join(filepath,'result/screenshot/screenshot_')
 
-'''
-#conf配置
-srcfile=os.path.join(dataDir,'myApp.xls')
-desfile=os.path.join(dataDir,'myApp_result.xls')
-resultfile=os.path.join(reportDir,'screenshot/screenshot_')
-print(dataDir,srcfile)
 
 #-脚本-----------------------------------
 def run(line):
@@ -36,22 +32,8 @@ def run(line):
         if line[3]=='sleep':
             app.sleep(line[4])
             return
-
-        if line[3]=='right':
-            #app.RIGHT()
-            app.swiptest("right",line[4])
-            return
-        if line[3]=='left':
-            #app.LEFT()
-            app.swiptest("left",line[4])
-            return
-        if line[3]=='up':
-            #app.UP()
-            app.swiptest("up",line[4])
-            return
-        if line[3]=='down':
-            #app.DOWN()
-            app.swiptest("down",line[4])                
+        if line[3]=='swip':
+            app.swip(line[4],line[5])
             return
         if line[3]=='id':
             app.get_element("id",line[4],line[5],line[6])
@@ -88,13 +70,6 @@ def run(line):
             app.get_screenshot(resultfile,line[4])
             return
 
-        if  line[3]=='quit':
-            app.quit()
-            return
-
-        if  line[3]=='back':
-            app.back()
-            return
 
 reader.open_excel(srcfile)
 writer.copy_open(srcfile,desfile)
