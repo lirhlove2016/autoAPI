@@ -5,8 +5,12 @@ from common import readexcel as reader,writeexcel as writer
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 
+from conf.conf import dataDir,reportDir
+
 PATH = lambda p:os.path.abspath(os.path.join(os.path.dirname(__file__),p))
- 
+
+#保存图片 
+resultfile=os.path.join(reportDir,'screenshot/screenshot_')
 
 #保存元素
 elements={}
@@ -38,12 +42,15 @@ desired_caps = {
             #'fullReset':'true',  #
             #'autoLaunch'：'false',  #Appium是否要自动启动或安装app，默认true
             'newCommandTimeout':60, #设置未接收到新命令的超时时间，默认60s,
-            'automationName': 'uiautomator2',           
+            #'automationName': 'uiautomator2',       
         }
 
 #配置设备
 def update_capability(key,value):
     global desired_caps
+    if key=='newCommandTimeout':
+            value=int(value)
+        
     desired_caps[key]=value
     #写入
     wirte_result('PASS',value)
@@ -103,8 +110,8 @@ def get_element(method,element,index="",name=""):
 
     #异常
     except Exception as err:
-        print("定位报错了:",err)
-        get_screenshot()
+        print("定位报错了:",err)        
+        get_screenshot(resultfile,"_error_element.png")
         #写入信息
         re="Fail"
         value=element

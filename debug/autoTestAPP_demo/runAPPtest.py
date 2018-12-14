@@ -10,20 +10,25 @@ from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 from conf.conf import *
 
+
+
 #-文件目录配置----------------------------
+
 #2.配置data文件目录,取当前目录
-'''
-filepath=os.path.abspath(os.getcwd())
+#filepath=r"E:\download"
+#filepath=os.path.abspath(os.getcwd())
 srcfile=os.path.join(filepath,'datadir/myApp.xls')
 desfile=os.path.join(filepath,'datadir/myApp_result.xls')
 resultfile=os.path.join(filepath,'result/screenshot/screenshot_')
 
-'''
+
 #conf配置
 srcfile=os.path.join(dataDir,'myApp.xls')
 desfile=os.path.join(dataDir,'myApp_result.xls')
 resultfile=os.path.join(reportDir,'screenshot/screenshot_')
 print(dataDir,srcfile)
+
+
 
 #-脚本-----------------------------------
 def run(line):
@@ -111,5 +116,6 @@ for i in range(0,reader.r):
         pass
                                                         
 writer.save_close()
+print('执行完成---------------')
 
 #----end------------------------------------------

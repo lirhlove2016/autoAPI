@@ -30,3 +30,7 @@
 命令行执行脚本目录下，执行python runAPPtest.py
 
 五、安卓6.0，8.0区别
+
+六、打包exe文件需要
+打包命令,cmd进入目录下，输入：pyinstall -F  runAPPtest.py
+修改run 和 element文件下conf_exe目录
