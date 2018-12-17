@@ -1,24 +1,9 @@
 # coding:utf-8
 from common import elementApp as app
 from common import readexcel as reader,writeexcel as writer
-import json
-import jsonpath
-import re
-import time
-import os
-from selenium.webdriver.support.ui import WebDriverWait
-from selenium.webdriver.support import expected_conditions as EC
 from conf.conf import *
 
 #-文件目录配置----------------------------
-#2.配置data文件目录,取当前目录
-'''
-filepath=os.path.abspath(os.getcwd())
-srcfile=os.path.join(filepath,'datadir/myApp.xls')
-desfile=os.path.join(filepath,'datadir/myApp_result.xls')
-resultfile=os.path.join(filepath,'result/screenshot/screenshot_')
-
-'''
 #conf配置
 srcfile=os.path.join(dataDir,'myApp.xls')
 desfile=os.path.join(dataDir,'myApp_result.xls')
@@ -38,47 +23,47 @@ def run(line):
             return
 
         if line[3]=='right':
-            #app.RIGHT()
-            app.swiptest("right",line[4])
+            app.RIGHT()
+            #app.swiptest("right",line[4],line[5])
             return
         if line[3]=='left':
-            #app.LEFT()
-            app.swiptest("left",line[4])
+            app.LEFT()
+            #app.swiptest("left",line[4],line[5])
             return
         if line[3]=='up':
-            #app.UP()
-            app.swiptest("up",line[4])
+            app.UP()
+            #pp.swiptest("up",line[4],line[5])
             return
         if line[3]=='down':
-            #app.DOWN()
-            app.swiptest("down",line[4])                
+            app.DOWN()
+            #app.swiptest("down",line[4],line[5])
             return
         if line[3]=='id':
-            app.get_element("id",line[4],line[5],line[6])
+            app.get_element("id",line[4],line[5],line[6],line[2])
             return
         if line[3]=='name':
-            app.get_element("name",line[4],line[5],line[6])
+            app.get_element("name",line[4],line[5],line[6],line[2])
             return
         if line[3]=='text':
-            app.get_element("text",line[4],line[5],line[6])
+            app.get_element("text",line[4],line[5],line[6],line[2])
             return
         if line[3]=='css':
-            app.get_element("css",line[4],line[5],line[6])
+            app.get_element("css",line[4],line[5],line[6],line[2])
             return
         if line[3]=='xpath':
-            app.get_element("xpath",line[4],line[5],line[6])
+            app.get_element("xpath",line[4],line[5],line[6],line[2])
             return
         if line[3]=='class':
-            app.get_element("class",line[4],line[5],line[6])
+            app.get_element("class",line[4],line[5],line[6],line[2])
             return     
         if line[3]=='click':
-            app.clicks("click",line[4],line[5],line[6])
+            app.clicks("click",line[4],line[5],line[6],line[2])
             return
         if line[3]=='clear':
-            app.clicks("clear",line[4],line[5],line[6])
+            app.clicks("clear",line[4],line[5],line[6],line[2])
             return
         if line[3]=='input':
-            app.clicks("input",line[4],line[5],line[6])
+            app.clicks("input",line[4],line[5],line[6],line[2])
             return    
 
         if  line[3]=='assertequals':
@@ -109,7 +94,8 @@ for i in range(0,reader.r):
         #执行
         run(line)
         pass
-                                                        
+#保存结果
 writer.save_close()
 
+print('-END-------------------------')
 #----end------------------------------------------
