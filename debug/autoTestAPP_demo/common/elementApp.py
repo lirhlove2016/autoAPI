@@ -4,6 +4,7 @@ import time, os
 from common import readexcel as reader, writeexcel as writer
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
+from appium.webdriver.common.touch_action import TouchAction
 
 from conf.conf import dataDir, reportDir
 
@@ -281,6 +282,16 @@ def current_context():
 def contexts():
     global driver
     driver.contexts
+
+def keyboard(key):
+    global driver
+    k=int(key)
+    try:
+        driver.press_keycode(key)
+        
+    except BaseException as err:
+        err_run(err,keyboard)  
+    
 
 
 '''

@@ -62,16 +62,16 @@ el=driver.find_element_by_id("com.ishugui:id/edit_search")
 el.send_keys("天天见")
 time.sleep(5)
 print('1---')
-driver.keyevent("4")
+#driver.keyevent("4")
 print('2---')
 driver.keyevent(4)
 
 #driver.keyevent()        #括号里填入的是手机物理按键的数字代号
 
-
 time.sleep(5)
 print('3---')
 driver.press_keycode(4)   #括号里填入的是键盘按键的数字代号
+
 
 '''
 driver.sendKeyEvent(AndroidKeyCode.BACKSPACE);
