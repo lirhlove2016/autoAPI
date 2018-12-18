@@ -263,10 +263,19 @@ def save_screenshot(filename):
     # 写入
     wirte_result("PASS", filename)
 
+
+# 获取当前页元素
+def get_page():
+    global  driver
+    sources = driver.find_element_by_xpath("//*")
+
 # 获取当前页所有元素
 def get_pages_source():
-    global elements, driver
-    sources = driver.find_element_by_xpath("//*")
+    global driver
+    re=driver.page_source
+    with  open('pagesource.xlm','w+') as f:
+        f.write(re)
+
 
 # scroll
 def scroll(ori_el, des_el):
@@ -282,6 +291,7 @@ def current_context():
 def contexts():
     global driver
     driver.contexts
+
 
 def keyboard(key):
     global driver

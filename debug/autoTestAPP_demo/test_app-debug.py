@@ -13,10 +13,8 @@ desfile = os.path.join(filepath, 'datadir/myApp_result123.xls')
 resultfile = os.path.join(filepath, 'report/screenshot/screenshot_')
 print(srcfile)
 
-
 reader.open_excel(srcfile)
 writer.copy_open(srcfile, desfile)
-
 
 app.update_capability("deviceName","6EB0217518004226")
 app.update_capability("platformVersion","8.0")
@@ -39,6 +37,9 @@ app.LEFT()
 app.LEFT()
 
 driver=app.driver
+l=driver.page_source
+
+print(l)
 
 #点击男
 print('已经滑动到第3页，正在选择男 女 ...')
@@ -62,7 +63,7 @@ el=driver.find_element_by_id("com.ishugui:id/edit_search")
 el.send_keys("天天见")
 time.sleep(5)
 print('1---')
-#driver.keyevent("4")
+driver.keyevent("4")
 print('2---')
 driver.keyevent(4)
 
@@ -71,18 +72,19 @@ driver.keyevent(4)
 time.sleep(5)
 print('3---')
 driver.press_keycode(4)   #括号里填入的是键盘按键的数字代号
+time.sleep(2)
+print('4---')
 
+driver.press_keycode("4") 
 
-'''
-driver.sendKeyEvent(AndroidKeyCode.BACKSPACE);
-driver.sendKeyEvent(AndroidKeyCode.DEL);
-driver.sendKeyEvent(AndroidKeyCode.ENTER);
-driver.sendKeyEvent(AndroidKeyCode.HOME);
-driver.sendKeyEvent(AndroidKeyCode.MENU);
-driver.sendKeyEvent(AndroidKeyCode.SETTINGS);
-driver.sendKeyEvent(AndroidKeyCode.SPACE);
-'''
+l=driver.page_source
+with  open('pagesource.xlm','w+') as f:
+        f.write(l)
+        
+print(l)
+z=app.get_page()
 
+print(z)
 print('定位元素-----------------')
 print('点击结果-----------------')
 
