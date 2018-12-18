@@ -1,7 +1,8 @@
 #coding:utf-8
+#coding=utf-8
+
 from appium import webdriver
 import time,os
-
 
 
 #获取屏幕宽度和高度
@@ -20,15 +21,17 @@ def swipeLeft():
 
 #使用设备配置
 desired_caps ={
-  "platformName": "Android",
-  "deviceName": "722347d6",
-  "platformVersion": "6.0",
-  "appPackage": "com.ishugui",
-  "appActivity": "com.dzbook.activity.LogoActivity"
+        "platformName": "Android",
+        "deviceName": "722347d6",
+        "platformVersion": "6.0",
+        "appPackage": "com.ishugui",
+        "appActivity": "com.dzbook.activity.LogoActivity",
+        "unicodeKeyboard": True,
+        "resetKeyboard": True,
 }
 
 driver = webdriver.Remote('http://localhost:4723/wd/hub', desired_caps)
-driver.implicitly_wait(5)
+driver.implicitly_wait(10)
 print('Start-------------------------------------------------')
 
 
@@ -49,18 +52,25 @@ el2.click()
 #我的 
 el3 = driver.find_element_by_xpath("/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.RelativeLayout/android.widget.RelativeLayout/android.widget.LinearLayout/android.widget.LinearLayout[4]/android.widget.RelativeLayout/android.widget.ImageView[1]")
 el3.click()
+time.sleep(1)
 #书架
 el4 = driver.find_element_by_xpath("/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.RelativeLayout/android.widget.RelativeLayout/android.widget.LinearLayout/android.widget.LinearLayout[1]/android.widget.RelativeLayout/android.widget.ImageView")
 el4.click()
+time.sleep(1)
 #点击书架-搜索
 el5 = driver.find_element_by_id("com.ishugui:id/iv_top_title_search")
 el5.click()
 #输入搜索内容
 el8 = driver.find_element_by_id("com.ishugui:id/edit_search")
+el8.send_keys("中文字符")
+time.sleep(2)
 el8.send_keys("123")
 #点击搜索
 el9 = driver.find_element_by_id("com.ishugui:id/textview_search")
 el9.click()
+
+
+'''
 #返回
 el10 = driver.find_element_by_id("com.ishugui:id/imageview_back")
 el10.click()
@@ -90,3 +100,7 @@ el16.click()
 el17 = driver.find_element_by_xpath("/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.FrameLayout/android.widget.RelativeLayout/android.widget.FrameLayout[1]/android.widget.ImageView")
 el17.click()
 print('End----------------------------------------------------')
+'''
+
+
+

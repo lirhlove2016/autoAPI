@@ -10,6 +10,7 @@ desired_caps['platformVersion'] = '8.0.0'
 desired_caps['deviceName'] = 'LMX4C17A28015459'
 desired_caps['appPackage'] = 'com.dzmf.zmfxsdq'
 desired_caps['appActivity'] = 'com.dzbook.activity.SplashActivity'
+desired_caps['newCommandTimeout'] = '200'
 
 #设置模拟器或真机配置
 def platformName(PN):
@@ -22,6 +23,8 @@ def appPackage(APK):
         desired_caps['appPackage'] = APK
 def appActivity(ACT):
         desired_caps['appActivity'] = ACT
+def newCommandTimeout(NCT):
+    desired_caps['newCommandTimeout'] = NCT
 
 #启动
 def DRIVER():
@@ -45,13 +48,13 @@ def func_name():
     return func_name
 
 #重试（三次）
-count = 0
-def rerun(func):
+count = 1
+def rerun(func,*args,**kwargs):
     global count
-    count = count + 1
     if count <= 3:
         print("重试第%d次" % count)
-        func()
+        count = count + 1
+        func(*args,**kwargs)
     else:
         print("结束")
         pass
@@ -185,9 +188,57 @@ def RC():
         print(e)
         rerun(RC)
 
-0
+#物理返回键
+def BACK():
+    try:
+        driver.keyevent(4)
+    except BaseException as e:
+        print(e)
+        rerun(BACK)
 
+#快上划
+def FASTUP():
+    try:
+        x1 = int(SIZE()[2]*0.5)
+        y1 = int(SIZE()[3]*0.2)
+        y2 = int(SIZE()[3]*0.8)
+        driver.flick(x1,y2,x1,y1)
+    except BaseException as e:
+        print(e.args)
+        rerun(UP)
 
+#快下划
+def FASTDOWN():
+    try:
+        x1 = int(SIZE()[2]*0.5)
+        y1 = int(SIZE()[3]*0.2)
+        y2 = int(SIZE()[3]*0.8)
+        driver.flick(x1,y1,x1,y2)
+    except BaseException as e:
+        print(e.args)
+        rerun(DOWN)
+
+#快左划
+def FASTLEFT():
+    try:
+        x1 = int(SIZE()[2]*0.2)
+        x2 = int(SIZE()[2]*0.8)
+        y1 = int(SIZE()[3]*0.5)
+        driver.flick(x2,y1,x1,y1)
+    except BaseException as e:
+        print(e.args)
+        rerun(LEFT)
+
+#快右划
+def FASTRIGHT():
+    try:
+        x1 = int(SIZE()[2]*0.2)
+        x2 = int(SIZE()[2]*0.8)
+        y1 = int(SIZE()[3]*0.5)
+        driver.flick(x1,y1,x2,y1)
+    except BaseException as e:
+        print(e.args)
+        rerun(RIGHT)
 
 
 

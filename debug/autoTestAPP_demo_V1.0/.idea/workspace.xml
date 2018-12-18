@@ -3,12 +3,9 @@
   <component name="ChangeListManager">
     <list default="true" id="2ac0c537-8ad0-471d-af10-a2dad9c007e2" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/common/elementApp.py" beforeDir="false" afterPath="$PROJECT_DIR$/common/elementApp.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/datadir/myApp.xls" beforeDir="false" afterPath="$PROJECT_DIR$/datadir/myApp.xls" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/datadir/myApp_result.xls" beforeDir="false" afterPath="$PROJECT_DIR$/datadir/myApp_result.xls" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/readme.txt" beforeDir="false" afterPath="$PROJECT_DIR$/readme.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/report/screenshot/screenshot_shujia.png" beforeDir="false" afterPath="$PROJECT_DIR$/report/screenshot/screenshot_shujia.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/runAPPtest.py" beforeDir="false" afterPath="$PROJECT_DIR$/runAPPtest.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/hello.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/sub.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../web_demo/debug.log" beforeDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -26,12 +23,13 @@
     <session id="-823287753">
       <usages-collector id="statistics.lifecycle.project">
         <counts>
-          <entry key="project.closed" value="4" />
+          <entry key="project.closed" value="5" />
           <entry key="project.open.time.0" value="1" />
+          <entry key="project.open.time.20" value="1" />
           <entry key="project.open.time.21" value="1" />
           <entry key="project.open.time.24" value="1" />
           <entry key="project.open.time.9" value="1" />
-          <entry key="project.opened" value="4" />
+          <entry key="project.opened" value="5" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.open">
@@ -65,8 +63,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/runAPPtest.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1216">
-              <caret line="101" lean-forward="true" selection-start-line="101" selection-end-line="101" />
+            <state relative-caret-position="1481">
+              <caret line="94" column="17" lean-forward="true" selection-start-line="94" selection-start-column="17" selection-end-line="95" selection-end-column="12" />
               <folding>
                 <element signature="e#15#51#0" expanded="true" />
               </folding>
@@ -77,8 +75,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/common/elementApp.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="450">
-              <caret line="186" column="11" lean-forward="true" selection-start-line="186" selection-start-column="11" selection-end-line="186" selection-end-column="11" />
+            <state relative-caret-position="4525">
+              <caret line="186" column="11" selection-start-line="186" selection-start-column="11" selection-end-line="186" selection-end-column="11" />
               <folding>
                 <marker date="1545048056204" expanded="true" signature="5713:5716" ph="..." />
               </folding>
@@ -152,7 +150,7 @@
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="full.screen.before.presentation.mode" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../../../../autoTestAPP_demo_V1.0" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
     <property name="settings.editor.selected.configurable" value="editor.preferences.fonts.default" />
@@ -428,22 +426,22 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/common/elementApp.py">
+    <entry file="file://$PROJECT_DIR$/runAPPtest.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="450">
-          <caret line="186" column="11" lean-forward="true" selection-start-line="186" selection-start-column="11" selection-end-line="186" selection-end-column="11" />
+        <state relative-caret-position="1481">
+          <caret line="94" column="17" lean-forward="true" selection-start-line="94" selection-start-column="17" selection-end-line="95" selection-end-column="12" />
           <folding>
-            <marker date="1545048056204" expanded="true" signature="5713:5716" ph="..." />
+            <element signature="e#15#51#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/runAPPtest.py">
+    <entry file="file://$PROJECT_DIR$/common/elementApp.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1216">
-          <caret line="101" lean-forward="true" selection-start-line="101" selection-end-line="101" />
+        <state relative-caret-position="4525">
+          <caret line="186" column="11" selection-start-line="186" selection-start-column="11" selection-end-line="186" selection-end-column="11" />
           <folding>
-            <element signature="e#15#51#0" expanded="true" />
+            <marker date="1545048056204" expanded="true" signature="5713:5716" ph="..." />
           </folding>
         </state>
       </provider>

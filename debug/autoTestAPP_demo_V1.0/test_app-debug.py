@@ -19,12 +19,12 @@ print(dataDir,srcfile)
 
 #app.update_capability("appPackage","diankan")
 print(app.desired_caps)
-#app.update_capability("deviceName","6EB02175180042260")
+app.update_capability("deviceName","6EB02175180042260")
 #app.update_capability("platformVersion","8.0")
 print(app.desired_caps)
 
 url="http://localhost:4723/wd/hub"
-timeout="10"
+timeout=10
 print('正在启动...')
 app.start(url,timeout)
 
