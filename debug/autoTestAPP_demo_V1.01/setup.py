@@ -33,4 +33,4 @@ except :
 try:
     import appium
 except :
-    os.system('pip install Appium-Python-Client==0.29')
+    os.system('pip install Appium-Python-Client')

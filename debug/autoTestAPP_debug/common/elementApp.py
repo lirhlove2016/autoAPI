@@ -4,6 +4,7 @@ import time, os
 from common import readexcel as reader, writeexcel as writer
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
+from appium.webdriver.common.touch_action import TouchAction
 
 from conf.conf import dataDir, reportDir
 
@@ -49,6 +50,28 @@ desired_caps = {
     #'dontStopAppOnReset': True,   # 不关闭应用
     #'autoGrantPermissions': True,  # 自动获取权限
 }
+
+#输入中文内容前调用
+def input_before():
+    if  desired_caps['unicodeKeyboard']==False:
+        desired_caps['unicodeKeyboard']=True
+
+    if  desired_caps['resetKeyboard']==False:
+        desired_caps['resetKeyboard']=True
+
+    print(desired_caps['unicodeKeyboard'])
+    print(desired_caps['resetKeyboard'])
+
+#输入中文内容后调用
+def input_after():
+    if desired_caps['unicodeKeyboard']==True:
+        desired_caps['unicodeKeyboard']=False
+
+    if desired_caps['resetKeyboard']==True:
+        desired_caps['resetKeyboard']=False
+
+    print(desired_caps['unicodeKeyboard'])
+    print(desired_caps['resetKeyboard'])
 
     
 # 配置设备
@@ -154,11 +177,12 @@ def clicks(act, element, value="", name="", casename=""):
         elif act == "clear":
             result = el.clear()
         elif act == "input":
-
+            #input_before()
             value=str(value)            
             result= el.send_keys(value)
             print('正在输入内容',value)
 
+            #input_after()
             
         # name保存操作
         if name != "":
@@ -217,7 +241,6 @@ def sleep(t):
         #调用方法
         err_run(err,sleep)
 
-
 # 保存图片到指定文件夹
 def get_screenshot(filepath, file):
     global driver
@@ -226,16 +249,13 @@ def get_screenshot(filepath, file):
     try:
         driver.get_screenshot_as_file(filename)
         # 写入
-        wirte_result("PASS",file)
+        wirte_result("PASS", filename)
 
     except Exception as err:
         #调用方法
         err_run(err,get_screenshot,filepath,file)
         
 
-
-
-#---------未调试
 # 保存图片到本文件夹,暂时不用
 def save_screenshot(filename):
     global driver
@@ -243,7 +263,8 @@ def save_screenshot(filename):
     # 写入
     wirte_result("PASS", filename)
 
-    
+
+#---------未调试   
 # 获取当前页元素
 def get_page():
     global  driver
@@ -252,21 +273,21 @@ def get_page():
     
 
 # 获取当前页所有元素
-def get_pages_source(file=""):
+def get_pages_source(filename=""):
     global driver
-    
-    try:       
+    try:
+        
         re=driver.page_source
         
-        if file=="":
+        if filename=="":
             filename="_page_%s.xml"%number
             filepath=reportDir+"_"+filename
             filepath = os.path.join(reportDir,filename)
         else:
-            filepath = os.path.join(reportDir,file)
+            filepath = os.path.join(reportDir,filename)
         with  open(filepath,'w+') as f:
             f.write(re)
-        wirte_result("PASS", file)    
+            
     except Exception as err:
         err_run(err,get_pages_source,filename)  
         rerun(get_pages_source,filename)
@@ -274,7 +295,8 @@ def get_pages_source(file=""):
 # scroll
 def scroll(ori_el, des_el):
     global elements, driver
-    deriver.scroll(ori_el, des_el)
+    deriver.scroll(ori_el,get_pages_source,filename)
+
 
 # current_context
 def current_context():
@@ -285,8 +307,19 @@ def current_context():
 def contexts():
     global driver
     driver.contexts
-#--------待调试
 
+#键盘按键
+def keyboard(key):
+    global driver
+    k=int(key)
+    try:
+        driver.press_keycode(key)
+        
+    except BaseException as err:
+        err_run(err,keyboard)
+        rerun(keyboard,key)
+    
+#--------待调试
 
 '''
 # 滑动
@@ -422,7 +455,7 @@ def err_run(err,func,*args,**kwargs):
     # 写入
     wirte_result(key, value)
     #重试
-    rerun(func,*args,**kwargs)
+    #rerun(func,*args,**kwargs)
     
 
 #重试（三次）
