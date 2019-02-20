@@ -237,23 +237,23 @@ alls=["text","tag_name","size","loaction"]
 def get_value(name,element):
 	global alls,attributes
 	global driver,elements	
-	print('正在取值----------------------------------',name,e)
+	print('正在取值----------------------------------',name)
 	#取保存的定位元素
-	e = elements[element]
+	el = elements[element]
 
 	if name in attributes:
-		t=e.get_attribute(name)
+		t=el.get_attribute(name)
 		print(t)
 
 	elif name in alls:
 		if name=="text":
-			t=e.text
+			t=el.text
 		elif name=="tag_name":
-			t=e.tag_name
+			t=el.tag_name
 		elif name=="size":
-			t=e.size
+			t=el.size
 		elif name=="loaction":
-			t=e.location
+			t=el.location
 		print(t)
 	else:
 		print("输入未找到：",name)
