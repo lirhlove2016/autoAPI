@@ -65,7 +65,7 @@ def run(line):
         return
 
     if line[3] == 'assertequals':
-        app.assertequals(line[4], line[5])
+        app.assert_equals(line[4], line[5],line[6])
         return
     if line[3] == 'savephoto':
         app.get_screenshot(resultfile, line[4])
@@ -80,6 +80,7 @@ def run(line):
         return
     if line[3]=='pagesource':
         app.get_pages_source(line[4])
+    
 
 reader.open_excel(srcfile)
 writer.copy_open(srcfile, desfile)

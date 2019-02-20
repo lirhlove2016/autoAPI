@@ -137,8 +137,6 @@ def get_element(method, element, index="", name="", casename=""):
 def clicks(act, element, value="", name="", casename=""):
     global elements, driver
     global e
-    global number
-
     print('正在执行%s操作--------------------------' % act)
     print(element)
     # 不为空，提取保存的值；为空点击上一个定位元素
@@ -236,9 +234,13 @@ def get_screenshot(filepath, file):
 attributes=["resourceId","className","text","name","checkable","checked","clickable","enabled","focusable","focused","scrollable","selected"]
 alls=["text","tag_name","size","loaction"]
 #定位元素e获取属性
-def get_value(name,e):
+def get_value(name,element):
 	global alls,attributes
+	global driver,elements	
 	print('正在取值----------------------------------',name,e)
+	#取保存的定位元素
+	e = elements[element]
+
 	if name in attributes:
 		t=e.get_attribute(name)
 		print(t)
@@ -259,7 +261,7 @@ def get_value(name,e):
 	return t
 
 #assert,name校验结果，value取值,e定位元素
-def assert_equal(name,value,e):
+def assert_equals(name,value,e):
 	print('正在进行校验-----------------------------------------------------------------')
 	print('本次校验的期望结果是：%s,取值%s'%(name,value))
 	#调用取值
@@ -270,7 +272,6 @@ def assert_equal(name,value,e):
 		
 	else:
 		print('校验不正确，要校验的值为%s,取值%s'%(value,values))
-
 
 
 #---------未调试

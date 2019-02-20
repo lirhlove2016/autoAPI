@@ -124,7 +124,7 @@ alls=["text","tag_name","size","loaction"]
 
 #定位元素e获取属性
 def get_value(name,e):
-	global alls,attributes
+	global alls,attributes,driver
 	print('正在取值----------------------------------',name,e)
 	if name in attributes:
 		t=e.get_attribute(name)
@@ -154,7 +154,7 @@ def assert_equal(name,value,e):
 	#进行判断
 	if name==values:
 		print('校验正确,校验结果：%s'%name)
-		
+
 	else:
 		print('校验不正确，要校验的值为%s,取值%s'%(value,values))
 
