@@ -234,7 +234,6 @@ def get_screenshot(filepath, file):
         
 
 
-
 #---------未调试
 # 保存图片到本文件夹,暂时不用
 def save_screenshot(filename):
@@ -244,7 +243,7 @@ def save_screenshot(filename):
     wirte_result("PASS", filename)
 
     
-# 获取当前页元素
+# 获取当前页元素，未可用
 def get_page():
     global  driver
     ret = driver.find_element_by_xpath(".//*")

@@ -55,11 +55,11 @@ print(t8)
 t9 = e.get_attribute("clickable")
 print(t9)
 
-# size
+# size,{'height': 90, 'width': 270}
 t10 = e.size
 print(t10)
 
-# location
+# location,{'y': 491, 'x': 744}
 t11 = e.location
 print(t11)
 
