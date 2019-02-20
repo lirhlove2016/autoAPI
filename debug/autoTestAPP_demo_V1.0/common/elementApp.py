@@ -232,6 +232,45 @@ def get_screenshot(filepath, file):
         #调用方法
         err_run(err,get_screenshot,filepath,file)
         
+#校验属性值
+attributes=["resourceId","className","text","name","checkable","checked","clickable","enabled","focusable","focused","scrollable","selected"]
+alls=["text","tag_name","size","loaction"]
+#定位元素e获取属性
+def get_value(name,e):
+	global alls,attributes
+	print('正在取值----------------------------------',name,e)
+	if name in attributes:
+		t=e.get_attribute(name)
+		print(t)
+
+	elif name in alls:
+		if name=="text":
+			t=e.text
+		elif name=="tag_name":
+			t=e.tag_name
+		elif name=="size":
+			t=e.size
+		elif name=="loaction":
+			t=e.location
+		print(t)
+	else:
+		print("输入未找到：",name)
+		t="fail"
+	return t
+
+#assert,name校验结果，value取值,e定位元素
+def assert_equal(name,value,e):
+	print('正在进行校验-----------------------------------------------------------------')
+	print('本次校验的期望结果是：%s,取值%s'%(name,value))
+	#调用取值
+	values=get_value(value,e)
+	#进行判断
+	if name==values:
+		print('校验正确,校验结果：%s'%name)
+		
+	else:
+		print('校验不正确，要校验的值为%s,取值%s'%(value,values))
+
 
 
 #---------未调试
