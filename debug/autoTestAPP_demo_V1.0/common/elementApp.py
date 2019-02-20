@@ -133,6 +133,22 @@ def get_element(method, element, index="", name="", casename=""):
     # 写入
     wirte_result(re, value)
 
+
+#定位元素，不为空取保存值，为空取上一个定位元素
+def get_element_of(element):
+    global elements, driver
+    global e
+    print('正在执行%s操作--------------------------' % act)
+    print(element)
+    # 不为空，提取保存的值；为空点击上一个定位元素
+    if element != "":
+        el = elements[element]
+    else:
+        el = e
+    print('操作的元素是：%s-------------------------' % el)	   
+    return el
+
+
 # 操作集合
 def clicks(act, element, value="", name="", casename=""):
     global elements, driver
@@ -237,9 +253,10 @@ alls=["text","tag_name","size","loaction"]
 def get_value(name,element):
 	global alls,attributes
 	global driver,elements	
-	print('正在取值----------------------------------',name)
+	print('正在取值----------------------------------------------------------',name,element)
 	#取保存的定位元素
-	el = elements[element]
+	el=get_element_of(element)
+	print(el)
 
 	if name in attributes:
 		t=el.get_attribute(name)
@@ -262,6 +279,7 @@ def get_value(name,element):
 
 #assert,name校验结果，value取值,e定位元素
 def assert_equals(name,value,e):
+	global driver
 	print('正在进行校验-----------------------------------------------------------------')
 	print('本次校验的期望结果是：%s,取值%s'%(name,value))
 	#调用取值
