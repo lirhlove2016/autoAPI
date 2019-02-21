@@ -163,6 +163,9 @@ assert_equal("今日签到","text",e)
 
 
 
+
+
+
 '''
 #获取当前activity
 s=driver.current_activity()
