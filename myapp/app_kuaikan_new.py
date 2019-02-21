@@ -8,7 +8,7 @@ PATH = lambda p:os.path.abspath(os.path.join(os.path.dirname(__file__),p))
 #from imp import reload
 #reload(app_kuaikan_new)
 
-
+'''
 #获取屏幕宽度和高度
 def getSize():
 	x = driver.get_window_size()['width']
@@ -75,6 +75,43 @@ except:
         print('没有弹窗')
 
 '''
+#
+def test(c):
+	a=50
+	b=6
+	print(a+b+c)
+
+#函数
+funcs={"test":test,"start":test}
+func=["test","start"]
+
+
+def go_func(name):
+	#函数
+	global funcs
+	if name in funcs.keys():
+		print(name)
+		func=funcs[name]
+		print('执行的函数',func)
+		c=6
+		func(c)
+
+	else:
+		print('%s 不存在，请查看是否存在此模块。'%name)
+
+ele=[["id","name","text","css","xpath","class"],["click","clear","clear","input"]] 
+s="click"
+
+if s in ele[0]:
+	print('s',1)
+elif s in ele[1]:
+	print(2)
+
+
+name="test"
+go_func(name)
+
+'''
 print('点击我的')
 #定位到我-文字-10环境
 e2=driver.find_element_by_xpath("//android.widget.TextView[@text='我的']")
@@ -106,7 +143,7 @@ e=driver.current_context
 print("context",e)
 time.sleep(5)
 '''
-
+'''
 #书架-今日签到
 e=driver.find_element_by_id("com.ishugui:id/tv_sign_status")
 
@@ -116,51 +153,7 @@ text=e.text
 print(text)
 time.sleep(5)
 
-print('-------------------')
-#name="text"
-
-attributes=["resourceId","className","text","name","checkable","checked","clickable","enabled","focusable","focused","scrollable","selected"]
-alls=["text","tag_name","size","loaction"]
-
-#定位元素e获取属性
-def get_value(name,e):
-	global alls,attributes,driver
-	print('正在取值----------------------------------',name,e)
-	if name in attributes:
-		t=e.get_attribute(name)
-		print(t)
-
-	elif name in alls:
-		if name=="text":
-			t=e.text
-		elif name=="tag_name":
-			t=e.tag_name
-		elif name=="size":
-			t=e.size
-		elif name=="loaction":
-			t=e.location
-		print(t)
-	else:
-		print("输入未找到：",name)
-		t="fail"
-	return t
-
-#assert,name校验结果，value取值,e定位元素
-def assert_equal(name,value,e):
-	print('正在进行校验-----------------------------------------------------------------')
-	print('本次校验的期望结果是：%s,取值%s'%(name,value))
-	#调用取值
-	values=get_value(value,e)
-	#进行判断
-	if name==values:
-		print('校验正确,校验结果：%s'%name)
-
-	else:
-		print('校验不正确，要校验的值为%s,取值%s'%(value,values))
-
-assert_equal("今日签到","text",e)
-#批量定位
-
+'''
 
 
 

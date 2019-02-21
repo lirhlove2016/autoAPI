@@ -9,20 +9,32 @@ from conf.conf import dataDir, reportDir
 
 PATH = lambda p: os.path.abspath(os.path.join(os.path.dirname(__file__), p))
 
-"""
-v：1.1
-func：
-1.app定位元素
-2.app操作
-3.assertequals,assertequals_all
 
 """
+实现功能
+V1.0
+1.定位元素
+2.操作，click,clear,input
+3.其他操作
+4.截图
+5.失败重试3次
+
+v：1.1
+1.app定位元素，批量
+2.assertequals,单个元素校验
+3.assertequals_all，多个元素校验
+4.调用模块封装go_func()
+
+"""
+
 # 保存图片
 resultfile = os.path.join(reportDir, 'screenshot/screenshot_')
 number = 0  # 保存图片序号用
 
 # 保存元素
 elements = {}
+saveelements={}
+saveelements_array={}
 # 保存上一个操作的元素定位
 e = ""
 # 保存值
@@ -31,7 +43,6 @@ saveValue = {}
 url = "http://localhost:4723/wd/hub"
 timeout = 30
 driver = ""
-
 
 
 # 设备参数
@@ -85,14 +96,15 @@ def start(adddress, t):
         # 写入
         wirte_result('PASS', "设备已经启动,wait%d" % timeout)
     except Exception as err:
-        print('启动失败了', err)
+        print('启动失败了，错误', err)
         print('请检查是否启动appium')
         rerun(start,adddress, t)
 
 
-# 定位元素：index,取一组中[] name保存值
+# 定位元素：index,取一组中[] name保存值,单个元素
 def get_element(method, element, index="", name="", casename=""):
-    global elements, driver
+    global driver
+    global saveelements
     global e
     global number
 
@@ -108,16 +120,42 @@ def get_element(method, element, index="", name="", casename=""):
 
         elif method == "xpath":
             e = driver.find_element_by_xpath(element)
-
+        #text    
         elif method == "name":
             e = driver.find_element_by_name(element)
 
         elif method == "linktext":
             e = driver.find_element_by_link_text(element)
 
+        elif method == "partiallinktext":
+            e = driver.find_element_by_partial_link_text(element)
+ 
+        elif method=="content-desc":
+            e = driver.find_element_by_accessibility_id(element)
+       
         elif method == "text":
             new = 'new UiSelector().text(\"' + element + '\")'
             e = driver.find_element_by_android_uiautomator(new)
+
+        elif method == "textContains":
+            new = 'new UiSelector().textContains(\"' + element + '\")'
+            e = driver.find_element_by_android_uiautomator(new)
+
+        elif method == "textStartsWith":
+            new = 'new UiSelector().textStartsWith(\"' + element + '\")'
+            e = driver.find_element_by_android_uiautomator(new)         
+
+        elif method == "textMatches":
+            new = 'new UiSelector().textMatches(\"' + element + '\")'
+            e = driver.find_element_by_android_uiautomator(new)  
+
+        elif method == "resourceId":
+            new = 'new UiSelector().resourceId(\"' + element + '\")'
+            e = driver.find_element_by_android_uiautomator(new) 
+
+        elif method == "resourceIdMatches":
+            new = 'new UiSelector().resourceIdMatches(\"' + element + '\")'
+            e = driver.find_element_by_android_uiautomator(new) 
 
         print('定位元素--------------------------')
         print('e:', e)
@@ -126,7 +164,87 @@ def get_element(method, element, index="", name="", casename=""):
         value = element
 
         if name != "":
-            elements[name] = e
+            saveelements[name] = e
+
+    # 异常
+    except Exception as err:
+        print("定位报错了:", err)
+        number = number + 1
+        get_screenshot(resultfile, "_error_%s_%d.png" % (casename, number))
+        # 写入信息
+        re = "Fail"
+        value = str(err)
+        #重试
+        rerun(get_element,method,element,index,name,casename)
+
+    # 写入
+    wirte_result(re, value)
+
+#定位一批元素,同单个元素定位，
+def get_elements(method, element, index="", name="", casename=""):
+    global driver
+    global saveelements_array
+    global e
+    global number
+
+    print('定位---%s------%s-----' % (method, element))
+    try:
+        if method == "id":
+            e = driver.find_elements_by_id(element)
+        elif method == "class":
+            e = driver.find_elements_by_class_name(element)
+
+        elif method == "css":
+            e = driver.find_elements_by_css_selector(element)
+
+        elif method == "xpath":
+            e = driver.find_elements_by_xpath(element)
+        #text    
+        elif method == "name":
+            e = driver.find_elements_by_name(element)
+
+        elif method == "linktext":
+            e = driver.find_elements_by_link_text(element)
+
+        elif method == "partiallinktext":
+            e = driver.find_elements_by_partial_link_text(element)
+ 
+        elif method=="content-desc":
+            e = driver.find_elements_by_accessibility_id(element)
+       
+        elif method == "text":
+            new = 'new UiSelector().text(\"' + element + '\")'
+            e = driver.find_elements_by_android_uiautomator(new)
+
+        elif method == "textContains":
+            new = 'new UiSelector().textContains(\"' + element + '\")'
+            e = driver.find_elements_by_android_uiautomator(new)
+
+        elif method == "textStartsWith":
+            new = 'new UiSelector().textStartsWith(\"' + element + '\")'
+            e = driver.find_elements_by_android_uiautomator(new)         
+
+        elif method == "textMatches":
+            new = 'new UiSelector().textMatches(\"' + element + '\")'
+            e = driver.find_elements_by_android_uiautomator(new)  
+
+        elif method == "resourceId":
+            new = 'new UiSelector().resourceId(\"' + element + '\")'
+            e = driver.find_elements_by_android_uiautomator(new) 
+
+        elif method == "resourceIdMatches":
+            new = 'new UiSelector().resourceIdMatches(\"' + element + '\")'
+            e = driver.find_elements_by_android_uiautomator(new) 
+
+        print('定位元素--------------------------')
+        print('e:', e)
+        # 写入信息
+        re = "PASS"
+        value = element
+
+        if name != "":
+            saveelements_array[name] = e
+
     # 异常
     except Exception as err:
         print("定位报错了:", err)
@@ -144,16 +262,15 @@ def get_element(method, element, index="", name="", casename=""):
 
 # 操作集合
 def clicks(act, element, value="", name="", casename=""):
-    global elements, driver
+    global saveelements, driver
     global e
     print('正在执行%s操作--------------------------' % act)
     print(element)
+
     # 不为空，提取保存的值；为空点击上一个定位元素
-    if element != "":
-        el = elements[element]
-    else:
-        el = e
-    print('操作的元素是：%s-------------------------' % el)
+    #调取元素
+    el=get_element_of(element)
+
     try:
         # 根据act执行不同到操作
         if act == "click":
@@ -184,22 +301,22 @@ def clicks(act, element, value="", name="", casename=""):
         #重试
         rerun(clicks,act,element,value, name,casename)
     # 写入
-    wirte_result(re, value)
 
 
 #定位元素，不为空取保存值，为空取上一个定位元素；
-#引用，校验元素
+#引用，get_value,clicks
 def get_element_of(element):
-    global elements, driver
+    global saveelements, driver
     global e
     #print(element)
-    # 不为空，提取保存的值；为空点击上一个定位元素
+    # 不为空，提取保存的值；为空点击上一个定
     if element != "":
-        el = elements[element]
+        el = saveelements[element]
     else:
         el = e
     print('操作的元素是：%s-------------------------' % el)	   
     return el
+
 #---------------------------------------------------------------
 # quit
 def quit():
@@ -224,7 +341,7 @@ def back():
         err_run(err,back)
 
 # sleep
-def sleep(t):
+def sleep(t,*args,**kwargs):
     global driver
     tt = int(t)
     try:
@@ -236,6 +353,7 @@ def sleep(t):
     except Exception as err:
         #调用方法
         err_run(err,sleep)
+
 
 # 保存图片到指定文件夹
 def get_screenshot(filepath, file):
@@ -257,7 +375,7 @@ alls=["text","tag_name","size","loaction"]
 #定位元素e获取属性，元素不为空取值，为空取上一次操作
 def get_value(name,element):
 	global alls,attributes
-	global driver,elements	
+	global driver
 	print('正在取值----------------------------------------------------------',name,element)
 	#取定位元素属性
 	el=get_element_of(element)
@@ -370,7 +488,7 @@ def save_screenshot(filename):
 
    
 # 获取当前页元素，未可用
-def get_page():
+def get_page(*args,**kwargs):
     global  driver
     ret = driver.find_element_by_xpath(".//*")
     return ret
@@ -397,7 +515,7 @@ def get_pages_source(file=""):
 
 # scroll
 def scroll(ori_el, des_el):
-    global elements, driver
+    global  driver
     deriver.scroll(ori_el, des_el)
 
 # current_context
@@ -410,46 +528,6 @@ def contexts():
     global driver
     driver.contexts
 #-----------------------------------------------待调试
-
-
-'''
-# 滑动
-def swiptest(method, num):
-    num = int(num)
-    i = 0
-    while i < num:
-        if method == "left":
-            swipeLeft()
-        elif method == "right":
-            swipeRight()
-        elif method == "up":
-            swipeUp()
-        elif method == "down":
-            swipeDown()
-        i = i + 1
-
-    # 写入
-    value = method + ":" + str(num)
-    wirte_result("PASS", value)
-
-
-# 获取屏幕宽度和高度
-def getSize():
-    global driver
-    x = driver.get_window_size()['width']
-    y = driver.get_window_size()['height']
-    return (x, y)
-
-
-# 向左滑动
-def swipeLeft():
-    global driver
-    s = getSize()
-    x1 = int(s[0] * 0.8)
-    y1 = int(s[1] * 0.5)
-    x2 = int(s[0] * 0.2)
-    driver.swipe(x1, y1, x2, y1)
-'''
 
 # 获取尺寸
 def SIZE():
@@ -478,7 +556,6 @@ def UP():
 
     # 写入
     wirte_result(key, value)
-
 
 # 下划
 def DOWN():
@@ -561,6 +638,79 @@ def rerun(func,*args,**kwargs):
         print("结束成功")
         count = 1
         return count
+
+#执行模块定义及调用---------------------------------------------------------------------------
+#存放模块字典，所有可执行的模块在此存放
+funcs={"caps":update_capability,
+    "start":start,
+    "sleep":sleep,
+    "right":RIGHT,
+    "left":LEFT,
+    "up":UP,
+    "down":DOWN,
+    "element":get_element, #单个元素
+    "elements":get_elements,  #一组元素 
+    "clicks":clicks,       
+    "savephoto":get_screenshot,
+    "quit":quit,
+    "back":back,
+    "pagesource":get_pages_source,
+    "assertequals":assert_equals,
+    "assertequals_all":assert_equals_all,
+    }
+
+
+#存放定位元素和操作
+ele=[["id","name","text","css","xpath","class","linktext","partiallinktext","content-desc","textContains","textStartsWith","textMatches","resourceId","resourceIdMatches"],["click","clear","input"]]
+#存放定位元素组
+eles=["id","name","text","css","xpath","class","linktext","partiallinktext","content-desc","textContains","textStartsWith","textMatches","resourceId","resourceIdMatches"]
+
+#调用函数，新的模块添加到存放表中，并更新执行调用函数
+def go_func(line3,line4,line5, line6,line2):    
+    global funcs,ele
+    #函数
+    name=line3
+    #print("-------------------调用函数",name)    
+    if name in funcs.keys():
+        func=funcs[name]
+        #print('执行的函数',func)
+        if name in ["up","right","left","down","quit","back"]:
+            func()
+        elif name in ["assertequals","assertequals_all"]:
+            func(line4, line5,line6)
+        elif name == 'savephoto':
+            func(resultfile, line4)
+        else:
+            func(line4, line5)
+   
+    #定位元素
+    elif  name in ele[0]:
+        func=funcs["element"]    
+        #print('执行的函数',func)
+        #print('正在调用定位元素---------- ',name)
+        func(name, line4, line5, line6, line2)
+    #操作
+    elif name in ele[1]:
+        func=funcs["clicks"]       
+        #print('执行的函数',func) 
+        #print('正在调用click操作---------- ',name)
+        func(name, line4, line5, line6, line2)
+    #定位一组元素
+    elif name in eles:
+        func=funcs["elements"]  
+        #print('正在调用定位元素组---------- ',name)        
+        func(name, line4, line5, line6, line2)        
+    
+    else:
+        print('%s 不存在，请查看是否存在此模块。'%name)
+
+#执行函数,暂时未用
+def gorun(func,*args,**kwargs):
+    print("重试第%d次" % count)
+    func(*args,**kwargs)
+#----------------------------------------------------------------------
+
+
 
 if __name__ == "__main__":
     pass
