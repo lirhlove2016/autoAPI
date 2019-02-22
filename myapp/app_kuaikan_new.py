@@ -2,13 +2,17 @@
 from appium import webdriver
 import time,os
 
+import pickle
+import getxml  as xmlfile
+
+
 PATH = lambda p:os.path.abspath(os.path.join(os.path.dirname(__file__),p))
 #py3.4
 #import app_kuaikan_new
 #from imp import reload
 #reload(app_kuaikan_new)
 
-'''
+
 #获取屏幕宽度和高度
 def getSize():
 	x = driver.get_window_size()['width']
@@ -41,6 +45,7 @@ desired_caps = {
 driver = webdriver.Remote('http://localhost:4723/wd/hub', desired_caps)
 driver.implicitly_wait(20)
 
+
 print('正在启动客户端.....')
 time.sleep(5)
 print('打开客户端了')
@@ -63,7 +68,6 @@ driver.find_element_by_id("com.ishugui:id/tv_man").click()
 #driver.find_element_by_id("com.ishugui:id/btn_guide_jump").click()
 print('您选择了 “男生小说”')
 
-
 #进入主界面
 #弹窗点击关闭，id=com.ishugui:id/imageview_cloud_sysch_close,
 try:
@@ -75,41 +79,206 @@ except:
         print('没有弹窗')
 
 '''
-#
-def test(c):
-	a=50
-	b=6
-	print(a+b+c)
+#点击操作
+#点击(x,y)点按下，duration*5毫秒后松开，如此重复fingers次
+s=driver.tap([(48,261),(1032,476)],100)
+print('tap点击操作了',s)
 
-#函数
-funcs={"test":test,"start":test}
-func=["test","start"]
+#检查应用是否已经安装 参数包名
+driver.is_app_installed('com.ishugui')
+adb="adb shell input keyevent 3"
+os.system(adb)
+'''
 
-
-def go_func(name):
-	#函数
-	global funcs
-	if name in funcs.keys():
-		print(name)
-		func=funcs[name]
-		print('执行的函数',func)
-		c=6
-		func(c)
-
+def get_pagesource():
+	r=driver.page_source
+	if r:
+		pass
+		print("不空")
+		#print(r)
 	else:
-		print('%s 不存在，请查看是否存在此模块。'%name)
+		print("空-----------------------------------------------")
+	
+#get_pagesource()
 
-ele=[["id","name","text","css","xpath","class"],["click","clear","clear","input"]] 
-s="click"
+def clickid(name):
+	try:
+	        el=driver.find_element_by_id(name)
+	        el.click()
+	        print('操作了',name)
+	        driver.get_pagesource
+	        
+	except:
+	        print('元素没有找打')
 
-if s in ele[0]:
-	print('s',1)
-elif s in ele[1]:
-	print(2)
 
 
-name="test"
-go_func(name)
+
+'''
+#书架-搜索
+sousuo_id="com.ishugui:id/iv_top_title_search"
+click_sousou=click(sousuo_id)
+#搜索-热词
+word_id="com.ishugui:id/textview_content"
+click_word=click(word_id)
+driver.back()
+get_pagesource()
+time.sleep(2)
+driver.back()
+get_pagesource()
+'''
+
+#分类
+fenlei_id="com.ishugui:id/textView"
+click_fenlei=clickid(fenlei_id)   
+print("点击了分类-------------------------------------")
+driver.find_element_by_name("分类").click()
+get_pagesource()
+
+#2级
+#都市
+dushi_id="都市"
+print("点击了2级分类-------------------------------------")
+driver.find_element_by_name("都市").click()
+time.sleep(2)
+get_pagesource()
+time.sleep(2)
+get_pagesource()
+s=driver.page_source
+'''
+#3级
+book_id="com.ishugui:id/imageview"
+print("点击了3级分类-------------------------------------")
+driver.find_element_by_name("桃运小村医").click()
+'''
+print(type(s))
+#xml 存到文件中
+#with open(r"d:\fenlei_write.xml","w+") as f:
+with open(r"d:\\fenlei_write.xml","w") as f:
+	#s1=s.encode()
+	f.write(s)
+	print("写入xml到文件")
+
+#调用 xml
+file_name = 'd:\\444.xml'
+R = xmlfile.getXmlNode(file_name)
+
+def clickname(name):
+	try:
+	        el=driver.find_element_by_name(name)
+	        el.click()
+	        print('操作了',name)
+	        
+	except:
+	        print('元素没有找到,',name)
+
+
+t=[]
+p=[]
+#提取不同分类
+for x in R: 
+	#print(x)
+	if x[2]=="android.widget.TextView":
+		t.append(x)
+
+	elif x[2]=="android.widget.ImageView":
+		p.append(x)
+
+# 获取当前界面activity
+ac = driver.current_activity
+print('当前的activity----------------',ac)
+
+#对分类进行操作
+print('----------------------------')
+def  go_el(t):
+	n=0
+	#print(t)
+	for i in range(len(t)):
+			#print(t[i])
+			name=t[i][3]["text"]
+			if len(name)<=10:
+				clickname(name)
+				n=n+1	
+			#取activity
+			new = driver.current_activity
+			if ac!=new:
+				print("跳转到其他页面了")
+				print(new)
+				get_pagesource
+	print(n)
+#-------------------------------
+#取同一个属性的值
+def  getAttrib(filename,name):
+    R= xmlfile.getXmlNode(file_name)
+    t=[]
+    #提取不同分类
+    for x in R: 
+        #print(x)
+        if x[2]==name:
+            t.append(x)
+    return t
+    
+
+ #---------------------------------
+
+
+
+go_el(t)
+
+def  go_eld(t):
+	n=0
+	for i in range(len(t)):
+			#print(t[i])
+			id=t[i][3]["resource-id"]
+			driver.find_element_by_id(id)
+			#取activity
+			new = driver.current_activity
+			if ac!=new:
+				print("跳转到其他页面了")
+				print(new)
+			n=n+1	
+	print(n)
+
+go_eld(p)
+
+#
+s=driver.find_element_by_name("乡村").click()
+print('s------',s)
+
+'''
+#返回 取source
+time.sleep(2)
+driver.back()
+get_pagesource()
+
+time.sleep(2)
+driver.back()
+get_pagesource()
+
+time.sleep(2)
+driver.back()
+get_pagesource()
+
+time.sleep(2)
+driver.back()
+get_pagesource()
+
+'''
+
+
+#返回
+'''
+#打开通知栏（打开下拉通知栏）
+s=driver.open_notifications()
+print("下拉通知栏")
+time.sleep(2)
+print(s)
+#点击爱转客
+s=driver.tap([(580,101),(748,269)],100)
+#获取当前Activity
+s=driver.current_activity
+print(s)
+'''
 
 '''
 print('点击我的')

@@ -437,7 +437,6 @@ def assert_equals_all(names,values,els):
 	r=[]
 	result=[]
 	for i in range(len(n)):
-		print(i,"---------------------------------------------")
 		#调用取值
 		values=get_value(v[i],el[i])
 		#进行判断
