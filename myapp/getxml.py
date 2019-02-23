@@ -34,10 +34,10 @@ def getXmlNode(file_name):
        
 if __name__ == '__main__':
     #'d:\\fenlei2.xml'
-    file_name = 'd:\\444.xml'
+    file_name = 'd:\\fenlei_write.xml'
     R = getXmlNode(file_name)    
     for x in R: 
-        #print(x)
+        print(x)
         pass
 
 

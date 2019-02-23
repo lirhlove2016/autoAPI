@@ -89,4 +89,5 @@ class DeviceADB(object):
     #获取设备ROM名，如：MHA-AL00C00B213
         return self.shell("getprop ro.build.display.id").strip()
 
+if __name__=='__main__':
 
