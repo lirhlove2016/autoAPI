@@ -6,7 +6,7 @@ from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 
 from conf.conf import dataDir, reportDir
-
+from  common.toast import *
 PATH = lambda p: os.path.abspath(os.path.join(os.path.dirname(__file__), p))
 
 
@@ -301,7 +301,7 @@ def clicks(act, element, value="", name="", casename=""):
         #重试
         rerun(clicks,act,element,value, name,casename)
     # 写入
-
+    wirte_result(re, value)
 
 #定位元素，不为空取保存值，为空取上一个定位元素；
 #引用，get_value,clicks
@@ -656,7 +656,10 @@ funcs={"caps":update_capability,
     "pagesource":get_pages_source,
     "assertequals":assert_equals,
     "assertequals_all":assert_equals_all,
+    "toasts":is_toast_exist, 
+    "alwaysallow":always_allow,
     }
+
 
 
 #存放定位元素和操作
@@ -666,7 +669,7 @@ eles=["id","name","text","css","xpath","class","linktext","partiallinktext","con
 
 #调用函数，新的模块添加到存放表中，并更新执行调用函数
 def go_func(line3,line4,line5, line6,line2):    
-    global funcs,ele
+    global funcs,ele,driver
     #函数
     name=line3
     #print("-------------------调用函数",name)    
@@ -676,11 +679,17 @@ def go_func(line3,line4,line5, line6,line2):
         if name in ["up","right","left","down","quit","back"]:
             func()
         elif name in ["assertequals","assertequals_all"]:
-            func(line4, line5,line6)
+            func(line4,line5,line6)
         elif name == 'savephoto':
             func(resultfile, line4)
+        elif name=='toasts':
+            func(driver,line4)
+        elif name=='alwaysallow':
+            func(driver,line4)
+            
         else:
             func(line4, line5)
+
    
     #定位元素
     elif  name in ele[0]:

@@ -9,23 +9,24 @@ from time import sleep
 from appium import webdriver
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
+
+from common import readexcel as reader, writeexcel as writer
+
 """
 1.toast提示判断，is_toast_exist(driver, "看到的内容")
 2.权限弹窗，always_allow(driver,number=判断次数)
 
 
 """
-desired_caps = {
-        'platformName': 'Android',
-        'deviceName': '6EB0217518004226',
-        'platformVersion': '6.0',
-        'appPackage': 'com.ishugui',
-        'appActivity': 'com.dzbook.activity.LogoActivity',
-        'noReset': 'true',
-        #'automationName': 'uiautomator2',
-}
+
+# 写入结果
+def wirte_result(result, value):
+    if reader.rr>0:
+        writer.write(reader.rr - 1, 7, result)
+        writer.write(reader.rr - 1, 8, value)
+
 #-----------------------------------------------------------------
-def is_toast_exist(driver,text,timeout=30,poll_frequency=0.5):
+def is_toast_exist(driver,text,timeout=10,poll_frequency=0.5):
     '''is toast exist, return True or False
     - driver - 传driver
     - text - 页面上看到的文本内容
@@ -34,12 +35,22 @@ def is_toast_exist(driver,text,timeout=30,poll_frequency=0.5):
     :Usage:
     is_toast_exist(driver, "看到的内容")
     '''
+    print('提示信息-----------------',text)
     try:
         toast_loc = ("xpath", ".//*[contains(@text,'%s')]"%text)
-        print(toast_loc)
+        #print(toast_loc)
         WebDriverWait(driver, timeout, poll_frequency).until(EC.presence_of_element_located(toast_loc))
+        re='PASS'
+        print('1--------------------------')
+        wirte_result(re,text)
+        
         return True
     except:
+        
+        re='FAIL'
+        print('2--------------------------')
+        wirte_result(re,text)
+        
         return False
 
 #-----------------------------------------------------------------
@@ -59,12 +70,22 @@ def always_allow(driver,number=5):
             e.click()
             return True
         except Exception as e:
-            print('error:',e)
+            print('error:',text)
             return False
 
         
 if __name__== "__main__":
-
+    pass
+    '''
+    desired_caps = {
+            'platformName': 'Android',
+            'deviceName': '6EB0217518004226',
+            'platformVersion': '6.0',
+            'appPackage': 'com.ishugui',
+            'appActivity': 'com.dzbook.activity.LogoActivity',
+            'noReset': 'true',
+            #'automationName': 'uiautomator2',
+    }
     print("连接中。。。。。。")
     driver = webdriver.Remote('http://127.0.0.1:4723/wd/hub', desired_caps)
     print("连接成功")
@@ -77,5 +98,5 @@ if __name__== "__main__":
     sleep(5)
     driver.back() # 点返回
     print(is_toast_exist(driver, "再按一次退出"))
-	
+    '''	
 	

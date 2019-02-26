@@ -1,3 +1,4 @@
+# coding:utf-8
 import sys
 
 #reload(sys)
@@ -13,17 +14,8 @@ from selenium.webdriver.support import expected_conditions as EC
 1.toast提示判断，is_toast_exist(driver, "看到的内容")
 2.权限弹窗，always_allow(driver,number=判断次数)
 
-
 """
-desired_caps = {
-        'platformName': 'Android',
-        'deviceName': '6EB0217518004226',
-        'platformVersion': '6.0',
-        'appPackage': 'com.ishugui',
-        'appActivity': 'com.dzbook.activity.LogoActivity',
-        'noReset': 'true',
-        #'automationName': 'uiautomator2',
-}
+
 #-----------------------------------------------------------------
 def is_toast_exist(driver,text,timeout=30,poll_frequency=0.5):
     '''is toast exist, return True or False
@@ -32,8 +24,12 @@ def is_toast_exist(driver,text,timeout=30,poll_frequency=0.5):
     - timeout - 最大超时时间，默认30s
     - poll_frequency - 间隔查询时间，默认0.5s查询一次
     :Usage:
-    is_toast_exist(driver, "看到的内容")
+    is_toast_exist(driver, "看到的内容"
     '''
+    if type(timeout)=='str':
+        timeout=int(timeout)
+    elif type(poll_frequency)=='str':
+        poll_frequency=int(poll_frequency)
     try:
         toast_loc = ("xpath", ".//*[contains(@text,'%s')]"%text)
         print(toast_loc)
@@ -58,7 +54,7 @@ def always_allow(driver,number=5):
             e=WebDriverWait(driver, timeout, poll_frequency).until(EC.presence_of_element_located(loc))
             e.click()
             return True
-        except Exception as e:
+        except as e:
             print('error:',e)
             return False
 
@@ -68,10 +64,8 @@ if __name__== "__main__":
     print("连接中。。。。。。")
     driver = webdriver.Remote('http://127.0.0.1:4723/wd/hub', desired_caps)
     print("连接成功")
-
     sleep(5)
     driver.back() # 点返回
-
     # 判断是否存在toast-'再按一次退出'
     print(is_toast_exist(driver, "再按一次退出"))
     sleep(5)

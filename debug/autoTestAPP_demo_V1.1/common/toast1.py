@@ -13,17 +13,9 @@ from selenium.webdriver.support import expected_conditions as EC
 1.toast提示判断，is_toast_exist(driver, "看到的内容")
 2.权限弹窗，always_allow(driver,number=判断次数)
 
-
 """
-desired_caps = {
-        'platformName': 'Android',
-        'deviceName': '6EB0217518004226',
-        'platformVersion': '6.0',
-        'appPackage': 'com.ishugui',
-        'appActivity': 'com.dzbook.activity.LogoActivity',
-        'noReset': 'true',
-        #'automationName': 'uiautomator2',
-}
+
+
 #-----------------------------------------------------------------
 def is_toast_exist(driver,text,timeout=30,poll_frequency=0.5):
     '''is toast exist, return True or False
@@ -64,7 +56,15 @@ def always_allow(driver,number=5):
 
         
 if __name__== "__main__":
-
+    desired_caps = {
+            'platformName': 'Android',
+            'deviceName': '6EB0217518004226',
+            'platformVersion': '6.0',
+            'appPackage': 'com.ishugui',
+            'appActivity': 'com.dzbook.activity.LogoActivity',
+            'noReset': 'true',
+            #'automationName': 'uiautomator2',
+    }
     print("连接中。。。。。。")
     driver = webdriver.Remote('http://127.0.0.1:4723/wd/hub', desired_caps)
     print("连接成功")

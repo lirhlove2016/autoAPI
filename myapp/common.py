@@ -18,7 +18,7 @@ def write_xml_to_file(filename,content):
 		print("写入xml到文件")
 	
 #-----------------------------------------------------------
-#从xml文件，取同一个属性的值
+#从xml文件，#根据class属性取值，如，android.widget.TextView
 def  getAttrib(filename,attriname):
     R= xmlfile.getXmlNode(filename)
     t=[]
@@ -29,7 +29,46 @@ def  getAttrib(filename,attriname):
             t.append(x)
     return t   
 
+#-----------------------------------------------------------
+#从xml文件，取同一个属性的值先取text属性，存到name中，无text取resource-id,存到resourceid中
+def  getAttrib_of_all(filename):
+    R= xmlfile.getXmlNode(filename)
+    #print(R)
+    #存储所有属性
+    name=[]
+    ids=[]
+    c=[]
+    #只存name,id,class
+    name_array=[]
+    ids_array=[]
+    c_array=[]
+    print('正在取属性---------------------','共%d个属性'%(len(R)-1))
+    #提取不同分类,从1开始，
+    for i in range(1,len(R)):
+        #取text，resource-id
+        #print('正在取属性---------------------',i)
+        #print(R[i])
+        text=R[i][3]["text"]
+        id=R[i][3]["resource-id"]
+        #如果text 不为空，存到name中，否则存到resourceid中
+        if text!="":
+                name.append(R[i])
+                name_array.append(R[i][3]['text'])
+                #print('存到name中')
+                
+        elif id!="":
+                ids.append(R[i])
+                ids_array.append(R[i][3]["resource-id"])
+                #print('存到id中')
+                
+        else:
+                c.append(R[i])
+                c_array.append(R[i][3]["class"])
 
+    print(len(name),len(ids),len(c))
+   
+    #return name,ids,c
+    return name_array,ids_array,c_array
  
 #-----------------------------------------------------------
 # 获取当前界面activity

@@ -23,6 +23,7 @@ def walkNode(root_node, level, result_list):
     walkNode(child, level + 1, result_list) 
   return
 
+
 #文件读取，从节点1开始取所有节点信息，并返回
 def getXmlNode(file_name): 
   level = 1 #节点的深度从1开始 

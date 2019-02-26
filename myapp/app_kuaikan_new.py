@@ -7,8 +7,8 @@ import common
 from appium.webdriver.common.touch_action import TouchAction 
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
-PATH = lambda p:os.path.abspath(os.path.join(os.path.dirname(__file__),p))
 
+PATH = lambda p:os.path.abspath(os.path.join(os.path.dirname(__file__),p))
 
 #py3.4
 #import app_kuaikan_new
@@ -30,9 +30,6 @@ def swipeLeft():
 	driver.swipe(x1, y1, x2, y1)
 
 #设备及安装包信息
-# 'resetKeyboard': 'True'   #运行完成后重置软键盘的状态   #此两行是为了解决字符输入不正确的问题
-# 'unicodeKeyboard': 'True',  #更改测试机的输入法
-
 desired_caps = {
     'platformName': 'Android',
     'deviceName':'T8B6W4LJU4VSQWWW', #6EB0217518004226  
@@ -51,9 +48,7 @@ driver.implicitly_wait(20)
 print('正在启动客户端.....')
 time.sleep(5)
 print('打开客户端了')
-
 print('启动页滑动...')
-
 #启动页向左滑动
 i=0
 while i <3:
@@ -72,39 +67,43 @@ print('您选择了 “男生小说”')
 
 #进入主界面
 #弹窗点击关闭，id=com.ishugui:id/imageview_cloud_sysch_close,
-def  tanchuang(name):
+def  tanchuang(id):
 	try:
-	        el=driver.find_element_by_id(name)
+	        el=driver.find_element_by_id(id)
 	        el.click()
 	        print('关闭了弹窗')
 	        
 	except:
 	        print('没有弹窗')
 
+id="com.ishugui:id/imageview_cloud_sysch_close"
+tanchuang(id)
 
+#取source
 def get_pagesource():
-	r=driver.page_source
-	if r:
-		pass
-		print("不空")
-		#print(r)
-	else:
-		print("空-----------------------------------------------")
-	
-def clickid(name):
+        r=driver.page_source
+        if r:
+                pass
+                print("不空")
+                print('pagesource:',r[:10])
+                        
+        else:
+                print("空-----------------------------------------------")
+        return r
+#点击id
+def clickid(id):
+        
 	try:
-	        el=driver.find_element_by_id(name)
+	        el=driver.find_element_by_id(id)
 	        el.click()
-	        print('操作了',name)
-	        driver.get_pagesource
+	        print('操作了',id)
+	        #driver.get_pagesource
 	        
 	except:
-	        print('元素没有找到',name)
+	        print('元素没有找到',id)	 
 
-
-
-	        
 time.sleep(2)
+#点击name
 def clickname(name):
 	try:
 	        el=driver.find_element_by_name(name)
@@ -113,67 +112,79 @@ def clickname(name):
 	        
 	except:
 	        print('元素没有找到,',name)
+
+#点击classname	        
+def clickclass(id):        
+	try:
+	        el=driver.find_element_by_class_name(id)
+	        el.click()
+	        print('操作了',id)
+	        #driver.get_pagesource
 	        
+	except:
+	        print('元素没有找到',id)	 
+
 print('----------------------------')
+
+#按取到元素的text属性，进行click操作
 def  go_el(t):
+        #统计操作次数
 	n=0
 	#print(t)
 	ac = driver.current_activity
 	for i in range(len(t)):
 			#print(t[i])
-			#text长度<=字符进行点击
+			#text长度<=字符数，进行点击
 			name=t[i][3]["text"]
 			if len(name)<=10:
 				clickname(name)
 				n=n+1	
 				#取activity
 				new = driver.current_activity
-
 				if ac!=new:
 					print("跳转到其他页面了")
 					print(new)
-					#get_pagesource
+					get_pagesource()
+					#如果跳转到其他页面，返回
 					driver.back()
 	print(n)
 
+#先去元素text，存到name中，无text取resource-id,存到resourceid中
+		
+'''
 
+'''
 #h5
 print('all',driver.contexts)
 c=driver.contexts
 print('current',driver.current_context)
 
-
-'''
-try:
-    WebDriverWait(driver,10,1).until(lambda x:x.find_element_by_xpath('//*[@text="登录"]')).click()
-    print('立即登录')
-except:
-    print('登录弹窗未出现')
-
-'''
-
 #----------------------------------------------
 text="text"
 id="resource-id"
 #获取到 pagesouce，就取值，text，id，然后点击操作
-r=driver.page_source
-if len(r)>1:
- 
+time.sleep(3)
+r1=driver.page_source
+r2=get_pagesource()
+r=r2
+if len(r)>10: 
         filename="h5.xml"
         time.sleep(2)
         #
         common.write_xml_to_file(filename,r)
+        #取属性元素
         t=common.getAttrib(filename,"android.widget.Button")
-        print('pagesource,',r,t)
-
+        print('source,',r[:10],'---元素:',t)
+        #执行元素，操作
         go_el(t)
+
         print('current',driver.current_context)
 
 #----------------------------------------------
-driver.switch_to.context('WEBVIEW_com.android.quicksearchbox')
-
+#driver.switch_to.context('WEBVIEW_com.android.quicksearchbox')
 print('curr',driver.current_context)
-
+'''
+#h5弹窗,图片不是文字
 try:
     text="立即使用"
     oc = ("xpath", ".//*[contains(@text,'%s')]"%text)
@@ -184,7 +195,7 @@ except:
     pass
 
 
-'''
+#h5弹窗
 try:
     log=""
     WebDriverWait(driver,10,1).until(lambda x:x.find_element_by_xpath('//*[@text="立即使用"]')).click()
@@ -194,11 +205,74 @@ except:
     print('登录弹窗未出现')
 '''
 
+# 比较页面是否不同
+def cur_new(driver,cur,new):
+        if ac!=new:
+                print("跳转到其他页面了",new)
+                get_pagesource()
+                #如果跳转到其他页面，返回
+                driver.back()
+        
+# 获取当前界面activity
+def get_current_activity(driver):
+	ac = driver.current_activity
+	print('当前的activity:----------------',ac)
+	return ac
 
-driver.switch_to.context('NATIVE_APP')
-print('切换到app成功')
 
+'''
+#分类
+#从中提取text，resource-id,
+fenlei_id="com.ishugui:id/textView"
+click_fenlei=clickid(fenlei_id)
 
+print("点击了分类-------------------------------------")
+driver.find_element_by_name("分类").click()
+get_pagesource()
+
+#2级com.ishugui:id/tv_shelf_menu_cloud
+#都市
+dushi_id="都市"
+print("点击了2级分类-------------------------------------")
+driver.find_element_by_name("都市").click()
+time.sleep(2)
+get_pagesource()
+print('all',driver.contexts)
+c=driver.contexts
+print('current',driver.current_context)
+text="text"
+id="resource-id"
+#获取到 pagesouce，就取值，text，id，然后点击操作
+time.sleep(3)
+r=get_pagesource()
+filename="fenlei2.xml"
+filename="fenlei3.xml"
+#如果source 不为空
+if len(r)>10:
+        #先将source写入xml文件中
+        common.write_xml_to_file(filename,r)
+        #从xml中取text，resource-id,属性元素
+        names,ids,others=common.getAttrib_of_all(filename)
+		#点击name
+        print('names----------------个数',len(names))
+        #点击name
+        click_elements(names,'text')
+        #点击id
+        print('ids------------------个数',len(ids))
+        click_elements(ids,'id')
+        
+        #点击classname,
+        #print('other-----------------个数',len(others))
+        #click_elements(others,'class')
+
+print('current',driver.current_context)
+'''
+
+#-----------
+#driver.switch_to.context('NATIVE_APP')
+#print('切换到app成功')
+
+#取source text,点击，取resource-id,点击，跳转到其他窗口，返回（）
 #e=driver.switch_to_alert() #切换到alert窗口
 
 '''
@@ -211,7 +285,6 @@ def do_tap(x,y):
 
 #[331,968][499,1136]
 #do_tap(400,1000)
-
 
 
 #定位云菜单-云书架,[960,103][1065,208],
@@ -307,7 +380,6 @@ driver.find_element_by_name("桃运小村医").click()
 '''
 filename="d:\\fenlei_write.xml"
 common.write_xml_to_file(filename)
-
 
 
 t=common.getAttrib(filename,"android.widget.TextView")
