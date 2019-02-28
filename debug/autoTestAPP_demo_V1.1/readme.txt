@@ -15,8 +15,10 @@
 14.pagesource
 15.assertequals,单个值校验
 16.assertequals_all,可以多个值进行校验
-17.封装执行函数
-
+17.封装执行函数---
+18.assertin,单个只，包含校验
+19.toast；
+20.定位方法添加elements
 
 二、环境
 1.Java，安卓sdk,appium
@@ -57,7 +59,8 @@
  “...An element could not be located on the page using the given search parameters.”
 2.
 Message: An unknown server-side error occurred while processing the command.
-
+3.ui2
+Message: Locator Strategy 'name' is not supported for this session
 
 
 七、目前支持的定位操作

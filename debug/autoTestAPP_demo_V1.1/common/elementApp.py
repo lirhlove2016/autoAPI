@@ -48,7 +48,7 @@ driver = ""
 # 设备参数
 desired_caps = {
     'platformName': 'Android',
-    'deviceName': '722347d6',  # 6EB0217518004226  #722347d6
+    'deviceName': '6EB0217518004226',   #722347d6
     'platformVersion': '6.0',
     # 'app': PATH(r'E:\download\385.apk'), #安装目录
     'appPackage': 'com.ishugui',
@@ -59,7 +59,7 @@ desired_caps = {
     # 'fullReset':'true',
     # 'autoLaunch'：'false',     #Appium是否要自动启动或安装app，默认true
     'newCommandTimeout':1800,    #设置未接收到新命令的超时时间，默认60s,
-    #'automationName': 'uiautomator2',
+    'automationName': 'uiautomator2',
     #'dontStopAppOnReset': True,   # 不关闭应用
     #'autoGrantPermissions': True,  # 自动获取权限
 }
@@ -476,6 +476,31 @@ def  get_split(names):
 		n.append(name[i].strip())
     
 	return n	
+
+
+
+#--------------------------------------------------------
+#assert,name校验结果，value取值,e定位元素
+def assert_in(name,value,el):
+	global driver
+	print('正在进行校验-----------------------------------------------------------------')
+	print('本次校验的期望结果是：%s,取值:%s'%(name,value))
+	#调用取值
+	values=get_value(value,el)
+
+	#进行判断
+	if name in values:
+		print('校验正确,校验结果：%s'%name)
+		re="PASS"
+		result=name
+		
+	else:
+		print('校验不正确，要校验的值为%s,取值:%s'%(value,values))
+		re="FAIL"
+		result="校验的值:"+values
+
+	# 写入
+	wirte_result(re,result)    
 
 #-------------------------------------------------------未调试
 # 保存图片到本文件夹,暂时不用

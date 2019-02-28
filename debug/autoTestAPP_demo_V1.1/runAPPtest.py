@@ -70,6 +70,10 @@ def run(line):
         app.get_screenshot(resultfile, line[4])
         return
 
+    if line[3] == 'text':
+        app.get_element("text", line[4], line[5], line[6], line[2])
+        return
+
     if line[3] == 'quit':
         app.quit()
         return
@@ -84,6 +88,10 @@ def run(line):
         app.assert_equals_all(line[4], line[5],line[6])
         return
 
+    if line[3] == 'assertein':
+        app.assert_in(line[4], line[5],line[6])
+        return
+
     if line[3] == 'toast':
         t.is_toast_exist(app.driver,line[4])
         return
@@ -92,6 +100,14 @@ def run(line):
         t.always_allow(app.driver,line[4])
         return    
 
+    if line[3] == 'textContains':
+        app.get_element("textContains", line[4], line[5], line[6], line[2])
+        return
+
+    else:
+        print('没有这个方法，请检查',line[3])
+        return
+        
 reader.open_excel(srcfile)
 writer.copy_open(srcfile, desfile)
 
