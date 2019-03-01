@@ -16,9 +16,13 @@
 15.assertequals,单个值校验
 16.assertequals_all,可以多个值进行校验
 17.封装执行函数---
-18.assertin,单个只，包含校验
+18.assertin,单个值，包含校验
 19.toast；
 20.定位方法添加elements
+21.判断是否存在，存在点击操作，可以用于弹窗的关闭，定位id,name,xpath
+22.back多次操作，默认1次
+
+
 
 二、环境
 1.Java，安卓sdk,appium
@@ -61,6 +65,7 @@
 Message: An unknown server-side error occurred while processing the command.
 3.ui2
 Message: Locator Strategy 'name' is not supported for this session
+
 
 
 七、目前支持的定位操作
