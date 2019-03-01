@@ -88,7 +88,7 @@ def run(line):
         app.assert_equals_all(line[4], line[5],line[6])
         return
 
-    if line[3] == 'assertein':
+    if line[3] == 'assertin':
         app.assert_in(line[4], line[5],line[6])
         return
 
@@ -103,10 +103,19 @@ def run(line):
     if line[3] == 'textContains':
         app.get_element("textContains", line[4], line[5], line[6], line[2])
         return
+    if line[3] == 'isexist':
+        app.is_exists(line[4],line[5])
+        return
+    if line[3] == 'backs':
+        app.backs(line[4])
+        return
+
 
     else:
         print('没有这个方法，请检查',line[3])
+
         return
+
         
 reader.open_excel(srcfile)
 writer.copy_open(srcfile, desfile)

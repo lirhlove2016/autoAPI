@@ -9,6 +9,7 @@ from conf.conf import dataDir, reportDir
 from  common.toast import *
 PATH = lambda p: os.path.abspath(os.path.join(os.path.dirname(__file__), p))
 
+#from common.method import *
 
 """
 实现功能
@@ -24,6 +25,9 @@ v：1.1
 2.assertequals,单个元素校验
 3.assertequals_all，多个元素校验
 4.调用模块封装go_func()
+5.assertin,包含元素校验
+6.is_exists,判断是否存在，存在点击操作
+7.back多次操作
 
 """
 
@@ -59,7 +63,7 @@ desired_caps = {
     # 'fullReset':'true',
     # 'autoLaunch'：'false',     #Appium是否要自动启动或安装app，默认true
     'newCommandTimeout':1800,    #设置未接收到新命令的超时时间，默认60s,
-    'automationName': 'uiautomator2',
+    #'automationName': 'uiautomator2',
     #'dontStopAppOnReset': True,   # 不关闭应用
     #'autoGrantPermissions': True,  # 自动获取权限
 }
@@ -69,6 +73,7 @@ def wirte_result(result, value):
     if reader.rr>0:
         writer.write(reader.rr - 1, 7, result)
         writer.write(reader.rr - 1, 8, value)
+
     
 # 配置设备
 def update_capability(key, value):
@@ -179,6 +184,7 @@ def get_element(method, element, index="", name="", casename=""):
 
     # 写入
     wirte_result(re, value)
+
 
 #定位一批元素,同单个元素定位，
 def get_elements(method, element, index="", name="", casename=""):
@@ -339,6 +345,7 @@ def back():
     except Exception as err:
         #调用方法
         err_run(err,back)
+
 
 # sleep
 def sleep(t,*args,**kwargs):
@@ -742,8 +749,72 @@ def gorun(func,*args,**kwargs):
     print("重试第%d次" % count)
     func(*args,**kwargs)
 #----------------------------------------------------------------------
+#单个元素，判断是否存在，若存在则点击操作，id，name,xpath
+def is_exists(act,value):
+        global driver
+        print('正在判断元素是否存在--------------',act,value)
+        try:
+                if act=="id":
+                        driver.find_element_by_id(value).click()                                                
+                elif act=="name":
+                        driver.find_element_by_name(value).click()
+                else:
+                       driver.find_element_by_xpath(value).click()
+               
+                print('元素存在，点击了操作')
+                
+                re="PASS"
+                value="元素存在，点击了操作"
+                # 写入
+                wirte_result(re, value)                   
 
+        except Exception as err:           
+            #print('报错是----------------------',err)
+            print('元素不存在！')
 
+            re="Fail"
+            value="元素不存在"
+            # 写入
+            wirte_result(re, value)            
+
+#弹窗，只点击id
+def  tanchuang(id):
+	global driver
+	try:
+	        el=driver.find_element_by_id(id)
+	        el.click()
+	        print('关闭了弹窗')
+	        
+	except:
+	        print('没有弹窗')
+
+#多次返回操作
+def backs(number="1",*args):
+        global driver
+
+        #默认执行1次
+        if number=="":
+            number=1
+            
+        number=int(number)        
+        print('back多次',number)
+        try:
+            for i in range(number):
+                    driver.back()
+                    print("点击退出了一次")
+            
+            re="PASS"
+            value="点击了返回操作"
+            # 写入
+            wirte_result(re,value)            
+
+        except  Exception as err:
+            print('操作失败',err)
+            
+            re="Fail"
+            value="操作失败"           
+            # 写入
+            wirte_result(re,value)
 
 if __name__ == "__main__":
     pass

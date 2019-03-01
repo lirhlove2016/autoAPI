@@ -81,6 +81,32 @@ def  tanchuang(id):
 	except:
 	        print('没有弹窗')
 
+#单个元素，判断是否存在，若存在则点击操作
+def is_exist(act,value，*args):
+        global driver
+        try:
+                if act=="id":
+                        el=driver.find_element_by_id(value)
+                        
+                elif act=="name":
+                        el=driver.find_element_by_name(value)
+                elif act=="xpath":
+                        el=driver.find_element_by_xpath(value)
+                el.click()
+
+	except:
+	        print('元素不存在！')
+
+
+
+
+#多次返回操作
+def back_all(number=1):
+        global driver
+        for i in range(len(number)):
+                driver.back()
+                                               
+	        
 #取source
 def get_pagesource():
         global driver

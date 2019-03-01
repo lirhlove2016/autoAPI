@@ -64,6 +64,7 @@ print(ac)
 #取source，进行操作
 getsource_clicks(name)
 
+
 '''
 #我的
 click_all("我的",'text')
