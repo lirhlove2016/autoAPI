@@ -6,10 +6,10 @@ import random
 #默认模拟器或真机配置
 desired_caps = {}
 desired_caps['platformName'] = 'Android'
-desired_caps['platformVersion'] = '8.0.0'
+desired_caps['platformVersion'] = '6.0'
 desired_caps['deviceName'] = 'LMX4C17A28015459'
-desired_caps['appPackage'] = 'com.dzmf.zmfxsdq'
-desired_caps['appActivity'] = 'com.dzbook.activity.SplashActivity'
+desired_caps['appPackage'] = 'com.ishugui'
+desired_caps['appActivity'] = 'com.dzbook.activity.LogoActivity'
 desired_caps['newCommandTimeout'] = '200'
 
 #设置模拟器或真机配置

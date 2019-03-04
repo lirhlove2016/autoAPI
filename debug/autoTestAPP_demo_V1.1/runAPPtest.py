@@ -93,7 +93,7 @@ def run(line):
         return
 
     if line[3] == 'toast':
-        t.is_toast_exist(app.driver,line[4])
+        t.is_toast_exist(app.driver,line[4],line[5],line[6])
         return
 
     if line[3] == 'alwaysallow':
@@ -106,10 +106,13 @@ def run(line):
     if line[3] == 'isexist':
         app.is_exists(line[4],line[5])
         return
+    if line[3] == 'tanchuang':
+        app.tanchuang(line[4])
+        return
+    
     if line[3] == 'backs':
         app.backs(line[4])
         return
-
 
     else:
         print('没有这个方法，请检查',line[3])

@@ -6,10 +6,10 @@ from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 
 from conf.conf import dataDir, reportDir
-from  common.toast import *
+#from  common.toast import *
 PATH = lambda p: os.path.abspath(os.path.join(os.path.dirname(__file__), p))
 
-#from common.method import *
+
 
 """
 实现功能
@@ -28,6 +28,7 @@ v：1.1
 5.assertin,包含元素校验
 6.is_exists,判断是否存在，存在点击操作
 7.back多次操作
+
 
 """
 
@@ -261,6 +262,7 @@ def get_elements(method, element, index="", name="", casename=""):
         value = str(err)
         #重试
         rerun(get_element,method,element,index,name,casename)
+        
 
     # 写入
     wirte_result(re, value)
@@ -308,6 +310,7 @@ def clicks(act, element, value="", name="", casename=""):
         rerun(clicks,act,element,value, name,casename)
     # 写入
     wirte_result(re, value)
+
 
 #定位元素，不为空取保存值，为空取上一个定位元素；
 #引用，get_value,clicks
@@ -688,8 +691,6 @@ funcs={"caps":update_capability,
     "pagesource":get_pages_source,
     "assertequals":assert_equals,
     "assertequals_all":assert_equals_all,
-    "toasts":is_toast_exist, 
-    "alwaysallow":always_allow,
     }
 
 
@@ -777,6 +778,7 @@ def is_exists(act,value):
             # 写入
             wirte_result(re, value)            
 
+
 #弹窗，只点击id
 def  tanchuang(id):
 	global driver
@@ -784,9 +786,15 @@ def  tanchuang(id):
 	        el=driver.find_element_by_id(id)
 	        el.click()
 	        print('关闭了弹窗')
+	        value="关闭了弹窗"
 	        
 	except:
 	        print('没有弹窗')
+	        value="没有弹窗"
+	re="PASS"
+	# 写入
+	wirte_result(re, value)
+
 
 #多次返回操作
 def backs(number="1",*args):
@@ -815,6 +823,7 @@ def backs(number="1",*args):
             value="操作失败"           
             # 写入
             wirte_result(re,value)
+
 
 if __name__ == "__main__":
     pass

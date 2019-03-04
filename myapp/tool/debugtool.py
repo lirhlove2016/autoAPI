@@ -94,9 +94,6 @@ top = Tk()
 top.wm_title("appium 调试小工具")
 
 
-
-
-
 B1 = Button(top,text = "连续获取source",command = LOOP,width = 15).grid(row = 0,column = 0)
 L1 = Label(top,text = "请输入连续获取次数，默认是1：",width = 30).grid(row = 0,column = 1)
 N1 = Entry(top,width = 30)

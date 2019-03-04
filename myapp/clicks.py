@@ -1,16 +1,14 @@
 #coding:utf-8
 from appium import webdriver
 import time,os
-
-import getxml  as xmlfile
-import common
 from appium.webdriver.common.touch_action import TouchAction 
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 
+import getxml  as xmlfile
+import common
+
 PATH = lambda p:os.path.abspath(os.path.join(os.path.dirname(__file__),p))
-
-
 
 """
 实现功能，单页面操作，id，name,class,
@@ -24,13 +22,32 @@ is_new_activity
 4.重复元素，点击操作
 5.点击我的，back
 6.点击书架，判断是否有弹窗
+7.取元素，按配置
+8.菜单不操作，按配置
+9.tanchuang,按配置执行
+10.
 
 """
+
 
 #py3.4
 #import app_kuaikan_new
 #from imp import reload
 #reload(app_kuaikan_new)
+
+
+#底部菜单
+bottom_menu=["com.ishugui:id/imageView","com.ishugui:id/textView","com.ishugui:id/bottomBarLayout","书架","书城","分类","我的"]
+bottom_id=["com.ishugui:id/imageView","com.ishugui:id/textView","com.ishugui:id/bottomBarLayout"]
+battom_name=["书架","书城","分类","我的"]
+
+#不点击的元素
+Notclick_name=['电话','联系客服','立即充值','立即开通','立即续费','支付']
+#点击的元素
+click_name=['永久允许','确定','取消']
+#弹窗关闭
+tanchuang_close_id=["com.ishugui:id/imageview_close","com.ishugui:id/imageview_cloud_sysch_close"]
+
 
 #统计文件
 num=1
@@ -48,6 +65,7 @@ desired_caps = {
     # 'resetKeyboard': 'True'   
     # 'unicodeKeyboard': 'True',
     "chromeOptions":{"androidProcess":"WEBVIEW_com.android.quicksearchbox"},
+    'autoGrantPermissions': True,
 }
 
 driver = webdriver.Remote('http://localhost:4723/wd/hub', desired_caps)
@@ -81,32 +99,12 @@ def  tanchuang(id):
 	except:
 	        print('没有弹窗')
 
-#单个元素，判断是否存在，若存在则点击操作
-def is_exist(act,value，*args):
-        global driver
-        try:
-                if act=="id":
-                        el=driver.find_element_by_id(value)
-                        
-                elif act=="name":
-                        el=driver.find_element_by_name(value)
-                elif act=="xpath":
-                        el=driver.find_element_by_xpath(value)
-                el.click()
+#弹窗关闭
+def tanchuang_all(ids):
+    for x in ids:
+        tanchuang(x)
 
-	except:
-	        print('元素不存在！')
-
-
-
-
-#多次返回操作
-def back_all(number=1):
-        global driver
-        for i in range(len(number)):
-                driver.back()
-                                               
-	        
+#----------------------------------------------
 #取source
 def get_pagesource():
         global driver
@@ -121,7 +119,7 @@ def get_pagesource():
         return r
 
 
-print('----------------------------------------')
+#----------------------------------------------
 #id,name,class,操作
 def click_all(name,act):
 	global driver
@@ -148,7 +146,7 @@ def get_current_activity():
 
 '''
 #------------------------------------------
-#执行name长度大于20的字串，进行操作
+#执行name长度大于20的字串，进行操作,多层操作
 def  click_elements(names,act,number=20):
 	global num
 	global level
@@ -240,7 +238,6 @@ def source_clicks(r,filenmae):
 				re=back_clicks(result[0],len(others),result)			
 			return re
 
-
 #-------------------------------
 #执行results操作，有返回操作时存储
 results=[]
@@ -300,35 +297,73 @@ def source_clicks_one(r,filename):
 			#print('操作了id %d次')
 
 	return len(names),len(ids),len(others)
-
 '''
 
+#排除底部菜单
+def exclude_menu(names):
+	temp_names=names
+
+	#print('菜单----------------------')
+	for x in bottom_menu:
+		for i in range(len(names)):
+			if x in names:
+				temp_names.remove(x)
+		print('已去除菜单',x)
+	
+	#print('菜单----------------------')	
+	for x in Notclick_name:
+		#不执行的name
+		for i in range(len(names)):
+			if x in names:
+				temp_names.remove(x)
+		print('已去除的不执行',x)
+
+	return  temp_names	
+
 #执行name长度大于20的字串，进行操作
-def  click_elements_oneold(names,act,number=20):
+#重复元素，操作
+def  click_elements_one(names,act,number=20):
 	global driver
 	#当前操作
 	cur_act={}
 	#返回的操作存放
 	cur_acts=[]
 	#print(t)
-    #统计操作次数	n
+
+	#-------------------------------
+	#1菜单 排除menu
+	names=exclude_menu(names)
+
+	#2调用重复，有重复进行操作
+	names=repeat_elements_clicks(names,act)
+
+	#执行其他操作
+	#统计次数
 	n=0
 	ac = get_current_activity()
 	for i in range(len(names)):
 		print('正在执行%s,第%d-------------------------'%(act,i+1))
 		#print(names[i])
 		#只返回一个值时用
-		t=names[i]
-		ids=t
-		classname=t
+
+		#反着执行
+		t=names[len(names)-i-1]
+
+		#t=names[i]
 		#按text进行操作
 		if act=='text':
 			#text长度<=字符数，进行点击
 			if len(t)<=number:
 				print('执行%s---'%act,t)
 				click_all(t,act)
+
+				if t=="书架":
+					#关闭弹窗，点击返回
+					tanchuang(huodong)
+
 				cur_act['text']=t				
 				n=n+1	
+
 		else:
 				print('执行%s---'%act,t)
 				click_all(t,act)
@@ -338,20 +373,12 @@ def  click_elements_oneold(names,act,number=20):
 		#取activity，判断是否跳转到其他页面，如果是，返回
 		new = get_current_activity()
 		is_new_activity(ac,new)
-
+		
 	return n
 
-#执行name长度大于20的字串，进行操作
-#重复元素，操作
-def  click_elements_onenew(names,act,number=20):
+#判断是否有重复,有重复进行操作，然后删除重复，返回删除后
+def repeat_elements_clicks(names,act):
 	global driver
-	#当前操作
-	cur_act={}
-	#返回的操作存放
-	cur_acts=[]
-	#print(t)
-
-	#-------------------------------
 	#存放names
 	temp_names=names
 	#存放重复值
@@ -359,9 +386,12 @@ def  click_elements_onenew(names,act,number=20):
 	flag=False
 	print('去重复前--------------',len(names),names)
 	for i in range(len(names)):
+		#倒序执行
+		t=names[len(names)-i-1]
+
 		#取当前元素		
-		t=names[i]
-		print('当前----------------',i,t)
+		#t=names[i]
+		#print('当前----------------',i,t)
 
 		#已经有了的，不在存了
 		if t in repeat_element:
@@ -375,8 +405,8 @@ def  click_elements_onenew(names,act,number=20):
 			flag=False
 	
 	#有重复,进行删除
-	print('重复----------------------',repeat_element)
 	if len(repeat_element)>0:
+		print('重复----------------------',repeat_element)
 		for x in repeat_element:
 			for i in range(len(names)):
 				if x in names:
@@ -385,57 +415,22 @@ def  click_elements_onenew(names,act,number=20):
 	
 	#names删除后
 	names=temp_names
-	print('去重复后--------------',len(names),names)	
+	print('去重复后--------------',len(names),names)		
+	
+	return names
 
-	#执行其他操作
-	#统计次数
-	n=0
-	ac = get_current_activity()
-	for i in range(len(names)):
-		print('正在执行%s,第%d-------------------------'%(act,i+1))
-		#print(names[i])
-		#只返回一个值时用
-		t=names[i]
-		#按text进行操作
-		if act=='text':
-			#text长度<=字符数，进行点击
-			if len(t)<=number:
-				print('执行%s---'%act,t)
-				click_all(t,act)
 
-				if t=="书架":
-					#关闭弹窗，点击返回
-					tanchuang(huodong)
-				elif t in ["书架","分类","书城","我的"]:
-					now=get_current_activity()
-					if "Main2Activity" in now:
-						driver.back()
-						print('点击菜单操作---------------------')
-
-				cur_act['text']=t				
-				n=n+1	
-
-		else:
-				print('执行%s---'%act,t)
-				click_all(t,act)
-				cur_act['text']=t				
-				n=n+1	
-
-		#取activity，判断是否跳转到其他页面，如果是，返回
-		new = get_current_activity()
-		is_new_activity(ac,new)
-	return n
-
-#判断操作
+#判断操作,底部菜单
 def   click_menu(t):
 		global driver
+		curent_menu=""
 		if t=="书架":
 			#关闭弹窗，点击返回
 			tanchuang(huodong)
 		elif t in ["书架","分类","书城","我的"]:
-			now=get_current_activity()
+
 			if "Main2Activity" in now:
-				driver.back()
+
 				print('点击菜单操作---------------------')
 
 #判断是否新页面，是则返回
@@ -456,8 +451,7 @@ def is_new_activity(ac,new):
 				driver.back()
 			print("已返回")
 
-
-#取一样的元素,click,有重复，有则返回元素组
+#元素组的进行操作，id,name,class,
 def count_element(names,e,act):
 	global driver
 	ac=get_current_activity()
@@ -465,23 +459,28 @@ def count_element(names,e,act):
 	#当有多个一样的值是，执行find_elements
 	el_counts=[]
 	if count>1:
+		try:
+			if act=='id':
+				el_counts=driver.find_elements_by_id(e)
+			elif act=="text":
+				el_counts=driver.find_elements_by_name(e)
+			elif act=='class':
+				el_counts=driver.find_elements_by_class_name(e)
+			print('存在多个----------------------------',e)
+			#操作
+			#print('----------------------------',el_counts)
+			for i in range(len(el_counts)):
+				print('正在点击多个%s,第%d个--------'%(act,i+1),e)				
 
-		if act=='id':
-			el_counts=driver.find_elements_by_id(e)
-		elif act=="text":
-			el_counts=driver.find_elements_by_name(e)
-		elif act=='class':
-			el_counts=driver.find_elements_by_class(e)
-		print('存在多个----------------------------',e)
-		#操作
-		for i in range(len(el_counts)):
-			el_counts[i].click()
-			print('正在点击多个%s,第%d个--------'%(act,i+1),e)
-			#判断页面是否跳转
-			new=get_current_activity()
-			is_new_activity(ac,new)
+				el_counts[i].click()
 
-		return True
+				#判断页面是否跳转
+				new=get_current_activity()
+				is_new_activity(ac,new)
+
+			return True
+		except:
+			return False
 	else:
 		return 	False
 
@@ -496,10 +495,10 @@ def  getsource_clicks(name):
 	#ac = get_current_activity(driver)
 	#存储文件名
 	filename="%s_page_%s.xml"%(name,num)
-
+	print("保存文件：",filename)
 	#调用函数--------------------------------------
 	#re=source_clicks_one(r,filename)
-	ac = get_current_activity()	
+	ac = get_current_activity()
 	#如果source 不为空
 	if len(r)>10:
 			n=0
@@ -510,13 +509,13 @@ def  getsource_clicks(name):
 
 			#点击name
 			print('names----------------个数',len(names))
-			click_elements_onenew(names,'text')
+			click_elements_one(names,'text')
 			#点击id
 			print('ids------------------个数',len(ids))
-			#click_elements_oneold(ids,'id')	        
+			click_elements_one(ids,'id')	        
 			#点击classname,
 			#print('other-----------------个数',len(others))
-			#click_elements_one(others,'class')
+			#click_elements_onenew(others,'class')
 			#print('操作了id %d次')
 
 	return len(names),len(ids),len(others)

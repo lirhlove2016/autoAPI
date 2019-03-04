@@ -12,6 +12,22 @@ PATH = lambda p:os.path.abspath(os.path.join(os.path.dirname(__file__),p))
 
 from clicks import *
 
+#底部菜单
+bottom_menu=["com.ishugui:id/imageView","com.ishugui:id/textView","com.ishugui:id/bottomBarLayout","书架","书城","分类","我的"]
+bottom_id=["com.ishugui:id/imageView","com.ishugui:id/textView","com.ishugui:id/bottomBarLayout"]
+battom_name=["书架","书城","分类","我的"]
+tanchuang_closseid=["com.ishugui:id/imageview_close","com.ishugui:id/imageview_cloud_sysch_close"]
+
+#判断name 是否在列表中
+def is_click(name):
+    if  name in Notclick_name:
+        return False
+    elif name in click_name:
+        return True
+
+
+#获取属性 
+cut_name=["书城"]
 
 
 print('正在启动客户端.....')
@@ -31,14 +47,18 @@ driver.find_element_by_id("com.ishugui:id/tv_man").click()
 
 print('您选择了 “男生小说”')
 
-tanchuang_closseid=["com.ishugui:id/imageview_close","com.ishugui:id/imageview_cloud_sysch_close"]
+
 
 #进入主界面，判断弹窗
 huodong="com.ishugui:id/imageview_close"
-tanchuang(huodong)
-
 id="com.ishugui:id/imageview_cloud_sysch_close"
-tanchuang(id)
+#2个弹窗
+tanchuang_all(tanchuang_closseid)
+
+bottom_menu=["com.ishugui:id/imageView","com.ishugui:id/textView","com.ishugui:id/bottomBarLayout","书架","书城","分类","我的"]
+
+
+
 
 #单次执行
 #书架
@@ -49,6 +69,24 @@ print('点击了书架')
 name="shujia"
 ac=get_current_activity()
 print(ac)
+
+#取source，进行操作
+#getsource_clicks(name)
+
+#我的
+click_all("我的",'text')
+ac=get_current_activity()
+print(ac)
+name="wode"
+#取source，进行操作
+getsource_clicks(name)
+
+#分类
+name="fenlei"
+click_all("分类",'text')
+ac=get_current_activity()
+print(ac)
+
 #取source，进行操作
 #getsource_clicks(name)
 
@@ -62,25 +100,23 @@ ac=get_current_activity()
 print(ac)
 
 #取source，进行操作
-getsource_clicks(name)
-
+#getsource_clicks(name)
 
 '''
-#我的
-click_all("我的",'text')
-ac=get_current_activity()
-print(ac)
+time.sleep(5)
+#任意执行N次
 
-#分类
-name="fenlei"
-click_all("分类",'text')
-ac=get_current_activity()
-print(ac)
+#当前页
+num=0
+while num<3:
+    name="page"
+    getsource_clicks(name)
+    num=num+1
+    time.sleep(5)
 '''
 
 '''
 #多次执行
-
 #执行页面数统计
 num=1
 time.sleep(3)
@@ -123,8 +159,6 @@ if re:
             clickid(value)
             r=get_pagesource()          
             source_clicks(r,filename)
-
-
 
 
 #2

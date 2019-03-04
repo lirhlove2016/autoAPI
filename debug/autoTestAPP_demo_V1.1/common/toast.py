@@ -11,6 +11,8 @@ from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 
 from common import readexcel as reader, writeexcel as writer
+from common import elementApp as app
+
 
 """
 1.toast提示判断，is_toast_exist(driver, "看到的内容")
@@ -26,7 +28,7 @@ def wirte_result(result, value):
         writer.write(reader.rr - 1, 8, value)
 
 #-----------------------------------------------------------------
-def is_toast_exist(driver,text,timeout=10,poll_frequency=0.5):
+def is_toast_exist1(driver,text,timeout=20,poll_frequency=0.5):
     '''is toast exist, return True or False
     - driver - 传driver
     - text - 页面上看到的文本内容
@@ -41,14 +43,14 @@ def is_toast_exist(driver,text,timeout=10,poll_frequency=0.5):
         #print(toast_loc)
         WebDriverWait(driver, timeout, poll_frequency).until(EC.presence_of_element_located(toast_loc))
         re='PASS'
-        print('1--------------------------')
+        print('T--------------------------')
         wirte_result(re,text)
         
         return True
     except:
         
         re='FAIL'
-        print('2--------------------------')
+        print('F--------------------------')
         wirte_result(re,text)
         
         return False
@@ -73,10 +75,46 @@ def always_allow(driver,number=5):
             print('error:',text)
             return False
 
+#-----------------------------------------------------------------
+def is_toast_exist(driver,text,act="",element="",timeout=10,poll_frequency=0.5):
+    print('toast-----------------',text,act)
+
+    #先进行元素操作
+    if act in ["id","name","xpath"]:
+        print("执行操作---------------------",act)
+        app.get_elements(act,element)
+        app.e.click()
+
+    elif act=="back":
+        #print('执行操作--------------------',act)
+        app.back()
+        
+    else:
+        print('直接判断')
+
+    #再进行判断      
+    try:
+        toast_loc = ("xpath", ".//*[contains(@text,'%s')]"%text)
+        #print(toast_loc)
+        WebDriverWait(driver, timeout, poll_frequency).until(EC.presence_of_element_located(toast_loc))
+        re='PASS'
+        print(re)
+        wirte_result(re,text)
+        
+        return True
+    except :
+        
+        re='FAIL'
+        print(re)
+        wirte_result(re,text)
+        
+        return False
+
+
         
 if __name__== "__main__":
-    pass
-    '''
+    #pass
+
     desired_caps = {
             'platformName': 'Android',
             'deviceName': '6EB0217518004226',
@@ -94,9 +132,9 @@ if __name__== "__main__":
     driver.back() # 点返回
 
     # 判断是否存在toast-'再按一次退出'
-    print(is_toast_exist(driver, "再按一次退出"))
+    print(is_toast_exist1(driver, "再按一次退出"))
     sleep(5)
     driver.back() # 点返回
-    print(is_toast_exist(driver, "再按一次退出"))
-    '''	
+    print(is_toast_exist1(driver, "再按一次退出"))
+
 	

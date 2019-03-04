@@ -7,8 +7,24 @@ from appium.webdriver.common.touch_action import TouchAction
 from selenium.webdriver.support.ui import WebDriverWait 
 from selenium.common.exceptions import NoSuchElementException
 
-
 #TouchAction(driver).press(el0).moveTo(el1).release()
+
+"""
+function:
+1.xml存到文件，write_xml_to_file(filename,content)
+2.从xml文件中获取值，getAttrib(filename,attriname)
+3.从xml文件中取所有值，getAttrib_of_all(filename)
+4.取页面Source，get_current_activity(driver)
+5.
+
+"""
+#source中排除的属性值，android:id/statusBarBackground顶部状态，
+exclude=["android.widget.FrameLayout"]
+#可点的属性
+include=["android.widget.TextView","android.widget.ImageView"]
+#自定义可点的
+user_custom=[]
+
 
 #-----------------------------------------------------------
 #xml 存到文件中
@@ -43,15 +59,35 @@ def  getAttrib_of_all(filename):
     ids_array=[]
     c_array=[]
     print('正在取属性---------------------','共%d个属性'%(len(R)-1))
+
     #提取不同分类,从1开始，
     for i in range(1,len(R)):
         #取text，resource-id
         #print('正在取属性---------------------',i)
         #print(R[i])
+        #text，id,class,clickable值    
         text=R[i][3]["text"]
         id=R[i][3]["resource-id"]
-        #如果text 不为空，存到name中，否则存到resourceid中
+        class_value=R[i][3]["class"]
+        clickable_value=R[i][3]["clickable"]
+
+        #print(class_value,clickable_value)        
+
+        #是否是可点击的,true是可以点击的，进行存储，false，不存储      
+        if clickable_value=="false":
+                if class_value not in include:
+                        #print('不可点 不存')
+                        continue
+ 
+        #如果是排除的属性，不存储                
+        if class_value in  exclude:
+                #print('class exclude 不存')
+                continue
+
+
+        #如果text 不为空，存到name中，id不为空存到resourceid中，否正存到c中
         if text!="":
+                #name存所有属性，name_array只存在一个name值
                 name.append(R[i])
                 name_array.append(R[i][3]['text'])
                 #print('存到name中')
@@ -64,11 +100,17 @@ def  getAttrib_of_all(filename):
         else:
                 c.append(R[i])
                 c_array.append(R[i][3]["class"])
-
+    '''
+    for i  in range(len(name)):
+            class_value=name[i][3]["class"]
+            clickable_value=name[i][3]["clickable"]
+            print(i,class_value,clickable_value)
+    '''            
     print(len(name),len(ids),len(c))
    
     #return name,ids,c
     return name_array,ids_array,c_array
+
  
 #-----------------------------------------------------------
 # 获取当前界面activity
@@ -76,6 +118,10 @@ def get_current_activity(driver):
 	ac = driver.current_activity
 	print('当前的activity:----------------',ac)
 	return ac
+
+#-----------------------------------------------------------
+
+
 
 #-----------------------------------------------------------
 def tap(x,y):
