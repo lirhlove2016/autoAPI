@@ -23,6 +23,7 @@ battom_name=["书架","书城","分类","我的"]
 tanchuang_closseid=["com.ishugui:id/imageview_close","com.ishugui:id/imageview_cloud_sysch_close"]
 '''
 
+start_time=time.clock()
 
 print('正在启动客户端.....')
 time.sleep(5)
@@ -75,11 +76,69 @@ ac=get_current_activity()
 print(ac)
 name="sousuo"
 #取source，进行操作
-getsource_clicks(name)
-
+#getsource_clicks(name)
+#搜索2级页面
+name="搜索"
+click_all(name,'text')
+ac=get_current_activity()
+print(ac)
 
 '''
+x="//*"
+el=driver.find_elements_by_xpath(x)
+print(el)
+'''
 
+#书籍详情
+x='//*[contains(@text, "司马")]'
+el=driver.find_element_by_xpath(x)
+el.click()
+ac=get_current_activity()
+print(ac)
+name="xiangqing"
+time.sleep(2)
+#添加桌面的弹窗
+el=driver.find_element_by_xpath(x)
+el.click()
+
+#阅读器
+name="开始阅读"
+el.click()
+el=driver.find_element_by_name(name).click()
+name="reader"
+#getsource_clicks(name)
+
+
+#中间点击,tap((x1,y1),(x1,y2)],100),100毫秒
+def tap_center():
+	global driver
+	s= getSize()
+	print(s[0],s[1])
+	x1 = int(s[0] * 0.5)
+	y1 = int(s[1] * 0.4)
+	print('x1=%s,y1=%s'%(x1,y1))
+	driver.tap([(x1,y1),(x1,y1)],100)
+
+print("点击中间，显示设置菜单")
+tap_center()
+
+driver.tap([(500,500),(1065,208)],100)
+
+time.sleep(2)
+
+name="reader_menu"
+r=get_pagesource()
+#print(r)
+
+#随机点击
+#getsource_clicks(name)
+
+name="reader_setting"
+getsource_clicks(name)
+
+#每点击一下设备，需要在点击一下打开设置
+
+'''
 #我的
 click_all("我的",'text')
 ac=get_current_activity()
@@ -109,7 +168,15 @@ print(ac)
 #取source，进行操作
 #getsource_clicks(name)
 
+#书架-今日签到
+e=driver.find_element_by_name("今日签到")
+
+
 '''
+
+end_time=time.clock()
+print("运行时间",end_time-start_time)
+
 
 
 
@@ -151,48 +218,9 @@ if re:
             r=get_pagesource()          
             source_clicks(r,filename)
 
-
-#2
-time.sleep(3)
-#获取当前页面pagesource
-r=get_pagesource()
-#ac = get_current_activity(driver)
-#存储文件名
-filename="page_%s.xml"%num
-re=source_clicks(r,filename)
-#有返回，执行返回操作，进入一个新页
-if re:
-    num=num+1
-    filename="page_%s.xml"%num
-    for i in range(len(result)):
-        if id in result[i].keys():
-            value=result[i].value()
-            clickid(value)
-            r=get_pagesource()          
-            source_clicks(r,filename)
-
-
-#2
-time.sleep(3)
-#获取当前页面pagesource
-r=get_pagesource()
-#ac = get_current_activity(driver)
-#存储文件名
-filename="page_%s.xml"%num
-re=source_clicks(r,filename)
-#有返回，执行返回操作，进入一个新页
-
-if re:
-    num=num+1
-    filename="page_%s.xml"%num
-    for i in range(len(result)):
-        if id in result[i].keys():
-            value=result[i].value()
-            clickid(value)
-            #获取当前页面pagesource
-            r=get_pagesource()          
-            source_clicks(r,filename)
-
-
 '''
+
+
+
+
 

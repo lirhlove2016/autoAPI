@@ -66,19 +66,19 @@ def  getAttrib_of_all(filename):
         clickable_value=R[i][3]["clickable"]
 
         #print(class_value,clickable_value)        
-
+        #print(id)
         #是否是可点击的,true是可以点击的，进行存储，false，不存储      
         if clickable_value=="false":
                 if class_value not in include:
                         #print('不可点 不存')
                         continue
- 
+
+
         #如果是排除的属性，不存储                
         if class_value in  exclude:
                 #print('class exclude 不存')
                 continue
-
-
+        
         #如果text 不为空，存到name中，id不为空存到resourceid中，否正存到c中
         if text!="":
                 #name存所有属性，name_array只存在一个name值
@@ -94,13 +94,16 @@ def  getAttrib_of_all(filename):
         else:
                 c.append(R[i])
                 c_array.append(R[i][3]["class"])
+ 
     '''
+    #打印所有属性
     for i  in range(len(name)):
             class_value=name[i][3]["class"]
             clickable_value=name[i][3]["clickable"]
             print(i,class_value,clickable_value)
     '''            
-    print(len(name),len(ids),len(c))
+
+    print("取值个数:",len(name),len(ids),len(c))
     #返回的所有属性   
     #return name,ids,c
     #仅返回一个值
@@ -122,6 +125,7 @@ def get_current_activity(driver):
 def tap(x,y):
 	adb = 'adb shell input tap %s %s'%(x,y)
 	os.system(adb)
+
 '''
 #----------------------------------------------------------
 #连续滑动两次设置手势press（）-按压release()-释放perform()-连续操作

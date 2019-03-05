@@ -109,6 +109,10 @@ def get_pagesource():
         else:
                 print("空-----------------------------------------------")
         return r
+#---------------------------------------------
+#程序运行时间
+def run_time():
+	return time.clock()
 
 #----------------------------------------------
 #输入框中随机输入值
@@ -124,24 +128,33 @@ def click_all(name,act,method=""):
 	try:	
 		if act=='id':
 			el=driver.find_element_by_id(name)
-		if act=='text':
+		
+		elif act=='text':
 			el=driver.find_element_by_name(name)
-		if act=="class":
+		
+		elif act=="class":
 			el=driver.find_element_by_class_name(name)
-		if act=="xpath":
+		
+		elif act=="xpath":
 			el=driver.find_element_by_xpath(name)
+	
 		else:
-			print('没有此方法',act)
+			print('没有此方法--------',act,name)
 
 		if method=="":
 			el.click()
+			print('点击了',name)
 		elif method=="edit":
-			el.send_keys(edit_input_value)
-	
-		print('操作了',name)
-	        
-	except:
-	        print('元素没有找到,',name)
+			#调用，获取输入值
+			value=edit_input_value()
+			el.send_keys(value)
+			print('输入了',value)
+		        
+	except Exception as err:
+	        print('元素没有找到,',act,name,err)
+
+
+
 
 #findElements
 def elements_all(name,act,method=""):
@@ -155,6 +168,10 @@ def elements_all(name,act,method=""):
 			el=driver.find_elements_by_class_name(name)
 		elif act=="xpath":
 			el=driver.find_elements_by_xpath(name)
+		
+		else:
+			print("没有此方法,请检查",act)
+
 		return el   
 	
 	except:
@@ -465,7 +482,7 @@ def is_edit(t):
 		if t in edit_include:
 			method="edit"
 		else:
-			method=""	
+			method=""
 		return method
 
 
@@ -478,8 +495,6 @@ def count_element(names,e,act):
 	el_counts=[]
 	if count>1:
 		try:
-
-			'''
 			if act=='id':
 				el_counts=driver.find_elements_by_id(e)
 			elif act=="text":
@@ -488,14 +503,9 @@ def count_element(names,e,act):
 				el_counts=driver.find_elements_by_class_name(e)
 			elif act=="xpath":
 				el_counts=driver.find_elements_by_xpath(e)
-
-			'''
-			if act in ["id","text","class","xpath"]:
-				#获取元素
-				el_counts=elements_all(e,act)
 			else:
 				print('没有此方法',act)
-	
+				
 			#存在多个元素
 			if el_counts:
 				print('存在多个----------------------------',e)
@@ -534,7 +544,25 @@ def   click_menu(t):
 
 				print('点击菜单操作---------------------')
 
+#---------------------------------------------------------------------
+#中间点击,tap((x1,y1),(x1,y2)],100),100毫秒
+def tap_center():
+	global driver
+	s= getSize()
+	print(s[0],s[1])
+	x1 = int(s[0] * 0.5)
+	y1 = int(s[1] * 0.4)
+	print('x1=%s,y1=%s'%(x1,y1))
+	driver.tap([(x1,y1),(x1,y1)],100)
+
+
+#---------------------------------------------------------------------
 #判断是否新页面，是则返回
+#1.跳转到有活动弹窗的，点击关闭
+#2.跳转到搜索页，返回2次
+#3.跳转到阅读器器，返回，并点击确定
+#4.阅读器中，点击打开设置
+#5.搜索页
 def is_new_activity(ac,new):
 		global driver
 
@@ -547,26 +575,47 @@ def is_new_activity(ac,new):
 			print('new------',new)
 			#返回时判断书架是否有弹窗，有则关闭
 			tanchuang(huodong)
-			#阅读器，返回
+			#跳转到，阅读器，返回
 			if  "ReaderActivity" in  new:
 				#有弹窗，点击确定，取消
-				clickname("确定")
+				click_all("确定","text")
 			#跳转到搜索，返回2次
 			if "SearchActivity" in new:
 				driver.back()
 			print("已返回")
 		
-		#阅读器中
-		elif  "ReaderActivity" in  new  and  "ReaderActivity" in ac:
-				#有弹窗，点击确定，取消
-				clickname("确定")
 
 		#搜索1级，2级页面点击时，返回
-		elif "SearchActivity" in  new  and  "SearchActivity" in ac:
-				driver.back()
+		elif "SearchActivity" in   ac:
+				#driver.back()
 				print("在搜索页，已返回")
+				pass
+
+		#当前在阅读器中
+		if "ReaderActivity" in ac:
+			#点击中间，打开设置菜单
+			print('当前在阅读中')
+			#判断元素不存在
+			name="语音朗读"
+			flag=is_element_exist(name)
+			#设置没有打开，就点击一次打开
+			if flag=="false":
+				driver.tap([(500,500),(1065,208)],100)
 
 
+
+#判断元素是否存在，text
+def is_element_exist(name):
+        try:
+            #el = driver.find_element_by_android_uiautomator("text(\"%s\")" %name)
+            xpath_value='//*[contains(@text, %s)]'%name
+            el=driver.find_element_by_xpath(xpath_value)
+            return True
+            print("元素定位成功")
+        except BaseException as e:
+            print(e.args)
+            print("元素定位失败")
+            return False
 
 
 #获取当前页面的pagesource，并执行操作
@@ -586,21 +635,28 @@ def  getsource_clicks(name):
 	ac = get_current_activity()
 	#如果source 不为空
 	if len(r)>10:
-			n=0
+
 			#先将source写入xml文件中
 			common.write_xml_to_file(filename,r)
 			#从xml中取text，resource-id,属性元素
 			names,ids,others=common.getAttrib_of_all(filename)
-
-			#点击name
-			print('names----------------个数',len(names))
-			click_elements_one(names,'text')
-			#点击id
-			print('ids------------------个数',len(ids))
-			click_elements_one(ids,'id')	        
-			#点击classname,
-			#print('other-----------------个数',len(others))
-			#click_elements_onenew(others,'class')
+			#如果取值不为空
+			if len(names)>0:
+				#点击name
+				print('names----------------个数',len(names))
+				click_elements_one(names,'text')
+		
+			if len(ids)>0:
+				#点击id
+				print('ids------------------个数',len(ids))
+				click_elements_one(ids,'id')
+		
+			if len(others)>0:
+				#点击classname,
+				#print('other-----------------个数',len(others))
+				#click_elements_onenew(others,'class')
+				pass
+		
 			#print('操作了id %d次')
 
 	return len(names),len(ids),len(others)

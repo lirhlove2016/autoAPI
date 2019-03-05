@@ -65,7 +65,8 @@ Notclick_back_include=["com.ishugui:id/imageview_back","返回"]
 #edit 输入框，输入值
 default_input_values=["你好","hello","霸武凌天"]
 
-
+#number,name字符串长度
+number=20
 
 #--------------------------------------------------------
 
