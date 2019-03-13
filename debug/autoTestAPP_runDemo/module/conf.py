@@ -32,6 +32,7 @@ include=["android.widget.TextView","android.widget.ImageView","android.widget.Ed
 #自定义可点的
 user_custom=[]
 
+
 #跳转到其他应用，back返回
 appPackages=["com.ishugui"]
 

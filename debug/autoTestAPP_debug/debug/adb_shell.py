@@ -1,6 +1,6 @@
 import subprocess
 
-#ADB执行命令行,包括一些常用命令
+import os#ADB执行命令行,包括一些常用命令
 class ADBShell:
     def __init__(self, adb_path=""):
         self.adb_path = adb_path
@@ -18,6 +18,8 @@ class ADBShell:
                 device = device.split('\t')[0]
                 android_devices_list.append(device)
         return android_devices_list
+
+
 class Device:
     def __init__(self,adb_shell,device_id):
         self.device_id = device_id
@@ -90,4 +92,15 @@ class DeviceADB(object):
         return self.shell("getprop ro.build.display.id").strip()
 
 if __name__=='__main__':
-
+    print("------------------")
+    '''
+    print(os.system('adb version'))
+    c=DeviceADB('adb sehll','T8B6W4LJU4VSQWWW')
+    d=c.get_device_state
+    print(d)
+    d=c.get_device_id
+    print(d)
+	'''
+    d=Device('adb sehll','T8B6W4LJU4VSQWWW')
+    s=d.get_device_info
+    print(s)
