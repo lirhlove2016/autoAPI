@@ -1,27 +1,37 @@
+#!/usr/bin/env python
 #coding=utf-8
-import time
+
 import os
+import platform
+import subprocess
 import re
-import sys
+from time import sleep
+
+PATH = lambda p: os.path.abspath(p)
+print(PATH)
+
 """
 1.get_app_deviceid
 2.get_app_activity_and_packagename
-
+3.install_appPackage
+4.uninstall_apppackage
+5.
 """
 
+def adb():
+    
+
 #------------------------------------------------------
-#下面的代码是获取当前窗口的component参数
 def getFocusedPackageAndActivity():
- 
-		pattern = re.compile(r"[a-zA-Z0-9\.]+/[a-zA-Z0-9\.]+") #这里使用了正则表达式，对输出的内容做了限制，只会显示类似"com.mediatek.factorymode/com.mediatek.factorymode.FactoryMode"的字符串
-		out = os.popen("adb shell dumpsys window windows | findstr \/ | findstr name=").read()  #window下使用findstr
-		list = pattern.findall(out)
-		print('list----',list)
-		component = list[0]       #输出列表中的第一条字符串 
-		return component	    
-#print(getFocusedPackageAndActivity())
+    '''获取当前页的包名和activity    ''' 
+    pattern = re.compile(r"[a-zA-Z0-9\.]+/[a-zA-Z0-9\.]+") #这里使用了正则表达式，对输出的内容做了限制，只会显示类似"com.mediatek.factorymode/com.mediatek.factorymode.FactoryMode"的字符串
+    out = os.popen("adb shell dumpsys window windows | findstr \/ | findstr name=").read()  #window下使用findstr
+    list = pattern.findall(out)
+    #print('list----',list)
+    component = list[0]   #输出列表中的第一条字符串 
+    return component	    
+
 #------------------------------------------------------
-#提取设备号
 def get_app_deviceid():
     '''实现提取设备号
        get_app_deviceid()
@@ -47,7 +57,6 @@ def get_app_deviceid():
     else:
         print('无此设备，请检查是否连接设备。')
 #------------------------------------------------------
-#获取包名和activity
 def get_app_activity_and_packagename():
         '''实现提取设备号
            res=get_app_activity_and_packagename()
@@ -56,25 +65,14 @@ def get_app_activity_and_packagename():
         pattern = re.compile(r"[a-zA-Z0-9\.]+/[a-zA-Z0-9\.]+")    
         out = os.popen("adb shell dumpsys window windows | findstr \/ | findstr name=").read() #window下使用findstr
         out_list = pattern.findall(out)
-        print('list----',out_list)
         component = out_list[0] #输出列表中的第一条字符串
-        print(component)
-        '''
-        #方法1，提取pack,act
-        pack = str(re.findall('name=(\w+(\.\w+){1,})',out,flags=0))
-        pack=str(re.findall('\'(.+?)\',',pack,flags=0))
-        activity = str(re.findall('/(\w+(\.\w+){1,})',out,flags=0))
-        activity = str(re.findall('\'(.+?)\',',activity,flags=0))
-        '''
-        #方法2
+        #print(component)
         res=component.split('/')
         pack=res[0]        
         activity=res[1]
         print("package="+pack+'\n'+"activity="+activity)        
-
         return res
 #------------------------------------------------------        
-#安装app
 def install_appPackage(apppath):
         '''
         安装apppath下的app包      
@@ -86,11 +84,7 @@ def install_appPackage(apppath):
             print('success，app包安装成功了！')
         else:
             print('安装失败，请检查是否连接设备，是否已经安装。')
-        
-        #os.system(cmd)
-        
-
-#卸载app
+#------------------------------------------------------        
 def uninstall_apppackage(packname):
         '''
         卸载app包      
@@ -101,47 +95,39 @@ def uninstall_apppackage(packname):
             print('success，app包已经卸载了！')
         else:
             print('卸载失败，请检查是否连接设备。')
-        
-        #os.system(cmd)
-                
 #-------------------------------------
-#app包目录获取
-def get_app_filelist(strlj):
-    global L
-    L = []
-    for aaa, bbb, ccc in os.walk(strlj):
-        ccc = str(ccc)
-        if ccc != '[]':
-            ccc = ccc.split(',')
-            ccc = list(ccc)
-            n = 0
-            for CCC in ccc:
-                zz = ccc[n].replace("'", "")
-                zz = zz.replace("]", "")
-                zz = zz.replace("[", "")
-                zz = zz.replace(" ", "")
-                n = n + 1
-                # print(os.path.join(aaa, zz))
-                L.append(os.path.join(aaa, zz))
-				
-#示例如下，r是转义\
-#get_app_filelist(r'D:\我的文档\app自动化\TESTfile')
-#print(L)
-#-------------------------------------
-#目录下包安装方法，一个一个执行，还是隔几个执行，还是只安装几个
+def  install_app_method(applist,interval=0,num='0'):
+    '''
+    applist:app包目录
+    interval：0每个包都安装，1为间隔1隔包安装
+    num:总安装数量
 
+    '''
+    #存放app包数量
+    n=len(applist)
+    if num==0  and interval==0:
+        for apppath in applist:
+            install_appPackage(apppath)
+            res=is_execute_app()
+            if res:
+                continue
 
+device_id=""
+command = os.path.join(os.environ["ANDROID_HOME"], "platform-tools", "adb.exe")
 
+def adb(args):
+    cmd = "%s %s %s" % (command,str(args),device_id)
+    
+    r=subprocess.Popen(cmd,shell=True,stdout=subprocess.PIPE,stderr=subprocess.PIPE)
+    return r
+
+def getDeviceID():
+    args="get-serialno"
+    return adb("get-serialno").stdout.read().strip()
 
 
 if  __name__=='__main__':
-
-    ''' 
-    os.system('adb version')
-    os.system('adb devices')    #os.system是不支持读取操作的
-    out = os.popen('adb shell "dumpsys activity | grep "mFocusedActivity""').read() #os.popen支持读取操作
-    print(out)
-    '''    
+    '''
     #print(getFocusedPackageAndActivity())
     #get_app_deviceid()
     res=get_app_activity_and_packagename()
@@ -149,10 +135,20 @@ if  __name__=='__main__':
 
     apppath="F:\\download\\397aikan.apk"
     
-    install_appPackage(apppath)
-    time.sleep(5)
+    #install_appPackage(apppath)
+    #time.sleep(5)
     packname='com.ishugui'
-    uninstall_apppackage(packname)
+    #uninstall_apppackage(packname)
+
+    '''
+    args="adb devices"    
+    r=adb(args).stdout.read().strip()
+    args="get-serialno"
+    r=adb(args).stdout.read().strip()
+
+    print(r)
+
+
 
     
 
