@@ -38,15 +38,13 @@ def is_toast_exist(driver,text,timeout=20,poll_frequency=0.5):
         #print(toast_loc)
         WebDriverWait(driver, timeout, poll_frequency).until(EC.presence_of_element_located(toast_loc))
         re='PASS'
-        print('T--------------------------')
-        wirte_result(re,text)
-        
+        #wirte_result(re,text)     
         return True
     except:
         
         re='FAIL'
-        print('F--------------------------')
-        wirte_result(re,text)
+        #print('F--------------------------')
+        #wirte_result(re,text)
         
         return False
 
@@ -71,7 +69,7 @@ def always_allow(driver,number=5):
             return False
 
 #-----------------------------------------------------------------
-def is_toast_exists(driver,text,act="",element="",timeout=10,poll_frequency=0.5):
+def is_toast_exists(driver,text,act="",element="",timeout=30,poll_frequency=0.5):
     print('toast-----------------',text,act)
 
     #先进行元素操作
@@ -94,17 +92,15 @@ def is_toast_exists(driver,text,act="",element="",timeout=10,poll_frequency=0.5)
         WebDriverWait(driver, timeout, poll_frequency).until(EC.presence_of_element_located(toast_loc))
         re='PASS'
         print(re)
-        wirte_result(re,text)
-        
+        #wirte_result(re,text)        
         return True
     except :
         
         re='FAIL'
         print(re)
-        wirte_result(re,text)
+        #wirte_result(re,text)
         
         return False
-
 
         
 if __name__== "__main__":
@@ -125,11 +121,15 @@ if __name__== "__main__":
 
     sleep(5)
     driver.back() # 点返回
+    '''
 
     # 判断是否存在toast-'再按一次退出'
-    print(is_toast_exist1(driver, "再按一次退出"))
-    sleep(5)
+    print(is_toast_exist(driver, "再按一次退出"))
+    sleep(2)
     driver.back() # 点返回
-    print(is_toast_exist1(driver, "再按一次退出"))
-
+    print(is_toast_exist(driver, "再按一次退出"))
+    driver.back() # 点返回
+    print(is_toast_exist(driver, "再按一次退出"))
+    '''
+    #is_toast_exists(driver, "再按一次退出","back")
 	

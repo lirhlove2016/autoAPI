@@ -28,6 +28,7 @@ v：1.1
 5.assertin,包含元素校验
 6.is_exists,判断是否存在，存在点击操作
 7.back多次操作
+8.tanchuang,弹窗,只传id
 
 
 """
@@ -66,7 +67,7 @@ desired_caps = {
     'newCommandTimeout':1800,    #设置未接收到新命令的超时时间，默认60s,
     #'automationName': 'uiautomator2',
     #'dontStopAppOnReset': True,   # 不关闭应用
-    #'autoGrantPermissions': True,  # 自动获取权限
+    'autoGrantPermissions': True,  # 自动获取权限
 }
 
 # 写入结果
@@ -749,6 +750,7 @@ def go_func(line3,line4,line5, line6,line2):
 def gorun(func,*args,**kwargs):
     print("重试第%d次" % count)
     func(*args,**kwargs)
+	
 #----------------------------------------------------------------------
 #单个元素，判断是否存在，若存在则点击操作，id，name,xpath
 def is_exists(act,value):

@@ -93,7 +93,7 @@ def run(line):
         return
 
     if line[3] == 'toast':
-        t.is_toast_exist(app.driver,line[4],line[5],line[6])
+        t.is_toast_exists(app.driver,line[4],line[5],line[6])
         return
 
     if line[3] == 'alwaysallow':

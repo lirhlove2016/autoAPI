@@ -7,6 +7,8 @@ import subprocess
 import re
 from time import sleep
 
+
+
 PATH = lambda p: os.path.abspath(p)
 print(PATH)
 
@@ -17,9 +19,6 @@ print(PATH)
 4.uninstall_apppackage
 5.
 """
-
-def adb():
-    
 
 #------------------------------------------------------
 def getFocusedPackageAndActivity():
@@ -95,26 +94,7 @@ def uninstall_apppackage(packname):
             print('success，app包已经卸载了！')
         else:
             print('卸载失败，请检查是否连接设备。')
-#-------------------------------------
-def  install_app_method(applist,interval=0,num='0'):
-    '''
-    applist:app包目录
-    interval：0每个包都安装，1为间隔1隔包安装
-    num:总安装数量
-
-    '''
-    #存放app包数量
-    n=len(applist)
-    if num==0  and interval==0:
-        for apppath in applist:
-            install_appPackage(apppath)
-            res=is_execute_app()
-            if res:
-                continue
-
-device_id=""
-command = os.path.join(os.environ["ANDROID_HOME"], "platform-tools", "adb.exe")
-
+#------------------------------------------------------  
 def adb(args):
     cmd = "%s %s %s" % (command,str(args),device_id)
     
@@ -124,7 +104,8 @@ def adb(args):
 def getDeviceID():
     args="get-serialno"
     return adb("get-serialno").stdout.read().strip()
-
+	
+#------------------------------------------------------  
 
 if  __name__=='__main__':
     '''
@@ -145,7 +126,6 @@ if  __name__=='__main__':
     r=adb(args).stdout.read().strip()
     args="get-serialno"
     r=adb(args).stdout.read().strip()
-
     print(r)
 
 
