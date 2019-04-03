@@ -148,7 +148,7 @@ def add_header(hkey,jkey):
         elif jkey.startswith('{{'):        
             session.headers[hkey]=get_savejson(jkey)
             #写入
-            wirte_result('PASS',session.headers[hkey)
+            wirte_result('PASS',session.headers[hkey])
     #jkey为空
     else:
         session.headers[hkey]=jkey

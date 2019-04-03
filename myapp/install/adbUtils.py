@@ -70,7 +70,9 @@ def get_app_activity_and_packagename():
         pack=res[0]        
         activity=res[1]
         print("package="+pack+'\n'+"activity="+activity)        
-        return res
+        #返回2个值
+        return pack,activity
+    
 #------------------------------------------------------        
 def install_appPackage(apppath):
         '''
@@ -108,12 +110,13 @@ def getDeviceID():
 #------------------------------------------------------  
 
 if  __name__=='__main__':
-    '''
+
     #print(getFocusedPackageAndActivity())
     #get_app_deviceid()
     res=get_app_activity_and_packagename()
     print(res)              
 
+    '''
     apppath="F:\\download\\397aikan.apk"
     
     #install_appPackage(apppath)
@@ -121,14 +124,15 @@ if  __name__=='__main__':
     packname='com.ishugui'
     #uninstall_apppackage(packname)
 
-    '''
+
+    
     args="adb devices"    
     r=adb(args).stdout.read().strip()
     args="get-serialno"
     r=adb(args).stdout.read().strip()
     print(r)
 
-
+    '''
 
     
 

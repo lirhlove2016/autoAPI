@@ -9,6 +9,7 @@ from conf.conf import dataDir,resultDir
 import os
 import unittest
 
+
 class testAPI(unittest.TestCase):
 
     def test_app_api(self):

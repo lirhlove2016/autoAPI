@@ -27,7 +27,7 @@ class AppDynamicsJob(unittest.TestCase):
         driver.find_element_by_id("loginname").send_keys("admin")
         driver.find_element_by_id("password").click()
         driver.find_element_by_id("password").clear()
-        driver.find_element_by_id("password").send_keys("qwer4321")
+        driver.find_element_by_id("password").send_keys("123456")
         driver.find_element_by_id("code").click()
         driver.find_element_by_id("code").clear()
         driver.find_element_by_id("code").send_keys("1X3E")
