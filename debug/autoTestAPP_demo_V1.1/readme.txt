@@ -21,6 +21,9 @@
 20.定位方法添加elements
 21.判断是否存在，存在点击操作，可以用于弹窗的关闭，定位id,name,xpath
 22.back多次操作，默认1次
+23.install,uninstall,getpackname,getdeviceid
+24.tap随机，坐标
+25.source_assert
 
 
 

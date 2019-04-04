@@ -54,7 +54,7 @@ def always_allow(driver,number=5):
             e=WebDriverWait(driver, timeout, poll_frequency).until(EC.presence_of_element_located(loc))
             e.click()
             return True
-        except as e:
+        except Exception as e:
             print('error:',e)
             return False
 

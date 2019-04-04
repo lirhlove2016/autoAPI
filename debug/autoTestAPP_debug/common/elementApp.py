@@ -4,9 +4,9 @@ import time, os
 from common import readexcel as reader, writeexcel as writer
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
-
+import random
 from conf.conf import dataDir, reportDir
-from  toast import *
+from  common.toast import *
 PATH = lambda p: os.path.abspath(os.path.join(os.path.dirname(__file__), p))
 
 
@@ -24,6 +24,12 @@ v：1.1
 2.assertequals,单个元素校验
 3.assertequals_all，多个元素校验
 4.调用模块封装go_func()
+
+v1.2
+1.随机点击
+2.坐标点击
+3.获取当前activity
+4.
 
 """
 
@@ -61,7 +67,7 @@ desired_caps = {
     'newCommandTimeout':1800,    #设置未接收到新命令的超时时间，默认60s,
     #'automationName': 'uiautomator2',
     #'dontStopAppOnReset': True,   # 不关闭应用
-    #'autoGrantPermissions': True,  # 自动获取权限
+    'autoGrantPermissions': True,  # 自动获取权限
 }
 
 # 写入结果
@@ -495,7 +501,8 @@ def get_page(*args,**kwargs):
 # 获取当前页所有元素
 def get_pages_source(file=""):
     global driver
-    
+
+    #file不为空，保存文件
     try:       
         re=driver.page_source
         
@@ -507,9 +514,11 @@ def get_pages_source(file=""):
             filepath = os.path.join(reportDir,file)
         with  open(filepath,'w+') as f:
             f.write(re)
+
         wirte_result("PASS", file)    
     except Exception as err:
-        err_run(err,get_pages_source,filename)  
+        err_run(err,get_pages_source,filename)
+        #重试
         rerun(get_pages_source,filename)
 
 # scroll
@@ -526,8 +535,153 @@ def current_context():
 def contexts():
     global driver
     driver.contexts
+    
 #-----------------------------------------------待调试
+    
+# 获取当前界面activity
+def get_current_activity():
+    global driver
+    ac = driver.current_activity
+    print('当前的activity:----------------',ac)
 
+    # 写入
+    wirte_result("PASS","当前activity是%s"%ac)
+    
+    return ac
+
+
+
+#-----------------------------------------------   
+#根据sourcepage判断
+def source_assert(*args):
+    #先获取当前pagesource
+    source = driver.page_source
+
+    if args=="":
+        print("未传入有效内容")
+        re="FAIL"
+        value="未传入有效内容"        
+
+    elif len(args) > 1:
+        n=len(args)
+        i=0
+        for x in args:
+            if x in source:
+                print(x + "存在")
+                i=i+1
+            else:
+                print(x + "不存在")
+
+        if i==n:
+            re="PASS"
+            value="都存在"
+        else:
+            re="FAIL"
+            value="不是都存在"
+    elif len(args) == 1 :
+        if args[0] in source:
+            print(args[0] + "存在")
+            re="PASS"
+            value="存在"            
+        else:
+            print(args[0] + "不存在")
+            re="PASS"
+            value="不存在"
+
+    # 写入
+    wirte_result(re,value)
+
+#-----------------------------------------------
+#返回坐标
+def get_xy(radiox,radioy):
+    #坐标
+    coordinate=[]
+    radiox=str(radiox)
+    radioy=str(radioy)
+    #如果输入小于1的，按比例提取，如果输入实际数    
+    if radiox<'1':
+        radio=float(radiox)
+        radiox = int(SIZE()[2]*radio)
+
+    if radioy<'1':
+        radio=float(radioy)
+        radioy = int(SIZE()[3]*radio)
+    
+    #print(str(radiox),str(radioy))
+    coordinate.append(radiox)
+    coordinate.append(radioy)
+
+
+    # 写入
+    #wirte_result('PASS','坐标为%s,%s'%(str(radiox),str(radioy))) 
+
+    return coordinate
+
+#-----------------------------------------------
+#随机点击
+def tap_random():
+    R = []
+    #生成2个随机数
+    for i in range(2):
+        r = random.randint(1, 10)/10
+        R.append(r)
+    #print(R)
+    x = int(SIZE()[2]*R[0])
+    y = int(SIZE()[3]*R[1])
+    #print(str(x),str(y))
+    try:
+        print("即将随机点击：" + str(x),str(y))
+        driver.tap([(x,y)])
+        re="PASS"
+        value="随机点击坐标%s,%s"%(str(x),str(y))       
+
+    except BaseException as e:
+        print("随机点击出错了%s"%str(e))
+        re="FAIL"
+        value="随机点击出错了%s"%str(e)
+
+    # 写入
+    wirte_result(re,value)
+
+#-----------------------------------------------        
+#坐标点击
+def tap_point(x,y):
+    #如果输入坐标小于0，按比例提取坐标
+    #如果传入是str类型，判断
+    if type(x)==str:
+        if x<'1':
+            re=get_xy(x,y)
+            x=re[0]
+    elif x<1:
+        re=get_xy(x,y)
+        x=re[0]
+
+    if type(y)==str:
+        if y<'1':
+            re=get_xy(x,y)
+            y=re[1]
+    elif x<1:
+        re=get_xy(x,y)
+        y=re[1]
+        
+    #print(str(x),str(y))
+    print("即将点击坐标:" + str(x),str(y))
+    try:
+        driver.tap([(x,y)])
+        re="PASS"
+        value="点击坐标%s,%s"%(str(x),str(y))          
+
+    except BaseException as e:
+        
+        print("点击出错了%s"%str(e))
+
+        re="FAIL"
+        value="点击出错了%s"%str(e)
+
+    # 写入
+    wirte_result(re,value)
+
+#-----------------------------------------------
 # 获取尺寸
 def SIZE():
     global start_x, start_y, end_x, end_y
@@ -536,7 +690,6 @@ def SIZE():
     end_x = driver.get_window_size()['width']
     end_y = driver.get_window_size()['height']
     return (start_x, start_y, end_x, end_y)
-
 
 # 上划
 def UP():
@@ -555,6 +708,7 @@ def UP():
 
     # 写入
     wirte_result(key, value)
+
 
 # 下划
 def DOWN():
@@ -637,7 +791,10 @@ def rerun(func,*args,**kwargs):
         print("结束成功")
         count = 1
         return count
+#---------------------------------------------------------------------
 
+'''
+#待重构
 #执行模块定义及调用---------------------------------------------------------------------------
 #存放模块字典，所有可执行的模块在此存放
 funcs={"caps":update_capability,
@@ -659,7 +816,6 @@ funcs={"caps":update_capability,
     "toast":is_toast_exist, 
     "alwaysallow":always_allow,
     }
-
 
 
 #存放定位元素和操作
@@ -716,9 +872,8 @@ def go_func(line3,line4,line5, line6,line2):
 def gorun(func,*args,**kwargs):
     print("重试第%d次" % count)
     func(*args,**kwargs)
+'''
 #----------------------------------------------------------------------
-
-
 
 if __name__ == "__main__":
     pass

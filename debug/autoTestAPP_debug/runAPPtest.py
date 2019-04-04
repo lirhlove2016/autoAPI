@@ -80,7 +80,29 @@ def run(line):
         return
     if line[3]=='pagesource':
         app.get_pages_source(line[4])
+        return
+    
+    if line[3]=='tappoint':
+        app.tap_point(line[4],line[5])
+        return
+    
+    if line[3]=='taprandom':
+        app.tap_random()
+        return
+            
+    if line[3]=='pagesource':
+        app.get_pages_source()
+        return
 
+    if line[3]=='sourceassert':
+        app.source_assert(line[4])
+        return
+
+    if line[3]=='activity':
+        app.get_current_activity()
+        return
+    
+#-----------------------  
 reader.open_excel(srcfile)
 writer.copy_open(srcfile, desfile)
 

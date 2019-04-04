@@ -18,6 +18,7 @@ print(PATH)
 3.install_appPackage
 4.uninstall_apppackage
 5.
+
 """
 
 #------------------------------------------------------
@@ -55,6 +56,8 @@ def get_app_deviceid():
         print('设备号:',deviceid)        
     else:
         print('无此设备，请检查是否连接设备。')
+
+        
 #------------------------------------------------------
 def get_app_activity_and_packagename():
         '''实现提取设备号
@@ -64,15 +67,15 @@ def get_app_activity_and_packagename():
         pattern = re.compile(r"[a-zA-Z0-9\.]+/[a-zA-Z0-9\.]+")    
         out = os.popen("adb shell dumpsys window windows | findstr \/ | findstr name=").read() #window下使用findstr
         out_list = pattern.findall(out)
-        component = out_list[0]   #输出列表中的第一条字符串
+        component = out_list[0] #输出列表中的第一条字符串
         #print(component)
         res=component.split('/')
         pack=res[0]        
         activity=res[1]
         print("package="+pack+'\n'+"activity="+activity)        
-        #返回2个值
-        return pack,activity
-    
+        return res
+
+
 #------------------------------------------------------        
 def install_appPackage(apppath):
         '''
@@ -96,6 +99,8 @@ def uninstall_apppackage(packname):
             print('success，app包已经卸载了！')
         else:
             print('卸载失败，请检查是否连接设备。')
+
+            
 #------------------------------------------------------  
 def adb(args):
     cmd = "%s %s %s" % (command,str(args),device_id)
@@ -106,17 +111,15 @@ def adb(args):
 def getDeviceID():
     args="get-serialno"
     return adb("get-serialno").stdout.read().strip()
-	
 #------------------------------------------------------  
 
 if  __name__=='__main__':
-
+    '''
     #print(getFocusedPackageAndActivity())
     #get_app_deviceid()
     res=get_app_activity_and_packagename()
     print(res)              
 
-    '''
     apppath="F:\\download\\397aikan.apk"
     
     #install_appPackage(apppath)
@@ -124,15 +127,14 @@ if  __name__=='__main__':
     packname='com.ishugui'
     #uninstall_apppackage(packname)
 
-
-    
+    '''
     args="adb devices"    
     r=adb(args).stdout.read().strip()
     args="get-serialno"
     r=adb(args).stdout.read().strip()
     print(r)
 
-    '''
+
 
     
 
