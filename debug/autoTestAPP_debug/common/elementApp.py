@@ -29,7 +29,8 @@ v1.2
 1.随机点击
 2.坐标点击
 3.获取当前activity
-4.
+4.根据source判断
+5.
 
 """
 
@@ -530,14 +531,11 @@ def scroll(ori_el, des_el):
 def current_context():
     global driver
     driver.current_context
-
 # 获得所有contexts
 def contexts():
     global driver
     driver.contexts
-    
 #-----------------------------------------------待调试
-    
 # 获取当前界面activity
 def get_current_activity():
     global driver
@@ -546,14 +544,11 @@ def get_current_activity():
 
     # 写入
     wirte_result("PASS","当前activity是%s"%ac)
-    
     return ac
-
-
-
 #-----------------------------------------------   
 #根据sourcepage判断
 def source_assert(*args):
+    global driver
     #先获取当前pagesource
     source = driver.page_source
 
@@ -616,7 +611,6 @@ def get_xy(radiox,radioy):
     #wirte_result('PASS','坐标为%s,%s'%(str(radiox),str(radioy))) 
 
     return coordinate
-
 #-----------------------------------------------
 #随机点击
 def tap_random():

@@ -6,7 +6,7 @@ import platform
 import subprocess
 import re
 from time import sleep
-from common.appInstallCommon import *
+from appInstallCommon import *
 
 """
 运行安装app包

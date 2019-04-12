@@ -32,23 +32,23 @@ def rerun(func,*args,**kwargs):
 
 #------------------------------------------------------  
 #app包目录获取
-def get_app_filelist(strlj):
+def get_app_filelist(appfilepath):
     global L
     L = []
-    for aaa, bbb, ccc in os.walk(strlj):
-        ccc = str(ccc)
-        if ccc != '[]':
-            ccc = ccc.split(',')
-            ccc = list(ccc)
+    for x1, x2, x3 in os.walk(appfilepath):
+        x3 = str(x3)
+        if x3 != '[]':
+            x3 = x3.split(',')
+            x3 = list(x3)
             n = 0
-            for CCC in ccc:
-                zz = ccc[n].replace("'", "")
-                zz = zz.replace("]", "")
-                zz = zz.replace("[", "")
-                zz = zz.replace(" ", "")
+            for p in x3:
+                z = x3[n].replace("'", "")
+                z = z.replace("]", "")
+                z = z.replace("[", "")
+                z = z.replace(" ", "")
                 n = n + 1
-                # print(os.path.join(aaa, zz))
-                L.append(os.path.join(aaa, zz))			
+                # print(os.path.join(x1, z))
+                L.append(os.path.join(x1, z))
     return L	
 
 #------------------------------------------------------    
