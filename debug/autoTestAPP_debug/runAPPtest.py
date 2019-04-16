@@ -1,8 +1,9 @@
 # coding:utf-8
+import os
 from common import elementApp as app
 from common import readexcel as reader, writeexcel as writer
-
-import os
+from common import toast as t
+from common import appInstallCommon as adb
 
 # -文件目录配置----------------------------
 filepath = os.path.abspath(os.getcwd())
@@ -11,8 +12,8 @@ desfile = os.path.join(filepath, 'datadir/myApp_result.xls')
 resultfile = os.path.join(filepath, 'report/screenshot/screenshot_')
 print(srcfile)
 
-
 # -脚本-----------------------------------
+
 def run(line):
     if line[3] == 'caps':
         app.update_capability(line[4], line[5])
@@ -65,10 +66,14 @@ def run(line):
         return
 
     if line[3] == 'assertequals':
-        app.assertequals(line[4], line[5])
+        app.assert_equals(line[4], line[5],line[6])
         return
     if line[3] == 'savephoto':
         app.get_screenshot(resultfile, line[4])
+        return
+
+    if line[3] == 'text':
+        app.get_element("text", line[4], line[5], line[6], line[2])
         return
 
     if line[3] == 'quit':
@@ -81,7 +86,36 @@ def run(line):
     if line[3]=='pagesource':
         app.get_pages_source(line[4])
         return
+    if line[3] == 'assertequals_all':
+        app.assert_equals_all(line[4], line[5],line[6])
+        return
+
+    if line[3] == 'assertin':
+        app.assert_in(line[4], line[5],line[6])
+        return
+
+    if line[3] == 'toast':
+        t.is_toast_exists(app.driver,line[4],line[5],line[6])
+        return
+
+    if line[3] == 'alwaysallow':
+        t.always_allow(app.driver,line[4])
+        return    
+
+    if line[3] == 'textContains':
+        app.get_element("textContains", line[4], line[5], line[6], line[2])
+        return
+    if line[3] == 'isexist':
+        app.is_exists(line[4],line[5])
+        return
+    if line[3] == 'tanchuang':
+        app.tanchuang(line[4])
+        return
     
+    if line[3] == 'backs':
+        app.backs(line[4])
+        return
+
     if line[3]=='tappoint':
         app.tap_point(line[4],line[5])
         return
@@ -101,8 +135,20 @@ def run(line):
     if line[3]=='activity':
         app.get_current_activity()
         return
-    
-#-----------------------  
+
+    if line[3]=='getpack':
+        adb.get_package()
+        return
+
+
+
+
+    else:
+        print('没有这个方法，请检查',line[3])
+
+        return
+
+        
 reader.open_excel(srcfile)
 writer.copy_open(srcfile, desfile)
 
@@ -118,5 +164,6 @@ for i in range(0, reader.r):
 writer.save_close()
 
 print('执行完成---------------')
+
 
 # ----end------------------------------------------

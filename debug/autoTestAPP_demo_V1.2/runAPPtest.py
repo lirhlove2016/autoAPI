@@ -114,6 +114,27 @@ def run(line):
         app.backs(line[4])
         return
 
+    if line[3]=='tappoint':
+        app.tap_point(line[4],line[5])
+        return
+    
+    if line[3]=='taprandom':
+        app.tap_random()
+        return
+            
+    if line[3]=='pagesource':
+        app.get_pages_source()
+        return
+
+    if line[3]=='sourceassert':
+        app.source_assert(line[4])
+        return
+
+    if line[3]=='activity':
+        app.get_current_activity()
+        return
+
+
     else:
         print('没有这个方法，请检查',line[3])
 

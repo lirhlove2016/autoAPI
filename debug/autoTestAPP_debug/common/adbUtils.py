@@ -60,7 +60,7 @@ def get_app_deviceid():
         
 #------------------------------------------------------
 def get_app_activity_and_packagename():
-        '''实现提取设备号
+        '''实现获取包名和启动页
            res=get_app_activity_and_packagename()
         '''    
         #正则表达式 输出包名

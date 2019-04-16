@@ -4,11 +4,10 @@ import time, os
 from common import readexcel as reader, writeexcel as writer
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
-
+import random
 from conf.conf import dataDir, reportDir
-#from  common.toast import *
+from  common.toast import *
 PATH = lambda p: os.path.abspath(os.path.join(os.path.dirname(__file__), p))
-
 
 
 """
@@ -25,11 +24,13 @@ v：1.1
 2.assertequals,单个元素校验
 3.assertequals_all，多个元素校验
 4.调用模块封装go_func()
-5.assertin,包含元素校验
-6.is_exists,判断是否存在，存在点击操作
-7.back多次操作
-8.tanchuang,弹窗,只传id
 
+v1.2
+1.随机点击
+2.坐标点击
+3.获取当前activity
+4.根据source判断
+5.
 
 """
 
@@ -54,7 +55,7 @@ driver = ""
 # 设备参数
 desired_caps = {
     'platformName': 'Android',
-    'deviceName': '6EB0217518004226',   #722347d6
+    'deviceName': '722347d6',  # 6EB0217518004226  #722347d6
     'platformVersion': '6.0',
     # 'app': PATH(r'E:\download\385.apk'), #安装目录
     'appPackage': 'com.ishugui',
@@ -75,7 +76,6 @@ def wirte_result(result, value):
     if reader.rr>0:
         writer.write(reader.rr - 1, 7, result)
         writer.write(reader.rr - 1, 8, value)
-
     
 # 配置设备
 def update_capability(key, value):
@@ -187,7 +187,6 @@ def get_element(method, element, index="", name="", casename=""):
     # 写入
     wirte_result(re, value)
 
-
 #定位一批元素,同单个元素定位，
 def get_elements(method, element, index="", name="", casename=""):
     global driver
@@ -263,7 +262,6 @@ def get_elements(method, element, index="", name="", casename=""):
         value = str(err)
         #重试
         rerun(get_element,method,element,index,name,casename)
-        
 
     # 写入
     wirte_result(re, value)
@@ -312,7 +310,6 @@ def clicks(act, element, value="", name="", casename=""):
     # 写入
     wirte_result(re, value)
 
-
 #定位元素，不为空取保存值，为空取上一个定位元素；
 #引用，get_value,clicks
 def get_element_of(element):
@@ -349,7 +346,6 @@ def back():
     except Exception as err:
         #调用方法
         err_run(err,back)
-
 
 # sleep
 def sleep(t,*args,**kwargs):
@@ -488,31 +484,6 @@ def  get_split(names):
     
 	return n	
 
-
-
-#--------------------------------------------------------
-#assert,name校验结果，value取值,e定位元素
-def assert_in(name,value,el):
-	global driver
-	print('正在进行校验-----------------------------------------------------------------')
-	print('本次校验的期望结果是：%s,取值:%s'%(name,value))
-	#调用取值
-	values=get_value(value,el)
-
-	#进行判断
-	if name in values:
-		print('校验正确,校验结果：%s'%name)
-		re="PASS"
-		result=name
-		
-	else:
-		print('校验不正确，要校验的值为%s,取值:%s'%(value,values))
-		re="FAIL"
-		result="校验的值:"+values
-
-	# 写入
-	wirte_result(re,result)    
-
 #-------------------------------------------------------未调试
 # 保存图片到本文件夹,暂时不用
 def save_screenshot(filename):
@@ -531,7 +502,8 @@ def get_page(*args,**kwargs):
 # 获取当前页所有元素
 def get_pages_source(file=""):
     global driver
-    
+
+    #file不为空，保存文件
     try:       
         re=driver.page_source
         
@@ -543,9 +515,11 @@ def get_pages_source(file=""):
             filepath = os.path.join(reportDir,file)
         with  open(filepath,'w+') as f:
             f.write(re)
+
         wirte_result("PASS", file)    
     except Exception as err:
-        err_run(err,get_pages_source,filename)  
+        err_run(err,get_pages_source,filename)
+        #重试
         rerun(get_pages_source,filename)
 
 # scroll
@@ -557,13 +531,151 @@ def scroll(ori_el, des_el):
 def current_context():
     global driver
     driver.current_context
-
 # 获得所有contexts
 def contexts():
     global driver
     driver.contexts
 #-----------------------------------------------待调试
+# 获取当前界面activity
+def get_current_activity():
+    global driver
+    ac = driver.current_activity
+    print('当前的activity:----------------',ac)
 
+    # 写入
+    wirte_result("PASS","当前activity是%s"%ac)
+    return ac
+#-----------------------------------------------   
+#根据sourcepage判断
+def source_assert(*args):
+    global driver
+    #先获取当前pagesource
+    source = driver.page_source
+
+    if args=="":
+        print("未传入有效内容")
+        re="FAIL"
+        value="未传入有效内容"        
+
+    elif len(args) > 1:
+        n=len(args)
+        i=0
+        for x in args:
+            if x in source:
+                print(x + "存在")
+                i=i+1
+            else:
+                print(x + "不存在")
+
+        if i==n:
+            re="PASS"
+            value="都存在"
+        else:
+            re="FAIL"
+            value="不是都存在"
+    elif len(args) == 1 :
+        if args[0] in source:
+            print(args[0] + "存在")
+            re="PASS"
+            value="存在"            
+        else:
+            print(args[0] + "不存在")
+            re="PASS"
+            value="不存在"
+
+    # 写入
+    wirte_result(re,value)
+
+#-----------------------------------------------
+#返回坐标
+def get_xy(radiox,radioy):
+    #坐标
+    coordinate=[]
+    radiox=str(radiox)
+    radioy=str(radioy)
+    #如果输入小于1的，按比例提取，如果输入实际数    
+    if radiox<'1':
+        radio=float(radiox)
+        radiox = int(SIZE()[2]*radio)
+
+    if radioy<'1':
+        radio=float(radioy)
+        radioy = int(SIZE()[3]*radio)
+    
+    #print(str(radiox),str(radioy))
+    coordinate.append(radiox)
+    coordinate.append(radioy)
+
+
+    # 写入
+    #wirte_result('PASS','坐标为%s,%s'%(str(radiox),str(radioy))) 
+
+    return coordinate
+#-----------------------------------------------
+#随机点击
+def tap_random():
+    R = []
+    #生成2个随机数
+    for i in range(2):
+        r = random.randint(1, 10)/10
+        R.append(r)
+    #print(R)
+    x = int(SIZE()[2]*R[0])
+    y = int(SIZE()[3]*R[1])
+    #print(str(x),str(y))
+    try:
+        print("即将随机点击：" + str(x),str(y))
+        driver.tap([(x,y)])
+        re="PASS"
+        value="随机点击坐标%s,%s"%(str(x),str(y))       
+
+    except BaseException as e:
+        print("随机点击出错了%s"%str(e))
+        re="FAIL"
+        value="随机点击出错了%s"%str(e)
+
+    # 写入
+    wirte_result(re,value)
+
+#-----------------------------------------------        
+#坐标点击
+def tap_point(x,y):
+    #如果输入坐标小于0，按比例提取坐标
+    #如果传入是str类型，判断
+    if type(x)==str:
+        if x<'1':
+            re=get_xy(x,y)
+            x=re[0]
+    elif x<1:
+        re=get_xy(x,y)
+        x=re[0]
+
+    if type(y)==str:
+        if y<'1':
+            re=get_xy(x,y)
+            y=re[1]
+    elif x<1:
+        re=get_xy(x,y)
+        y=re[1]
+        
+    #print(str(x),str(y))
+    print("即将点击坐标:" + str(x),str(y))
+    try:
+        driver.tap([(x,y)])
+        re="PASS"
+        value="点击坐标%s,%s"%(str(x),str(y))          
+
+    except BaseException as e:
+        
+        print("点击出错了%s"%str(e))
+
+        re="FAIL"
+        value="点击出错了%s"%str(e)
+
+    # 写入
+    wirte_result(re,value)
+
+#-----------------------------------------------
 # 获取尺寸
 def SIZE():
     global start_x, start_y, end_x, end_y
@@ -572,7 +684,6 @@ def SIZE():
     end_x = driver.get_window_size()['width']
     end_y = driver.get_window_size()['height']
     return (start_x, start_y, end_x, end_y)
-
 
 # 上划
 def UP():
@@ -591,6 +702,7 @@ def UP():
 
     # 写入
     wirte_result(key, value)
+
 
 # 下划
 def DOWN():
@@ -673,7 +785,10 @@ def rerun(func,*args,**kwargs):
         print("结束成功")
         count = 1
         return count
+#---------------------------------------------------------------------
 
+'''
+#待重构
 #执行模块定义及调用---------------------------------------------------------------------------
 #存放模块字典，所有可执行的模块在此存放
 funcs={"caps":update_capability,
@@ -692,8 +807,9 @@ funcs={"caps":update_capability,
     "pagesource":get_pages_source,
     "assertequals":assert_equals,
     "assertequals_all":assert_equals_all,
+    "toast":is_toast_exist, 
+    "alwaysallow":always_allow,
     }
-
 
 
 #存放定位元素和操作
@@ -712,12 +828,12 @@ def go_func(line3,line4,line5, line6,line2):
         #print('执行的函数',func)
         if name in ["up","right","left","down","quit","back"]:
             func()
-        elif name in ["assertequals","assertequals_all"]:
-            func(line4,line5,line6)
+        elif name in ["assertequals","assertequals_all",]:
+            func(line4, line5,line6)
         elif name == 'savephoto':
             func(resultfile, line4)
-        elif name=='toasts':
-            func(driver,line4)
+        elif name=='toast':
+            func(driver,line4,line5,line6)
         elif name=='alwaysallow':
             func(driver,line4)
             
@@ -750,82 +866,8 @@ def go_func(line3,line4,line5, line6,line2):
 def gorun(func,*args,**kwargs):
     print("重试第%d次" % count)
     func(*args,**kwargs)
-	
+'''
 #----------------------------------------------------------------------
-#单个元素，判断是否存在，若存在则点击操作，id，name,xpath
-def is_exists(act,value):
-        global driver
-        print('正在判断元素是否存在--------------',act,value)
-        try:
-                if act=="id":
-                        driver.find_element_by_id(value).click()                                                
-                elif act=="name":
-                        driver.find_element_by_name(value).click()
-                else:
-                       driver.find_element_by_xpath(value).click()
-               
-                print('元素存在，点击了操作')
-                
-                re="PASS"
-                value="元素存在，点击了操作"
-                # 写入
-                wirte_result(re, value)                   
-
-        except Exception as err:           
-            #print('报错是----------------------',err)
-            print('元素不存在！')
-
-            re="Fail"
-            value="元素不存在"
-            # 写入
-            wirte_result(re, value)            
-
-
-#弹窗，只点击id
-def  tanchuang(id):
-	global driver
-	try:
-	        el=driver.find_element_by_id(id)
-	        el.click()
-	        print('关闭了弹窗')
-	        value="关闭了弹窗"
-	        
-	except:
-	        print('没有弹窗')
-	        value="没有弹窗"
-	re="PASS"
-	# 写入
-	wirte_result(re, value)
-
-
-#多次返回操作
-def backs(number="1",*args):
-        global driver
-
-        #默认执行1次
-        if number=="":
-            number=1
-            
-        number=int(number)        
-        print('back多次',number)
-        try:
-            for i in range(number):
-                    driver.back()
-                    print("点击退出了一次")
-            
-            re="PASS"
-            value="点击了返回操作"
-            # 写入
-            wirte_result(re,value)            
-
-        except  Exception as err:
-            print('操作失败',err)
-            
-            re="Fail"
-            value="操作失败"           
-            # 写入
-            wirte_result(re,value)
-
 
 if __name__ == "__main__":
     pass

@@ -21,10 +21,10 @@
 20.定位方法添加elements
 21.判断是否存在，存在点击操作，可以用于弹窗的关闭，定位id,name,xpath
 22.back多次操作，默认1次
-23.install,uninstall,getpackname,getdeviceid
-24.tap随机，坐标
-25.source_assert
-
+23.坐标点击
+24.随机点击 
+25.活动当前的activity
+26.根据source判断
 
 
 二、环境
@@ -66,8 +66,6 @@
  “...An element could not be located on the page using the given search parameters.”
 2.
 Message: An unknown server-side error occurred while processing the command.
-3.ui2
-Message: Locator Strategy 'name' is not supported for this session
 
 
 
