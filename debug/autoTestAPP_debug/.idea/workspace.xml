@@ -2,7 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="3cbb2170-21fe-41ab-9edf-f0caac2a8133" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/../autoTestAPP_demo_V1.1/common/elementApp.py" beforeDir="false" afterPath="$PROJECT_DIR$/../autoTestAPP_demo_V1.1/common/elementApp.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../autoTestAPP_demo_V1.2/common/appInstallCommon.py" beforeDir="false" afterPath="$PROJECT_DIR$/../autoTestAPP_demo_V1.2/common/appInstallCommon.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../autoTestAPP_demo_V1.2/common/elementApp.py" beforeDir="false" afterPath="$PROJECT_DIR$/../autoTestAPP_demo_V1.2/common/elementApp.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../autoTestAPP_demo_V1.2/conf/conf.py" beforeDir="false" afterPath="$PROJECT_DIR$/../autoTestAPP_demo_V1.2/conf/conf.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -19,34 +22,35 @@
     <session id="434565970">
       <usages-collector id="statistics.lifecycle.project">
         <counts>
-          <entry key="project.closed" value="4" />
+          <entry key="project.closed" value="5" />
           <entry key="project.open.time.1" value="1" />
+          <entry key="project.open.time.21" value="1" />
           <entry key="project.open.time.22" value="1" />
           <entry key="project.open.time.24" value="1" />
           <entry key="project.open.time.7" value="1" />
-          <entry key="project.opened" value="4" />
+          <entry key="project.opened" value="5" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.open">
         <counts>
           <entry key="jpg" value="1" />
-          <entry key="py" value="14" />
+          <entry key="py" value="15" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.open">
         <counts>
           <entry key="Image" value="1" />
-          <entry key="Python" value="14" />
+          <entry key="Python" value="15" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
-          <entry key="py" value="600" />
+          <entry key="py" value="611" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
-          <entry key="Python" value="600" />
+          <entry key="Python" value="611" />
         </counts>
       </usages-collector>
     </session>
@@ -87,13 +91,25 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/common/appInstallCommon.py">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="100">
               <caret line="46" column="38" lean-forward="true" selection-start-line="46" selection-start-column="38" selection-end-line="46" selection-end-column="38" />
               <folding>
                 <element signature="e#37#46#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/common/htmltestrunner3.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="432">
+              <caret line="797" column="52" lean-forward="true" selection-start-line="797" selection-start-column="52" selection-end-line="797" selection-end-column="52" />
+              <folding>
+                <element signature="e#3371#3386#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -121,6 +137,7 @@
         <option value="$PROJECT_DIR$/pil/pil_common.py" />
         <option value="$PROJECT_DIR$/common/elementApp.py" />
         <option value="$PROJECT_DIR$/common/appInstallCommon.py" />
+        <option value="$PROJECT_DIR$/common/htmltestrunner3.py" />
       </list>
     </option>
   </component>
@@ -142,7 +159,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -163,6 +179,7 @@
           <select />
         </subPane>
       </pane>
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -172,11 +189,12 @@
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
   </component>
   <component name="RecentsManager">
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="E:\myworkspace\mygit\mygitworkspace\autoAPI\debug\autoTestAPP_debug\pil" />
+    <key name="MoveFile.RECENT_KEYS">
       <recent name="E:\myworkspace\mygit\mygitworkspace\autoAPI\debug\autoTestAPP_debug" />
     </key>
-    <key name="MoveFile.RECENT_KEYS">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="E:\myworkspace\mygit\mygitworkspace\autoAPI\debug\autoTestAPP_debug\common" />
+      <recent name="E:\myworkspace\mygit\mygitworkspace\autoAPI\debug\autoTestAPP_debug\pil" />
       <recent name="E:\myworkspace\mygit\mygitworkspace\autoAPI\debug\autoTestAPP_debug" />
     </key>
   </component>
@@ -288,7 +306,7 @@
   <component name="ToolWindowManager">
     <frame x="-7" y="-7" width="1550" height="838" extended-state="6" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.1541555" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.15616623" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
@@ -393,6 +411,16 @@
           <caret line="46" column="38" lean-forward="true" selection-start-line="46" selection-start-column="38" selection-end-line="46" selection-end-column="38" />
           <folding>
             <element signature="e#37#46#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/common/htmltestrunner3.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="432">
+          <caret line="797" column="52" lean-forward="true" selection-start-line="797" selection-start-column="52" selection-end-line="797" selection-end-column="52" />
+          <folding>
+            <element signature="e#3371#3386#0" expanded="true" />
           </folding>
         </state>
       </provider>

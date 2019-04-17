@@ -5,10 +5,11 @@ from common import readexcel as reader, writeexcel as writer
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 import random
-from conf.conf import dataDir, reportDir
+from conf.conf import dataDir,reportDir
 from  common.toast import *
 PATH = lambda p: os.path.abspath(os.path.join(os.path.dirname(__file__), p))
 
+from conf import conf
 
 """
 实现功能
@@ -51,6 +52,9 @@ url = "http://localhost:4723/wd/hub"
 timeout = 30
 driver = ""
 
+#
+#appPackage=""
+#appActivity=""
 
 # 设备参数
 desired_caps = {
@@ -78,12 +82,27 @@ def wirte_result(result, value):
         writer.write(reader.rr - 1, 8, value)
     
 # 配置设备
-def update_capability(key, value):
+def update_capability(key,value):
     global desired_caps
+    
     if key == 'newCommandTimeout':
         value = int(value)
+    
+
     try:
         desired_caps[key] = value
+        print(desired_caps["appPackage"],type(desired_caps["appPackage"]))        
+        #取获取的包名
+        if desired_caps["appPackage"]=="":
+            print('包名为空时，取配置-------------------',conf.appPackage)                
+            desired_caps["appPackage"]= conf.appPackage         
+
+        if  desired_caps["appActivity"]=="":
+            print('启动页为空时，取配置-------------------',conf.appActivity)
+            desired_caps["appActivity"]=conf.appActivity
+
+
+
         # 写入
         #wirte_result('PASS', value)
 
@@ -785,88 +804,7 @@ def rerun(func,*args,**kwargs):
         print("结束成功")
         count = 1
         return count
-#---------------------------------------------------------------------
 
-'''
-#待重构
-#执行模块定义及调用---------------------------------------------------------------------------
-#存放模块字典，所有可执行的模块在此存放
-funcs={"caps":update_capability,
-    "start":start,
-    "sleep":sleep,
-    "right":RIGHT,
-    "left":LEFT,
-    "up":UP,
-    "down":DOWN,
-    "element":get_element, #单个元素
-    "elements":get_elements,  #一组元素 
-    "clicks":clicks,       
-    "savephoto":get_screenshot,
-    "quit":quit,
-    "back":back,
-    "pagesource":get_pages_source,
-    "assertequals":assert_equals,
-    "assertequals_all":assert_equals_all,
-    "toast":is_toast_exist, 
-    "alwaysallow":always_allow,
-    }
-
-
-#存放定位元素和操作
-ele=[["id","name","text","css","xpath","class","linktext","partiallinktext","content-desc","textContains","textStartsWith","textMatches","resourceId","resourceIdMatches"],["click","clear","input"]]
-#存放定位元素组
-eles=["id","name","text","css","xpath","class","linktext","partiallinktext","content-desc","textContains","textStartsWith","textMatches","resourceId","resourceIdMatches"]
-
-#调用函数，新的模块添加到存放表中，并更新执行调用函数
-def go_func(line3,line4,line5, line6,line2):    
-    global funcs,ele,driver
-    #函数
-    name=line3
-    #print("-------------------调用函数",name)    
-    if name in funcs.keys():
-        func=funcs[name]
-        #print('执行的函数',func)
-        if name in ["up","right","left","down","quit","back"]:
-            func()
-        elif name in ["assertequals","assertequals_all",]:
-            func(line4, line5,line6)
-        elif name == 'savephoto':
-            func(resultfile, line4)
-        elif name=='toast':
-            func(driver,line4,line5,line6)
-        elif name=='alwaysallow':
-            func(driver,line4)
-            
-        else:
-            func(line4, line5)
-
-   
-    #定位元素
-    elif  name in ele[0]:
-        func=funcs["element"]    
-        #print('执行的函数',func)
-        #print('正在调用定位元素---------- ',name)
-        func(name, line4, line5, line6, line2)
-    #操作
-    elif name in ele[1]:
-        func=funcs["clicks"]       
-        #print('执行的函数',func) 
-        #print('正在调用click操作---------- ',name)
-        func(name, line4, line5, line6, line2)
-    #定位一组元素
-    elif name in eles:
-        func=funcs["elements"]  
-        #print('正在调用定位元素组---------- ',name)        
-        func(name, line4, line5, line6, line2)        
-    
-    else:
-        print('%s 不存在，请查看是否存在此模块。'%name)
-
-#执行函数,暂时未用
-def gorun(func,*args,**kwargs):
-    print("重试第%d次" % count)
-    func(*args,**kwargs)
-'''
 #----------------------------------------------------------------------
 
 if __name__ == "__main__":

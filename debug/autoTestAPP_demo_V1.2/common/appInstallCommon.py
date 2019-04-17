@@ -6,6 +6,9 @@ import platform
 import subprocess
 import re
 from time import sleep
+from conf  import conf
+from common import elementApp as app
+
 
 """
 封面安装包相关
@@ -88,7 +91,7 @@ def uninstall_apppackage(packname):
         else:      
             print('卸载失败，请检查是否连接设备。包名%s，失败原因%s'%(packname,out))
             #失败时            
-            packname=get_package()
+            packname,activity=get_package()
             if packname==False:
                 #失败时重试3次
                 rerun(get_package)
@@ -96,6 +99,10 @@ def uninstall_apppackage(packname):
 
             #失败时重试3次
             rerun(uninstall_apppackage,packname)
+
+        # 写入
+        app.wirte_result('PASS',"pack："+packname+"activity:"+activity)
+
 
 #-------------------------------------
 def  install_app_run(applist,method=0,radio=0.3):
@@ -170,8 +177,10 @@ def  install_app_run(applist,method=0,radio=0.3):
 
 #-------------------------------------    
 def get_package():
-    #打开app
-    print('卸载前获取包名，请打开app')
+    
+    #打开app,启动
+    #获取包名和启动页
+    print('正在获取包名，请打开app')
     print('---------------------------------------------------------')
     input('如果已经打开app，按任意键继续....\n')
 
@@ -187,12 +196,16 @@ def get_package():
         res=component.split('/')
         pack=res[0]        
         activity=res[1]
-        #print("package="+pack+'\n'+"activity="+activity) 
-        print("package="+pack+'\n')        
+        print("package="+pack+'\n'+"activity="+activity) 
+        #print("package="+pack+'\n')        
         #返回2个值    
         print('---------------------------------------------------------')
-        input('即将执行卸载，请按任意键继续....\n')
-        return pack
+
+        #写入conf
+        conf.appPackage=pack
+        conf.appActivity=activity
+        print('存到conf中',conf.appPackage,conf.appActivity)
+        return pack,activity
 
     elif len(out_list)==0:
         print('包名为空，请确认下是否已经安装了app。')
@@ -202,6 +215,8 @@ def get_package():
     else:
         print('无法获取包名，请确认下是否已经安装了app。')
         return False
+
+
     
 #------------------------------------------------------------------------------
 def execute_run(i,apppath):    
@@ -215,7 +230,10 @@ def execute_run(i,apppath):
             re=input('已经执行完成，请按任意键继续..........\n')            
             
             #卸载前先获取包名
-            packname=get_package()
+            packname,activity=get_package()
+            
+
+            input('即将执行卸载，请按任意键继续....\n')
             uninstall_apppackage(packname)
             print('---------------------------------------------------------')
 

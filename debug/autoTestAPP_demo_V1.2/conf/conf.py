@@ -11,6 +11,16 @@ filepath=os.path.abspath(os.path.dirname(os.path.dirname(__file__)))
 dataDir=os.path.join(filepath,'datadir')
 reportDir=os.path.join(filepath,'report')
 
+#设置包名
+appPackage=""
+appActivity=""
+
+#uninstall
+uninstallPackage=""
+
+
+
+
 if __name__=="__main__":
     print(dataDir)
     print(reportDir)
