@@ -3,6 +3,14 @@
 import  time,os
 
 
+#数据部分
+func_dict={"funcname":"模块1",}
+
+funcname=['书架','书城'，'分类','我的']
+casenumbers1={"total":"10","succnum","10","failnum":"0","radio":"80","status":"PASS"}
+casenumbers2={"total":"20","succnum","15","failnum":"5","radio":"75","status":"Fail"}
+
+
 class Template_mixin(object):
     """html报告"""
     HTML_TMPL = r"""
@@ -44,7 +52,7 @@ class Template_mixin(object):
             <td>%(runresult)s</td>
             <td>%(runtime)s</td>
         </tr>"""
-
+  
 
 if __name__ == '__main__':
     table_tr0 = ''

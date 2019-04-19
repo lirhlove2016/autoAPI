@@ -1,0 +1,192 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>自动化测试报告</title>
+    <link href="http://libs.baidu.com/bootstrap/3.0.3/css/bootstrap.min.css" rel="stylesheet">
+    <h2 style="font-family: Microsoft YaHei">自动化测试报告</h2>
+
+    <p class='attribute'><strong>测试结果 : </strong> 共 10，通过 9，失败 1</p>
+    <style type="text/css" media="screen">
+    body  { font-family: Microsoft YaHei,Tahoma,arial,helvetica,sans-serif;padding: 20px;}
+
+    </style>
+</head>
+<body>
+    <table id='total_table' class="table table-condensed table-bordered table-hover">
+        <colgroup>
+            <col align='left' />
+            <col align='right' />
+            <col align='right' />
+            <col align='right' />
+        </colgroup>
+        <tr id='header_row' class="text-center success" style="font-weight: bold;font-size: 14px;">
+            <th>客户端及版本</th>
+            <th>通过率</th>
+            <th>开始时间</th>
+            <th>结束时间</th>
+        </tr>
+        
+<tr class='failClass warning'>
+    <td>快看小说 3.8.8</td>
+    <td>99</td>
+    <td>2019-04-19 13:53:35</td>
+    <td>2019-04-19 13:53:35</td>
+</tr>
+
+    </table>
+    <!-- 执行模块 -->
+    <p class='attribute'><strong>测试报告详情 : </strong> </p>
+    <table id="result_table" class="table table-condensed table-bordered table-hover">
+        <colgroup>
+           <col align='left' />
+           <col align='right' />
+           <col align='right' />
+           <col align='right' />
+           <col align='right' />
+        </colgroup>
+        <tr id='header_row' class="text-center success" style="font-weight: bold;font-size: 14px;">
+            <th colspan="2">功能模块</th>
+            <th>用例总数</th>
+            <th>通过数</th>
+            <th>状态</th>
+        </tr>
+        <tr id='header_row' class="text-center success" style="font-weight: bold;font-size: 14px;">
+            <th colspan="2">业务模块1</th>
+            <th>30</th>
+            <th>15</th>
+            <th class='demo' id="demo">FAIL</th>
+        </tr>
+
+        <tr class='failClass warning'>
+            <th></th>
+            <th>模块1</th>
+            <th>10</th>
+            <th>10</th>
+            <th class='demo' id="demo1">PASS</th>
+        </tr>
+                
+        <tr class='failClass warning'>
+            <td></td>
+            <td>模块2</td>
+            <td>20</td>
+            <td>15</td>
+            <td class='demo' id="demo2">Fail</td>
+        </tr>
+       
+
+    </table>
+    <!-- 执行模块 -->
+    <!-- 取组数据 -->
+    <div id='module'></div>
+    <div id='case'></div>
+
+  
+    <script type="text/javascript">
+    //showdata
+    //展示数据
+   
+        var str = "";//定义用于拼接的字符串
+        //var data=[1,2]
+        //console.log("data"+data[0].name)        
+        var data=[{'passnum': '10', 'total': '10', 'name': '模块1', 'radio': '80', 'failnum': '0','status': 'PASS'}, {'passnum': '15', 'total': '20', 'name': '模块2', 'radio': '75', 'failnum': '5', 'status': 'Fail'}];
+        
+        console.log(data.length)
+        console.log(data[0].total)
+        rows=[]
+
+        //表头1
+        var str1='<table id="result_table" class="table table-condensed table-bordered table-hover">'+'<colgroup>'+
+            '<col align="left" />'+
+            '<col align="right" />'+
+            '<col align="right" />'+
+            '<col align="right" />'+
+            '<col align="right" />'+
+            '</colgroup>'
+        console.log(str1)  
+        //表头2
+        var str2='<tr id="header_row" class="text-center success" style="font-weight: bold;font-size: 14px;">'+
+        '<th colspan="2">功能模块</th>'+
+        '<th>用例总数</th>'+
+        '<th>通过数</th>'+
+        '<th>状态</th></tr>'
+        console.log(str2)
+        var str=str1+str2
+
+
+        //模块数据显示
+        var modulelist=[{'failnum': '0', 'status': 'PASS', 'total': '30', 'passnum': '25', 'radio': '80', 'name': '业务模块1'}, {'failnum': '0', 'status': 'PASS', 'total': '10', 'passnum': '10', 'radio': '80', 'name': '业务模块2'}];
+
+        //var str = "<table  class='table table-condensed table-bordered table-hover'>";
+        //var str ='';
+        console.log(str)
+        for (var j= 0; j < modulelist.length; j++) {
+            console.log(modulelist[j])
+            str+='<tr  class="text-center success" style="font-weight: bold;font-size: 14px;"><th colspan="2">'+modulelist[j].name+"</th><th>"+modulelist[j].total+"</th><th>"+modulelist[j].passnum+"</th><th class='demo'>"+modulelist[j].status+"</th></tr>";
+      
+            var x=document.getElementById("module")
+            x.innerHTML = str;
+           
+            //case数据显示
+            //var str = "<table  class='table table-condensed table-bordered table-hover'>";
+            for (var i = 0; i < data.length; i++) {
+                console.log(data[i])
+                str+="<tr class='failClass warning'><td></td><td>"+data[i].name+"</td><td>"+data[i].total+"</td><td>"+data[i].passnum+"</td><td class='demo'>"+data[i].status+"</td></tr>";
+            };
+               //var x=document.getElementById("case")
+              //x.innerHTML = str;
+              
+        };  
+        //console.log(str)
+        //var x=document.getElementById("module1")
+        //x.innerHTML = str;
+
+        //str +="</table>";
+     
+        // //模块数据显示
+        // var modulelist=[{'failnum': '0', 'status': 'PASS', 'total': '30', 'passnum': '25', 'radio': '80', 'name': '业务模块1'}, {'failnum': '0', 'status': 'PASS', 'total': '10', 'passnum': '10', 'radio': '80', 'name': '业务模块2'}];
+
+        // //var str = "<table  class='table table-condensed table-bordered table-hover'>";
+        // //var str ='';
+        // for (var i = 0; i < modulelist.length; i++) {
+        //     console.log(modulelist[i])
+        //     str+='<tr  class="text-center success" style="font-weight: bold;font-size: 14px;"><th colspan="2">'+modulelist[i].name+"</th><th>"+modulelist[i].total+"</th><th>"+modulelist[i].passnum+"</th><th class='demo'>"+modulelist[i].status+"</th></tr>";
+        // };
+        // //str +="</table>";
+        // //console.log(str);
+        // var x=document.getElementById("module1")
+        // x.innerHTML = str;
+
+        // //case数据显示
+        // //var str = "<table  class='table table-condensed table-bordered table-hover'>";
+        // for (var i = 0; i < data.length; i++) {
+        //     console.log(data[i])
+        //     str+="<tr class='failClass warning'><td></td><td>"+data[i].name+"</td><td>"+data[i].total+"</td><td>"+data[i].passnum+"</td><td class='demo'>"+data[i].status+"</td></tr>";
+        // };
+        // str +="</table>";
+        // //console.log(str);
+        // var x=document.getElementById("module1")
+        // x.innerHTML = str;
+
+        //--------------------------------------------------------------------
+        //change color
+        //取都用demo的多组
+        var eles = document.getElementsByClassName('demo');
+        console.log(eles);
+        //var x=document.getElementById("demo").innerText;
+        //console.log("the value is :"+x);
+        //每组都应用样式
+        for(var i = 0; i < eles.length; i++){
+            if(eles[i].innerText == 'PASS'){
+                eles[i].style.color = 'green';
+            }else{
+                eles[i].style.color = 'red';
+            }
+        }
+
+
+    </script>   
+
+</body>
+</html>

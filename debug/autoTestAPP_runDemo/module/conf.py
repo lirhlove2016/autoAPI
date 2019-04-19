@@ -40,7 +40,6 @@ appPackages=["com.ishugui"]
 #click调用----------------
 #配置执行，id,name,class
 
-
 #--------------------------------------------------------
 #底部菜单，
 #clicks调用
@@ -56,7 +55,6 @@ click_name=['永久允许','确定','取消',"关闭"]
 tanchuang_close_id=["com.ishugui:id/imageview_close","com.ishugui:id/imageview_cloud_sysch_close",]
 huodong="com.ishugui:id/imageview_close"
 
-
 #input中输入,取id
 edit_include=["com.ishugui:id/edit_search"]
 
@@ -68,6 +66,11 @@ default_input_values=["你好","hello","霸武凌天"]
 
 #number,name字符串长度
 number=20
+
+#截图保存总数
+PicNum=100
+
+
 
 #--------------------------------------------------------
 
