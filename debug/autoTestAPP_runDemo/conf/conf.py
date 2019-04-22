@@ -21,10 +21,12 @@ filepath=os.path.abspath(os.path.dirname(os.path.dirname(__file__)))
 dataDir=os.path.join(filepath,'datadir')
 reportDir=os.path.join(filepath,'report')
 pageDir = os.path.join(filepath, 'report/pages/')
+imageDir = os.path.join(filepath, 'report/image/')  #截图
+
 
 #--------------------------------------------------------
 #common调用
-#source中排除的属性值，android:id/statusBarBackground顶部状态，
+#source中排除的属性值，android:id/statusBarBackground顶部状态，id
 exclude=["android.widget.FrameLayout"]
 #可点的属性
 include=["android.widget.TextView","android.widget.ImageView","android.widget.EditText"]
@@ -42,8 +44,20 @@ appPackages=["com.ishugui"]
 
 #--------------------------------------------------------
 #底部菜单，
-#clicks调用
+
+'''
+#底部菜单
 bottom_menu=["com.ishugui:id/imageView","com.ishugui:id/textView","com.ishugui:id/bottomBarLayout","书架","书城","分类","我的"]
+bottom_id=["com.ishugui:id/imageView","com.ishugui:id/textView","com.ishugui:id/bottomBarLayout"]
+battom_name=["书架","书城","分类","我的"]
+tanchuang_closseid=["com.ishugui:id/imageview_close","com.ishugui:id/imageview_cloud_sysch_close"]
+'''
+#
+
+package="com.aikan"
+#clicks调用
+bottom_menu=["%s:id/imageView"%package,"%s:id/textView"%package,"%s:id/bottomBarLayout"%package,"书架","书城","分类","我的"]
+
 
 #不点击的元素
 Notclick_name=['电话','联系客服','立即充值','立即开通','立即续费','支付']
@@ -52,14 +66,14 @@ Notclick_name=['电话','联系客服','立即充值','立即开通','立即续�
 click_name=['永久允许','确定','取消',"关闭"]
 
 #弹窗关闭
-tanchuang_close_id=["com.ishugui:id/imageview_close","com.ishugui:id/imageview_cloud_sysch_close",]
-huodong="com.ishugui:id/imageview_close"
+tanchuang_close_id=["%s:id/imageview_close"%package,"%s:id/imageview_cloud_sysch_close"%package]
+
 
 #input中输入,取id
-edit_include=["com.ishugui:id/edit_search"]
+edit_include=["%s:id/edit_search"%package]
 
 #back在就不执行
-Notclick_back_include=["com.ishugui:id/imageview_back","返回"]
+Notclick_back_include=["%s:id/imageview_back"%package,"返回"]
 
 #edit 输入框，输入值
 default_input_values=["你好","hello","霸武凌天"]
@@ -69,6 +83,13 @@ number=20
 
 #截图保存总数
 PicNum=100
+
+#存pagesource文件编号
+#num=0
+#--------------------------------------------------------
+#执行顺序
+execute_all=["书架","书城","分类","我的"]
+
 
 
 

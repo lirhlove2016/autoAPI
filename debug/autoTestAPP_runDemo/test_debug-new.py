@@ -13,51 +13,77 @@ import module.common
 from module.clicks import *
 from conf.conf import *
 
-#执行顺序
+from module import pil_common
 start_time=time.clock()
 
+#-----------------------------------------------------------------------
 print('正在启动客户端.....')
-time.sleep(5)
-print('打开客户端了')
-
 print('启动页滑动...')
 
 #启动页向左滑动
 i=0
 while i <3:
-    swipeLeft()
+    swipLeft()
     i=i+1
 
 print('已经滑动到第3页，正在选择男 女 ...')
-driver.find_element_by_id("com.ishugui:id/tv_man").click()
+#time.sleep(5)
+source=driver.page_source
+#print("男生" in source)
+if "男生" in source:
+    #driver.find_element_by_xpath("//*[contains(text(),'男生')]").click()
+    x='//*[contains(@text, "男生")]'
+    el=driver.find_element_by_xpath(x)
 
-print('您选择了 “男生小说”')
+    r=el.get_attribute("text")
+    print('text',r)
+    '''
+    #r=el.get_attribute("bounds")
+    print('text',r)
+    #截图    
+    filename=imageDir + "nansheng.png"
+    print(filename)
+    get_screenshot("nansheng.png")
+    pic_rectangle(filename,t)
 
+    '''
+    el.click()
+    print('您选择了 “男生小说”')    
 
+#-----------------------------------------------------------------------
 #进入主界面，判断弹窗
-huodong="com.ishugui:id/imageview_close"
-id="com.ishugui:id/imageview_cloud_sysch_close"
-
-#2个弹窗
+#多个弹窗
 tanchuang_all()
 
-#bottom_menu=["com.ishugui:id/imageView","com.ishugui:id/textView","com.ishugui:id/bottomBarLayout","书架","书城","分类","我的"]
+'''
+source=driver.page_source
+r="书架" in source and "本周已读" in source and "分钟"  in source
+print(r)
+while not  r:
+    #是弹窗，点击back
 
+    source=driver.page_source
+    r="书架" in source and "本周已读" in source and "分钟"  in source
+'''
+time.sleep(2)
 
-#单次执行
+#-----------------------------------------------------------------------
 #书架
 print('正在执行书架操作-------------------------------')
-shujia="com.ishugui:id/imageView"
-click_all(shujia,'id')
+#点击书架菜单
+xpath_menu("text","书架")
 print('点击了书架')
 name="shujia"
 ac=get_current_activity()
-print(ac)
+print('当前页：',ac)
 
 #取source，进行操作
-#getsource_clicks(name)
+getsource_clicks(name)
 
 
+#-----------------------------------------------------------------------
+
+'''
 #点击搜索
 sousuo_id="com.ishugui:id/iv_top_title_search"
 sousuo_xpath="//android.widget.ImageView[@resource-id='com.ishugui:id/iv_top_title_search']"
@@ -74,12 +100,13 @@ click_all(name,'text')
 ac=get_current_activity()
 print(ac)
 
-'''
+
 x="//*"
 el=driver.find_elements_by_xpath(x)
 print(el)
 '''
-
+'''
+#-----------------------------------------------------------------------
 #书籍详情
 x='//*[contains(@text, "司马")]'
 el=driver.find_element_by_xpath(x)
@@ -92,6 +119,7 @@ time.sleep(2)
 el=driver.find_element_by_xpath(x)
 el.click()
 
+#-----------------------------------------------------------------------
 #阅读器
 name="开始阅读"
 el.click()
@@ -128,8 +156,9 @@ name="reader_setting"
 getsource_clicks(name)
 
 #每点击一下设备，需要在点击一下打开设置
-
 '''
+'''
+#-----------------------------------------------------------------------
 #我的
 click_all("我的",'text')
 ac=get_current_activity()
@@ -137,7 +166,7 @@ print(ac)
 name="wode"
 #取source，进行操作
 #getsource_clicks(name)
-
+#-----------------------------------------------------------------------
 #分类
 name="fenlei"
 click_all("分类",'text')
@@ -146,7 +175,7 @@ print(ac)
 
 #取source，进行操作
 #getsource_clicks(name)
-
+#-----------------------------------------------------------------------
 #书城
 print('正在执行书城操作-------------------------------')
 shucheng="书城"

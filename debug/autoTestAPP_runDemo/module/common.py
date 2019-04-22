@@ -9,7 +9,7 @@ from selenium.common.exceptions import NoSuchElementException
 #TouchAction(driver).press(el0).moveTo(el1).release()
 
 import module.getxml  as xmlfile
-from module.conf import *
+from conf.conf import *
 """
 function:
 1.xml存到文件，write_xml_to_file(filename,content)
@@ -19,6 +19,7 @@ function:
 5.
 
 """
+
 
 #-----------------------------------------------------------
 #xml 存到文件中
@@ -38,6 +39,7 @@ def  getAttrib(filename,attriname):
         if x[2]==attriname:
             t.append(x)
     return t   
+
 
 #-----------------------------------------------------------
 #从xml文件，取同一个属性的值先取text属性，存到name中，无text取resource-id,存到resourceid中
@@ -73,13 +75,12 @@ def  getAttrib_of_all(filename):
                         #print('不可点 不存')
                         continue
 
-
         #如果是排除的属性，不存储                
         if class_value in  exclude:
                 #print('class exclude 不存')
                 continue
         
-        #如果text 不为空，存到name中，id不为空存到resourceid中，否正存到c中
+        #如果text 不为空，存到name中，id不为空存到resourceid中，否则存到c中
         if text!="":
                 #name存所有属性，name_array只存在一个name值
                 name.append(R[i])
@@ -101,25 +102,22 @@ def  getAttrib_of_all(filename):
             class_value=name[i][3]["class"]
             clickable_value=name[i][3]["clickable"]
             print(i,class_value,clickable_value)
-    '''            
-
+    '''
+    #print(name[0][3])
+           
     print("取值个数:",len(name),len(ids),len(c))
     #返回的所有属性   
-    #return name,ids,c
+    return name,ids,c
     #仅返回一个值
-    return name_array,ids_array,c_array
-
+    #return name_array,ids_array,c_array
  
+ #[13, 12, 'android.widget.TextView', {'selected': 'false', 'content-desc': '', 'enabled': 'true', 'checkable': 'false', 'checked': 'false', 'focusable': 'false', 'resource-id': 'com.aikan:id/tv_top_title_title', 'long-clickable': 'false', 'password': 'false', 'bounds': '[48,133][226,190]', 'focused': 'false', 'text': '本周已读 ', 'instance': '0', 'package': 'com.aikan', 'index': '0', 'clickable': 'false', 'scrollable': 'false', 'class': 'android.widget.TextView'}]
 #-----------------------------------------------------------
 # 获取当前界面activity
 def get_current_activity(driver):
 	ac = driver.current_activity
 	print('当前的activity:----------------',ac)
 	return ac
-
-#-----------------------------------------------------------
-
-
 
 #-----------------------------------------------------------
 def tap(x,y):
@@ -155,10 +153,9 @@ def switch_app(self):
         self.driver.execute(MobileCommand.SWITCH_TO_CONTEXT, {"name": "NATIVE_APP"})
 #------------------------------------------------------------
 
-
 if __name__=='__main__':
 
-	filename="d:\\fenlei_write.xml"	
+	filename="d:\\shujia.xml"	
 	t=getAttrib(filename,"android.widget.TextView")
 	#print(t)
 	adb = 'adb devices'

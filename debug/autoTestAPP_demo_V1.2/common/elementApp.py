@@ -101,8 +101,6 @@ def update_capability(key,value):
             print('启动页为空时，取配置-------------------',conf.appActivity)
             desired_caps["appActivity"]=conf.appActivity
 
-
-
         # 写入
         #wirte_result('PASS', value)
 
@@ -676,6 +674,7 @@ def tap_point(x,y):
     elif x<1:
         re=get_xy(x,y)
         y=re[1]
+ 
         
     #print(str(x),str(y))
     print("即将点击坐标:" + str(x),str(y))
