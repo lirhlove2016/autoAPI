@@ -1,0 +1,32 @@
+目前支持的方法
+1.caps,设置参数配置，设备名称，包名必须配
+2.start，启动设置，start,参数1，配置超时时间
+3.left,right,up,down，上下左右滑动
+4.id,class,name,text,css,xpath,定位元素，如，id，com.ishugui:id/tv_man，，man;最后一个参数是保存变量名称
+5.click，click,参数1，参数2，参数3，参数1为空，执行上一步的定位元素操作，输入man,之前步中保存的变量名
+6.clear，同click
+7.input，输入内容，同click
+8.sleep--等待时间，秒,
+9.savephoto，屏幕截图,图片名称
+
+参数格式：
+用例名app	    方法	          元素定位	                                    参数2	                                       存储
+---------------------------------------------------------------------------------------------------------------------
+设置参数	    caps	          deviceName	                             6EB0217518004226	
+启动设备	    start	          http://localhost:4723/wd/hub 	      60	
+左滑	            left			
+右滑           	right			
+上滑	            up			
+下滑	            down			
+定位元素	    id	              com.ishugui:id/tv_man		                                                            man
+点击操作	   click			
+点击操作	   click	           man                                                                                              clickname
+清空操作	   clear       
+输入内容       input         
+保存图片	   savephoto	    shujia.png		
+等待5秒	       sleep	             5		
+手机返回键	    back			
+退出app      	quit			
+获取页面信息	pagesource	   shujia.xml		
+校验值			assertequals     校验结果                              属性取值                                            元素                
+校验多个值     assertequals_all     校验结果1,校验结果2        属性取值1,属性取消2                            元素1,元素2  

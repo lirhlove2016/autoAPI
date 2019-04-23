@@ -31,22 +31,19 @@ def copy_open(srcfile,desfile):
     workbook=xlrd.open_workbook(srcfile, formatting_info=True)  #formatting_info=True 保留原excel格式
     #拷贝
     wb=copy(workbook)
-    #
-    print(workbook.sheet_names())
+    #print(workbook.sheet_names())
     
-    #sheet=wb.get_sheet("Sheet1")
+    sheet=wb.get_sheet("Sheet1")
     return
     
-
+#sheets=workbook.sheet_names()
+#for s in sheets:
+    #sheet=wb.get_sheet(s)
 
 #写入指定的单元格，保留格式
 def write(r,c,value):
-    global workbook,sheet,wb
+        global workbook,sheet,wb
 
-    sheets=workbook.sheet_names()
-    for s in sheets:       
-        sheet=wb.get_sheet(s)
-            
         #获取要写入的单元格
         def _getCell(sheet,r,c):
                 #获取行
@@ -68,43 +65,18 @@ def write(r,c,value):
                 if ncell:
                         #设置写入后的格式和写入前一样
                         ncell.xf_idx=cell.xf_idx
-    return 
+        return
+    
 #保存
 def save_close():
     global wb,df
     wb.save(df)
     return
 
-def write_excel(filepath,datas,names):
-    """写入数据"""
-    f = xlwt.Workbook(encoding='utf-8', style_compression=0)
-    
-    sheet= f.add_sheet(u'sheet1',cell_overwrite_ok=True) 
-    n=[]
-    for i in range(len(names)):        
-        sheet.write(0,i,names[i])
-        n.append(names[i])
-   
-    #写入数据
-    d=[]
-    for i in range(len(datas)):
-        value=datas[i]
-        #print("正在写入第{0}行，数据{1}".format(i+1,value)) 
-        for j in range(len(names)):         
-            key=names[j]
-            if key=='Id':
-                strValue=int(value[key])
-            else:
-                strValue=str(value[key])               
-            sheet.write(i+1,j,strValue)       
-
-        d.append(datas[i])                 
-    f.save(filepath)
-    print ("write finished")
 
 if __name__=="__main__":
-    srcfile=r"D:\workdtation\mygitwork\autoAPI\autoTestApi\datadir\myapp_Http.xls"
-    desfile=r"D:\workdtation\mygitwork\autoAPI\autoTestApi\datadir\myapp_HTTP123_result.xls"
+    srcfile=r"E:\myworkspace\mygit\mygitworkspace\autoAPI\autoTestApi\datadir\myapp_Http.xls"
+    desfile=r"E:\myworkspace\mygit\mygitworkspace\autoAPI\autoTestApi\datadirr\myapp_HTTP123_result.xls"
 
     copy_open(srcfile,desfile)
     

@@ -1,0 +1,90 @@
+
+        <!DOCTYPE html>
+        <html lang="en">
+        <head>
+            <meta charset="UTF-8">
+            <title>自动化测试报告</title>
+            <link href="http://libs.baidu.com/bootstrap/3.0.3/css/bootstrap.min.css" rel="stylesheet">
+            <h2 style="font-family: Microsoft YaHei">自动化测试报告</h2>
+
+            <p class='attribute'><strong>测试结果 : </strong> 共 10，通过 9，失败 1</p>
+            <style type="text/css" media="screen">
+        body  { font-family: Microsoft YaHei,Tahoma,arial,helvetica,sans-serif;padding: 20px;}
+        </style>
+        </head>
+        <body>
+            <table id='result_table' class="table table-condensed table-bordered table-hover">
+                <colgroup>
+                    <col align='left' />
+                    <col align='right' />
+                    <col align='right' />
+                    <col align='right' />
+                </colgroup>
+                <tr id='header_row' class="text-center success" style="font-weight: bold;font-size: 14px;">
+                    <th>客户端及版本</th>
+                    <th>通过率</th>
+                    <th>开始时间</th>
+                    <th>结束时间</th>
+                </tr>
+                
+        <tr class='failClass warning'>
+            <td>快看小说 3.8.8</td>
+            <td>99</td>
+            <td>2019-04-19 15:31:38</td>
+            <td>2019-04-19 15:31:38</td>
+        </tr>
+        
+            </table>
+            <!-- 执行模块 -->
+            <p class='attribute'><strong>测试报告详情 : </strong> </p>
+            <table id='result_table' class="table table-condensed table-bordered table-hover">
+                <colgroup>
+                   <col align='left' />
+                   <col align='right' />
+                   <col align='right' />
+                   <col align='right' />
+                   <col align='right' />
+                </colgroup>
+                <tr id='header_row' class="text-center success" style="font-weight: bold;font-size: 14px;">
+                    <th colspan="2">功能模块</th>
+                    <th>用例总数</th>
+                    <th>通过数</th>
+                    <th>状态</th>
+                </tr>
+                
+        <tr id='header_row' class="text-center success" style="font-weight: bold;font-size: 14px;">
+            <th colspan="2">业务模块1</th>
+            <th>30</th>
+            <th>25</th>
+            <th class='demo' id="demo">PASS</th>
+        </tr>
+                
+        <tr class='failClass warning'>
+            <td></td>
+            <td>模块1</td>
+            <td>10</td>
+            <td>10</td>
+            <td class='demo'  id="demo2">PASS</td>
+        </tr>
+               
+            </table>
+            <script type="text/javascript">
+                //change color
+                //取都用demo的多组
+                var eles = document.getElementsByClassName('demo');
+                console.log(eles);
+                //var x=document.getElementById("demo").innerText;
+                //console.log("the value is :"+x);
+                //每组都应用样式
+                for(var i = 0; i < eles.length; i++){
+                    if(eles[i].innerText == 'PASS'){
+                        eles[i].style.color = 'green';
+                    }else{
+                        eles[i].style.color = 'red';
+                    }
+                }
+
+            </script>   
+
+        </body>
+        </html>

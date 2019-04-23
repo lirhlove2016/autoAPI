@@ -5,10 +5,10 @@ import json
 import jsonpath
 import re
 
-#jsonpath.jsonpath(json,"$['store']['book'][0]['author']")
 
-srcfile=r"D:\workdtation\mygitwork\autoAPI\autoTestApi\datadir\myapp_Http.xls"
-desfile=r"D:\workdtation\mygitwork\autoAPI\autoTestApi\datadir\myapp_HTTP_result.xls"
+srcfile=r"E:\myworkspace\mygit\mygitworkspace\autoAPI\autoTestApi\demo\myHttp.xls"
+desfile=r"E:\myworkspace\mygit\mygitworkspace\autoAPI\autoTestApi\demo\myHttp123_result.xls"
+
 
 def run(line):
     if line[3]=='post':
@@ -19,10 +19,6 @@ def run(line):
         return
     if line[3]=='put':
         Http.api_request('put',line[4],line[5])
-        return
-        return
-    if line[3]=='delete':
-        Http.api_request('delete',line[4],line[5])
         return
     if line[3]=='addheader':
         Http.add_header(line[4],line[5])
