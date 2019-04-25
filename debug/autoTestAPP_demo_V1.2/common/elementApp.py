@@ -74,8 +74,8 @@ desired_caps = {
     'appActivity': 'com.dzbook.activity.LogoActivity',
     #'unicodeKeyboard': False,    #使用unicode编码方式发送字符串
     #'resetKeyboard': False,      #隐藏键盘
-    'noReset':True,         # 在会话前是否重置app状态。默认是false
-    # 'fullReset':'true',
+    #'noReset':True,         # 在会话前是否重置app状态。默认是false
+    #'fullReset':'true',
     # 'autoLaunch'：'false',     #Appium是否要自动启动或安装app，默认true
     'newCommandTimeout':1800,    #设置未接收到新命令的超时时间，默认60s,
     #'automationName': 'UiAutomator2',
@@ -993,6 +993,8 @@ def  tanchuang(id):
             el=driver.find_element_by_id(id)
             el.click()
             print('关闭了弹窗')
+        else:
+            print('弹窗不存在')
             
     except Exception as  err:
             print('弹窗报错了',err)
@@ -1011,7 +1013,7 @@ def tanchuang_all():
             print('关闭了弹窗')            
             
         else:
-            print('不存在弹窗id')
+            print('不存在弹窗id',x)
 
 
 #-------------------------------------------------------未调试    
