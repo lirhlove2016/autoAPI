@@ -5,11 +5,11 @@ from common import readexcel as reader, writeexcel as writer
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 import random
-from conf.conf import dataDir,reportDir
-from  common.toast import *
-PATH = lambda p: os.path.abspath(os.path.join(os.path.dirname(__file__), p))
 
+PATH = lambda p: os.path.abspath(os.path.join(os.path.dirname(__file__), p))
+from conf.conf import dataDir,reportDir,pageDir,imageDir
 from conf import conf
+
 
 """
 实现功能
@@ -25,12 +25,18 @@ v：1.1
 2.assertequals,单个元素校验
 3.assertequals_all，多个元素校验
 4.调用模块封装go_func()
+5.tanchuang(),id
+6.存在就操作，is_exists()
+7.assertin,单个存在，多个存在
+8.assertin_all,单个存在，多个存在
+9.backs,多次返回
+10.
 
 v1.2
-1.随机点击
-2.坐标点击
-3.获取当前activity
-4.根据source判断
+1.随机点击taprandom
+2.坐标点击tappoint（x,y)
+3.获取当前activity,get_package()
+4.根据source判断,source_assert
 5.
 
 """
@@ -45,6 +51,8 @@ saveelements={}
 saveelements_array={}
 # 保存上一个操作的元素定位
 e = ""
+
+
 # 保存值
 saveValue = {}
 # url
@@ -66,11 +74,11 @@ desired_caps = {
     'appActivity': 'com.dzbook.activity.LogoActivity',
     #'unicodeKeyboard': False,    #使用unicode编码方式发送字符串
     #'resetKeyboard': False,      #隐藏键盘
-    #'noReset': False,         # 在会话前是否重置app状态。默认是false
-    # 'fullReset':'true',
+    #'noReset':True,         # 在会话前是否重置app状态。默认是false
+    #'fullReset':'true',
     # 'autoLaunch'：'false',     #Appium是否要自动启动或安装app，默认true
     'newCommandTimeout':1800,    #设置未接收到新命令的超时时间，默认60s,
-    #'automationName': 'uiautomator2',
+    #'automationName': 'UiAutomator2',
     #'dontStopAppOnReset': True,   # 不关闭应用
     'autoGrantPermissions': True,  # 自动获取权限
 }
@@ -91,7 +99,7 @@ def update_capability(key,value):
 
     try:
         desired_caps[key] = value
-        print(desired_caps["appPackage"],type(desired_caps["appPackage"]))        
+        #print(desired_caps["appPackage"],type(desired_caps["appPackage"]))        
         #取获取的包名
         if desired_caps["appPackage"]=="":
             print('包名为空时，取配置-------------------',conf.appPackage)                
@@ -288,6 +296,7 @@ def get_elements(method, element, index="", name="", casename=""):
 def clicks(act, element, value="", name="", casename=""):
     global saveelements, driver
     global e
+    global number
     print('正在执行%s操作--------------------------' % act)
     print(element)
 
@@ -363,6 +372,27 @@ def back():
     except Exception as err:
         #调用方法
         err_run(err,back)
+
+# back,多次点击
+def backs(number):
+    global driver
+    try:
+        n=0
+        for i  in range(int(number)):
+            driver.back() 
+            n=n+1
+     
+        if n==int(number):
+                # 写入
+            wirte_result("PASS", "操作成功")
+        else:
+                # 写入
+                wirte_result("FAIL", "操作失败")       
+  
+    except Exception as err:
+        #调用方法
+        err_run(err,back)
+
 
 # sleep
 def sleep(t,*args,**kwargs):
@@ -446,6 +476,88 @@ def assert_equals(name,value,el):
 	# 写入
 	wirte_result(re,result)
 
+#assert,name校验结果，value取值,e定位元素
+def assert_in(name,value,el):
+    global driver
+    print('正在进行校验-----------------------------------------------------------------')
+    print('本次校验的期望结果是：%s,取值:%s'%(name,value))
+    #调用取值
+    values=get_value(value,el)
+
+    #进行判断
+    if name in values:
+        print('校验正确,校验结果：%s'%name)
+        re="PASS"
+        result=name
+        
+    else:
+        print('校验不正确，要校验的值为%s,取值:%s'%(value,values))
+        re="FAIL"
+        result="校验的值:"+values
+
+    # 写入
+    wirte_result(re,result)
+	
+#-------------------------------
+#assert 统一调用
+#assert,name校验结果，value取值,e定位元素
+#根据不同方法调用不同判断
+def assert_method(method,name,value,el):
+    global driver
+    print('正在进行校验-----------------------------------------------------------------')
+    print('本次校验的期望结果是：%s,取值:%s'%(name,value))
+    #调用取值
+    values=get_value(value,el)
+
+    if method=="equal":
+        #进行判断
+        if name==values:
+            print('校验正确,校验结果：%s'%name)
+            re="PASS"
+            result=name
+        else:
+            print('校验不正确，要校验的值为%s,取值:%s'%(value,values))
+            re="FAIL"
+            result="校验的值:"+values
+   
+    elif method=="in":
+        #进行判断
+        if name in values:
+            print('校验正确,校验结果：%s'%name)
+            re="PASS"
+            result=name    
+        else:
+            print('校验不正确，要校验的值为%s,取值:%s'%(value,values))
+            re="FAIL"
+            result="校验的值:"+values
+ 
+    elif method=="notequal":
+        #进行判断
+        if name != values:
+            print('校验正确,校验结果：%s'%name)
+            re="PASS"
+            result=name     
+      
+        else:
+            print('校验不正确，要校验的值为%s,取值:%s'%(value,values))
+            re="FAIL"
+            result="校验的值:"+values
+   
+    elif method=="notin":
+        #进行判断
+        if name != values:
+            print('校验正确,校验结果：%s'%name)
+            re="PASS"
+            result=name     
+      
+        else:
+            print('校验不正确，要校验的值为%s,取值:%s'%(value,values))
+            re="FAIL"
+            result="校验的值:"+values
+    
+    # 写入
+    wirte_result(re,result)
+	
 #assert多个,
 def assert_equals_all(names,values,els):
 	global driver
@@ -497,9 +609,99 @@ def  get_split(names):
 	name=names.split(',')
 	for i in range(len(name)):
 		#去掉空格
-		n.append(name[i].strip())
+		n.append(name[i].strip())   
+	return n
     
-	return n	
+#assert多个,
+def assert_in_all(names,values,els):
+    global driver
+    print('正在进行校验-----------------------------------------------------------------')    
+    print('本次校验的多个期望结果是：%s,取值:%s'%(names,values))
+    
+    #调用拆分
+    n=get_split(names)
+    v=get_split(values)
+    el=get_split(els)
+
+    #依次校验每个值
+    r=[]
+    result=[]
+    for i in range(len(n)):
+        #调用取值
+        values=get_value(v[i],el[i])
+        #进行判断
+        if n[i] in values:
+            r.append("PASS")            
+            result.append(n[i])
+            
+        else:           
+            r.append("FAIL")
+            result.append(values)
+
+    #都为PASS时结果PASS,只要有一个FAIL就FAIL
+    re="PASS"
+    for i in range(len(re)):
+        if re[i]=="FAIL":
+            re="FAIL"
+        
+    if re!="FAIL":
+        print('校验正确,校验结果：%s'%names)
+    else:
+        print('校验不正确，要校验的值为:%s,取值%s'%(names,result))
+    
+    #将result加,传给excel写入
+    s=""
+    for i in range(len(result)):
+        s=s+result[i]+","
+    print(s)
+    # 写入
+    wirte_result(re,s)
+
+#assert多个,not equal
+def assert_not_e_all(names,values,els):
+    global driver
+    print('正在进行校验-----------------------------------------------------------------')    
+    print('本次校验的多个期望结果是：%s,取值:%s'%(names,values))
+    
+    #调用拆分
+    n=get_split(names)
+    v=get_split(values)
+    el=get_split(els)
+
+    #依次校验每个值
+    r=[]
+    result=[]
+    for i in range(len(n)):
+        #调用取值
+        values=get_value(v[i],el[i])
+        #进行判断
+        if n[i] != values:
+            r.append("PASS")            
+            result.append(n[i])
+            
+        else:           
+            r.append("FAIL")
+            result.append(values)
+
+    #都为PASS时结果PASS,只要有一个FAIL就FAIL
+    re="PASS"
+    for i in range(len(re)):
+        if re[i]=="FAIL":
+            re="FAIL"
+        
+    if re!="FAIL":
+        print('校验正确,校验结果：%s'%names)
+    else:
+        print('校验不正确，要校验的值为:%s,取值%s'%(names,result))
+    
+    #将result加,传给excel写入
+    s=""
+    for i in range(len(result)):
+        s=s+result[i]+","
+    print(s)
+    # 写入
+    wirte_result(re,s)	
+
 
 #-------------------------------------------------------未调试
 # 保存图片到本文件夹,暂时不用
@@ -515,29 +717,7 @@ def get_page(*args,**kwargs):
     global  driver
     ret = driver.find_element_by_xpath(".//*")
     return ret
-    
-# 获取当前页所有元素
-def get_pages_source(file=""):
-    global driver
 
-    #file不为空，保存文件
-    try:       
-        re=driver.page_source
-        
-        if file=="":
-            filename="_page_%s.xml"%number
-            filepath=reportDir+"_"+filename
-            filepath = os.path.join(reportDir,filename)
-        else:
-            filepath = os.path.join(reportDir,file)
-        with  open(filepath,'w+') as f:
-            f.write(re)
-
-        wirte_result("PASS", file)    
-    except Exception as err:
-        err_run(err,get_pages_source,filename)
-        #重试
-        rerun(get_pages_source,filename)
 
 # scroll
 def scroll(ori_el, des_el):
@@ -759,7 +939,6 @@ def LEFT():
     # 写入
     wirte_result(key, value)
 
-
 # 右划
 def RIGHT():
     try:
@@ -778,7 +957,7 @@ def RIGHT():
     # 写入
     wirte_result(key, value)
 
-
+#----------------------------------------------------------------------
 #error时执行
 def err_run(err,func,*args,**kwargs):
     print(err)
@@ -803,6 +982,112 @@ def rerun(func,*args,**kwargs):
         print("结束成功")
         count = 1
         return count
+#----------------------------------------------------------------------
+#弹窗点击关闭，id=com.ishugui:id/imageview_cloud_sysch_close,
+def  tanchuang(id):
+    global driver
+    try:
+        #存在就关闭，不存在就不操作
+        source=driver.page_source
+        if id in source:
+            el=driver.find_element_by_id(id)
+            el.click()
+            print('关闭了弹窗')
+        else:
+            print('弹窗不存在')
+            
+    except Exception as  err:
+            print('弹窗报错了',err)
+
+
+#----------------------------------------------
+#弹窗关闭
+def tanchuang_all():
+    #从配置文件中取参数,id
+    ids=conf.tanchuang_close_id
+    for x in ids:
+        source=driver.page_source
+        if x in source:
+            el=driver.find_element_by_id(x)
+            el.click()
+            print('关闭了弹窗')            
+            
+        else:
+            print('不存在弹窗id',x)
+
+
+#-------------------------------------------------------未调试    
+# 获取当前页所有元素
+#取source
+def get_pagesource(file=""):
+        global driver
+        r=driver.page_source
+      
+        try:
+            #有返回值
+            if r:
+                print('pagesource:',r[:10])
+                if file=="":
+                    filename=pageDir+"page_%s.xml"%(number)
+
+                #file不为空，保存文件    
+                else:
+                    #存储文件名
+                    filename=pageDir+"%s_page_%s.xml"%(name,num)
+                                                                              
+            else:
+                    print("pagesource空-----------------------------------------------")
+
+            if len(r)>10:
+                print("保存文件：",filename)
+                #调用写入xml文件
+                write_xml_to_file(filename,r)
+            #写入
+            wirte_result("PASS", file)    
+        
+        except Exception as err:
+            print(err) 
+            #写入
+            wirte_result("Fail", file)   
+
+#-----------------------------------------------------------
+#xml 存到文件中
+def write_xml_to_file(filename,content):
+    with open(filename,"w+",encoding='utf-8') as f:
+        f.write(content)
+        print("写入xml到文件")
+
+#-----------------------------------------------------------    
+#判断元素是否存在，text
+def is_exist_text(name):
+        try:
+            #el = driver.find_element_by_android_uiautomator("text(\"%s\")" %name)
+            xpath_value='//*[contains(@text, %s)]'%name
+            el=driver.find_element_by_xpath(xpath_value)
+            return True
+            print("元素定位成功")
+        except BaseException as e:
+            print(e.args)
+            print("元素定位失败")
+            return False
+
+#-----------------------------------------------------------
+#判断source中存在就点击
+def xpath_exist(method,name):
+    #根据text包含值，点击
+    source=driver.page_source
+    print('正在判断是否存在元素----------------------------------------------------',method,name)
+    if name in source:
+        x="//*[contains(@%s,%s)]"%(method,name)
+        print(x)
+        el=driver.find_element_by_xpath(x)          
+        el.click()
+        print('已经点击了',name)   
+
+    else:
+        print('不存在',name)
+
+
 
 #----------------------------------------------------------------------
 
