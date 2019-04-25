@@ -11,6 +11,7 @@ desfile = os.path.join(filepath, 'datadir/myApp_result.xls')
 resultfile = os.path.join(filepath, 'report/screenshot/screenshot_')
 print(srcfile)
 
+
 # -脚本-----------------------------------
 def run(line):
     if line[3] == 'caps':
@@ -64,8 +65,11 @@ def run(line):
         return
 
     if line[3] == 'assertequals':
-        app.assert_equals(line[4], line[5],line[6])
+        #app.assert_equals(line[4], line[5],line[6])
+        app.assert_method("equal",line[4], line[5],line[6])
         return
+
+
     if line[3] == 'savephoto':
         app.get_screenshot(resultfile, line[4])
         return
@@ -89,7 +93,11 @@ def run(line):
         return
 
     if line[3] == 'assertin':
-        app.assert_in(line[4], line[5],line[6])
+        #app.assert_in(line[4], line[5],line[6])
+        app.assert_method("in",line[4], line[5],line[6])
+        return
+    if line[3] == 'assertin_all':
+        app.assert_in_all(line[4], line[5],line[6])
         return
 
     if line[3] == 'toast':
@@ -104,12 +112,15 @@ def run(line):
         app.get_element("textContains", line[4], line[5], line[6], line[2])
         return
     if line[3] == 'isexist':
-        app.is_exists(line[4],line[5])
+        app.xpath_exist(line[4],line[5])
         return
+    
     if line[3] == 'tanchuang':
         app.tanchuang(line[4])
         return
-    
+    if line[3] == 'tanchuangall':
+        app.tanchuang_all()
+        return   
     if line[3] == 'backs':
         app.backs(line[4])
         return
@@ -123,7 +134,7 @@ def run(line):
         return
             
     if line[3]=='pagesource':
-        app.get_pages_source()
+        app.get_pagessource()
         return
 
     if line[3]=='sourceassert':

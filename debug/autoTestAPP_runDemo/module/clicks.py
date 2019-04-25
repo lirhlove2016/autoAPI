@@ -270,7 +270,6 @@ def  tanchuang(id):
 	        print('弹窗报错了',err)
 
 
-
 #----------------------------------------------
 #弹窗关闭
 def tanchuang_all():
@@ -284,6 +283,7 @@ def tanchuang_all():
 			
 		else:
 		    print('不存在弹窗id')
+
 		
 #----------------------------------------------
 #取source
@@ -893,6 +893,7 @@ def is_element_exist(name):
             print(e.args)
             print("元素定位失败")
             return False
+
 
 
 #获取当前页面的pagesource，并执行操作

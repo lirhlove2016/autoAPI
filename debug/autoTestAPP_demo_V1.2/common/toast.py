@@ -8,7 +8,7 @@ from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 
 from common import readexcel as reader, writeexcel as writer
-from common import elementApp as app
+
 
 """
 1.toast提示判断，is_toast_exist(driver, "看到的内容")
