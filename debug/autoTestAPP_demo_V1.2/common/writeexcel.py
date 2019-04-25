@@ -59,14 +59,22 @@ def write(r,c,value):
 
         #写入值
         sheet.write(r,c,value)
+
         #指定写入的格式
         if cell:
                 ncell=_getCell(sheet,r,c)
                 if ncell:
                         #设置写入后的格式和写入前一样
                         ncell.xf_idx=cell.xf_idx
+
         return
-    
+#写入公式
+def writeformula():
+    global wb,sheet
+    sheet.write(1, 8, xlwt.Formula('COUNTIF(H:H,"PASS")'))
+    sheet.write(2, 8, xlwt.Formula('COUNTIF(H:H,"FAIL")'))
+
+
 #保存
 def save_close():
     global wb,df

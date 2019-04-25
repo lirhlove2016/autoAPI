@@ -5,7 +5,7 @@ from common import readexcel as reader, writeexcel as writer
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 import random
-
+from common.Log import MyLog as Log
 PATH = lambda p: os.path.abspath(os.path.join(os.path.dirname(__file__), p))
 from conf.conf import dataDir,reportDir,pageDir,imageDir
 from conf import conf
@@ -60,9 +60,10 @@ url = "http://localhost:4723/wd/hub"
 timeout = 30
 driver = ""
 
+#log
+log = Log.get_log()
+logger = log.get_logger()
 #
-#appPackage=""
-#appActivity=""
 
 # 设备参数
 desired_caps = {
@@ -83,11 +84,20 @@ desired_caps = {
     'autoGrantPermissions': True,  # 自动获取权限
 }
 
+#result文件写入公式
+#writer.write_formula('I1', '{=COUNTIF(H:H,"PASS")}')
+#writer.write_formula('I2', '{=COUNTIF(H:H,"FAIL")}')
+#writer.write(1, 8, xlwt.Formula('COUNTIF(H:H,"PASS")'))
+#writer.write(2, 8, xlwt.Formula('COUNTIF(H:H,"FAIL")'))
+
+
+
 # 写入结果
 def wirte_result(result, value):
     if reader.rr>0:
         writer.write(reader.rr - 1, 7, result)
         writer.write(reader.rr - 1, 8, value)
+        logger.info(result+value)
     
 # 配置设备
 def update_capability(key,value):
@@ -204,7 +214,7 @@ def get_element(method, element, index="", name="", casename=""):
         number = number + 1
         get_screenshot(resultfile, "_error_%s_%d.png" % (casename, number))
         # 写入信息
-        re = "Fail"
+        re = "FAIL"
         value = str(err)
         #重试
         rerun(get_element,method,element,index,name,casename)
@@ -283,7 +293,7 @@ def get_elements(method, element, index="", name="", casename=""):
         number = number + 1
         get_screenshot(resultfile, "_error_%s_%d.png" % (casename, number))
         # 写入信息
-        re = "Fail"
+        re = "FAIL"
         value = str(err)
         #重试
         rerun(get_element,method,element,index,name,casename)
@@ -451,7 +461,7 @@ def get_value(name,element):
 		print(t)
 	else:
 		print("输入未找到：",name)
-		t="fail"
+		t="FAIL"
 	return t
 
 #assert,name校验结果，value取值,e定位元素
@@ -1015,7 +1025,6 @@ def tanchuang_all():
         else:
             print('不存在弹窗id',x)
 
-
 #-------------------------------------------------------未调试    
 # 获取当前页所有元素
 #取source
@@ -1048,7 +1057,7 @@ def get_pagesource(file=""):
         except Exception as err:
             print(err) 
             #写入
-            wirte_result("Fail", file)   
+            wirte_result("FAIL", file)
 
 #-----------------------------------------------------------
 #xml 存到文件中
@@ -1086,7 +1095,6 @@ def xpath_exist(method,name):
 
     else:
         print('不存在',name)
-
 
 
 #----------------------------------------------------------------------

@@ -11,7 +11,6 @@ desfile = os.path.join(filepath, 'datadir/myApp_result.xls')
 resultfile = os.path.join(filepath, 'report/screenshot/screenshot_')
 print(srcfile)
 
-
 # -脚本-----------------------------------
 def run(line):
     if line[3] == 'caps':
@@ -86,7 +85,7 @@ def run(line):
         app.back()
         return
     if line[3]=='pagesource':
-        app.get_pages_source(line[4])
+        app.get_pagessource(line[4])
         return
     if line[3] == 'assertequals_all':
         app.assert_equals_all(line[4], line[5],line[6])
@@ -134,7 +133,7 @@ def run(line):
         return
             
     if line[3]=='pagesource':
-        app.get_pagessource()
+        app.get_pagessource(line[4])
         return
 
     if line[3]=='sourceassert':
@@ -164,6 +163,7 @@ for i in range(0, reader.r):
     else:
         # 执行
         run(line)
+#writer.writeformula()
 writer.save_close()
 
 print('执行完成---------------')
