@@ -20,7 +20,7 @@ appActivity=""
 #uninstall
 uninstallPackage=""
 
-package="com.ishugui"
+package="com.aikan"
 #弹窗关闭id
 tanchuang_close_id=["%s:id/imageview_close"%package,"%s:id/imageview_cloud_sysch_close"%package]
 

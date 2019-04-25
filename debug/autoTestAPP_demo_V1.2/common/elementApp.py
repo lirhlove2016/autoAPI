@@ -74,7 +74,7 @@ desired_caps = {
     'appActivity': 'com.dzbook.activity.LogoActivity',
     #'unicodeKeyboard': False,    #使用unicode编码方式发送字符串
     #'resetKeyboard': False,      #隐藏键盘
-    #'noReset': False,         # 在会话前是否重置app状态。默认是false
+    'noReset':True,         # 在会话前是否重置app状态。默认是false
     # 'fullReset':'true',
     # 'autoLaunch'：'false',     #Appium是否要自动启动或安装app，默认true
     'newCommandTimeout':1800,    #设置未接收到新命令的超时时间，默认60s,
