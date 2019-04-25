@@ -12,13 +12,34 @@ def open_excel(srcfile):
     #
     xlrd.Book.encoding='utf8'
     workbook=xlrd.open_workbook(filename=srcfile)
+<<<<<<< HEAD
+    #选取第一个工作表
+    
+    sheet=workbook.sheet_by_index(1)
+    #设置r为当前sheet有多少行
+    r=sheet.nrows
+    rr=0
+    return
+
+'''
+#逐行读取
+def open_excel(srcfile):
+    global workbook,sheet,r,rr
+    #
+    xlrd.Book.encoding='utf8'
+    workbook=xlrd.open_workbook(filename=srcfile)
+    #选取第一个工作表
+    
+=======
 
     #选取第一个工作表    
+>>>>>>> 8130a62a3d48f06a104cacc43f1533962265c094
     sheet=workbook.sheet_by_index(0)
     #设置r为当前sheet有多少行
     r=sheet.nrows
     rr=0
     return
+'''
 
 #逐行读取
 def readline():
