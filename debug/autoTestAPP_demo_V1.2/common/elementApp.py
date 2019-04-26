@@ -30,19 +30,23 @@ v：1.1
 7.assertin,单个存在，多个存在
 8.assertin_all,单个存在，多个存在
 9.backs,多次返回
-10.
+10.多次滑动,swiptest("right",num)
+11.
 
 v1.2
-1.随机点击taprandom
+1.随机点击taprandom,不能是边界值
 2.坐标点击tappoint（x,y)
 3.获取当前activity,get_package()
 4.根据source判断,source_assert
-5.
+5.校验notequal,notin
+6.批量校验notequal,notin
+
 
 """
 
 # 保存图片
 resultfile = os.path.join(reportDir, 'screenshot/screenshot_')
+
 number = 0  # 保存图片序号用
 
 # 保存元素
@@ -75,22 +79,14 @@ desired_caps = {
     'appActivity': 'com.dzbook.activity.LogoActivity',
     #'unicodeKeyboard': False,    #使用unicode编码方式发送字符串
     #'resetKeyboard': False,      #隐藏键盘
-    #'noReset':True,         # 在会话前是否重置app状态。默认是false
+    #'noReset':False,         # 在会话前是否重置app状态。默认是false
     #'fullReset':'true',
     # 'autoLaunch'：'false',     #Appium是否要自动启动或安装app，默认true
     'newCommandTimeout':1800,    #设置未接收到新命令的超时时间，默认60s,
-    #'automationName': 'UiAutomator2',
+    'automationName': 'UiAutomator2',
     #'dontStopAppOnReset': True,   # 不关闭应用
     'autoGrantPermissions': True,  # 自动获取权限
 }
-
-#result文件写入公式
-#writer.write_formula('I1', '{=COUNTIF(H:H,"PASS")}')
-#writer.write_formula('I2', '{=COUNTIF(H:H,"FAIL")}')
-#writer.write(1, 8, xlwt.Formula('COUNTIF(H:H,"PASS")'))
-#writer.write(2, 8, xlwt.Formula('COUNTIF(H:H,"FAIL")'))
-
-
 
 # 写入结果
 def wirte_result(result, value):
@@ -105,8 +101,6 @@ def update_capability(key,value):
     
     if key == 'newCommandTimeout':
         value = int(value)
-    
-
     try:
         desired_caps[key] = value
         #print(desired_caps["appPackage"],type(desired_caps["appPackage"]))        
@@ -301,7 +295,6 @@ def get_elements(method, element, index="", name="", casename=""):
     # 写入
     wirte_result(re, value)
 
-
 # 操作集合
 def clicks(act, element, value="", name="", casename=""):
     global saveelements, driver
@@ -346,12 +339,12 @@ def clicks(act, element, value="", name="", casename=""):
     # 写入
     wirte_result(re, value)
 
-#定位元素，不为空取保存值，为空取上一个定位元素；
-#引用，get_value,clicks
+# 定位元素，不为空取保存值，为空取上一个定位元素；
+# 引用，get_value,clicks
 def get_element_of(element):
     global saveelements, driver
     global e
-    #print(element)
+    # print(element)
     # 不为空，提取保存的值；为空点击上一个定
     if element != "":
         el = saveelements[element]
@@ -359,7 +352,6 @@ def get_element_of(element):
         el = e
     print('操作的元素是：%s-------------------------' % el)	   
     return el
-
 #---------------------------------------------------------------
 # quit
 def quit():
@@ -390,7 +382,7 @@ def backs(number):
         n=0
         for i  in range(int(number)):
             driver.back() 
-            n=n+1
+            n = n+1
      
         if n==int(number):
                 # 写入
@@ -402,7 +394,6 @@ def backs(number):
     except Exception as err:
         #调用方法
         err_run(err,back)
-
 
 # sleep
 def sleep(t,*args,**kwargs):
@@ -417,7 +408,6 @@ def sleep(t,*args,**kwargs):
     except Exception as err:
         #调用方法
         err_run(err,sleep)
-
 
 # 保存图片到指定文件夹
 def get_screenshot(filepath, file):
@@ -434,7 +424,7 @@ def get_screenshot(filepath, file):
         err_run(err,get_screenshot,filepath,file)
         
 #校验属性值
-attributes=["resourceId","className","text","name","checkable","checked","clickable","enabled","focusable","focused","scrollable","selected"]
+attributes=["resourceId","className","text","name","checkable","checked","clickable","enabled","focusable","focused","scrollable","selected","bounds"]
 alls=["text","tag_name","size","loaction"]
 #定位元素e获取属性，元素不为空取值，为空取上一次操作
 def get_value(name,element):
@@ -463,7 +453,7 @@ def get_value(name,element):
 		print("输入未找到：",name)
 		t="FAIL"
 	return t
-
+'''
 #assert,name校验结果，value取值,e定位元素
 def assert_equals(name,value,el):
 	global driver
@@ -485,29 +475,7 @@ def assert_equals(name,value,el):
 
 	# 写入
 	wirte_result(re,result)
-
-#assert,name校验结果，value取值,e定位元素
-def assert_in(name,value,el):
-    global driver
-    print('正在进行校验-----------------------------------------------------------------')
-    print('本次校验的期望结果是：%s,取值:%s'%(name,value))
-    #调用取值
-    values=get_value(value,el)
-
-    #进行判断
-    if name in values:
-        print('校验正确,校验结果：%s'%name)
-        re="PASS"
-        result=name
-        
-    else:
-        print('校验不正确，要校验的值为%s,取值:%s'%(value,values))
-        re="FAIL"
-        result="校验的值:"+values
-
-    # 写入
-    wirte_result(re,result)
-	
+'''
 #-------------------------------
 #assert 统一调用
 #assert,name校验结果，value取值,e定位元素
@@ -515,59 +483,56 @@ def assert_in(name,value,el):
 def assert_method(method,name,value,el):
     global driver
     print('正在进行校验-----------------------------------------------------------------')
-    print('本次校验的期望结果是：%s,取值:%s'%(name,value))
+    print('本次校验%s,期望结果是：%s,取值:%s'%(method,name,value))
     #调用取值
     values=get_value(value,el)
-
     if method=="equal":
         #进行判断
         if name==values:
             print('校验正确,校验结果：%s'%name)
             re="PASS"
-            result=name
+            result=method+"，校验的值:"+name+",取值："+values
         else:
             print('校验不正确，要校验的值为%s,取值:%s'%(value,values))
             re="FAIL"
-            result="校验的值:"+values
+            result=method+"，校验的值:"+name+",取值是："+values
    
     elif method=="in":
         #进行判断
         if name in values:
             print('校验正确,校验结果：%s'%name)
             re="PASS"
-            result=name    
+            result = method + "，校验的值:" + name + ",取值：" + values
         else:
-            print('校验不正确，要校验的值为%s,取值:%s'%(value,values))
-            re="FAIL"
-            result="校验的值:"+values
+            print('校验不正确，要校验的值为%s,取值:%s' % (value, values))
+            re = "FAIL"
+            result = method + "，校验的值:" + name + ",取值是：" + values
  
     elif method=="notequal":
         #进行判断
         if name != values:
             print('校验正确,校验结果：%s'%name)
             re="PASS"
-            result=name     
-      
+            result = method + "，校验的值:" + name + ",取值：" + values
         else:
-            print('校验不正确，要校验的值为%s,取值:%s'%(value,values))
-            re="FAIL"
-            result="校验的值:"+values
+            print('校验不正确，要校验的值为%s,取值:%s' % (value, values))
+            re = "FAIL"
+            result = method + "，校验的值:" + name + ",取值是：" + values
    
     elif method=="notin":
         #进行判断
-        if name != values:
+        if name not in  values:
             print('校验正确,校验结果：%s'%name)
             re="PASS"
-            result=name     
-      
+            result = method + "，校验的值:" + name + ",取值：" + values
         else:
-            print('校验不正确，要校验的值为%s,取值:%s'%(value,values))
-            re="FAIL"
-            result="校验的值:"+values
+            print('校验不正确，要校验的值为%s,取值:%s' % (value, values))
+            re = "FAIL"
+            result = method + "，校验的值:" + name + ",取值是：" + values
     
     # 写入
     wirte_result(re,result)
-	
+'''	
 #assert多个,
 def assert_equals_all(names,values,els):
 	global driver
@@ -582,6 +547,7 @@ def assert_equals_all(names,values,els):
 	#依次校验每个值
 	r=[]
 	result=[]
+
 	for i in range(len(n)):
 		#调用取值
 		values=get_value(v[i],el[i])
@@ -596,8 +562,8 @@ def assert_equals_all(names,values,els):
 
 	#都为PASS时结果PASS,只要有一个FAIL就FAIL
 	re="PASS"
-	for i in range(len(re)):
-		if re[i]=="FAIL":
+	for i in range(len(r)):
+		if r[i]=="FAIL":
 			re="FAIL"
 		
 	if re!="FAIL":
@@ -612,7 +578,7 @@ def assert_equals_all(names,values,els):
 	print(s)
 	# 写入
 	wirte_result(re,s)
-
+'''
 #拆分多个参数,以逗号拆分，去除前后空格
 def  get_split(names):
 	n=[]
@@ -623,10 +589,10 @@ def  get_split(names):
 	return n
     
 #assert多个,
-def assert_in_all(names,values,els):
+def assert_all_method(method ,names,values,els):
     global driver
-    print('正在进行校验-----------------------------------------------------------------')    
-    print('本次校验的多个期望结果是：%s,取值:%s'%(names,values))
+    print('正在进行多个校验-----------------------------------------------------------------')
+    print('本次校验的多个%s,期望结果是：%s,取值:%s'%(method,names,values))
     
     #调用拆分
     n=get_split(names)
@@ -639,19 +605,50 @@ def assert_in_all(names,values,els):
     for i in range(len(n)):
         #调用取值
         values=get_value(v[i],el[i])
-        #进行判断
-        if n[i] in values:
-            r.append("PASS")            
-            result.append(n[i])
-            
-        else:           
-            r.append("FAIL")
-            result.append(values)
+        #根据method
+        if method=="equal":
+            #进行判断
+            if n[i]== values:
+                r.append("PASS")
+                result.append(n[i])
+
+            else:
+                r.append("FAIL")
+                result.append(values)
+        elif method == "in":
+            # 进行判断
+            if n[i] in values:
+                r.append("PASS")
+                result.append(n[i])
+
+            else:
+                r.append("FAIL")
+                result.append(values)
+        elif method == "notin":
+            # 进行判断
+            print('正在校验',method,"校验值",n[i],"取值",values,'-----------------------------------------')
+            print(n[i] not in values)
+            if n[i] not in values:
+                r.append("PASS")
+                result.append(n[i])
+
+            else:
+                r.append("FAIL")
+                result.append(values)
+        elif method == "notequal":
+            # 进行判断
+            if n[i] != values:
+                r.append("PASS")
+                result.append(n[i])
+
+            else:
+                r.append("FAIL")
+                result.append(values)
 
     #都为PASS时结果PASS,只要有一个FAIL就FAIL
     re="PASS"
-    for i in range(len(re)):
-        if re[i]=="FAIL":
+    for i in range(len(r)):
+        if r[i]=="FAIL":
             re="FAIL"
         
     if re!="FAIL":
@@ -659,59 +656,13 @@ def assert_in_all(names,values,els):
     else:
         print('校验不正确，要校验的值为:%s,取值%s'%(names,result))
     
-    #将result加,传给excel写入
+    #将result加分隔,传给excel写入
     s=""
     for i in range(len(result)):
         s=s+result[i]+","
     print(s)
     # 写入
     wirte_result(re,s)
-
-#assert多个,not equal
-def assert_not_e_all(names,values,els):
-    global driver
-    print('正在进行校验-----------------------------------------------------------------')    
-    print('本次校验的多个期望结果是：%s,取值:%s'%(names,values))
-    
-    #调用拆分
-    n=get_split(names)
-    v=get_split(values)
-    el=get_split(els)
-
-    #依次校验每个值
-    r=[]
-    result=[]
-    for i in range(len(n)):
-        #调用取值
-        values=get_value(v[i],el[i])
-        #进行判断
-        if n[i] != values:
-            r.append("PASS")            
-            result.append(n[i])
-            
-        else:           
-            r.append("FAIL")
-            result.append(values)
-
-    #都为PASS时结果PASS,只要有一个FAIL就FAIL
-    re="PASS"
-    for i in range(len(re)):
-        if re[i]=="FAIL":
-            re="FAIL"
-        
-    if re!="FAIL":
-        print('校验正确,校验结果：%s'%names)
-    else:
-        print('校验不正确，要校验的值为:%s,取值%s'%(names,result))
-    
-    #将result加,传给excel写入
-    s=""
-    for i in range(len(result)):
-        s=s+result[i]+","
-    print(s)
-    # 写入
-    wirte_result(re,s)	
-
 
 #-------------------------------------------------------未调试
 # 保存图片到本文件夹,暂时不用
@@ -792,7 +743,6 @@ def source_assert(*args):
 
     # 写入
     wirte_result(re,value)
-
 #-----------------------------------------------
 #返回坐标
 def get_xy(radiox,radioy):
@@ -824,9 +774,9 @@ def tap_random():
     R = []
     #生成2个随机数
     for i in range(2):
-        r = random.randint(1, 10)/10
+        r = random.randint(1, 9)/10
         R.append(r)
-    #print(R)
+    print(R)
     x = int(SIZE()[2]*R[0])
     y = int(SIZE()[3]*R[1])
     #print(str(x),str(y))
@@ -884,6 +834,30 @@ def tap_point(x,y):
     wirte_result(re,value)
 
 #-----------------------------------------------
+# 滑动多次
+def swiptest(method,num):
+    if num!="":
+        num = int(num)
+
+    else:
+        num=1
+    i = 0
+    while i < num:
+        if method == "left":
+            swipeLeft()
+        elif method == "right":
+            swipeRight()
+        elif method == "up":
+            swipeUp()
+        elif method == "down":
+            swipeDown()
+        i = i + 1
+
+    # 写入
+    value = method + ":" + str(num)
+    wirte_result("PASS", value)
+
+
 # 获取尺寸
 def SIZE():
     global start_x, start_y, end_x, end_y
@@ -894,7 +868,7 @@ def SIZE():
     return (start_x, start_y, end_x, end_y)
 
 # 上划
-def UP():
+def swipeUp():
     try:
         x1 = int(SIZE()[2] * 0.5)
         y1 = int(SIZE()[3] * 0.2)
@@ -913,7 +887,7 @@ def UP():
 
 
 # 下划
-def DOWN():
+def swipeDown():
     try:
         x1 = int(SIZE()[2] * 0.5)
         y1 = int(SIZE()[3] * 0.2)
@@ -932,7 +906,7 @@ def DOWN():
 
 
 # 左划
-def LEFT():
+def swipeLeft():
     try:
         x1 = int(SIZE()[2] * 0.2)
         x2 = int(SIZE()[2] * 0.8)
@@ -950,7 +924,7 @@ def LEFT():
     wirte_result(key, value)
 
 # 右划
-def RIGHT():
+def swipeRight():
     try:
         x1 = int(SIZE()[2] * 0.2)
         x2 = int(SIZE()[2] * 0.8)
@@ -1042,7 +1016,7 @@ def get_pagesource(file=""):
                 #file不为空，保存文件    
                 else:
                     #存储文件名
-                    filename=pageDir+"%s_page_%s.xml"%(name,num)
+                    filename=pageDir+"%s_page_%s.xml"%(file,number)
                                                                               
             else:
                     print("pagesource空-----------------------------------------------")

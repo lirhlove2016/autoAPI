@@ -1,0 +1,49 @@
+2019-04-26 14:08:11,537 - root - INFO - PASS设备已经启动,wait5
+2019-04-26 14:08:12,813 - root - INFO - PASSleft
+2019-04-26 14:08:14,117 - root - INFO - PASSleft
+2019-04-26 14:08:15,368 - root - INFO - PASSleft
+2019-04-26 14:08:15,369 - root - INFO - PASSleft:3
+2019-04-26 14:08:15,854 - root - INFO - PASScom.ishugui:id/tv_man
+2019-04-26 14:08:15,911 - root - INFO - PASS执行成功
+2019-04-26 14:08:16,912 - root - INFO - PASS等待1秒
+2019-04-26 14:08:17,653 - root - INFO - PASS随机点击坐标72,241
+2019-04-26 14:08:22,872 - root - INFO - PASS等待1秒
+2019-04-26 14:08:23,136 - root - INFO - PASSshujia
+2019-04-26 14:08:24,137 - root - INFO - PASS等待1秒
+2019-04-26 14:08:25,446 - root - INFO - PASSup
+2019-04-26 14:08:25,447 - root - INFO - PASSup:1
+2019-04-26 14:08:26,448 - root - INFO - PASS等待1秒
+2019-04-26 14:08:27,767 - root - INFO - PASSdown
+2019-04-26 14:08:27,767 - root - INFO - PASSdown:1
+2019-04-26 14:08:30,276 - root - INFO - PASS//android.widget.TextView[@text='我的']
+2019-04-26 14:08:30,367 - root - INFO - PASS执行成功
+2019-04-26 14:08:31,368 - root - INFO - PASS等待1秒
+2019-04-26 14:08:37,183 - root - INFO - PASS_error_定位登录_1.png
+2019-04-26 14:08:43,108 - root - INFO - PASS_error_定位登录_2.png
+2019-04-26 14:08:49,071 - root - INFO - PASS_error_定位登录_3.png
+2019-04-26 14:08:54,495 - root - INFO - PASS_error_定位登录_4.png
+2019-04-26 14:08:54,495 - root - INFO - FAILMessage: An element could not be located on the page using the given search parameters.
+
+2019-04-26 14:08:54,495 - root - INFO - FAILMessage: An element could not be located on the page using the given search parameters.
+
+2019-04-26 14:08:54,495 - root - INFO - FAILMessage: An element could not be located on the page using the given search parameters.
+
+2019-04-26 14:08:54,496 - root - INFO - FAILMessage: An element could not be located on the page using the given search parameters.
+
+2019-04-26 14:08:54,570 - root - INFO - PASS执行成功
+2019-04-26 14:09:00,671 - root - INFO - PASS_error_定位微信登录_5.png
+2019-04-26 14:09:06,525 - root - INFO - PASS_error_定位微信登录_6.png
+2019-04-26 14:09:11,926 - root - INFO - PASS_error_定位微信登录_7.png
+2019-04-26 14:09:17,625 - root - INFO - PASS_error_定位微信登录_8.png
+2019-04-26 14:09:17,625 - root - INFO - FAILMessage: An element could not be located on the page using the given search parameters.
+
+2019-04-26 14:09:17,625 - root - INFO - FAILMessage: An element could not be located on the page using the given search parameters.
+
+2019-04-26 14:09:17,625 - root - INFO - FAILMessage: An element could not be located on the page using the given search parameters.
+
+2019-04-26 14:09:17,626 - root - INFO - FAILMessage: An element could not be located on the page using the given search parameters.
+
+2019-04-26 14:09:17,686 - root - INFO - PASS执行成功
+2019-04-26 14:09:18,687 - root - INFO - PASS等待1秒
+2019-04-26 14:09:24,442 - root - INFO - PASS_error_定位切换账号确定按钮_9.png
+2019-04-26 14:09:30,326 - root - INFO - PASS_error_定位切换账号确定按钮_10.png

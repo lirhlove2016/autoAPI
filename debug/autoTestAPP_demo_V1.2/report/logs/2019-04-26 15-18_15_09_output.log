@@ -1,0 +1,27 @@
+2019-04-26 18:15:24,357 - root - INFO - PASS设备已经启动,wait30
+2019-04-26 18:15:25,844 - root - INFO - PASSleft
+2019-04-26 18:15:27,288 - root - INFO - PASSleft
+2019-04-26 18:15:28,757 - root - INFO - PASSleft
+2019-04-26 18:15:28,758 - root - INFO - PASSleft:3
+2019-04-26 18:15:28,967 - root - INFO - PASScom.ishugui:id/tv_man
+2019-04-26 18:15:29,064 - root - INFO - PASS执行成功
+2019-04-26 18:15:30,065 - root - INFO - PASS等待1秒
+2019-04-26 18:15:31,019 - root - INFO - PASS随机点击坐标432,844
+2019-04-26 18:15:34,622 - root - INFO - PASS等待1秒
+2019-04-26 18:15:35,033 - root - INFO - PASSshujia
+2019-04-26 18:15:36,034 - root - INFO - PASS等待1秒
+2019-04-26 18:15:37,599 - root - INFO - PASSup
+2019-04-26 18:15:37,601 - root - INFO - PASSup:1
+2019-04-26 18:15:38,601 - root - INFO - PASS等待1秒
+2019-04-26 18:15:40,131 - root - INFO - PASSdown
+2019-04-26 18:15:40,132 - root - INFO - PASSdown:1
+2019-04-26 18:15:42,710 - root - INFO - PASScom.ishugui:id/tv_sign_status
+2019-04-26 18:15:42,783 - root - INFO - PASSin，校验的值:签到,取值：今日签到
+2019-04-26 18:15:42,999 - root - INFO - PASScom.ishugui:id/tv_top_title_title
+2019-04-26 18:15:43,119 - root - INFO - PASS今日签到,本周已读 ,
+2019-04-26 18:15:48,119 - root - INFO - PASS等待5秒
+2019-04-26 18:15:48,389 - root - INFO - FAILnotequal，校验的值:今日签到,取值是：今日签到
+2019-04-26 18:15:48,439 - root - INFO - FAILnotin，校验的值:今日签,取值是：今日签到
+2019-04-26 18:15:48,536 - root - INFO - PASS今日签到,本周已读,
+2019-04-26 18:15:48,630 - root - INFO - PASS今日签到,本周已读,
+2019-04-26 18:15:48,729 - root - INFO - PASS今日签到,本周已读 ,

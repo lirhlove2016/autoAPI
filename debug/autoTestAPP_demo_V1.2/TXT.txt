@@ -8,6 +8,11 @@
 7.input，输入内容，同click
 8.sleep--等待时间，秒,
 9.savephoto，屏幕截图,图片名称
+10.校验=，批量校验=，
+11.校验in，批量校验in，
+12.校验！=,批量校验
+13.校验! in ,批量校验
+
 
 参数格式：
 用例名app	    方法	          元素定位	                                    参数2	                                       存储
@@ -28,5 +33,10 @@
 手机返回键	    back			
 退出app      	quit			
 获取页面信息	pagesource	   shujia.xml		
-校验值			assertequals     校验结果                              属性取值                                            元素                
-校验多个值     assertequals_all     校验结果1,校验结果2        属性取值1,属性取消2                            元素1,元素2  
+校验值=			assertequals     校验结果                              属性取值                                            元素                
+校验多个值=     assertequals_all     校验结果1,校验结果2        属性取值1,属性取消2                            元素1,元素2  
+校验值in			assertein     校验结果                              属性取值                                            元素                
+校验多个值in     assertein_all     校验结果1,校验结果2        属性取值1,属性取消2                            元素1,元素2  
+校验值not =		assertenotequal     校验结果                              属性取值                                            元素        
+校验值not in		assertenotin     校验结果                              属性取值                                            元素         
+校验多个值not=    assertein_all     校验结果1,校验结果2        属性取值1,属性取消2                            元素1,元素2 

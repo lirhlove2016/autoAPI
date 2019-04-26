@@ -3,26 +3,34 @@ import os
 import logging
 from datetime import datetime
 import threading
-
-from conf.conf import logDir
+import time
+from conf.conf import reportDir,logDir
 # localReadConfig = readConfig.ReadConfig()
 
 
 class Log:
     def __init__(self):
         global logPath, resultPath, logDir
-        # logDir = readConfig.proDir
-        resultPath = os.path.join(logDir, "result")
+        # reporDir = readConfig.proDir
+        resultPath = os.path.join(reportDir, "logs")
+
         if not os.path.exists(resultPath):
             os.mkdir(resultPath)
+            
         logPath = os.path.join(resultPath, str(datetime.now().strftime("%Y%m%d%H%M%S")))
         if not os.path.exists(logPath):
             os.mkdir(logPath)
+
         self.logger = logging.getLogger()
         self.logger.setLevel(logging.INFO)
 
         # defined handler
-        handler = logging.FileHandler(os.path.join(logPath, "output.log"))
+        
+        now = time.strftime("%Y-%m-%d %M-%H_%M_%S", time.localtime(time.time()))           
+        logresult = logDir+r"/"+now+"_output.log"
+        
+        #handler = logging.FileHandler(os.path.join(logPath, now))
+        handler = logging.FileHandler(logresult)
         # defined formatter
         formatter = logging.Formatter('%(asctime)s - %(name)s - %(levelname)s - %(message)s')
         handler.setFormatter(formatter)
@@ -106,8 +114,11 @@ class MyLog:
         return MyLog.log
 
 if __name__ == "__main__":
+	pass
+	'''
     log = MyLog.get_log()
     logger = log.get_logger()
     logger.debug("test debug")
     logger.info("test info")
+	'''
 

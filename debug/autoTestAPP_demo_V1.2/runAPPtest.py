@@ -24,16 +24,16 @@ def run(line):
         app.sleep(line[4])
         return
     if line[3] == 'right':
-        app.RIGHT()
+        app.swiptest("right",line[4])
         return
     if line[3] == 'left':
-        app.LEFT()
+        app.swiptest("left",line[4])
         return
     if line[3] == 'up':
-        app.UP()
+        app.swiptest("up", line[4])
         return
     if line[3] == 'down':
-        app.DOWN()
+        app.swiptest("down", line[4])
         return
     if line[3] == 'id':
         app.get_element("id", line[4], line[5], line[6], line[2])
@@ -62,47 +62,48 @@ def run(line):
     if line[3] == 'input':
         app.clicks("input", line[4], line[5], line[6], line[2])
         return
-
-    if line[3] == 'assertequals':
-        #app.assert_equals(line[4], line[5],line[6])
-        app.assert_method("equal",line[4], line[5],line[6])
-        return
-
-
     if line[3] == 'savephoto':
         app.get_screenshot(resultfile, line[4])
         return
-
     if line[3] == 'text':
         app.get_element("text", line[4], line[5], line[6], line[2])
         return
-
     if line[3] == 'quit':
         app.quit()
         return
-
     if line[3] == 'back':
         app.back()
         return
     if line[3]=='pagesource':
-        app.get_pagessource(line[4])
+        app.get_pagesource(line[4])
         return
-    if line[3] == 'assertequals_all':
-        app.assert_equals_all(line[4], line[5],line[6])
+    if line[3] == 'assertequal':
+        app.assert_method("equal",line[4], line[5],line[6])
         return
-
     if line[3] == 'assertin':
-        #app.assert_in(line[4], line[5],line[6])
         app.assert_method("in",line[4], line[5],line[6])
         return
-    if line[3] == 'assertin_all':
-        app.assert_in_all(line[4], line[5],line[6])
+    if line[3] == 'assertnotequal':
+        app.assert_method("notequal",line[4], line[5],line[6])
         return
-
+    if line[3] == 'assertnotin':
+        app.assert_method("notin",line[4], line[5],line[6])
+        return
+    if line[3] == 'assert_all_e':
+        app.assert_all_method("equal",line[4], line[5],line[6])
+        return
+    if line[3] == 'assert_all_in':
+        app.assert_all_method("in", line[4], line[5], line[6])
+        return
+    if line[3] == 'assertin_allnot_e':
+        app.assert_all_method("notequal", line[4], line[5], line[6])
+        return
+    if line[3] == 'assertin_allnot_in':
+        app.assert_all_method("notin", line[4], line[5], line[6])
+        return
     if line[3] == 'toast':
         t.is_toast_exists(app.driver,line[4],line[5],line[6])
         return
-
     if line[3] == 'alwaysallow':
         t.always_allow(app.driver,line[4])
         return    
@@ -143,14 +144,15 @@ def run(line):
     if line[3]=='activity':
         app.get_current_activity()
         return
-
+    if line[3]=='get_velue':
+        app.get_value(line[4],line[5])
+        return
 
     else:
         print('没有这个方法，请检查',line[3])
 
         return
 
-        
 reader.open_excel(srcfile)
 writer.copy_open(srcfile, desfile)
 

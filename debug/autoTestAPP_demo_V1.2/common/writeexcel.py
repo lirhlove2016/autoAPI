@@ -69,10 +69,9 @@ def write(r,c,value):
 
         return
 #写入公式
-def writeformula():
-    global wb,sheet
-    sheet.write(1, 8, xlwt.Formula('COUNTIF(H:H,"PASS")'))
-    sheet.write(2, 8, xlwt.Formula('COUNTIF(H:H,"FAIL")'))
+def write_formula():
+    global workbook, sheet, wb,df
+
 
 
 #保存

@@ -28,8 +28,6 @@ tanchuang_close_id=["%s:id/imageview_close"%PACK,"%s:id/imageview_cloud_sysch_cl
 
 
 
-
-
 if __name__=="__main__":
     print(dataDir)
     print(reportDir)
