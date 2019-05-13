@@ -3,9 +3,33 @@ import os
 from tkinter import *
 
 root=Tk()
-root.title('小工具')
+root.title('执行窗口')
 
 
+def add(a,b):
+    a=int(a)
+    b=int(b)
+    sum=eval('a+b')  #执行表达式
+    print('a+b=',sum)
+
+    return sum
+
+#调用其他函数fun(asg1,asg2)
+def go_func():
+    #第一个参数，调用函数，第2个参数，函数参数
+    func = n51.get()
+    asgs = n52.get()
+    func = eval(func)  #转为函数
+    #print(type(func))    
+    #无参数
+    if len(asgs) == 0:
+        func()
+    else:
+        #多参数j,分割
+        asg=asgs.split(',')
+        func(*asg)
+
+#--------------------------------------
 #清空文本框内容
 def  clear():
     text.delete('1.0','end')
@@ -65,8 +89,7 @@ def get_text():
     
 #-grid-----------------------------------------------------------------------
 
-
-#输入命令
+#label控件
 Label(root,text="输入命令:").grid(row=0,column=0,sticky=E) #靠右
 Label(root,text="本地目录:").grid(row=1,column=0,sticky=E) #靠右
 Label(root, text='手机目录').grid(row=2,column=0,sticky=E) #靠左
@@ -82,10 +105,10 @@ e3=Entry(root,width=30)
 e3.grid(row=2,column=1,padx=5,pady=5)
 
 
-#命令行
+#命令控件
 #b1=Button(root,text="点击看看吧",command=show,height=1,width=15,fg='blue').grid(row=2,column=1)    
 #Label(root, text='显示结果', width=15, height=1).grid(row=2,column=1,sticky=W) #靠左
-
+#grid(row=1,column=2),row,行，从0开始，column列从0开始；
 b1=Button(root,text="执行命令",command=get_text,height=1,width=15,fg='blue').grid(row=0,column=2,padx=5, pady=5)
 b2=Button(root,text="安装包",command=show,height=1,width=15,fg='blue').grid(row=1,column=2,padx=5, pady=5)
 
@@ -93,9 +116,30 @@ b3=Button(root,text="查看设备",command=get_app_deviceid,height=1,width=15,fg
 b4=Button(root,text="清空",command=clear,height=1,width=15,fg='black').grid(row=4,column=2,padx=5, pady=5)
 
 
-#显示结果text
+
+#显示结果，text控件
 text = Text(root, width=30, font =('Verdana',10),fg='blue')
 text.grid(row=4,column=1,rowspan=3)
+
+
+#调用函数
+Label(root, text='调用函数').grid(row=8,column=0) 
+Label(root, text='输入函数名').grid(row=8,column=1) 
+Label(root, text='输入参数').grid(row=8,column=2) 
+
+#调用函数
+b5= Button(root,text = "加法",command = go_func,width = 15).grid(row = 9,column = 0,padx=5, pady=5)
+#输入函数名
+var1 = StringVar()
+n51 = Entry(root,width = 30,textvariable = var1)
+var1.set("add")
+n51.grid(row = 9,column = 1)
+
+#输入函数参数
+var2 = StringVar()
+n52 = Entry(root,width = 30,textvariable = var2)
+var2.set("a,b")
+n52.grid(row = 9,column = 2)
 
 
 root.mainloop()
