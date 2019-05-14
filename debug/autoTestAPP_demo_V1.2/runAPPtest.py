@@ -3,7 +3,7 @@ from common import elementApp as app
 from common import readexcel as reader, writeexcel as writer
 from common import toast as t
 import os
-
+import time
 # -文件目录配置----------------------------
 filepath = os.path.abspath(os.getcwd())
 srcfile = os.path.join(filepath, 'datadir/myApp.xls')
@@ -11,6 +11,8 @@ desfile = os.path.join(filepath, 'datadir/myApp_result.xls')
 resultfile = os.path.join(filepath, 'report/screenshot/screenshot_')
 print(srcfile)
 
+#时间
+start_time=time.clock()
 # -脚本-----------------------------------
 def run(line):
     if line[3] == 'caps':
@@ -169,5 +171,6 @@ for i in range(0, reader.r):
 writer.save_close()
 
 print('执行完成---------------')
-
+end_time=time.clock()
+print("运行时间",end_time-start_time)
 # ----end------------------------------------------

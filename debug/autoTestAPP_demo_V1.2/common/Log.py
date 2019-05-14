@@ -6,7 +6,7 @@ import threading
 import time
 from conf.conf import reportDir,logDir
 # localReadConfig = readConfig.ReadConfig()
-
+#reportDir, "logs"
 
 class Log:
     def __init__(self):

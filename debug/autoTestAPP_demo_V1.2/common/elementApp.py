@@ -65,8 +65,8 @@ timeout = 30
 driver = ""
 
 #log
-log = Log.get_log()
-logger = log.get_logger()
+#log = Log.get_log()
+#logger = log.get_logger()
 #
 
 # 设备参数
@@ -93,7 +93,8 @@ def wirte_result(result, value):
     if reader.rr>0:
         writer.write(reader.rr - 1, 7, result)
         writer.write(reader.rr - 1, 8, value)
-        logger.info(result+value)
+        #log
+        #logger.info(result+value)
     
 # 配置设备
 def update_capability(key,value):

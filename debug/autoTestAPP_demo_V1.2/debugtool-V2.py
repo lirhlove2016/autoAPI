@@ -24,8 +24,8 @@ from common import elementApp as app
 
 #定义你的设备信息
 app.update_capability('platformName','Android')
-app.update_capability('platformVersion','9')
-app.update_capability('deviceName','UYT0218209004285')
+app.update_capability('platformVersion','8.0.0')        #9
+app.update_capability('deviceName','SNMBB18417516563')   #UYT0218209004285
 app.update_capability('appPackage','com.ishugui')
 app.update_capability('appActivity','com.dzbook.activity.LogoActivity')
 app.update_capability('automationName','UiAutomator2')

@@ -9,67 +9,138 @@ import random
 from conf.conf import dataDir,reportDir,pageDir,imageDir
 from common import elementApp as app
 from module import pil_common as image
+
 #定义你的设备信息
 app.update_capability('platformName','Android')
-app.update_capability('platformVersion','9')
-app.update_capability('deviceName','UYT0218209004285')
+app.update_capability('platformVersion','8.0.0')        #9
+app.update_capability('deviceName','SNMBB18417516563')   #UYT0218209004285
 app.update_capability('appPackage','com.ishugui')
 app.update_capability('appActivity','com.dzbook.activity.LogoActivity')
 app.update_capability('automationName','UiAutomator2')
+app.update_capability('appActivity','com.dzbook.activity.LogoActivity')
+app.update_capability('automationName','UiAutomator2')
+
 
 #引用你要调试的文件中的driver
-#app.start('http://localhost:4723/wd/hub',30)
+app.start('http://localhost:4723/wd/hub',30)
+driver = app.driver
 
-# 保存图片
-resultfile = os.path.join(reportDir, 'image/pic')
-num=1
 
-driver=app.driver
+#我的-充值
+xpath="//android.widget.TextView[@text='我的']"
+el=driver.find_element_by_xpath(xpath).click()
+print("打开我的")
+#点击充值
+xpath="com.ishugui:id/textview_click"
+el=driver.find_element_by_id(xpath).click()
+print("充值中心")
+time.sleep(2)
+
+
+#微信充值
+
+#up 上滑
+app.swiptest("up", "2")
+print("上滑")
+#微信支付
+xpath="//android.widget.TextView[@text='微信']"
+el=driver.find_element_by_xpath(xpath).click()
+print("微信")
+
+#down 下滑
+app.swiptest("down", "1")
+print("下滑")
+xpath="//android.widget.TextView[@text='1看点']"
+el=driver.find_element_by_xpath(xpath).click()
+print("1看点")
+
+#点击立即充值
+id="com.ishugui:id/textview_recharge"
+xpath="//android.widget.TextView[@text='立即充值']"
+el=driver.find_element_by_xpath(xpath).click()
+
+time.sleep(1)
+xpath="//android.widget.TextView[@text='立即支付']"
+el=driver.find_element_by_xpath(xpath).click()
+time.sleep(1)
+
+
+'''
+#支付宝--------------------------------
+#up 上滑
+app.swiptest("up", "2")
+print("上滑")
+#支付
+xpath="//android.widget.TextView[@text='支付宝']"
+el=driver.find_element_by_xpath(xpath).click()
+print("支付宝")
+
+#down 下滑
+app.swiptest("down", "1")
+print("下滑")
+xpath="//android.widget.TextView[@text='100看点']"
+el=driver.find_element_by_xpath(xpath).click()
+print("100看点")
+
+#点击立即充值
+id="com.ishugui:id/textview_recharge"
+xpath="//android.widget.TextView[@text='立即充值']"
+el=driver.find_element_by_xpath(xpath).click()
+
+time.sleep(1)
+xpath="//android.widget.TextView[@text='立即付款']"
+el=driver.find_element_by_xpath(xpath).click()
+time.sleep(1)
+#支付宝充值
+key=1
+xpath="//android.widget.TextView[@resource-id='com.alipay.android.phone.safepaybase:id/key_num_%s']"%key
+el=driver.find_element_by_xpath(xpath).click()
+
+key=5
+xpath="//android.widget.TextView[@resource-id='com.alipay.android.phone.safepaybase:id/key_num_%s']"%key
+el=driver.find_element_by_xpath(xpath).click()
+key=9
+xpath="//android.widget.TextView[@resource-id='com.alipay.android.phone.safepaybase:id/key_num_%s']"%key
+el=driver.find_element_by_xpath(xpath).click()
+key=3
+xpath="//android.widget.TextView[@resource-id='com.alipay.android.phone.safepaybase:id/key_num_%s']"%key
+el=driver.find_element_by_xpath(xpath).click()
+key=5
+xpath="//android.widget.TextView[@resource-id='com.alipay.android.phone.safepaybase:id/key_num_%s']"%key
+el=driver.find_element_by_xpath(xpath).click()
+key=7
+xpath="//android.widget.TextView[@resource-id='com.alipay.android.phone.safepaybase:id/key_num_%s']"%key
+el=driver.find_element_by_xpath(xpath).click()
+'''
+
 time.sleep(5)
-#截图
-app.get_screenshot(resultfile, "_1.png")
-print('保存图片了')
+print('开始操作按键')
 
-filepath=resultfile+"_1.png"
+#按键1 8，KEYCODE_1
+s=driver.press_keycode(8)   #括号里填入的是键盘按键的数字代号
+time.sleep(2)
+print('按键1',s)
+s=driver.press_keycode(12)   #括号里填入的是键盘按键的数字代号
+print('按键3',s)
 
-#取bounds
-el=app.get_element("text","今日签到","","shujia")
-el=driver.find_element_by_id("com.ishugui:id/tv_sign_status")
-print(el)
-t=el.get_attribute("bounds")
-print("获取的bounds",t,type(t))
-
-#拆分
-def get_bounds(t):
-    print('正在拆分')
-    x=t.split('][')
-    x1,y1=x[0].split(',')
-    x2,y2=x[1].split(',')
-    p1=x1.split('[')
-    p2=y2.split(']')
-    x1=p1[1]
-    y2=p2[0]
-    return  int(x1),int(x2),int(y1),int(y2)
-x=get_bounds(t)
-print('x',x)
-b=[]
-c=[]
-d=[]
-b.append(x[0])
-b.append(x[1])
-c.append(x[2])
-c.append(x[3])
-d.append(b)
-d.append(c)
-print('d',d)
-
-# 调用
-filepath=resultfile+"_2.png"
-#d=[[488, 668], [308, 368]]
-print(filepath,d)
-image.pic_rectangle(filepath, d)
+s=driver.press_keycode(16)   #括号里填入的是键盘按键的数字代号
+#返回
+s=driver.press_keycode(4)
+driver.keyevent(4)
 
 
-#点击
-#el.click()
+'''
+#拆分坐标
+def get_xy(bound):
+    x=[1,1000][719,1119]
+    x1=1
+    x2=1000
+    key1=(x2-x1)/3
+    key2=(x2-x1)/3*2
+    key3=(x2-x1)/3*3
+    print()
+    y=y1+(y2-y1)/2
+
+'''
+
 
