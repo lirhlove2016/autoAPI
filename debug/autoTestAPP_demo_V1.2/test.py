@@ -114,6 +114,7 @@ el=driver.find_element_by_xpath(xpath).click()
 '''
 
 time.sleep(5)
+'''
 print('开始操作按键')
 
 #按键1 8，KEYCODE_1
@@ -122,44 +123,38 @@ time.sleep(2)
 print('按键1',s)
 s=driver.press_keycode(12)   #括号里填入的是键盘按键的数字代号
 print('按键3',s)
-
 s=driver.press_keycode(16)   #括号里填入的是键盘按键的数字代号
-
+'''
 #微信密码输入键盘，三等分
 def split_xy(x1, x2):
     x11 = int((x2 - x1) / 3)
     x12 = int((x2 - x1) / 3 * 2)
-    x13 = int((x2 - x1) / 3 * 3)
+    x13 = x2
 
     return x11, x12, x13
-
 #[1,929][719,1036]
 #[1,1036][719,1143]
 #[1,1143][719,1251]
-x1=1
-x2=929
+
 y1=1000
-
-x11=int((x2-x1)/3)
-x13=x2
 print("点击键盘159，357")
-x11,x12,x13=split_xy(1,929)
-app.tap_point(x11,y1)
+x1,x2,x3=split_xy(1,719)
+app.tap_point(x1,y1)
 
-y2=1000
-x21,x22,x23=split_xy(1,1036)
-app.tap_point(x22,y2)
+y2=1100
+#x21,x22,x23=split_xy(1,719)
+app.tap_point(x2,y2)
 
 y3=1200
-x31,x32,x33=split_xy(1,1143)
-app.tap_point(x13,y3)
+#x31,x32,x33=split_xy(1,719)
+app.tap_point(x3,y3)
 print("点击键盘357")
 #3
-app.tap_point(x13,y1)
+app.tap_point(x3,y1)
 #5
-app.tap_point(x22,y2)
+app.tap_point(x2,y2)
 #7
-app.tap_point(x31,y3)
+app.tap_point(x1,y3)
 
 
 

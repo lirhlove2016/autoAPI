@@ -53,9 +53,9 @@ number = 0  # 保存图片序号用
 elements = {}
 saveelements={}
 saveelements_array={}
+
 # 保存上一个操作的元素定位
 e = ""
-
 
 # 保存值
 saveValue = {}
@@ -63,6 +63,13 @@ saveValue = {}
 url = "http://localhost:4723/wd/hub"
 timeout = 30
 driver = ""
+
+#保存定位元素值，如x=500,@x1
+saveJson={}
+
+
+
+
 
 #log
 #log = Log.get_log()
