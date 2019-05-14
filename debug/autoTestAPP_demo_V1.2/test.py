@@ -55,15 +55,15 @@ el=driver.find_element_by_xpath(xpath).click()
 print("1看点")
 
 #点击立即充值
-id="com.ishugui:id/textview_recharge"
 xpath="//android.widget.TextView[@text='立即充值']"
 el=driver.find_element_by_xpath(xpath).click()
-
+print("点击充值")
 time.sleep(1)
 xpath="//android.widget.TextView[@text='立即支付']"
+xpath="//*[contains(@text, '立即支付')]"
 el=driver.find_element_by_xpath(xpath).click()
 time.sleep(1)
-
+print("点击支付")
 
 '''
 #支付宝--------------------------------
@@ -124,23 +124,44 @@ s=driver.press_keycode(12)   #括号里填入的是键盘按键的数字代号
 print('按键3',s)
 
 s=driver.press_keycode(16)   #括号里填入的是键盘按键的数字代号
-#返回
-s=driver.press_keycode(4)
-driver.keyevent(4)
+
+#微信密码输入键盘，三等分
+def split_xy(x1, x2):
+    x11 = int((x2 - x1) / 3)
+    x12 = int((x2 - x1) / 3 * 2)
+    x13 = int((x2 - x1) / 3 * 3)
+
+    return x11, x12, x13
+
+#[1,929][719,1036]
+#[1,1036][719,1143]
+#[1,1143][719,1251]
+x1=1
+x2=929
+y1=1000
+
+x11=int((x2-x1)/3)
+x13=x2
+print("点击键盘159，357")
+x11,x12,x13=split_xy(1,929)
+app.tap_point(x11,y1)
+
+y2=1000
+x21,x22,x23=split_xy(1,1036)
+app.tap_point(x22,y2)
+
+y3=1200
+x31,x32,x33=split_xy(1,1143)
+app.tap_point(x13,y3)
+print("点击键盘357")
+#3
+app.tap_point(x13,y1)
+#5
+app.tap_point(x22,y2)
+#7
+app.tap_point(x31,y3)
 
 
-'''
-#拆分坐标
-def get_xy(bound):
-    x=[1,1000][719,1119]
-    x1=1
-    x2=1000
-    key1=(x2-x1)/3
-    key2=(x2-x1)/3*2
-    key3=(x2-x1)/3*3
-    print()
-    y=y1+(y2-y1)/2
 
-'''
 
 

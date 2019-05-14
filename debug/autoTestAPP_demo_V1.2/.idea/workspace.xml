@@ -1,167 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="2ac0c537-8ad0-471d-af10-a2dad9c007e2" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/common/Log.py" beforeDir="false" afterPath="$PROJECT_DIR$/common/Log.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/debugtool-V2.py" beforeDir="false" afterPath="$PROJECT_DIR$/debugtool-V2.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/report/logs/2019-04-26 00-13_00_59_output.log" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/report/logs/2019-04-26 00-14_00_27_output.log" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/report/logs/2019-04-26 01-13_01_44_output.log" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/report/logs/2019-04-26 03-12_03_41_output.log" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/report/logs/2019-04-26 03-15_03_58_output.log" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/report/logs/2019-04-26 05-12_05_16_output.log" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/report/logs/2019-04-26 05-12_05_37_output.log" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/report/logs/2019-04-26 05-13_05_22_output.log" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/report/logs/2019-04-26 06-12_06_37_output.log" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/report/logs/2019-04-26 06-13_06_41_output.log" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/report/logs/2019-04-26 06-16_06_21_output.log" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/report/logs/2019-04-26 07-12_07_10_output.log" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/report/logs/2019-04-26 07-12_07_52_output.log" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/report/logs/2019-04-26 07-14_07_50_output.log" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/report/logs/2019-04-26 07-15_07_42_output.log" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/report/logs/2019-04-26 07-16_07_43_output.log" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/report/logs/2019-04-26 08-13_08_53_output.log" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/report/logs/2019-04-26 09-14_09_36_output.log" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/report/logs/2019-04-26 09-17_09_06_output.log" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/report/logs/2019-04-26 09-18_09_16_output.log" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/report/logs/2019-04-26 10-13_10_04_output.log" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/report/logs/2019-04-26 11-18_11_23_output.log" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/report/logs/2019-04-26 11-20_11_26_output.log" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/report/logs/2019-04-26 11-20_11_48_output.log" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/report/logs/2019-04-26 12-13_12_37_output.log" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/report/logs/2019-04-26 12-18_12_04_output.log" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/report/logs/2019-04-26 13-15_13_04_output.log" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/report/logs/2019-04-26 13-19_13_29_output.log" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/report/logs/2019-04-26 13-20_13_53_output.log" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/report/logs/2019-04-26 14-15_14_59_output.log" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/report/logs/2019-04-26 14-18_14_20_output.log" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/report/logs/2019-04-26 14-19_14_52_output.log" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/report/logs/2019-04-26 15-18_15_09_output.log" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/report/logs/2019-04-26 15-19_15_28_output.log" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/report/logs/2019-04-26 15-20_15_43_output.log" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/report/logs/2019-04-26 16-12_16_22_output.log" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/report/logs/2019-04-26 16-17_16_29_output.log" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/report/logs/2019-04-26 16-19_16_08_output.log" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/report/logs/2019-04-26 17-20_17_24_output.log" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/report/logs/2019-04-26 18-13_18_30_output.log" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/report/logs/2019-04-26 18-13_18_43_output.log" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/report/logs/2019-04-26 18-13_18_57_output.log" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/report/logs/2019-04-26 18-13_18_59_output.log" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/report/logs/2019-04-26 18-14_18_07_output.log" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/report/logs/2019-04-26 19-12_19_27_output.log" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/report/logs/2019-04-26 19-13_19_01_output.log" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/report/logs/2019-04-26 19-13_19_05_output.log" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/report/logs/2019-04-26 19-13_19_08_output.log" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/report/logs/2019-04-26 19-13_19_10_output.log" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/report/logs/2019-04-26 19-13_19_11_output.log" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/report/logs/2019-04-26 19-13_19_42_output.log" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/report/logs/2019-04-26 19-17_19_11_output.log" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/report/logs/2019-04-26 19-20_19_01_output.log" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/report/logs/2019-04-26 20-12_20_56_output.log" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/report/logs/2019-04-26 20-15_20_40_output.log" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/report/logs/2019-04-26 21-13_21_10_output.log" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/report/logs/2019-04-26 22-20_22_15_output.log" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/report/logs/2019-04-26 23-12_23_09_output.log" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/report/logs/2019-04-26 24-12_24_07_output.log" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/report/logs/2019-04-26 24-12_24_30_output.log" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/report/logs/2019-04-26 24-13_24_08_output.log" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/report/logs/2019-04-26 24-17_24_17_output.log" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/report/logs/2019-04-26 24-18_24_55_output.log" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/report/logs/2019-04-26 24-20_24_10_output.log" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/report/logs/2019-04-26 25-20_25_15_output.log" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/report/logs/2019-04-26 26-12_26_11_output.log" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/report/logs/2019-04-26 26-17_26_12_output.log" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/report/logs/2019-04-26 26-20_26_46_output.log" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/report/logs/2019-04-26 27-12_27_45_output.log" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/report/logs/2019-04-26 27-14_27_33_output.log" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/report/logs/2019-04-26 27-20_27_38_output.log" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/report/logs/2019-04-26 28-12_28_55_output.log" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/report/logs/2019-04-26 30-11_30_02_output.log" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/report/logs/2019-04-26 30-12_30_55_output.log" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/report/logs/2019-04-26 30-13_30_36_output.log" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/report/logs/2019-04-26 30-14_30_35_output.log" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/report/logs/2019-04-26 30-17_30_00_output.log" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/report/logs/2019-04-26 30-20_30_26_output.log" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/report/logs/2019-04-26 31-13_31_44_output.log" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/report/logs/2019-04-26 31-19_31_55_output.log" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/report/logs/2019-04-26 32-11_32_27_output.log" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/report/logs/2019-04-26 32-19_32_57_output.log" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/report/logs/2019-04-26 32-20_32_18_output.log" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/report/logs/2019-04-26 33-14_33_47_output.log" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/report/logs/2019-04-26 33-16_33_52_output.log" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/report/logs/2019-04-26 33-18_33_50_output.log" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/report/logs/2019-04-26 33-19_33_52_output.log" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/report/logs/2019-04-26 33-20_33_26_output.log" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/report/logs/2019-04-26 34-13_34_37_output.log" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/report/logs/2019-04-26 34-14_34_56_output.log" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/report/logs/2019-04-26 34-16_34_41_output.log" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/report/logs/2019-04-26 34-20_34_02_output.log" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/report/logs/2019-04-26 35-13_35_57_output.log" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/report/logs/2019-04-26 35-15_35_57_output.log" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/report/logs/2019-04-26 35-17_35_30_output.log" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/report/logs/2019-04-26 36-11_36_08_output.log" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/report/logs/2019-04-26 36-14_36_43_output.log" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/report/logs/2019-04-26 36-19_36_03_output.log" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/report/logs/2019-04-26 36-20_36_54_output.log" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/report/logs/2019-04-26 37-11_37_32_output.log" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/report/logs/2019-04-26 37-19_37_25_output.log" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/report/logs/2019-04-26 38-11_38_33_output.log" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/report/logs/2019-04-26 38-14_38_41_output.log" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/report/logs/2019-04-26 38-17_38_21_output.log" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/report/logs/2019-04-26 38-19_38_24_output.log" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/report/logs/2019-04-26 38-20_38_33_output.log" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/report/logs/2019-04-26 39-11_39_10_output.log" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/report/logs/2019-04-26 39-13_39_18_output.log" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/report/logs/2019-04-26 39-16_39_47_output.log" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/report/logs/2019-04-26 39-19_39_16_output.log" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/report/logs/2019-04-26 40-14_40_26_output.log" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/report/logs/2019-04-26 41-13_41_06_output.log" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/report/logs/2019-04-26 41-18_41_05_output.log" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/report/logs/2019-04-26 41-19_41_05_output.log" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/report/logs/2019-04-26 41-20_41_22_output.log" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/report/logs/2019-04-26 42-11_42_07_output.log" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/report/logs/2019-04-26 42-11_42_41_output.log" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/report/logs/2019-04-26 42-13_42_35_output.log" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/report/logs/2019-04-26 42-15_42_30_output.log" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/report/logs/2019-04-26 43-14_43_35_output.log" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/report/logs/2019-04-26 43-16_43_19_output.log" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/report/logs/2019-04-26 43-20_43_21_output.log" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/report/logs/2019-04-26 43-20_43_38_output.log" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/report/logs/2019-04-26 43-20_43_57_output.log" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/report/logs/2019-04-26 44-11_44_12_output.log" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/report/logs/2019-04-26 44-11_44_56_output.log" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/report/logs/2019-04-26 44-19_44_47_output.log" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/report/logs/2019-04-26 44-20_44_29_output.log" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/report/logs/2019-04-26 45-14_45_22_output.log" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/report/logs/2019-04-26 45-19_45_50_output.log" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/report/logs/2019-04-26 45-20_45_40_output.log" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/report/logs/2019-04-26 46-20_46_19_output.log" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/report/logs/2019-04-26 47-13_47_05_output.log" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/report/logs/2019-04-26 47-14_47_57_output.log" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/report/logs/2019-04-26 47-15_47_47_output.log" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/report/logs/2019-04-26 47-16_47_18_output.log" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/report/logs/2019-04-26 48-11_48_03_output.log" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/report/logs/2019-04-26 48-13_48_18_output.log" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/report/logs/2019-04-26 48-15_48_42_output.log" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/report/logs/2019-04-26 48-16_48_42_output.log" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/report/logs/2019-04-26 49-11_49_01_output.log" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/report/logs/2019-04-26 50-16_50_06_output.log" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/report/logs/2019-04-26 51-11_51_17_output.log" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/report/logs/2019-04-26 51-11_51_42_output.log" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/report/logs/2019-04-26 52-11_52_50_output.log" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/report/logs/2019-04-26 52-17_52_55_output.log" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/report/logs/2019-04-26 53-11_53_24_output.log" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/report/logs/2019-04-26 54-11_54_33_output.log" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/report/logs/2019-04-26 55-11_55_01_output.log" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/report/logs/2019-04-26 55-11_55_25_output.log" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/report/logs/2019-04-26 55-14_55_29_output.log" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/report/logs/2019-04-26 57-13_57_09_output.log" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/report/logs/2019-04-26 57-17_57_33_output.log" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/report/pages/shujia_page_0.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/report/pages/shujia_page_1.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/report/screenshot/screenshot__1.png" beforeDir="false" />
-    </list>
+    <list default="true" id="2ac0c537-8ad0-471d-af10-a2dad9c007e2" name="Default Changelist" comment="" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -169,7 +9,7 @@
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="CoverageDataManager">
-    <SUITE FILE_PATH="coverage/autoTestAPP_demo_V1_2$test.coverage" NAME="test Coverage Results" MODIFIED="1557835311161" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/autoTestAPP_demo_V1_2$test.coverage" NAME="test Coverage Results" MODIFIED="1557836691735" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/autoTestAPP_demo_V1_0$elementApp.coverage" NAME="elementApp Coverage Results" MODIFIED="1545115996609" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/common" />
     <SUITE FILE_PATH="coverage/autoTestAPP_demo_V1_2$elementApp.coverage" NAME="elementApp Coverage Results" MODIFIED="1557831929665" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/common" />
     <SUITE FILE_PATH="coverage/autoTestAPP_demo_V1_2$gongshi.coverage" NAME="gongshi Coverage Results" MODIFIED="1556275865929" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
@@ -281,24 +121,24 @@
       </usages-collector>
       <usages-collector id="statistics.file.extensions.open">
         <counts>
-          <entry key="py" value="41" />
+          <entry key="py" value="42" />
           <entry key="txt" value="1" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.open">
         <counts>
           <entry key="PLAIN_TEXT" value="1" />
-          <entry key="Python" value="41" />
+          <entry key="Python" value="42" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
-          <entry key="py" value="2659" />
+          <entry key="py" value="2975" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
-          <entry key="Python" value="2659" />
+          <entry key="Python" value="2975" />
         </counts>
       </usages-collector>
     </session>
@@ -308,8 +148,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/test.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1230">
-              <caret line="66" lean-forward="true" selection-start-line="66" selection-end-line="66" />
+            <state relative-caret-position="292">
+              <caret line="156" column="2" lean-forward="true" selection-start-line="156" selection-start-column="2" selection-end-line="156" selection-end-column="2" />
               <folding>
                 <element signature="e#15#51#0" expanded="true" />
               </folding>
@@ -387,6 +227,11 @@
             <path>
               <item name="autoTestAPP_demo_V1.2" type="b2602c69:ProjectViewProjectNode" />
               <item name="autoTestAPP_demo_V1.2" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="autoTestAPP_demo_V1.2" type="b2602c69:ProjectViewProjectNode" />
+              <item name="autoTestAPP_demo_V1.2" type="462c0819:PsiDirectoryNode" />
+              <item name="common" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -575,7 +420,7 @@
       <window_info anchor="bottom" id="Cvs" order="9" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="10" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="11" />
-      <window_info active="true" anchor="bottom" id="Run" order="12" visible="true" weight="0.0" />
+      <window_info active="true" anchor="bottom" id="Run" order="12" visible="true" weight="0.43829787" />
       <window_info anchor="right" id="SciView" order="0" />
       <window_info anchor="right" id="Database" order="1" />
       <window_info anchor="right" id="Data View" order="2" />
@@ -885,16 +730,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/common/elementApp.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="254">
-          <caret line="889" column="4" lean-forward="true" selection-start-line="889" selection-start-column="4" selection-end-line="889" selection-end-column="4" />
-          <folding>
-            <element signature="e#15#43#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/runAPPtest.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="850">
@@ -905,10 +740,20 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/common/elementApp.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="329">
+          <caret line="1054" column="27" lean-forward="true" selection-start-line="1054" selection-start-column="27" selection-end-line="1054" selection-end-column="27" />
+          <folding>
+            <element signature="e#15#43#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/test.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1230">
-          <caret line="66" lean-forward="true" selection-start-line="66" selection-end-line="66" />
+        <state relative-caret-position="292">
+          <caret line="156" column="2" lean-forward="true" selection-start-line="156" selection-start-column="2" selection-end-line="156" selection-end-column="2" />
           <folding>
             <element signature="e#15#51#0" expanded="true" />
           </folding>
