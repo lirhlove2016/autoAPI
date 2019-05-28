@@ -10,10 +10,12 @@ by lirh
 filepath=os.path.abspath(os.path.dirname(os.path.dirname(__file__)))
 dataDir=os.path.join(filepath,'datadir')
 reportDir=os.path.join(filepath,'report')
+
 pageDir = os.path.join(filepath, 'report/pages/')
 imageDir = os.path.join(filepath, 'report/image/')  #截图
 logDir = os.path.join(filepath, 'report/logs/')  #log
 htmlDir = os.path.join(filepath, 'report/html/')  #log
+
 #设置包名
 appPackage=""
 appActivity=""

@@ -6,6 +6,8 @@ from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 import random
 from common.Log import MyLog as Log
+
+
 PATH = lambda p: os.path.abspath(os.path.join(os.path.dirname(__file__), p))
 from conf.conf import dataDir,reportDir,pageDir,imageDir
 from conf import conf
@@ -1125,6 +1127,24 @@ def step_insterval_time():
     if  conf.STEP_INTERVAL_TIME:
         if conf.step_sleep>1:
             time.sleep(conf.step_sleep)
+#----------------------------------------------------------------------
+number=1
+def  get_element_pic(casename,el):
+    global number,driver
+    filepath="./report/image/%s_%d.png"%(casename, number)
+    get_screenshot(imageDir, "%s_%d.png" % (casename, number))
+    print("保存图片")
+    #
+    # 获取坐标
+    bounds = el.get_attribute("bounds")
+    recxy = image.get_bounds_xy(bounds)
+    print(recxy, recxy[0])
+    # 调用图片处理
+    #filepath = "./report/image/shujia_1.png"
+    image.pic_rectangle(filepath, recxy)
+#----------------------------------------------------------------------
+
+
 
 if __name__ == "__main__":
     pass
