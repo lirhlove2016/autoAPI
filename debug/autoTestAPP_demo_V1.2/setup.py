@@ -2,11 +2,6 @@
 import os
 
 try:
-    import requests
-except :
-    os.system('pip install requests')
-
-try:
     import xlrd
 except :
     os.system('pip install xlrd')
@@ -19,11 +14,6 @@ try:
     import xlutils
 except :
     os.system('pip install xlutils==2.0.0')
-	
-try:
-    import jsonpath
-except :
-    os.system('pip install jsonpath==0.80')
 	
 try:
     import selenium

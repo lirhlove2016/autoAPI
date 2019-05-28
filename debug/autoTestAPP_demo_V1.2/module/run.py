@@ -151,13 +151,10 @@ class testAPP(unittest.TestCase):
                 app.get_current_activity()
                 return
 
-
             else:
                 print('没有这个方法，请检查',line[3])
-
                 return
 
-                
         reader.open_excel(srcfile)
         writer.copy_open(srcfile, desfile)
 

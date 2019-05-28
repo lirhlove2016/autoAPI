@@ -1,12 +1,9 @@
 import os
-# import readConfig as readConfig
 import logging
 from datetime import datetime
 import threading
 import time
 from conf.conf import reportDir,logDir
-# localReadConfig = readConfig.ReadConfig()
-#reportDir, "logs"
 
 class Log:
     def __init__(self):

@@ -26,27 +26,28 @@ v：1.1
 3.assertequals_all，多个元素校验
 4.调用模块封装go_func()
 5.tanchuang(),id
-6.存在就操作，is_exists()
-7.assertin,单个存在，多个存在
-8.assertin_all,单个存在，多个存在
-9.backs,多次返回
-10.多次滑动,swiptest("right",num)
-11.
+6.assertin,单个存在，多个存在
+7.assertin_all,单个存在，多个存在
+8.backs,多次返回
+9.多次滑动,swiptest("right",num)
+10.tanchuang_all，id,在conf中配置的值都执行一次
 
 v1.2
-1.随机点击taprandom,不能是边界值
-2.坐标点击tappoint（x,y)
+1.随机点击tap_random,不能是边界值
+2.坐标点击tap_point（x,y),x,y,可以是百分比，可以是值
 3.获取当前activity,get_package()
-4.根据source判断,source_assert
+4.根据source判断是否存在,source_assert
 5.校验notequal,notin
 6.批量校验notequal,notin
-
+V1.3
+1.判断存在就点击，xpath_exist(id/text,value)
+2.存储常量，const_value(method,keys,values)
+3.调用常量
 
 """
 
 # 保存图片
 resultfile = os.path.join(reportDir, 'screenshot/screenshot_')
-
 number = 0  # 保存图片序号用
 
 # 保存元素
@@ -67,7 +68,8 @@ driver = ""
 #保存定位元素值，如x=500,@x1
 saveJson={}
 
-
+#定义常量
+CONST_VALUE={}
 
 
 
@@ -102,7 +104,14 @@ def wirte_result(result, value):
         writer.write(reader.rr - 1, 8, value)
         #log
         #logger.info(result+value)
-    
+
+#写入公式
+def write_formula():
+    str1 = '=COUNTIF(H:H,"PASS"))'
+    str2 = '=COUNTIF(H:H,"FAIL"))'
+    writer.write(1, 8, str1)
+    writer.write(2, 8, str2)
+
 # 配置设备
 def update_capability(key,value):
     global desired_caps
@@ -540,53 +549,7 @@ def assert_method(method,name,value,el):
     
     # 写入
     wirte_result(re,result)
-'''	
-#assert多个,
-def assert_equals_all(names,values,els):
-	global driver
-	print('正在进行校验-----------------------------------------------------------------')	
-	print('本次校验的多个期望结果是：%s,取值:%s'%(names,values))
-	
-	#调用拆分
-	n=get_split(names)
-	v=get_split(values)
-	el=get_split(els)
 
-	#依次校验每个值
-	r=[]
-	result=[]
-
-	for i in range(len(n)):
-		#调用取值
-		values=get_value(v[i],el[i])
-		#进行判断
-		if n[i]==values:
-			r.append("PASS")			
-			result.append(n[i])
-			
-		else:			
-			r.append("FAIL")
-			result.append(values)
-
-	#都为PASS时结果PASS,只要有一个FAIL就FAIL
-	re="PASS"
-	for i in range(len(r)):
-		if r[i]=="FAIL":
-			re="FAIL"
-		
-	if re!="FAIL":
-		print('校验正确,校验结果：%s'%names)
-	else:
-		print('校验不正确，要校验的值为:%s,取值%s'%(names,result))
-	
-	#将result加,传给excel写入
-	s=""
-	for i in range(len(result)):
-		s=s+result[i]+","
-	print(s)
-	# 写入
-	wirte_result(re,s)
-'''
 #拆分多个参数,以逗号拆分，去除前后空格
 def  get_split(names):
 	n=[]
@@ -751,14 +714,14 @@ def source_assert(*args):
 
     # 写入
     wirte_result(re,value)
-#-----------------------------------------------
+#----------------------------------------------------
 #返回坐标
 def get_xy(radiox,radioy):
     #坐标
     coordinate=[]
     radiox=str(radiox)
     radioy=str(radioy)
-    #如果输入小于1的，按比例提取，如果输入实际数    
+    #如果输入小于1的，按比例提取，如果输入坐标值按值
     if radiox<'1':
         radio=float(radiox)
         radiox = int(SIZE()[2]*radio)
@@ -771,12 +734,11 @@ def get_xy(radiox,radioy):
     coordinate.append(radiox)
     coordinate.append(radioy)
 
-
     # 写入
     #wirte_result('PASS','坐标为%s,%s'%(str(radiox),str(radioy))) 
 
     return coordinate
-#-----------------------------------------------
+#----------------------------------------------------
 #随机点击
 def tap_random():
     R = []
@@ -801,22 +763,33 @@ def tap_random():
 
     # 写入
     wirte_result(re,value)
-
-#-----------------------------------------------        
+#-----------------------------------------------
 #坐标点击
 def tap_point(x,y):
     #如果输入坐标小于0，按比例提取坐标
     #如果传入是str类型，判断
+
     if type(x)==str:
-        if x<'1':
+        #以@开头的取常量值
+        if x.startswith("@"):
+            #调用取值
+            x=get_const_value(x)
+
+        elif  x<'1':
             re=get_xy(x,y)
             x=re[0]
+
     elif x<1:
         re=get_xy(x,y)
         x=re[0]
 
     if type(y)==str:
-        if y<'1':
+        #以@开头的取常量值
+        if y.startswith("@"):
+            #调用取值
+            y=get_const_value(y)
+
+        elif y<'1':
             re=get_xy(x,y)
             y=re[1]
     elif x<1:
@@ -991,8 +964,7 @@ def  tanchuang(id):
     except Exception as  err:
             print('弹窗报错了',err)
 
-
-#----------------------------------------------
+#--------------------------------------------------
 #弹窗关闭
 def tanchuang_all():
     #从配置文件中取参数,id
@@ -1055,31 +1027,104 @@ def is_exist_text(name):
             #el = driver.find_element_by_android_uiautomator("text(\"%s\")" %name)
             xpath_value='//*[contains(@text, %s)]'%name
             el=driver.find_element_by_xpath(xpath_value)
-            return True
+            
             print("元素定位成功")
+            return True
         except BaseException as e:
             print(e.args)
             print("元素定位失败")
             return False
 
-#-----------------------------------------------------------
-#判断source中存在就点击
-def xpath_exist(method,name):
-    #根据text包含值，点击
-    source=driver.page_source
-    print('正在判断是否存在元素----------------------------------------------------',method,name)
-    if name in source:
-        x="//*[contains(@%s,%s)]"%(method,name)
-        print(x)
-        el=driver.find_element_by_xpath(x)          
-        el.click()
-        print('已经点击了',name)   
+#---------------------------------------------------------
+#判断source中存在就点击,id,text,xpath,class
+def  is_exist(act,name):
+	global driver
+	#根据text包含值，点击
+	source=driver.page_source
+	print('正在判断是否存在元素--------------------------------------------',act,name)
+	if name in source:
+		if act=='id':
+			el=driver.find_element_by_id(name)
+		
+		elif act=='text':
+			new = 'new UiSelector().textContains(\"' + name + '\")'
+			el= driver.find_element_by_android_uiautomator(new)
 
-    else:
-        print('不存在',name)
+		elif act=="class":
+			el=driver.find_element_by_class_name(name)
+		
+		elif act=="xpath":
+			el=driver.find_element_by_xpath(name)
 
+		elif act=="name":
+			el=driver.find_element_by_name(name)
 
+		el.click()
+		print('已经点击了',name)
+
+        # 写入
+		wirte_result('PASS',"点击了 "+name)
+
+	else:
+		print('不存在',name)
+
+        # 写入
+		wirte_result('PASS',"不存在 "+name)
 #----------------------------------------------------------------------
+#存储常量
+def const_value(method,keys,values):
+    global CONST_VALUE
+    print(type(values))
+    # 调用拆分
+    key_list = get_split(keys)
+    v_list = get_split(values)
+
+    #为空时字符，int为数字
+    if method=="int":
+        if len(key_list)>1:
+            # 依次校验每个值
+            for i in range(len(key_list)):
+                # 存储每个值
+                CONST_VALUE[key_list[i]]=int(v_list[i])
+                print('存储值：%s---------%s' % (key_list[i],v_list[i]))
+
+        elif len(key_list)==1:
+            CONST_VALUE[keys] = int(values)
+            print('存储值：%s---------%s' % (keys, values))
+        else:
+            print("没有变量")
+    else:
+        if len(key_list) > 1:
+            # 调用拆分
+            key_list = get_split(keys)
+            v_list = get_split(values)
+            # 依次校验每个值
+            for i in range(len(keys)):
+                # 存储每个值
+                CONST_VALUE[key_list[i]]=str(v_list[i])
+                print('多个，正在存储值：%s---------%s' % (key_list[i],v_list[i]))
+        elif len(key_list)==1:
+            CONST_VALUE[keys] = str(values)
+            print('存储值：%s---------%s' % (keys, values))
+        else:
+            print("没有变量")
+
+    print(CONST_VALUE)
+#----------------------------------------------------------------------
+#取常量值
+def  get_const_value(x):
+    # 以@开头的取常量值
+    if x.startswith("@"):
+        x1, x2 = x.split("@")
+        x = CONST_VALUE[x2]
+    return x
+#----------------------------------------------------------------------
+#读取间隔时间设置
+def step_insterval_time():
+
+    if  conf.STEP_INTERVAL_TIME:
+        if conf.step_sleep>1:
+            time.sleep(conf.step_sleep)
 
 if __name__ == "__main__":
     pass

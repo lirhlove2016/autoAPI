@@ -4,6 +4,7 @@ from common import readexcel as reader, writeexcel as writer
 from common import toast as t
 import os
 import time
+import datetime
 # -文件目录配置----------------------------
 filepath = os.path.abspath(os.getcwd())
 srcfile = os.path.join(filepath, 'datadir/myApp.xls')
@@ -11,9 +12,10 @@ desfile = os.path.join(filepath, 'datadir/myApp_result.xls')
 resultfile = os.path.join(filepath, 'report/screenshot/screenshot_')
 print(srcfile)
 
-#时间
-start_time=time.clock()
 # -脚本-----------------------------------
+#时间
+start_time=datetime.datetime.now()
+#执行
 def run(line):
     if line[3] == 'caps':
         app.update_capability(line[4], line[5])
@@ -63,6 +65,7 @@ def run(line):
         return
     if line[3] == 'input':
         app.clicks("input", line[4], line[5], line[6], line[2])
+
         return
     if line[3] == 'savephoto':
         app.get_screenshot(resultfile, line[4])
@@ -114,7 +117,7 @@ def run(line):
         app.get_element("textContains", line[4], line[5], line[6], line[2])
         return
     if line[3] == 'isexist':
-        app.xpath_exist(line[4],line[5])
+        app.is_exist(line[4],line[5])
         return
     
     if line[3] == 'tanchuang':
@@ -149,6 +152,13 @@ def run(line):
     if line[3]=='get_velue':
         app.get_value(line[4],line[5])
         return
+    if line[3]=='const_int':
+        app.const_value("int",line[4],line[5])
+
+        return
+    if line[3]=='const':
+        app.const_value("",line[4],line[5])
+        return
 
     else:
         print('没有这个方法，请检查',line[3])
@@ -167,10 +177,14 @@ for i in range(0, reader.r):
     else:
         # 执行
         run(line)
-#writer.writeformula()
-writer.save_close()
 
+#写入公式
+app.write_formula()
+#保存
+writer.save_close()
+#时间
+end_time=datetime.datetime.now()
+v=end_time-start_time
+print("运行时间:%s s"%(v.days*24*3600+v.seconds))
 print('执行完成---------------')
-end_time=time.clock()
-print("运行时间",end_time-start_time)
 # ----end------------------------------------------

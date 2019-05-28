@@ -11,6 +11,9 @@ desfile = os.path.join(filepath, 'datadir/myApp_result.xls')
 resultfile = os.path.join(filepath, 'report/screenshot/screenshot_')
 print(srcfile)
 
+"""重构ing....."""
+
+
 # -脚本-----------------------------------
 def run(line):
     app.go_func(line[3],line[4], line[5],line[6], line[2])

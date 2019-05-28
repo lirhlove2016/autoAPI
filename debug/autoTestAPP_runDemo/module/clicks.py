@@ -880,7 +880,6 @@ def is_new_activity(ac,new):
 			if flag=="false":
 				driver.tap([(500,500),(1065,208)],100)
 
-
 #判断元素是否存在，text
 def is_element_exist(name):
         try:
@@ -889,6 +888,7 @@ def is_element_exist(name):
             el=driver.find_element_by_xpath(xpath_value)
             return True
             print("元素定位成功")
+       
         except BaseException as e:
             print(e.args)
             print("元素定位失败")

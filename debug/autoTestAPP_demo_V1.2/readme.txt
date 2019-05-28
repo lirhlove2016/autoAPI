@@ -11,24 +11,25 @@
 10.back,手机返回键
 11.quit,退出app
 12.第1，2行输入2个字符以上或第1行输入#，不执行此行
-13.失败重试
-14.pagesource
+13.失败重试3次
+14.pagesource，取source
 15.assertequals,单个值校验
 16.assertequals_all,可以多个值进行校验
 17.封装执行函数---
 18.assertin,单个值，包含校验
 19.toast；
-20.定位方法添加elements
-21.判断是否存在，存在点击操作，可以用于弹窗的关闭，定位id,name,xpath
+20.定位方法添加elements,
+21.判断是否存在，存在点击操作，可以用于弹窗的关闭，定位id,text,xpath,is_exit
 22.back多次操作，默认1次
-23.坐标点击
-24.随机点击 
-25.活动当前的activity
-26.根据source判断
-27.判断不等，不在
-28.log，html
-29.校验不等于，校验不在里面，
-30.
+23.坐标点击，按坐标值，按比例
+24.随机点击, 
+25.活动当前的activity,
+26.根据source判断,
+27.判断不等，不在,
+28.log，html,
+29.校验不等于，校验不在里面，及批量
+30.常量设置，保存常量
+31.
 
 二、环境
 1.Java，安卓sdk,appium
@@ -46,31 +47,27 @@
 命令行执行脚本目录下，执行python runAPPtest.py
 
 五、TODO
-1.点击事件
-2.坐标点击
-3.随机点击
-4.长按
-5.双指操作，放大，缩小
-6.连续点击多次
-7.弹窗中的按钮，图片，点击
-8.提示信息
-9.网络提示信息获取
-10.跳转到其他应用判断及返回
-11.取当前页面中批量元素，
-12.判断元素是否存在与当前页面，然后进行操作
-13.报告，统计模块，执行数，失败数，成功数
-14.保存定位元素，存为资源，命名：菜单_模块_点位元素
-15.if
-16.保存元素值，然后进行math，校验
-17.H5页面
+1.点击事件,快速滑动
+2.长按
+3.双指操作，放大，缩小
+4.连续点击多次
+5.弹窗中的按钮，图片，点击
+6.提示信息
+7.网络提示信息获取
+8.跳转到其他应用判断及返回
+9.取当前页面中批量元素，
+10.判断元素是否存在与当前页面，然后进行操作
+11.报告，统计模块，执行数，失败数，成功数
+12.保存定位元素，存为资源，命名：菜单_模块_点位元素
+13.if
+14.保存元素值，然后进行math，校验
+15.H5页面
 
 
 六、报错
 1.元素定位报错
  “...An element could not be located on the page using the given search parameters.”
-2.
-Message: An unknown server-side error occurred while processing the command.
-
+2.Message: An unknown server-side error occurred while processing the command.
 
 
 七、目前支持的定位操作
