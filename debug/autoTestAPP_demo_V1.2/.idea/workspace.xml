@@ -1,14 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="2ac0c537-8ad0-471d-af10-a2dad9c007e2" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/common/alllog.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/common/Log.py" beforeDir="false" afterPath="$PROJECT_DIR$/common/Log.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/datadir/myApp-5-27.xls" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/datadir/myApp_result.xls" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/filepath" beforeDir="false" />
-    </list>
+    <list default="true" id="2ac0c537-8ad0-471d-af10-a2dad9c007e2" name="Default Changelist" comment="" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -193,8 +186,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/common/allLog.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-150">
-              <caret line="12" lean-forward="true" selection-end-line="38" />
+            <state relative-caret-position="150">
+              <caret line="9" column="16" lean-forward="true" selection-start-line="9" selection-start-column="16" selection-end-line="9" selection-end-column="16" />
               <folding>
                 <element signature="e#1#15#0" expanded="true" />
               </folding>
@@ -266,11 +259,11 @@
         <option value="$PROJECT_DIR$/common/Log.py" />
         <option value="$PROJECT_DIR$/Log.py" />
         <option value="$PROJECT_DIR$/alllog.py" />
-        <option value="$PROJECT_DIR$/common/allLog.py" />
         <option value="$PROJECT_DIR$/conf/conf.py" />
         <option value="$PROJECT_DIR$/test.py" />
         <option value="$PROJECT_DIR$/common/elementApp.py" />
         <option value="$PROJECT_DIR$/runAPPtest.py" />
+        <option value="$PROJECT_DIR$/common/allLog.py" />
       </list>
     </option>
   </component>
@@ -280,7 +273,7 @@
     <detection-done>true</detection-done>
     <sorting>DEFINITION_ORDER</sorting>
   </component>
-  <component name="ProjectFrameBounds" extendedState="6">
+  <component name="ProjectFrameBounds" extendedState="7">
     <option name="x" value="-10" />
     <option name="y" value="246" />
     <option name="width" value="1940" />
@@ -487,10 +480,10 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-7" y="-7" width="1550" height="838" extended-state="6" />
+    <frame x="-7" y="-7" width="1550" height="838" extended-state="7" />
     <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.1930295" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.14879356" />
       <window_info id="Structure" order="1" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Docker" order="0" show_stripe_button="false" />
@@ -511,7 +504,7 @@
       <window_info anchor="right" id="Commander" order="3" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="4" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="5" weight="0.25" />
-      <window_info anchor="right" x="-1457" y="142" width="948" height="814" id="Run" order="6" sideWeight="0.49933067" type="FLOATING" visible="true" weight="0.57573724" />
+      <window_info active="true" anchor="right" x="-1517" y="126" width="948" height="814" id="Run" order="6" sideWeight="0.49933067" type="FLOATING" visible="true" weight="0.57573724" />
     </layout>
     <layout-to-restore>
       <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.18498659" />
@@ -856,8 +849,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/common/allLog.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-150">
-          <caret line="12" lean-forward="true" selection-end-line="38" />
+        <state relative-caret-position="150">
+          <caret line="9" column="16" lean-forward="true" selection-start-line="9" selection-start-column="16" selection-end-line="9" selection-end-column="16" />
           <folding>
             <element signature="e#1#15#0" expanded="true" />
           </folding>
