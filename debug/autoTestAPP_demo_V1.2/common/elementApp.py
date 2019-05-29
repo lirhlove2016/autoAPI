@@ -5,8 +5,8 @@ from common import readexcel as reader, writeexcel as writer
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 import random
-from common.Log import MyLog as Log
-
+#from common.Log import MyLog as Log
+from common import allLog as Log
 
 PATH = lambda p: os.path.abspath(os.path.join(os.path.dirname(__file__), p))
 from conf.conf import dataDir,reportDir,pageDir,imageDir
@@ -73,12 +73,10 @@ saveJson={}
 #定义常量
 CONST_VALUE={}
 
-
-
 #log
+logger=Log.get_logger()
 #log = Log.get_log()
 #logger = log.get_logger()
-#
 
 # 设备参数
 desired_caps = {
@@ -105,7 +103,7 @@ def wirte_result(result, value):
         writer.write(reader.rr - 1, 7, result)
         writer.write(reader.rr - 1, 8, value)
         #log
-        #logger.info(result+value)
+        logger.info("执行结果："+result+","+value)
 
 #写入公式
 def write_formula():
@@ -113,6 +111,9 @@ def write_formula():
     str2 = '=COUNTIF(H:H,"FAIL"))'
     writer.write(1, 8, str1)
     writer.write(2, 8, str2)
+
+#写入log
+
 
 # 配置设备
 def update_capability(key,value):
@@ -153,6 +154,8 @@ def start(adddress, t):
     except Exception as err:
         print('启动失败了，错误', err)
         print('请检查是否启动appium')
+        logger.info('启动失败了，错误'+"error,",err)
+        logger.info('请检查是否启动appium')
         rerun(start,adddress, t)
 
 
@@ -164,6 +167,7 @@ def get_element(method, element, index="", name="", casename=""):
     global number
 
     print('定位---%s------%s-----' % (method, element))
+    logger.info('定位---%s------%s-----' % (method, element))
     try:
         if method == "id":
             e = driver.find_element_by_id(element)
@@ -213,6 +217,7 @@ def get_element(method, element, index="", name="", casename=""):
             e = driver.find_element_by_android_uiautomator(new) 
 
         print('定位元素--------------------------')
+        logger.info('定位元素--------------------------')
         print('e:', e)
         # 写入信息
         re = "PASS"
@@ -224,6 +229,7 @@ def get_element(method, element, index="", name="", casename=""):
     # 异常
     except Exception as err:
         print("定位报错了:", err)
+        logger.info("定位报错了:"+"error"+str(err))
         number = number + 1
         get_screenshot(resultfile, "_error_%s_%d.png" % (casename, number))
         # 写入信息
@@ -243,6 +249,7 @@ def get_elements(method, element, index="", name="", casename=""):
     global number
 
     print('定位---%s------%s-----' % (method, element))
+    logger.info('定位---%s------%s-----' % (method, element))
     try:
         if method == "id":
             e = driver.find_elements_by_id(element)
@@ -292,6 +299,7 @@ def get_elements(method, element, index="", name="", casename=""):
             e = driver.find_elements_by_android_uiautomator(new) 
 
         print('定位元素--------------------------')
+        logger.info('定位元素--------------------------')
         print('e:', e)
         # 写入信息
         re = "PASS"
@@ -303,6 +311,7 @@ def get_elements(method, element, index="", name="", casename=""):
     # 异常
     except Exception as err:
         print("定位报错了:", err)
+        logger.info("定位报错了:" + "error" + str(err))
         number = number + 1
         get_screenshot(resultfile, "_error_%s_%d.png" % (casename, number))
         # 写入信息
@@ -320,6 +329,7 @@ def clicks(act, element, value="", name="", casename=""):
     global e
     global number
     print('正在执行%s操作--------------------------' % act)
+    logger.info('正在执行%s操作--------------------------' % act)
     print(element)
 
     # 不为空，提取保存的值；为空点击上一个定位元素
@@ -348,6 +358,7 @@ def clicks(act, element, value="", name="", casename=""):
     # 异常
     except Exception as err:
         print("报错了:", err)
+        logger.info("报错了:",+"error"+err)
         number = number + 1
         get_screenshot(resultfile, "_error_%s_%d.png" % (casename, number))
 
@@ -369,7 +380,8 @@ def get_element_of(element):
         el = saveelements[element]
     else:
         el = e
-    print('操作的元素是：%s-------------------------' % el)	   
+    print('操作的元素是：%s-------------------------' % el)
+    logger.info('操作的元素是：%s-------------------------' % el)
     return el
 #---------------------------------------------------------------
 # quit
@@ -1123,10 +1135,27 @@ def  get_const_value(x):
 #----------------------------------------------------------------------
 #读取间隔时间设置
 def step_insterval_time():
-
     if  conf.STEP_INTERVAL_TIME:
         if conf.step_sleep>1:
+            print('-----------------等待时间',conf.step_sleep,type(conf.step_sleep))
             time.sleep(conf.step_sleep)
+
+
+# ----------------------------------------------------------------------
+def start_log():
+    if conf.LOG_STATUS:
+        # log
+        logger = Log.get_logger()
+        flag=1
+        return logger
+    else:
+        flag=0
+        return  flag
+
+def print_log(msg):
+    re=start_log()
+    if re!=0:
+        pass
 #----------------------------------------------------------------------
 number=1
 def  get_element_pic(casename,el):

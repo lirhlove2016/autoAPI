@@ -1,0 +1,165 @@
+2019-05-29 17:50:05,015 - INFO - 执行结果：PASS,设备已经启动,wait60
+2019-05-29 17:50:06,909 - INFO - 执行结果：PASS,left
+2019-05-29 17:50:08,397 - INFO - 执行结果：PASS,left
+2019-05-29 17:50:08,397 - INFO - 执行结果：PASS,left:2
+2019-05-29 17:50:09,811 - INFO - 执行结果：PASS,left
+2019-05-29 17:50:09,812 - INFO - 执行结果：PASS,left:1
+2019-05-29 17:50:10,813 - INFO - 执行结果：PASS,等待1秒
+2019-05-29 17:50:12,216 - INFO - 执行结果：PASS,left
+2019-05-29 17:50:12,217 - INFO - 执行结果：PASS,left:1
+2019-05-29 17:50:12,218 - INFO - 定位---xpath------//android.widget.FrameLayout[1]/android.widget.LinearLayout[1]/android.widget.FrameLayout[1]/android.widget.FrameLayout[1]/android.widget.RelativeLayout[1]/android.support.v4.view.ViewPager[1]/android.widget.RelativeLayout[1]/android.widget.LinearLayout[1]/android.widget.RelativeLayout[1]/android.widget.LinearLayout[1]/android.widget.LinearLayout[1]/android.widget.TextView[1]-----
+2019-05-29 17:50:12,943 - INFO - 定位元素--------------------------
+2019-05-29 17:50:12,943 - INFO - 执行结果：PASS,//android.widget.FrameLayout[1]/android.widget.LinearLayout[1]/android.widget.FrameLayout[1]/android.widget.FrameLayout[1]/android.widget.RelativeLayout[1]/android.support.v4.view.ViewPager[1]/android.widget.RelativeLayout[1]/android.widget.LinearLayout[1]/android.widget.RelativeLayout[1]/android.widget.LinearLayout[1]/android.widget.LinearLayout[1]/android.widget.TextView[1]
+2019-05-29 17:50:12,944 - INFO - 正在执行click操作--------------------------
+2019-05-29 17:50:12,944 - INFO - 操作的元素是：<appium.webdriver.webelement.WebElement (session="5f7ee36c-1bd2-4586-8c86-b14b91539d15", element="d445f7fd-6126-4fb8-ba51-c9e6c9eaa031")>-------------------------
+2019-05-29 17:50:13,035 - INFO - 执行结果：PASS,执行成功
+2019-05-29 17:50:15,036 - INFO - 执行结果：PASS,等待2秒
+2019-05-29 17:50:21,738 - INFO - 执行结果：PASS,等待3秒
+2019-05-29 17:50:21,738 - INFO - 定位---text------我的-----
+2019-05-29 17:50:22,226 - INFO - 定位元素--------------------------
+2019-05-29 17:50:22,227 - INFO - 执行结果：PASS,我的
+2019-05-29 17:50:22,227 - INFO - 正在执行click操作--------------------------
+2019-05-29 17:50:22,227 - INFO - 操作的元素是：<appium.webdriver.webelement.WebElement (session="5f7ee36c-1bd2-4586-8c86-b14b91539d15", element="ee950717-84cb-4ea8-9423-5973175763ae")>-------------------------
+2019-05-29 17:50:23,224 - INFO - 执行结果：PASS,执行成功
+2019-05-29 17:50:23,225 - INFO - 定位---id------com.ishugui:id/tv_login-----
+2019-05-29 17:50:24,307 - INFO - 定位元素--------------------------
+2019-05-29 17:50:24,308 - INFO - 执行结果：PASS,com.ishugui:id/tv_login
+2019-05-29 17:50:24,309 - INFO - 正在执行click操作--------------------------
+2019-05-29 17:50:24,310 - INFO - 操作的元素是：<appium.webdriver.webelement.WebElement (session="5f7ee36c-1bd2-4586-8c86-b14b91539d15", element="c727baa1-c240-411d-b430-1a86be4cead6")>-------------------------
+2019-05-29 17:50:24,396 - INFO - 执行结果：PASS,执行成功
+2019-05-29 17:50:24,396 - INFO - 定位---textContains------微信登录-----
+2019-05-29 17:50:25,576 - INFO - 定位元素--------------------------
+2019-05-29 17:50:25,577 - INFO - 执行结果：PASS,微信登录
+2019-05-29 17:50:25,578 - INFO - 正在执行click操作--------------------------
+2019-05-29 17:50:25,578 - INFO - 操作的元素是：<appium.webdriver.webelement.WebElement (session="5f7ee36c-1bd2-4586-8c86-b14b91539d15", element="e8ed1dd3-44b6-4f66-89d3-a30159eefb47")>-------------------------
+2019-05-29 17:50:28,014 - INFO - 执行结果：PASS,执行成功
+2019-05-29 17:50:29,016 - INFO - 执行结果：PASS,等待1秒
+2019-05-29 17:50:32,477 - INFO - 执行结果：PASS,等待1秒
+2019-05-29 17:50:32,478 - INFO - 定位---text------书架-----
+2019-05-29 17:50:33,346 - INFO - 定位元素--------------------------
+2019-05-29 17:50:33,347 - INFO - 执行结果：PASS,书架
+2019-05-29 17:50:33,348 - INFO - 正在执行click操作--------------------------
+2019-05-29 17:50:33,348 - INFO - 操作的元素是：<appium.webdriver.webelement.WebElement (session="5f7ee36c-1bd2-4586-8c86-b14b91539d15", element="e7c49f09-7cc8-4695-863b-05be89373715")>-------------------------
+2019-05-29 17:50:35,024 - INFO - 执行结果：PASS,执行成功
+2019-05-29 17:50:35,024 - INFO - 定位---id------com.ishugui:id/imageviewopr1-----
+2019-05-29 17:50:35,503 - INFO - 定位元素--------------------------
+2019-05-29 17:50:35,504 - INFO - 执行结果：PASS,com.ishugui:id/imageviewopr1
+2019-05-29 17:50:35,504 - INFO - 正在执行click操作--------------------------
+2019-05-29 17:50:35,504 - INFO - 操作的元素是：<appium.webdriver.webelement.WebElement (session="5f7ee36c-1bd2-4586-8c86-b14b91539d15", element="17708cda-b011-464b-b989-375e764af110")>-------------------------
+2019-05-29 17:50:35,576 - INFO - 执行结果：PASS,执行成功
+2019-05-29 17:50:35,577 - INFO - 定位---text------云书架-----
+2019-05-29 17:50:36,570 - INFO - 定位元素--------------------------
+2019-05-29 17:50:36,570 - INFO - 执行结果：PASS,云书架
+2019-05-29 17:50:36,570 - INFO - 正在执行click操作--------------------------
+2019-05-29 17:50:36,571 - INFO - 操作的元素是：<appium.webdriver.webelement.WebElement (session="5f7ee36c-1bd2-4586-8c86-b14b91539d15", element="5d1361d1-46c1-4248-8560-cc93030d25a0")>-------------------------
+2019-05-29 17:50:38,197 - INFO - 执行结果：PASS,执行成功
+2019-05-29 17:50:39,772 - INFO - 执行结果：PASS,up
+2019-05-29 17:50:39,773 - INFO - 执行结果：PASS,up:1
+2019-05-29 17:50:40,773 - INFO - 执行结果：PASS,等待1秒
+2019-05-29 17:50:41,002 - INFO - 执行结果：PASS,操作成功
+2019-05-29 17:50:42,002 - INFO - 执行结果：PASS,等待1秒
+2019-05-29 17:50:42,002 - INFO - 定位---id------com.ishugui:id/imageviewopr1-----
+2019-05-29 17:50:43,060 - INFO - 定位元素--------------------------
+2019-05-29 17:50:43,061 - INFO - 执行结果：PASS,com.ishugui:id/imageviewopr1
+2019-05-29 17:50:43,061 - INFO - 正在执行click操作--------------------------
+2019-05-29 17:50:43,062 - INFO - 操作的元素是：<appium.webdriver.webelement.WebElement (session="5f7ee36c-1bd2-4586-8c86-b14b91539d15", element="e6558bb9-a87b-4cd3-b587-5b5c94fe0448")>-------------------------
+2019-05-29 17:50:43,137 - INFO - 执行结果：PASS,执行成功
+2019-05-29 17:50:43,138 - INFO - 定位---id------com.ishugui:id/tv_shelf_menu_local_import-----
+2019-05-29 17:50:44,640 - INFO - 定位元素--------------------------
+2019-05-29 17:50:44,640 - INFO - 执行结果：PASS,com.ishugui:id/tv_shelf_menu_local_import
+2019-05-29 17:50:44,641 - INFO - 正在执行click操作--------------------------
+2019-05-29 17:50:44,641 - INFO - 操作的元素是：<appium.webdriver.webelement.WebElement (session="5f7ee36c-1bd2-4586-8c86-b14b91539d15", element="993f2499-a6d6-4a2c-95be-9a545292f11c")>-------------------------
+2019-05-29 17:50:44,701 - INFO - 执行结果：PASS,执行成功
+2019-05-29 17:50:47,703 - INFO - 执行结果：PASS,等待3秒
+2019-05-29 17:50:47,947 - INFO - 执行结果：PASS,操作成功
+2019-05-29 17:50:48,948 - INFO - 执行结果：PASS,等待1秒
+2019-05-29 17:50:48,949 - INFO - 定位---id------com.ishugui:id/imageviewopr1-----
+2019-05-29 17:50:49,400 - INFO - 定位元素--------------------------
+2019-05-29 17:50:49,400 - INFO - 执行结果：PASS,com.ishugui:id/imageviewopr1
+2019-05-29 17:50:49,401 - INFO - 正在执行click操作--------------------------
+2019-05-29 17:50:49,401 - INFO - 操作的元素是：<appium.webdriver.webelement.WebElement (session="5f7ee36c-1bd2-4586-8c86-b14b91539d15", element="720790d8-7022-4af7-9052-60fb3733b32d")>-------------------------
+2019-05-29 17:50:49,457 - INFO - 执行结果：PASS,执行成功
+2019-05-29 17:50:49,457 - INFO - 定位---id------com.ishugui:id/tv_shelf_menu_manage-----
+2019-05-29 17:50:50,937 - INFO - 定位元素--------------------------
+2019-05-29 17:50:50,937 - INFO - 执行结果：PASS,com.ishugui:id/tv_shelf_menu_manage
+2019-05-29 17:50:50,938 - INFO - 正在执行click操作--------------------------
+2019-05-29 17:50:50,938 - INFO - 操作的元素是：<appium.webdriver.webelement.WebElement (session="5f7ee36c-1bd2-4586-8c86-b14b91539d15", element="15eb660a-b96a-4903-bc91-82c553802d34")>-------------------------
+2019-05-29 17:50:50,990 - INFO - 执行结果：PASS,执行成功
+2019-05-29 17:50:51,990 - INFO - 执行结果：PASS,等待1秒
+2019-05-29 17:50:51,991 - INFO - 定位---id------com.ishugui:id/iv_manage_sort-----
+2019-05-29 17:50:53,007 - INFO - 定位元素--------------------------
+2019-05-29 17:50:53,008 - INFO - 执行结果：PASS,com.ishugui:id/iv_manage_sort
+2019-05-29 17:50:53,009 - INFO - 正在执行click操作--------------------------
+2019-05-29 17:50:53,009 - INFO - 操作的元素是：<appium.webdriver.webelement.WebElement (session="5f7ee36c-1bd2-4586-8c86-b14b91539d15", element="c56f75b2-31a7-4997-bd40-368598ff9a4a")>-------------------------
+2019-05-29 17:50:53,074 - INFO - 执行结果：PASS,执行成功
+2019-05-29 17:50:54,075 - INFO - 执行结果：PASS,等待1秒
+2019-05-29 17:50:54,076 - INFO - 定位---textContains------按书名排序-----
+2019-05-29 17:50:54,176 - INFO - 定位元素--------------------------
+2019-05-29 17:50:54,177 - INFO - 执行结果：PASS,按书名排序
+2019-05-29 17:50:54,177 - INFO - 正在执行click操作--------------------------
+2019-05-29 17:50:54,177 - INFO - 操作的元素是：<appium.webdriver.webelement.WebElement (session="5f7ee36c-1bd2-4586-8c86-b14b91539d15", element="4de8a892-5593-472a-9f67-e7ce8978f482")>-------------------------
+2019-05-29 17:50:55,145 - INFO - 执行结果：PASS,执行成功
+2019-05-29 17:50:56,147 - INFO - 执行结果：PASS,等待1秒
+2019-05-29 17:50:56,148 - INFO - 定位---id------com.ishugui:id/tv_manage_ok-----
+2019-05-29 17:50:57,150 - INFO - 定位元素--------------------------
+2019-05-29 17:50:57,151 - INFO - 执行结果：PASS,com.ishugui:id/tv_manage_ok
+2019-05-29 17:50:57,152 - INFO - 正在执行click操作--------------------------
+2019-05-29 17:50:57,153 - INFO - 操作的元素是：<appium.webdriver.webelement.WebElement (session="5f7ee36c-1bd2-4586-8c86-b14b91539d15", element="0ebbd119-5d64-4201-a798-b7b67cffbe7a")>-------------------------
+2019-05-29 17:50:57,220 - INFO - 执行结果：PASS,执行成功
+2019-05-29 17:50:58,222 - INFO - 执行结果：PASS,等待1秒
+2019-05-29 17:50:58,223 - INFO - 定位---id------com.ishugui:id/imageviewopr1-----
+2019-05-29 17:50:59,263 - INFO - 定位元素--------------------------
+2019-05-29 17:50:59,263 - INFO - 执行结果：PASS,com.ishugui:id/imageviewopr1
+2019-05-29 17:50:59,264 - INFO - 正在执行click操作--------------------------
+2019-05-29 17:50:59,264 - INFO - 操作的元素是：<appium.webdriver.webelement.WebElement (session="5f7ee36c-1bd2-4586-8c86-b14b91539d15", element="753e739f-34c1-4bfc-b784-64de1f066ab1")>-------------------------
+2019-05-29 17:50:59,341 - INFO - 执行结果：PASS,执行成功
+2019-05-29 17:51:00,341 - INFO - 执行结果：PASS,等待1秒
+2019-05-29 17:51:00,342 - INFO - 定位---id------com.ishugui:id/tv_shelf_menu_bookshelf_mode-----
+2019-05-29 17:51:00,439 - INFO - 定位元素--------------------------
+2019-05-29 17:51:00,440 - INFO - 执行结果：PASS,com.ishugui:id/tv_shelf_menu_bookshelf_mode
+2019-05-29 17:51:00,440 - INFO - 正在执行click操作--------------------------
+2019-05-29 17:51:00,440 - INFO - 操作的元素是：<appium.webdriver.webelement.WebElement (session="5f7ee36c-1bd2-4586-8c86-b14b91539d15", element="a0bddeac-f536-4d93-b73d-203ba5186dbf")>-------------------------
+2019-05-29 17:51:00,501 - INFO - 执行结果：PASS,执行成功
+2019-05-29 17:51:01,501 - INFO - 执行结果：PASS,等待1秒
+2019-05-29 17:51:01,502 - INFO - 定位---id------com.ishugui:id/imageviewopr1-----
+2019-05-29 17:51:02,009 - INFO - 定位元素--------------------------
+2019-05-29 17:51:02,010 - INFO - 执行结果：PASS,com.ishugui:id/imageviewopr1
+2019-05-29 17:51:02,010 - INFO - 正在执行click操作--------------------------
+2019-05-29 17:51:02,011 - INFO - 操作的元素是：<appium.webdriver.webelement.WebElement (session="5f7ee36c-1bd2-4586-8c86-b14b91539d15", element="cd584eca-6c23-4881-adca-48b4ca4c48f0")>-------------------------
+2019-05-29 17:51:02,082 - INFO - 执行结果：PASS,执行成功
+2019-05-29 17:51:03,083 - INFO - 执行结果：PASS,等待1秒
+2019-05-29 17:51:03,084 - INFO - 定位---id------com.ishugui:id/tv_shelf_menu_bookshelf_mode-----
+2019-05-29 17:51:03,177 - INFO - 定位元素--------------------------
+2019-05-29 17:51:03,177 - INFO - 执行结果：PASS,com.ishugui:id/tv_shelf_menu_bookshelf_mode
+2019-05-29 17:51:03,178 - INFO - 正在执行click操作--------------------------
+2019-05-29 17:51:03,178 - INFO - 操作的元素是：<appium.webdriver.webelement.WebElement (session="5f7ee36c-1bd2-4586-8c86-b14b91539d15", element="222db137-721a-4640-b641-7aa349d499dd")>-------------------------
+2019-05-29 17:51:03,248 - INFO - 执行结果：PASS,执行成功
+2019-05-29 17:51:04,250 - INFO - 执行结果：PASS,等待1秒
+2019-05-29 17:51:04,251 - INFO - 定位---id------com.ishugui:id/imageviewopr1-----
+2019-05-29 17:51:04,693 - INFO - 定位元素--------------------------
+2019-05-29 17:51:04,693 - INFO - 执行结果：PASS,com.ishugui:id/imageviewopr1
+2019-05-29 17:51:04,693 - INFO - 正在执行click操作--------------------------
+2019-05-29 17:51:04,693 - INFO - 操作的元素是：<appium.webdriver.webelement.WebElement (session="5f7ee36c-1bd2-4586-8c86-b14b91539d15", element="cef254cd-4e07-4836-8016-59ab397ea59a")>-------------------------
+2019-05-29 17:51:04,745 - INFO - 执行结果：PASS,执行成功
+2019-05-29 17:51:05,747 - INFO - 执行结果：PASS,等待1秒
+2019-05-29 17:51:05,748 - INFO - 定位---id------com.ishugui:id/tv_shelf_menu_bookshelf_signin-----
+2019-05-29 17:51:05,849 - INFO - 定位元素--------------------------
+2019-05-29 17:51:05,849 - INFO - 执行结果：PASS,com.ishugui:id/tv_shelf_menu_bookshelf_signin
+2019-05-29 17:51:05,850 - INFO - 正在执行click操作--------------------------
+2019-05-29 17:51:05,850 - INFO - 操作的元素是：<appium.webdriver.webelement.WebElement (session="5f7ee36c-1bd2-4586-8c86-b14b91539d15", element="d1245c3e-9904-403f-a182-7c08f7a1fc31")>-------------------------
+2019-05-29 17:51:05,907 - INFO - 执行结果：PASS,执行成功
+2019-05-29 17:51:06,328 - INFO - 执行结果：PASS,操作成功
+2019-05-29 17:51:07,329 - INFO - 执行结果：PASS,等待1秒
+2019-05-29 17:51:07,329 - INFO - 定位---id------com.ishugui:id/shelfactivityview-----
+2019-05-29 17:52:07,602 - INFO - 定位报错了:errorMessage: An element could not be located on the page using the given search parameters.
+
+2019-05-29 17:52:08,849 - INFO - 执行结果：PASS,_error_定位书架页签到_2.png
+2019-05-29 17:52:08,850 - INFO - 定位---id------com.ishugui:id/shelfactivityview-----
+2019-05-29 17:53:09,951 - INFO - 定位报错了:errorMessage: An element could not be located on the page using the given search parameters.
+
+2019-05-29 17:53:11,070 - INFO - 执行结果：PASS,_error_定位书架页签到_3.png
+2019-05-29 17:53:11,071 - INFO - 定位---id------com.ishugui:id/shelfactivityview-----
+2019-05-29 17:54:11,886 - INFO - 定位报错了:errorMessage: An element could not be located on the page using the given search parameters.
+
+2019-05-29 17:54:13,010 - INFO - 执行结果：PASS,_error_定位书架页签到_4.png
+2019-05-29 17:54:13,010 - INFO - 定位---id------com.ishugui:id/shelfactivityview-----

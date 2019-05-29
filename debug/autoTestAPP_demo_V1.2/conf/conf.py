@@ -29,8 +29,11 @@ PACK="com.aikan"
 tanchuang_close_id=["%s:id/imageview_close"%PACK,"%s:id/imageview_cloud_sysch_close"%PACK]
 
 #每个步骤的间隔时间
-STEP_INTERVAL_TIME=True
+STEP_INTERVAL_TIME=False
 step_sleep=5
+
+#log开关,true 开启，false 不打印日志
+LOG_STATUS=True
 
 if __name__=="__main__":
     print(dataDir)

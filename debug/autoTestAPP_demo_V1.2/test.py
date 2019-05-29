@@ -40,6 +40,8 @@ app.sleep(1)
 print("等待5秒")
 app.step_insterval_time()
 
+
+'''
 #保存图
 number=3
 app.get_screenshot(imageDir, "%s_%d.png" % ("shujia", number))
@@ -96,6 +98,6 @@ filepath = "./report/image/shujia_1.png"
 image.pic_rectangle(filepath, recxy)
 
 
-
+'''
 
 

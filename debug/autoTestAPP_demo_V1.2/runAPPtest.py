@@ -7,7 +7,7 @@ import time
 import datetime
 # -文件目录配置----------------------------
 filepath = os.path.abspath(os.getcwd())
-srcfile = os.path.join(filepath, 'datadir/myApp.xls')
+srcfile = os.path.join(filepath, 'datadir/myApp-529.xls')
 desfile = os.path.join(filepath, 'datadir/myApp_result.xls')
 resultfile = os.path.join(filepath, 'report/screenshot/screenshot_')
 print(srcfile)
@@ -15,84 +15,122 @@ print(srcfile)
 # -脚本-----------------------------------
 #时间
 start_time=datetime.datetime.now()
+
 #执行
 def run(line):
     if line[3] == 'caps':
         app.update_capability(line[4], line[5])
+
         return
     if line[3] == 'start':
         print(app.desired_caps)
         app.start(line[4], line[5])
+
         return
     if line[3] == 'sleep':
         app.sleep(line[4])
         return
     if line[3] == 'right':
+        app.step_insterval_time()
         app.swiptest("right",line[4])
+
         return
     if line[3] == 'left':
+        app.step_insterval_time()
         app.swiptest("left",line[4])
+
         return
     if line[3] == 'up':
+        app.step_insterval_time()
         app.swiptest("up", line[4])
+
         return
     if line[3] == 'down':
+        app.step_insterval_time()
         app.swiptest("down", line[4])
+
         return
     if line[3] == 'id':
+        app.step_insterval_time()
         app.get_element("id", line[4], line[5], line[6], line[2])
+
         return
     if line[3] == 'name':
+        app.step_insterval_time()
         app.get_element("name", line[4], line[5], line[6], line[2])
+
         return
     if line[3] == 'text':
+        app.step_insterval_time()
         app.get_element("text", line[4], line[5], line[6], line[2])
+
         return
     if line[3] == 'css':
+        app.step_insterval_time()
         app.get_element("css", line[4], line[5], line[6], line[2])
+
         return
     if line[3] == 'xpath':
+        app.step_insterval_time()
         app.get_element("xpath", line[4], line[5], line[6], line[2])
+
         return
     if line[3] == 'class':
         app.get_element("class", line[4], line[5], line[6], line[2])
+
         return
     if line[3] == 'click':
+        app.step_insterval_time()
         app.clicks("click", line[4], line[5], line[6], line[2])
+
         return
     if line[3] == 'clear':
+        app.step_insterval_time()
         app.clicks("clear", line[4], line[5], line[6], line[2])
+
         return
     if line[3] == 'input':
+        app.step_insterval_time()
         app.clicks("input", line[4], line[5], line[6], line[2])
 
         return
     if line[3] == 'savephoto':
         app.get_screenshot(resultfile, line[4])
+
         return
     if line[3] == 'text':
+        app.step_insterval_time()
         app.get_element("text", line[4], line[5], line[6], line[2])
+
         return
     if line[3] == 'quit':
+        app.step_insterval_time()
         app.quit()
         return
     if line[3] == 'back':
+        app.step_insterval_time()
         app.back()
+
         return
     if line[3]=='pagesource':
         app.get_pagesource(line[4])
+
         return
     if line[3] == 'assertequal':
         app.assert_method("equal",line[4], line[5],line[6])
+
         return
     if line[3] == 'assertin':
         app.assert_method("in",line[4], line[5],line[6])
+
         return
     if line[3] == 'assertnotequal':
         app.assert_method("notequal",line[4], line[5],line[6])
+
         return
     if line[3] == 'assertnotin':
         app.assert_method("notin",line[4], line[5],line[6])
+
         return
     if line[3] == 'assert_all_e':
         app.assert_all_method("equal",line[4], line[5],line[6])
@@ -107,35 +145,52 @@ def run(line):
         app.assert_all_method("notin", line[4], line[5], line[6])
         return
     if line[3] == 'toast':
+        app.step_insterval_time()
         t.is_toast_exists(app.driver,line[4],line[5],line[6])
+
         return
     if line[3] == 'alwaysallow':
+        app.step_insterval_time()
         t.always_allow(app.driver,line[4])
+
         return    
 
     if line[3] == 'textContains':
         app.get_element("textContains", line[4], line[5], line[6], line[2])
+
         return
     if line[3] == 'isexist':
+        app.step_insterval_time()
         app.is_exist(line[4],line[5])
+
         return
     
     if line[3] == 'tanchuang':
+        app.step_insterval_time()
         app.tanchuang(line[4])
+        app.step_insterval_time()
         return
     if line[3] == 'tanchuangall':
+        app.step_insterval_time()
         app.tanchuang_all()
+
         return   
     if line[3] == 'backs':
+        app.step_insterval_time()
         app.backs(line[4])
+
         return
 
     if line[3]=='tappoint':
+        app.step_insterval_time()
         app.tap_point(line[4],line[5])
+
         return
     
     if line[3]=='taprandom':
+        app.step_insterval_time()
         app.tap_random()
+
         return
             
     if line[3]=='pagesource':
@@ -144,10 +199,12 @@ def run(line):
 
     if line[3]=='sourceassert':
         app.source_assert(line[4])
+
         return
 
     if line[3]=='activity':
         app.get_current_activity()
+
         return
     if line[3]=='get_velue':
         app.get_value(line[4],line[5])
@@ -186,5 +243,6 @@ writer.save_close()
 end_time=datetime.datetime.now()
 v=end_time-start_time
 print("运行时间:%s s"%(v.days*24*3600+v.seconds))
+
 print('执行完成---------------')
 # ----end------------------------------------------

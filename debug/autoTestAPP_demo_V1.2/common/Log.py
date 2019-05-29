@@ -11,19 +11,21 @@ class Log:
         # reporDir = readConfig.proDir
         resultPath = os.path.join(reportDir, "logs")
 
-        if not os.path.exists(resultPath):
-            os.mkdir(resultPath)
+        #if not os.path.exists(resultPath):
+        #    os.mkdir(resultPath)
             
         logPath = os.path.join(resultPath, str(datetime.now().strftime("%Y%m%d%H%M%S")))
-        if not os.path.exists(logPath):
-            os.mkdir(logPath)
 
+       '''
+       if not os.path.exists(logPath):
+            os.mkdir(logPath)
+       '''
         self.logger = logging.getLogger()
         self.logger.setLevel(logging.INFO)
 
         # defined handler
         
-        now = time.strftime("%Y-%m-%d %M-%H_%M_%S", time.localtime(time.time()))           
+        now = time.strftime("%Y-%m-%d_%M-%H_%M_%S", time.localtime(time.time()))
         logresult = logDir+r"/"+now+"_output.log"
         
         #handler = logging.FileHandler(os.path.join(logPath, now))
