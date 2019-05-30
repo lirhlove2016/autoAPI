@@ -7,7 +7,7 @@ import time
 import datetime
 # -文件目录配置----------------------------
 filepath = os.path.abspath(os.getcwd())
-srcfile = os.path.join(filepath, 'datadir/myApp-529.xls')
+srcfile = os.path.join(filepath, 'datadir/myApp-530.xls')
 desfile = os.path.join(filepath, 'datadir/myApp_result.xls')
 resultfile = os.path.join(filepath, 'report/screenshot/screenshot_')
 print(srcfile)

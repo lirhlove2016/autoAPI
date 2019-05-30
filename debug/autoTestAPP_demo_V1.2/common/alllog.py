@@ -18,14 +18,15 @@ def get_logger():
     rf_handler.setFormatter(logging.Formatter("%(asctime)s - %(levelname)s - %(message)s"))
 
     # error log
+    '''
     logresult_error = logDir + r"/" + now + "_error.log"
 
     f_handler = logging.FileHandler(logresult_error)
     f_handler.setLevel(logging.ERROR)
     f_handler.setFormatter(logging.Formatter("%(asctime)s - %(levelname)s - %(filename)s[:%(lineno)d] - %(message)s"))
-
+    '''
     logger.addHandler(rf_handler)
-    logger.addHandler(f_handler)
+    #logger.addHandler(f_handler)
 
     return logger
 

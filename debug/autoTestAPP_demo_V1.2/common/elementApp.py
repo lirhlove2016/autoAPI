@@ -98,7 +98,7 @@ desired_caps = {
 }
 
 # 写入结果
-def wirte_result(result, value):
+def write_result(result, value):
     if reader.rr>0:
         writer.write(reader.rr - 1, 7, result)
         writer.write(reader.rr - 1, 8, value)
@@ -134,7 +134,7 @@ def update_capability(key,value):
             desired_caps["appActivity"]=conf.appActivity
 
         # 写入
-        #wirte_result('PASS', value)
+        #write_result('PASS', value)
 
     except Exception as err:
         print(err)
@@ -150,11 +150,12 @@ def start(adddress, t):
         driver.implicitly_wait(timeout)
 
         # 写入
-        wirte_result('PASS', "设备已经启动,wait%d" % timeout)
+        write_result('PASS', "设备已经启动,wait%d" % timeout)
+        logger.info('PASS,'+"设备已经启动,wait%d" % timeout)
     except Exception as err:
         print('启动失败了，错误', err)
         print('请检查是否启动appium')
-        logger.info('启动失败了，错误'+"error,",err)
+        logger.info('启动失败了，错误'+"error,",str(err))
         logger.info('请检查是否启动appium')
         rerun(start,adddress, t)
 
@@ -239,7 +240,7 @@ def get_element(method, element, index="", name="", casename=""):
         rerun(get_element,method,element,index,name,casename)
 
     # 写入
-    wirte_result(re, value)
+    write_result(re, value)
 
 #定位一批元素,同单个元素定位，
 def get_elements(method, element, index="", name="", casename=""):
@@ -321,7 +322,7 @@ def get_elements(method, element, index="", name="", casename=""):
         rerun(get_element,method,element,index,name,casename)
 
     # 写入
-    wirte_result(re, value)
+    write_result(re, value)
 
 # 操作集合
 def clicks(act, element, value="", name="", casename=""):
@@ -330,6 +331,7 @@ def clicks(act, element, value="", name="", casename=""):
     global number
     print('正在执行%s操作--------------------------' % act)
     logger.info('正在执行%s操作--------------------------' % act)
+
     print(element)
 
     # 不为空，提取保存的值；为空点击上一个定位元素
@@ -347,6 +349,7 @@ def clicks(act, element, value="", name="", casename=""):
             value=str(value)            
             result= el.send_keys(value)
             print('正在输入内容',value)
+            logger.info("正在输入内容")
             
         # name保存操作
         if name != "":
@@ -358,7 +361,7 @@ def clicks(act, element, value="", name="", casename=""):
     # 异常
     except Exception as err:
         print("报错了:", err)
-        logger.info("报错了:",+"error"+err)
+        logger.info("报错了:",+"error"+str(err))
         number = number + 1
         get_screenshot(resultfile, "_error_%s_%d.png" % (casename, number))
 
@@ -367,7 +370,7 @@ def clicks(act, element, value="", name="", casename=""):
         #重试
         rerun(clicks,act,element,value, name,casename)
     # 写入
-    wirte_result(re, value)
+    write_result(re, value)
 
 # 定位元素，不为空取保存值，为空取上一个定位元素；
 # 引用，get_value,clicks
@@ -383,14 +386,15 @@ def get_element_of(element):
     print('操作的元素是：%s-------------------------' % el)
     logger.info('操作的元素是：%s-------------------------' % el)
     return el
-#---------------------------------------------------------------
+
+#------------------------------------------------------------------
 # quit
 def quit():
     global driver
     try:
         driver.quit()
         # 写入
-        wirte_result("PASS", "操作成功")
+        write_result("PASS", "操作成功")
     except Exception as err:
         #调用方法
         err_run(err,quit)
@@ -401,7 +405,7 @@ def back():
     try:
         driver.back()   
         # 写入
-        wirte_result("PASS", "操作成功")
+        write_result("PASS", "操作成功")
     except Exception as err:
         #调用方法
         err_run(err,back)
@@ -417,10 +421,10 @@ def backs(number):
      
         if n==int(number):
                 # 写入
-            wirte_result("PASS", "操作成功")
+            write_result("PASS", "操作成功")
         else:
                 # 写入
-                wirte_result("FAIL", "操作失败")       
+                write_result("FAIL", "操作失败")       
   
     except Exception as err:
         #调用方法
@@ -434,7 +438,8 @@ def sleep(t,*args,**kwargs):
         time.sleep(tt)
         # 写入
         value = "等待%s秒" % tt
-        wirte_result("PASS", value)
+        write_result("PASS", value)
+        logger.info("PASS,等待%s"%value)
 
     except Exception as err:
         #调用方法
@@ -445,10 +450,11 @@ def get_screenshot(filepath, file):
     global driver
     filename = filepath + file
     print('正在保存图片', filename)
+    logger.info('正在保存图片,filename:'+filename)
     try:
         driver.get_screenshot_as_file(filename)
         # 写入
-        wirte_result("PASS",file)
+        write_result("PASS",file)
 
     except Exception as err:
         #调用方法
@@ -459,54 +465,32 @@ attributes=["resourceId","className","text","name","checkable","checked","clicka
 alls=["text","tag_name","size","loaction"]
 #定位元素e获取属性，元素不为空取值，为空取上一次操作
 def get_value(name,element):
-	global alls,attributes
-	global driver
-	print('正在取值----------------------------------------------------------',name,element)
-	#取定位元素属性
-	el=get_element_of(element)
-	print(el)
+    global alls,attributes
+    global driver
+    print('正在取值----------------------------------------------------------',name,element)
+    logger.info('正在取值,%s,%s'%(name,element))
+    #取定位元素属性
+    el=get_element_of(element)
+    print(el)
 
-	if name in attributes:
-		t=el.get_attribute(name)
-		print(t)
-
-	elif name in alls:
-		if name=="text":
-			t=el.text
-		elif name=="tag_name":
-			t=el.tag_name
-		elif name=="size":
-			t=el.size
-		elif name=="loaction":
-			t=el.location
-		print(t)
-	else:
-		print("输入未找到：",name)
-		t="FAIL"
-	return t
-'''
-#assert,name校验结果，value取值,e定位元素
-def assert_equals(name,value,el):
-	global driver
-	print('正在进行校验-----------------------------------------------------------------')
-	print('本次校验的期望结果是：%s,取值:%s'%(name,value))
-	#调用取值
-	values=get_value(value,el)
-
-	#进行判断
-	if name==values:
-		print('校验正确,校验结果：%s'%name)
-		re="PASS"
-		result=name
-		
-	else:
-		print('校验不正确，要校验的值为%s,取值:%s'%(value,values))
-		re="FAIL"
-		result="校验的值:"+values
-
-	# 写入
-	wirte_result(re,result)
-'''
+    if name in attributes:
+        t=el.get_attribute(name)
+        print(t)
+    elif name in alls:
+        if name=="text":
+            t=el.text
+        elif name=="tag_name":
+            t=el.tag_name
+        elif name=="size":
+            t=el.size
+        elif name=="loaction":
+            t=el.location
+            print(t)
+    else:
+        print("输入未找到：",name)
+        logger.info("输入未找到")
+        t="FAIL"
+    return t
 #-------------------------------
 #assert 统一调用
 #assert,name校验结果，value取值,e定位元素
@@ -515,16 +499,20 @@ def assert_method(method,name,value,el):
     global driver
     print('正在进行校验-----------------------------------------------------------------')
     print('本次校验%s,期望结果是：%s,取值:%s'%(method,name,value))
+    logger.info("正在进行校验----------------------------------------------------------------")
+    logger.info('本次校验%s,期望结果是：%s,取值:%s'%(method,name,value))
     #调用取值
     values=get_value(value,el)
     if method=="equal":
         #进行判断
         if name==values:
             print('校验正确,校验结果：%s'%name)
+            logger.info('校验正确,校验结果：%s'%name)
             re="PASS"
             result=method+"，校验的值:"+name+",取值："+values
         else:
             print('校验不正确，要校验的值为%s,取值:%s'%(value,values))
+            logger.info('校验不正确，要校验的值为%s,取值:%s'%(value,values))
             re="FAIL"
             result=method+"，校验的值:"+name+",取值是："+values
    
@@ -532,10 +520,12 @@ def assert_method(method,name,value,el):
         #进行判断
         if name in values:
             print('校验正确,校验结果：%s'%name)
+            logger.info('校验正确,校验结果：%s'%name)
             re="PASS"
             result = method + "，校验的值:" + name + ",取值：" + values
         else:
             print('校验不正确，要校验的值为%s,取值:%s' % (value, values))
+            logger.info('校验不正确，要校验的值为%s,取值:%s' % (value, values))
             re = "FAIL"
             result = method + "，校验的值:" + name + ",取值是：" + values
  
@@ -543,10 +533,12 @@ def assert_method(method,name,value,el):
         #进行判断
         if name != values:
             print('校验正确,校验结果：%s'%name)
+            logger.info('校验正确,校验结果：%s'%name)
             re="PASS"
             result = method + "，校验的值:" + name + ",取值：" + values
         else:
             print('校验不正确，要校验的值为%s,取值:%s' % (value, values))
+            logger.info('校验不正确，要校验的值为%s,取值:%s' % (value, values))
             re = "FAIL"
             result = method + "，校验的值:" + name + ",取值是：" + values
    
@@ -554,31 +546,35 @@ def assert_method(method,name,value,el):
         #进行判断
         if name not in  values:
             print('校验正确,校验结果：%s'%name)
+            logger.info('校验正确,校验结果：%s'%name)
             re="PASS"
             result = method + "，校验的值:" + name + ",取值：" + values
         else:
             print('校验不正确，要校验的值为%s,取值:%s' % (value, values))
+            logger.info('校验不正确，要校验的值为%s,取值:%s' % (value, values))
             re = "FAIL"
             result = method + "，校验的值:" + name + ",取值是：" + values
     
     # 写入
-    wirte_result(re,result)
+    write_result(re,result)
 
 #拆分多个参数,以逗号拆分，去除前后空格
 def  get_split(names):
-	n=[]
-	name=names.split(',')
-	for i in range(len(name)):
-		#去掉空格
-		n.append(name[i].strip())   
-	return n
+    n=[]
+    name=names.split(',')
+    for i in range(len(name)):
+        #去掉空格
+        n.append(name[i].strip())
+    return n
     
 #assert多个,
 def assert_all_method(method ,names,values,els):
     global driver
     print('正在进行多个校验-----------------------------------------------------------------')
     print('本次校验的多个%s,期望结果是：%s,取值:%s'%(method,names,values))
-    
+    logger.info('正在进行多个校验')
+    logger.info('本次校验的多个%s,期望结果是：%s,取值:%s'%(method,names,values))
+
     #调用拆分
     n=get_split(names)
     v=get_split(values)
@@ -612,6 +608,7 @@ def assert_all_method(method ,names,values,els):
         elif method == "notin":
             # 进行判断
             print('正在校验',method,"校验值",n[i],"取值",values,'-----------------------------------------')
+            logger.info('正在校验,'+method+"校验值,"+n[i]+",取值,"+values+'-----------------------------------------')
             print(n[i] not in values)
             if n[i] not in values:
                 r.append("PASS")
@@ -638,16 +635,19 @@ def assert_all_method(method ,names,values,els):
         
     if re!="FAIL":
         print('校验正确,校验结果：%s'%names)
+        logger.info('校验正确,校验结果：%s'%names)
+
     else:
         print('校验不正确，要校验的值为:%s,取值%s'%(names,result))
-    
+        logger.info('校验不正确，要校验的值为:%s,取值%s'%(names,result))
+
     #将result加分隔,传给excel写入
     s=""
     for i in range(len(result)):
         s=s+result[i]+","
     print(s)
     # 写入
-    wirte_result(re,s)
+    write_result(re,s)
 
 #-------------------------------------------------------未调试
 # 保存图片到本文件夹,暂时不用
@@ -655,7 +655,7 @@ def save_screenshot(filename):
     global driver
     driver.save_screenshot(filename)
     # 写入
-    wirte_result("PASS", filename)
+    write_result("PASS", filename)
 
    
 # 获取当前页元素，未可用
@@ -684,9 +684,11 @@ def get_current_activity():
     global driver
     ac = driver.current_activity
     print('当前的activity:----------------',ac)
+    logger.info('当前的activity:----------------',ac)
+
 
     # 写入
-    wirte_result("PASS","当前activity是%s"%ac)
+    write_result("PASS","当前activity是%s"%ac)
     return ac
 #-----------------------------------------------   
 #根据sourcepage判断
@@ -697,6 +699,7 @@ def source_assert(*args):
 
     if args=="":
         print("未传入有效内容")
+        logger.info("未传入有效内容")
         re="FAIL"
         value="未传入有效内容"        
 
@@ -706,9 +709,12 @@ def source_assert(*args):
         for x in args:
             if x in source:
                 print(x + "存在")
+                logger.info(x + "存在")
+
                 i=i+1
             else:
                 print(x + "不存在")
+                logger.info(x + "不存在")
 
         if i==n:
             re="PASS"
@@ -723,11 +729,12 @@ def source_assert(*args):
             value="存在"            
         else:
             print(args[0] + "不存在")
+            logger.info(args[0] + "不存在")
             re="PASS"
             value="不存在"
 
     # 写入
-    wirte_result(re,value)
+    write_result(re,value)
 #----------------------------------------------------
 #返回坐标
 def get_xy(radiox,radioy):
@@ -749,7 +756,7 @@ def get_xy(radiox,radioy):
     coordinate.append(radioy)
 
     # 写入
-    #wirte_result('PASS','坐标为%s,%s'%(str(radiox),str(radioy))) 
+    #write_result('PASS','坐标为%s,%s'%(str(radiox),str(radioy))) 
 
     return coordinate
 #----------------------------------------------------
@@ -766,17 +773,19 @@ def tap_random():
     #print(str(x),str(y))
     try:
         print("即将随机点击：" + str(x),str(y))
+        logger.info("即将随机点击：" + str(x),str(y))
         driver.tap([(x,y)])
         re="PASS"
         value="随机点击坐标%s,%s"%(str(x),str(y))       
 
     except BaseException as e:
         print("随机点击出错了%s"%str(e))
+        logger.info("随机点击出错了%s"%str(e))
         re="FAIL"
         value="随机点击出错了%s"%str(e)
 
     # 写入
-    wirte_result(re,value)
+    write_result(re,value)
 #-----------------------------------------------
 #坐标点击
 def tap_point(x,y):
@@ -813,6 +822,7 @@ def tap_point(x,y):
         
     #print(str(x),str(y))
     print("即将点击坐标:" + str(x),str(y))
+    logger.info("即将点击坐标:" + str(x)+","+str(y))
     try:
         driver.tap([(x,y)])
         re="PASS"
@@ -821,13 +831,13 @@ def tap_point(x,y):
     except BaseException as e:
         
         print("点击出错了%s"%str(e))
+        logger.info("点击出错了%s"%str(e))
 
         re="FAIL"
         value="点击出错了%s"%str(e)
 
     # 写入
-    wirte_result(re,value)
-
+    write_result(re,value)
 #-----------------------------------------------
 # 滑动多次
 def swiptest(method,num):
@@ -850,7 +860,7 @@ def swiptest(method,num):
 
     # 写入
     value = method + ":" + str(num)
-    wirte_result("PASS", value)
+    write_result("PASS", value)
 
 
 # 获取尺寸
@@ -878,7 +888,7 @@ def swipeUp():
         key = "FAIL"
 
     # 写入
-    wirte_result(key, value)
+    write_result(key, value)
 
 
 # 下划
@@ -897,7 +907,7 @@ def swipeDown():
         key = "FAIL"
 
     # 写入
-    wirte_result(key, value)
+    write_result(key, value)
 
 
 # 左划
@@ -916,7 +926,7 @@ def swipeLeft():
         key = "FAIL"
 
     # 写入
-    wirte_result(key, value)
+    write_result(key, value)
 
 # 右划
 def swipeRight():
@@ -934,7 +944,7 @@ def swipeRight():
         key = "FAIL"
 
     # 写入
-    wirte_result(key, value)
+    write_result(key, value)
 
 #----------------------------------------------------------------------
 #error时执行
@@ -944,10 +954,9 @@ def err_run(err,func,*args,**kwargs):
     key = "FAIL"
 
     # 写入
-    wirte_result(key, value)
+    write_result(key, value)
     #重试
     rerun(func,*args,**kwargs)
-    
 
 #重试（三次）
 count = 1
@@ -955,10 +964,12 @@ def rerun(func,*args,**kwargs):
     global count
     if count <= 3:
         print("重试第%d次" % count)
+        logger.info("重试第%d次" % count)
         count = count + 1
         func(*args,**kwargs)
     else:
         print("结束成功")
+        logger.info("结束成功")
         count = 1
         return count
 #----------------------------------------------------------------------
@@ -972,11 +983,15 @@ def  tanchuang(id):
             el=driver.find_element_by_id(id)
             el.click()
             print('关闭了弹窗')
+            logger.info('关闭了弹窗')
+
         else:
             print('弹窗不存在')
-            
+            logger.info('弹窗不存在')
+
     except Exception as  err:
             print('弹窗报错了',err)
+            logger.info('弹窗报错了',err)
 
 #--------------------------------------------------
 #弹窗关闭
@@ -989,9 +1004,11 @@ def tanchuang_all():
             el=driver.find_element_by_id(x)
             el.click()
             print('关闭了弹窗')            
-            
+            logger.info('关闭了弹窗')
+
         else:
             print('不存在弹窗id',x)
+            logger.info('不存在弹窗id',x)
 
 #-------------------------------------------------------未调试    
 # 获取当前页所有元素
@@ -1017,15 +1034,16 @@ def get_pagesource(file=""):
 
             if len(r)>10:
                 print("保存文件：",filename)
+                logger.info("保存文件："+filename)
                 #调用写入xml文件
                 write_xml_to_file(filename,r)
             #写入
-            wirte_result("PASS", file)    
+            write_result("PASS", file)    
         
         except Exception as err:
             print(err) 
             #写入
-            wirte_result("FAIL", file)
+            write_result("FAIL", file)
 
 #-----------------------------------------------------------
 #xml 存到文件中
@@ -1033,6 +1051,7 @@ def write_xml_to_file(filename,content):
     with open(filename,"w+",encoding='utf-8') as f:
         f.write(content)
         print("写入xml到文件")
+        logger.info("写入xml到文件")
 
 #-----------------------------------------------------------    
 #判断元素是否存在，text
@@ -1043,47 +1062,91 @@ def is_exist_text(name):
             el=driver.find_element_by_xpath(xpath_value)
             
             print("元素定位成功")
+            logger.info("元素定位成功")
             return True
         except BaseException as e:
             print(e.args)
             print("元素定位失败")
+            logger.info("元素定位失败")
             return False
+#-------------------------------------------------------------------
+#xpath定位元素
+def element_xpath(method,name):
+    global driver
+    source = driver.page_source
+    print('判断是否存在元素--------------------------------------------', method, name)
+    logger.info('判断是否存在元素--------------------------------------------'+method+","+name)
+    new=""
+    if name in source:
+        if method=="id":
+            new = "//*[@resource-id=%s]"%name
+        elif method=="text":
+            new = "//*[@text=%s]"%name
+        elif method=="desc":
+            new = "//*[@content-desc=%s]"%name
+        elif method=="class":
+            new = "//*[@class=%s]"%name
+        elif method=="textcontains":
+            new = "*[contains(@text, %s)]"%name
+        elif method=="idcontains":
+            new = "*[contains(@resource-id, %s)]"%name
+        elif method=="classcontains":
+            new = "*[contains(@class %s)]"%name
+        elif method=="desccontains":
+            new = "*[contains(@content-desc, %s)]"%name
+        el=driver.find_element_by_xpath(new)
+        el.click()
+        print('已经点击了', name)
+        logger.info('已经点击了', name)
+
+        # 写入
+        write_result('PASS', "点击了 " + method+",",name)
+
+    else:
+        print('不存在', name)
+        logger.info('不存在', name)
+        #写入
+        write_result("PASS","不存在 "+ method+",",name)
 
 #---------------------------------------------------------
 #判断source中存在就点击,id,text,xpath,class
 def  is_exist(act,name):
-	global driver
-	#根据text包含值，点击
-	source=driver.page_source
-	print('正在判断是否存在元素--------------------------------------------',act,name)
-	if name in source:
-		if act=='id':
-			el=driver.find_element_by_id(name)
-		
-		elif act=='text':
-			new = 'new UiSelector().textContains(\"' + name + '\")'
-			el= driver.find_element_by_android_uiautomator(new)
+    global driver
 
-		elif act=="class":
-			el=driver.find_element_by_class_name(name)
-		
-		elif act=="xpath":
-			el=driver.find_element_by_xpath(name)
+    #根据text包含值，点击
+    source=driver.page_source
+    print('正在判断是否存在元素--------------------------------------------',act,name)
+    logger.info('正在判断是否存在元素--------------------------------------------',act,name)
+    if name in source:
+        if act=='id':
+            el=driver.find_element_by_id(name)
 
-		elif act=="name":
-			el=driver.find_element_by_name(name)
+        elif act=='text':
+            new = 'new UiSelector().textContains(\"' + name + '\")'
+            el= driver.find_element_by_android_uiautomator(new)
 
-		el.click()
-		print('已经点击了',name)
+        elif act=="class":
+            el=driver.find_element_by_class_name(name)
 
-        # 写入
-		wirte_result('PASS',"点击了 "+name)
+        elif act=="xpath":
+            el=driver.find_element_by_xpath(name)
 
-	else:
-		print('不存在',name)
+        elif act=="name":
+            el=driver.find_element_by_name(name)
+
+        el.click()
+        print('已经点击了',name)
+        logger.info('已经点击了',name)
 
         # 写入
-		wirte_result('PASS',"不存在 "+name)
+        write_result('PASS',"点击了 "+name)
+    else:
+        print('不存在',name)
+        logger.info('不存在',name)
+
+        #写入
+
+        write_result('PASS',"不存在 "+name)
 #----------------------------------------------------------------------
 #存储常量
 def const_value(method,keys,values):
@@ -1101,12 +1164,15 @@ def const_value(method,keys,values):
                 # 存储每个值
                 CONST_VALUE[key_list[i]]=int(v_list[i])
                 print('存储值：%s---------%s' % (key_list[i],v_list[i]))
+                logger.info('存储值：%s---------%s' % (key_list[i],v_list[i]))
 
         elif len(key_list)==1:
             CONST_VALUE[keys] = int(values)
             print('存储值：%s---------%s' % (keys, values))
+            logger.info('存储值：%s---------%s' % (keys, values))
         else:
             print("没有变量")
+            logger.info("没有变量")
     else:
         if len(key_list) > 1:
             # 调用拆分
@@ -1117,11 +1183,14 @@ def const_value(method,keys,values):
                 # 存储每个值
                 CONST_VALUE[key_list[i]]=str(v_list[i])
                 print('多个，正在存储值：%s---------%s' % (key_list[i],v_list[i]))
+                logger.info('多个，正在存储值：%s---------%s' % (key_list[i],v_list[i]))
         elif len(key_list)==1:
             CONST_VALUE[keys] = str(values)
             print('存储值：%s---------%s' % (keys, values))
+            logger.info('存储值：%s---------%s' % (keys, values))
         else:
             print("没有变量")
+            logger.info("没有变量")
 
     print(CONST_VALUE)
 #----------------------------------------------------------------------
@@ -1135,15 +1204,18 @@ def  get_const_value(x):
 #----------------------------------------------------------------------
 #读取间隔时间设置
 def step_insterval_time():
-    if  conf.STEP_INTERVAL_TIME:
+    print('-----------------',conf.STEP_INTERVAL_TIME,conf.step_sleep)
+    logger.info('-----------------'+conf.STEP_INTERVAL_TIME+","+conf.step_sleep)
+    if  conf.STEP_INTERVAL_TIME==True:
         if conf.step_sleep>1:
-            print('-----------------等待时间',conf.step_sleep,type(conf.step_sleep))
+            print('-----------------等待时间',conf.step_sleep)
+            logger.info('-----------------等待时间'+str(conf.step_sleep))
             time.sleep(conf.step_sleep)
 
-
 # ----------------------------------------------------------------------
+#打印日志开关
 def start_log():
-    if conf.LOG_STATUS:
+    if conf.LOG_STATUS==True:
         # log
         logger = Log.get_logger()
         flag=1
