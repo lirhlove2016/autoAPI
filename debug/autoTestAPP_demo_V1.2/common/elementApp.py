@@ -361,7 +361,7 @@ def clicks(act, element, value="", name="", casename=""):
     # 异常
     except Exception as err:
         print("报错了:", err)
-        logger.info("报错了:",+"error"+str(err))
+        logger.info("报错了:"+"error"+str(err))
         number = number + 1
         get_screenshot(resultfile, "_error_%s_%d.png" % (casename, number))
 
@@ -773,7 +773,7 @@ def tap_random():
     #print(str(x),str(y))
     try:
         print("即将随机点击：" + str(x),str(y))
-        logger.info("即将随机点击：" + str(x),str(y))
+        logger.info("即将随机点击：" + str(x)+","+str(y))
         driver.tap([(x,y)])
         re="PASS"
         value="随机点击坐标%s,%s"%(str(x),str(y))       
@@ -1116,7 +1116,7 @@ def  is_exist(act,name):
     #根据text包含值，点击
     source=driver.page_source
     print('正在判断是否存在元素--------------------------------------------',act,name)
-    logger.info('正在判断是否存在元素--------------------------------------------',act,name)
+    logger.info('正在判断是否存在元素--------------------------------------------'+act+","+name)
     if name in source:
         if act=='id':
             el=driver.find_element_by_id(name)
@@ -1136,13 +1136,13 @@ def  is_exist(act,name):
 
         el.click()
         print('已经点击了',name)
-        logger.info('已经点击了',name)
+        logger.info('已经点击了'+name)
 
         # 写入
         write_result('PASS',"点击了 "+name)
     else:
         print('不存在',name)
-        logger.info('不存在',name)
+        logger.info('不存在'+name)
 
         #写入
 
@@ -1155,6 +1155,10 @@ def const_value(method,keys,values):
     # 调用拆分
     key_list = get_split(keys)
     v_list = get_split(values)
+    print("key_list"%key_list)
+    print("v_list"%v_list)
+    logger.info("key_list"%key_list)
+    logger.info("v_list"%v_list)
 
     #为空时字符，int为数字
     if method=="int":
@@ -1163,8 +1167,8 @@ def const_value(method,keys,values):
             for i in range(len(key_list)):
                 # 存储每个值
                 CONST_VALUE[key_list[i]]=int(v_list[i])
-                print('存储值：%s---------%s' % (key_list[i],v_list[i]))
-                logger.info('存储值：%s---------%s' % (key_list[i],v_list[i]))
+                print('已经存储常量值：%s---------%s' % (key_list[i],v_list[i]))
+                logger.info('已经存储常量值：%s---------%s' % (key_list[i],v_list[i]))
 
         elif len(key_list)==1:
             CONST_VALUE[keys] = int(values)
@@ -1204,8 +1208,8 @@ def  get_const_value(x):
 #----------------------------------------------------------------------
 #读取间隔时间设置
 def step_insterval_time():
-    print('-----------------',conf.STEP_INTERVAL_TIME,conf.step_sleep)
-    logger.info('-----------------'+conf.STEP_INTERVAL_TIME+","+conf.step_sleep)
+    #print('-----------------',conf.STEP_INTERVAL_TIME,conf.step_sleep)
+    logger.info('-----------------'+str(conf.STEP_INTERVAL_TIME)+","+str(conf.step_sleep))
     if  conf.STEP_INTERVAL_TIME==True:
         if conf.step_sleep>1:
             print('-----------------等待时间',conf.step_sleep)
@@ -1230,6 +1234,7 @@ def print_log(msg):
         pass
 #----------------------------------------------------------------------
 number=1
+#图片
 def  get_element_pic(casename,el):
     global number,driver
     filepath="./report/image/%s_%d.png"%(casename, number)
@@ -1244,6 +1249,16 @@ def  get_element_pic(casename,el):
     #filepath = "./report/image/shujia_1.png"
     image.pic_rectangle(filepath, recxy)
 #----------------------------------------------------------------------
+#数学方法
+def  my_math(val_1,val_2,method):
+    result = eval(val_1)
+    print("计算%s =%s"%(val_1,result))
+    #判断是数字
+    if val_1.isdigit() and val_2.isdigit():
+        pass
+    else:
+        print("非数字，请注意，不能进行计算")
+
 
 
 

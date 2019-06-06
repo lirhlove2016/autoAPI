@@ -7,7 +7,7 @@ import time
 import datetime
 # -文件目录配置----------------------------
 filepath = os.path.abspath(os.getcwd())
-srcfile = os.path.join(filepath, 'datadir/myApp-530.xls')
+srcfile = os.path.join(filepath, 'datadir/myApp.xls')
 desfile = os.path.join(filepath, 'datadir/myApp_result.xls')
 resultfile = os.path.join(filepath, 'report/screenshot/screenshot_')
 print(srcfile)
@@ -168,7 +168,6 @@ def run(line):
     if line[3] == 'tanchuang':
         app.step_insterval_time()
         app.tanchuang(line[4])
-        app.step_insterval_time()
         return
     if line[3] == 'tanchuangall':
         app.step_insterval_time()
@@ -194,7 +193,7 @@ def run(line):
         return
             
     if line[3]=='pagesource':
-        app.get_pagessource(line[4])
+        app.get_pagesource(line[4])
         return
 
     if line[3]=='sourceassert':
@@ -209,12 +208,17 @@ def run(line):
     if line[3]=='get_velue':
         app.get_value(line[4],line[5])
         return
+
     if line[3]=='const_int':
         app.const_value("int",line[4],line[5])
 
         return
     if line[3]=='const':
         app.const_value("",line[4],line[5])
+        return
+
+    if line[3] == 'math':
+        app.my_math(line[4], line[5], line[6])
         return
 
     else:

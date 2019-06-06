@@ -32,14 +32,18 @@ app.sleep(1)
 driver=app.driver
 #点击男
 print('已经滑动到第3页，正在选择男 女 ...')
-app.get_element("id","com.ishugui:id/tv_man","","man",'selectman')
-app.clicks("click","man")
-print('选择男生，进入主界面')
+app.get_element("id","com.ishugui:id/tv_man111","","man",'selectman')
+
+print('错误的id')
 app.sleep(1)
 
+app.get_element("id","com.ishugui:id/tv_man","","man",'selectman')
+app.clicks("click","man")
+app.clicks("click","man")
+print('选择男生，进入主界面')
 print("等待5秒")
-app.step_insterval_time()
-
+print("等待5秒")
+#app.step_insterval_time()
 
 '''
 #保存图
