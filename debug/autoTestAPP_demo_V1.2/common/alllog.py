@@ -8,12 +8,12 @@ from conf.conf import reportDir,logDir
 
 def get_logger():
     # output log
-    now = time.strftime("%Y-%m-%d_%M-%H_%M_%S", time.localtime(time.time()))
+    now = time.strftime("%Y-%m-%d_%H_%M_%S", time.localtime(time.time()))
     logresult = logDir + r"/" + now + "_output.log"
 
     logger = logging.getLogger('mylogger')
     logger.setLevel(logging.DEBUG)
-
+    #输出到文件
     rf_handler = logging.handlers.TimedRotatingFileHandler(logresult , when='midnight', interval=1, backupCount=7, atTime=datetime.time(0, 0, 0, 0))
     rf_handler.setFormatter(logging.Formatter("%(asctime)s - %(levelname)s - %(message)s"))
 

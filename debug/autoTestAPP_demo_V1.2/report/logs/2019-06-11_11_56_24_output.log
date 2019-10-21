@@ -1,0 +1,136 @@
+2019-06-11 11:57:05,630 - INFO - 执行结果：PASS,设备已经启动,wait60
+2019-06-11 11:57:05,630 - INFO - PASS,设备已经启动,wait60
+2019-06-11 11:57:05,631 - INFO - -----------------False,3
+2019-06-11 11:57:05,631 - INFO - 等待时间关闭状态
+2019-06-11 11:57:07,275 - INFO - 执行结果：PASS,left
+2019-06-11 11:57:08,807 - INFO - 执行结果：PASS,left
+2019-06-11 11:57:10,202 - INFO - 执行结果：PASS,left
+2019-06-11 11:57:10,202 - INFO - 执行结果：PASS,left:3
+2019-06-11 11:57:10,202 - INFO - -----------------False,3
+2019-06-11 11:57:10,202 - INFO - 等待时间关闭状态
+2019-06-11 11:57:11,620 - INFO - 执行结果：PASS,right
+2019-06-11 11:57:11,621 - INFO - 执行结果：PASS,right:1
+2019-06-11 11:57:11,621 - INFO - -----------------False,3
+2019-06-11 11:57:11,622 - INFO - 等待时间关闭状态
+2019-06-11 11:57:13,058 - INFO - 执行结果：PASS,left
+2019-06-11 11:57:13,060 - INFO - 执行结果：PASS,left:1
+2019-06-11 11:57:13,060 - INFO - -----------------False,3
+2019-06-11 11:57:13,061 - INFO - 等待时间关闭状态
+2019-06-11 11:57:14,769 - INFO - 执行结果：PASS,up
+2019-06-11 11:57:14,769 - INFO - 执行结果：PASS,up:1
+2019-06-11 11:57:14,769 - INFO - -----------------False,3
+2019-06-11 11:57:14,769 - INFO - 等待时间关闭状态
+2019-06-11 11:57:15,201 - INFO - 正在判断是否存在元素--------------------------------------------text,男生小说
+2019-06-11 11:57:17,845 - INFO - 已经点击了男生小说
+2019-06-11 11:57:17,846 - INFO - 执行结果：PASS,点击了 男生小说
+2019-06-11 11:57:17,846 - INFO - -----------------False,3
+2019-06-11 11:57:17,846 - INFO - 等待时间关闭状态
+2019-06-11 11:57:18,018 - INFO - 正在判断是否存在元素--------------------------------------------xpath,//*[contains(@text, "男生小说")]
+2019-06-11 11:57:18,019 - INFO - 不存在//*[contains(@text, "男生小说")]
+2019-06-11 11:57:18,020 - INFO - 执行结果：PASS,不存在 //*[contains(@text, "男生小说")]
+2019-06-11 11:57:19,021 - INFO - 执行结果：PASS,等待1秒
+2019-06-11 11:57:19,022 - INFO - PASS,等待等待1秒
+2019-06-11 11:57:19,022 - INFO - -----------------False,3
+2019-06-11 11:57:19,023 - INFO - 等待时间关闭状态
+2019-06-11 11:57:19,191 - INFO - 即将随机点击：503,544
+2019-06-11 11:57:19,360 - INFO - 执行结果：PASS,随机点击坐标503,544
+2019-06-11 11:57:19,360 - INFO - -----------------False,3
+2019-06-11 11:57:19,360 - INFO - 等待时间关闭状态
+2019-06-11 11:57:20,654 - INFO - 正在判断是否存在元素--------------------------------------------id,com.ishugui:id/imageview_close
+2019-06-11 11:57:20,655 - INFO - 不存在com.ishugui:id/imageview_close
+2019-06-11 11:57:20,656 - INFO - 执行结果：PASS,不存在 com.ishugui:id/imageview_close
+2019-06-11 11:57:20,656 - INFO - -----------------False,3
+2019-06-11 11:57:20,657 - INFO - 等待时间关闭状态
+2019-06-11 11:57:21,540 - INFO - 弹窗不存在
+2019-06-11 11:57:22,541 - INFO - 执行结果：PASS,等待1秒
+2019-06-11 11:57:22,541 - INFO - PASS,等待等待1秒
+2019-06-11 11:57:23,919 - INFO - 保存文件：E:\myworkspace\mygit\mygitworkspace\autoAPI\debug\autoTestAPP_demo_V1.2\report/pages/shujia_page_0.xml
+2019-06-11 11:57:23,920 - INFO - 写入xml到文件
+2019-06-11 11:57:23,921 - INFO - 执行结果：PASS,shujia
+2019-06-11 11:57:24,922 - INFO - 执行结果：PASS,等待1秒
+2019-06-11 11:57:24,922 - INFO - PASS,等待等待1秒
+2019-06-11 11:57:24,922 - INFO - -----------------False,3
+2019-06-11 11:57:24,922 - INFO - 等待时间关闭状态
+2019-06-11 11:57:26,357 - INFO - 执行结果：PASS,up
+2019-06-11 11:57:26,358 - INFO - 执行结果：PASS,up:1
+2019-06-11 11:57:27,359 - INFO - 执行结果：PASS,等待1秒
+2019-06-11 11:57:27,361 - INFO - PASS,等待等待1秒
+2019-06-11 11:57:27,361 - INFO - -----------------False,3
+2019-06-11 11:57:27,361 - INFO - 等待时间关闭状态
+2019-06-11 11:57:28,773 - INFO - 执行结果：PASS,down
+2019-06-11 11:57:28,774 - INFO - 执行结果：PASS,down:1
+2019-06-11 11:57:28,775 - INFO - key_list
+2019-06-11 11:57:28,775 - INFO - v_list
+2019-06-11 11:57:28,775 - INFO - 存储值：kandian---------100
+2019-06-11 11:57:28,776 - INFO - key_list
+2019-06-11 11:57:28,777 - INFO - v_list
+2019-06-11 11:57:28,777 - INFO - 存储值：bookname---------我的老婆是妲己
+2019-06-11 11:57:28,785 - INFO - -----------------False,3
+2019-06-11 11:57:28,785 - INFO - 等待时间关闭状态
+2019-06-11 11:57:28,786 - INFO - 定位---id------com.ishugui:id/iv_top_title_search-----
+2019-06-11 11:58:29,834 - INFO - 定位报错了:errorMessage: An element could not be located on the page using the given search parameters.
+
+2019-06-11 11:58:29,835 - INFO - 正在保存图片,filename:E:\myworkspace\mygit\mygitworkspace\autoAPI\debug\autoTestAPP_demo_V1.2\report\screenshot/screenshot__error_元素存常量_1.png
+2019-06-11 11:58:30,717 - INFO - 执行结果：PASS,_error_元素存常量_1.png
+2019-06-11 11:58:32,497 - INFO - 重试第1次
+2019-06-11 11:58:32,497 - INFO - 定位---id------com.ishugui:id/iv_top_title_search-----
+2019-06-11 11:59:32,917 - INFO - 定位报错了:errorMessage: An element could not be located on the page using the given search parameters.
+
+2019-06-11 11:59:32,918 - INFO - 正在保存图片,filename:E:\myworkspace\mygit\mygitworkspace\autoAPI\debug\autoTestAPP_demo_V1.2\report\screenshot/screenshot__error_元素存常量_2.png
+2019-06-11 11:59:33,741 - INFO - 执行结果：PASS,_error_元素存常量_2.png
+2019-06-11 11:59:33,741 - INFO - 重试第2次
+2019-06-11 11:59:33,742 - INFO - 定位---id------com.ishugui:id/iv_top_title_search-----
+2019-06-11 12:00:34,645 - INFO - 定位报错了:errorMessage: An element could not be located on the page using the given search parameters.
+
+2019-06-11 12:00:34,646 - INFO - 正在保存图片,filename:E:\myworkspace\mygit\mygitworkspace\autoAPI\debug\autoTestAPP_demo_V1.2\report\screenshot/screenshot__error_元素存常量_3.png
+2019-06-11 12:00:35,479 - INFO - 执行结果：PASS,_error_元素存常量_3.png
+2019-06-11 12:00:35,480 - INFO - 重试第3次
+2019-06-11 12:00:35,480 - INFO - 定位---id------com.ishugui:id/iv_top_title_search-----
+2019-06-11 12:01:36,524 - INFO - 定位报错了:errorMessage: An element could not be located on the page using the given search parameters.
+
+2019-06-11 12:01:36,524 - INFO - 正在保存图片,filename:E:\myworkspace\mygit\mygitworkspace\autoAPI\debug\autoTestAPP_demo_V1.2\report\screenshot/screenshot__error_元素存常量_4.png
+2019-06-11 12:01:37,344 - INFO - 执行结果：PASS,_error_元素存常量_4.png
+2019-06-11 12:01:37,344 - INFO - 结束成功
+2019-06-11 12:01:37,345 - INFO - 执行结果：FAIL,Message: An element could not be located on the page using the given search parameters.
+
+2019-06-11 12:01:37,345 - INFO - 执行结果：FAIL,Message: An element could not be located on the page using the given search parameters.
+
+2019-06-11 12:01:37,345 - INFO - 执行结果：FAIL,Message: An element could not be located on the page using the given search parameters.
+
+2019-06-11 12:01:37,345 - INFO - 执行结果：FAIL,Message: An element could not be located on the page using the given search parameters.
+
+2019-06-11 12:01:37,345 - INFO - -----------------False,3
+2019-06-11 12:01:37,345 - INFO - 等待时间关闭状态
+2019-06-11 12:01:37,345 - INFO - 定位---id------com.ishugui:id/tv_sign_status-----
+2019-06-11 12:02:37,487 - INFO - 定位报错了:errorMessage: An element could not be located on the page using the given search parameters.
+
+2019-06-11 12:02:37,488 - INFO - 正在保存图片,filename:E:\myworkspace\mygit\mygitworkspace\autoAPI\debug\autoTestAPP_demo_V1.2\report\screenshot/screenshot__error_定位今日签到_5.png
+2019-06-11 12:02:38,292 - INFO - 执行结果：PASS,_error_定位今日签到_5.png
+2019-06-11 12:02:38,292 - INFO - 重试第1次
+2019-06-11 12:02:38,292 - INFO - 定位---id------com.ishugui:id/tv_sign_status-----
+2019-06-11 12:03:38,638 - INFO - 定位报错了:errorMessage: An element could not be located on the page using the given search parameters.
+
+2019-06-11 12:03:38,639 - INFO - 正在保存图片,filename:E:\myworkspace\mygit\mygitworkspace\autoAPI\debug\autoTestAPP_demo_V1.2\report\screenshot/screenshot__error_定位今日签到_6.png
+2019-06-11 12:03:39,461 - INFO - 执行结果：PASS,_error_定位今日签到_6.png
+2019-06-11 12:03:39,461 - INFO - 重试第2次
+2019-06-11 12:03:39,462 - INFO - 定位---id------com.ishugui:id/tv_sign_status-----
+2019-06-11 12:04:39,494 - INFO - 定位报错了:errorMessage: An element could not be located on the page using the given search parameters.
+
+2019-06-11 12:04:39,494 - INFO - 正在保存图片,filename:E:\myworkspace\mygit\mygitworkspace\autoAPI\debug\autoTestAPP_demo_V1.2\report\screenshot/screenshot__error_定位今日签到_7.png
+2019-06-11 12:04:40,297 - INFO - 执行结果：PASS,_error_定位今日签到_7.png
+2019-06-11 12:04:40,297 - INFO - 重试第3次
+2019-06-11 12:04:40,297 - INFO - 定位---id------com.ishugui:id/tv_sign_status-----
+2019-06-11 12:05:41,310 - INFO - 定位报错了:errorMessage: An element could not be located on the page using the given search parameters.
+
+2019-06-11 12:05:41,310 - INFO - 正在保存图片,filename:E:\myworkspace\mygit\mygitworkspace\autoAPI\debug\autoTestAPP_demo_V1.2\report\screenshot/screenshot__error_定位今日签到_8.png
+2019-06-11 12:05:42,142 - INFO - 执行结果：PASS,_error_定位今日签到_8.png
+2019-06-11 12:05:42,143 - INFO - 结束成功
+2019-06-11 12:05:42,143 - INFO - 执行结果：FAIL,Message: An element could not be located on the page using the given search parameters.
+
+2019-06-11 12:05:42,143 - INFO - 执行结果：FAIL,Message: An element could not be located on the page using the given search parameters.
+
+2019-06-11 12:05:42,143 - INFO - 执行结果：FAIL,Message: An element could not be located on the page using the given search parameters.
+
+2019-06-11 12:05:42,143 - INFO - 执行结果：FAIL,Message: An element could not be located on the page using the given search parameters.
+
+2019-06-11 12:05:42,143 - INFO - 正在取值,text,shujia_sign

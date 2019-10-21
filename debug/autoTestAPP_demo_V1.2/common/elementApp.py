@@ -75,8 +75,7 @@ CONST_VALUE={}
 
 #log
 logger=Log.get_logger()
-#log = Log.get_log()
-#logger = log.get_logger()
+
 
 # 设备参数
 desired_caps = {
@@ -224,8 +223,15 @@ def get_element(method, element, index="", name="", casename=""):
         re = "PASS"
         value = element
 
+        #存储值
         if name != "":
-            saveelements[name] = e
+            #已@开头的存储当前值，其他的存储元素
+            if  name.startswith("@"):
+                v,key=name.split("@")
+                value=element
+                const_value("",key,value)
+            else:
+                saveelements[name] = e
 
     # 异常
     except Exception as err:
@@ -411,15 +417,15 @@ def back():
         err_run(err,back)
 
 # back,多次点击
-def backs(number):
+def backs(num):
     global driver
     try:
         n=0
-        for i  in range(int(number)):
+        for i  in range(int(num)):
             driver.back() 
             n = n+1
      
-        if n==int(number):
+        if n==int(num):
                 # 写入
             write_result("PASS", "操作成功")
         else:
@@ -1013,8 +1019,10 @@ def tanchuang_all():
 #-------------------------------------------------------未调试    
 # 获取当前页所有元素
 #取source
+num_page=0
 def get_pagesource(file=""):
         global driver
+        global num_page
         r=driver.page_source
       
         try:
@@ -1022,12 +1030,12 @@ def get_pagesource(file=""):
             if r:
                 print('pagesource:',r[:10])
                 if file=="":
-                    filename=pageDir+"page_%s.xml"%(number)
+                    filename=pageDir+"page_%s.xml"%(num_page)
 
                 #file不为空，保存文件    
                 else:
                     #存储文件名
-                    filename=pageDir+"%s_page_%s.xml"%(file,number)
+                    filename=pageDir+"%s_page_%s.xml"%(file,num_page)
                                                                               
             else:
                     print("pagesource空-----------------------------------------------")
@@ -1167,13 +1175,13 @@ def const_value(method,keys,values):
             for i in range(len(key_list)):
                 # 存储每个值
                 CONST_VALUE[key_list[i]]=int(v_list[i])
-                print('已经存储常量值：%s---------%s' % (key_list[i],v_list[i]))
-                logger.info('已经存储常量值：%s---------%s' % (key_list[i],v_list[i]))
+                print('已经存储第%d个常量值：%s---------%s' % (i,key_list[i],v_list[i]))
+                logger.info('已经存储常量值：%s---------%s' % (i,key_list[i],v_list[i]))
 
         elif len(key_list)==1:
             CONST_VALUE[keys] = int(values)
-            print('存储值：%s---------%s' % (keys, values))
-            logger.info('存储值：%s---------%s' % (keys, values))
+            print('存储常量值：%s---------%s' % (keys, values))
+            logger.info('存储常量值：%s---------%s' % (keys, values))
         else:
             print("没有变量")
             logger.info("没有变量")
@@ -1215,30 +1223,33 @@ def step_insterval_time():
             print('-----------------等待时间',conf.step_sleep)
             logger.info('-----------------等待时间'+str(conf.step_sleep))
             time.sleep(conf.step_sleep)
+    else:
+        #logger.info('等待时间关闭状态')
+        pass
 
 # ----------------------------------------------------------------------
-#打印日志开关
+#打印日志开关，待完善
 def start_log():
     if conf.LOG_STATUS==True:
         # log
         logger = Log.get_logger()
         flag=1
+        logger.info("日志开关开启状态，正在打印日志")
         return logger
     else:
         flag=0
+        logger.info("日志开关关闭状态，不会打印日志")
         return  flag
 
-def print_log(msg):
-    re=start_log()
-    if re!=0:
-        pass
+
+logger=Log.get_logger()
 #----------------------------------------------------------------------
-number=1
+num_pic=1
 #图片
 def  get_element_pic(casename,el):
-    global number,driver
-    filepath="./report/image/%s_%d.png"%(casename, number)
-    get_screenshot(imageDir, "%s_%d.png" % (casename, number))
+    global num_pic,driver
+    filepath="./report/image/%s_%d.png"%(casename, num_pic)
+    get_screenshot(imageDir, "%s_%d.png" % (casename, num_pic))
     print("保存图片")
     #
     # 获取坐标
@@ -1253,11 +1264,14 @@ def  get_element_pic(casename,el):
 def  my_math(val_1,val_2,method):
     result = eval(val_1)
     print("计算%s =%s"%(val_1,result))
+
     #判断是数字
+    '''
     if val_1.isdigit() and val_2.isdigit():
         pass
     else:
         print("非数字，请注意，不能进行计算")
+    '''
 
 
 

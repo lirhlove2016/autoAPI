@@ -33,7 +33,7 @@ STEP_INTERVAL_TIME=False
 step_sleep=3
 
 #log开关,true 开启，false 不打印日志
-LOG_STATUS=True
+LOG_STATUS=False
 
 if __name__=="__main__":
     print(dataDir)

@@ -2,21 +2,39 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="2ac0c537-8ad0-471d-af10-a2dad9c007e2" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/get_devices_more.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/module/get_devices.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/autoTestAPP_demo_V1.0.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/autoTestAPP_demo_V1.0.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/common/Log.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/datadir/myApp-530.xls" beforeDir="false" afterPath="$PROJECT_DIR$/datadir/myApp-530.xls" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/module/pil/image/code.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/module/pil/image/mao.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/module/pil/image/mao2.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/module/pil/image/mao3.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/module/pil/image/name.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/module/pil/pil_common.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/module/pil/pil_line_demo.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/module/pil/pil_randomcode_demo.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/report/logs/2019-05-30_57-19_57_01_output.log" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/report/screenshot/screenshot__error_定位书架_2.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/report/screenshot/screenshot__error_定位书架_3.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/report/screenshot/screenshot__error_定位书架_4.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/common/alllog.py" beforeDir="false" afterPath="$PROJECT_DIR$/common/alllog.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/common/elementApp.py" beforeDir="false" afterPath="$PROJECT_DIR$/common/elementApp.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/conf/conf.py" beforeDir="false" afterPath="$PROJECT_DIR$/conf/conf.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/datadir/myApp.xls" beforeDir="false" afterPath="$PROJECT_DIR$/datadir/myApp.xls" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/datadir/myApp_result.xls" beforeDir="false" afterPath="$PROJECT_DIR$/datadir/myApp_result.xls" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/readme.txt" beforeDir="false" afterPath="$PROJECT_DIR$/readme.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/report/logs/2019-06-06_25-17_25_58_output.log" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/report/logs/2019-06-06_25-19_25_40_output.log" beforeDir="false" afterPath="$PROJECT_DIR$/hello.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/report/logs/2019-06-06_25-19_25_48_output.log" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/report/logs/2019-06-06_26-19_26_56_output.log" beforeDir="false" afterPath="$PROJECT_DIR$/perssion.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/report/logs/2019-06-06_26-19_26_58_output.log" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/report/logs/2019-06-06_28-17_28_37_output.log" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/report/logs/2019-06-06_29-17_29_07_output.log" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/report/logs/2019-06-06_31-17_31_34_output.log" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/report/logs/2019-06-06_35-19_35_24_output.log" beforeDir="false" afterPath="$PROJECT_DIR$/test_001.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/report/logs/2019-06-06_35-19_35_25_output.log" beforeDir="false" afterPath="$PROJECT_DIR$/test_solver.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/report/logs/2019-06-06_35-19_35_57_output.log" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/report/logs/2019-06-06_36-19_36_07_output.log" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/report/logs/2019-06-06_36-19_36_10_output.log" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/report/logs/2019-06-06_38-17_38_04_output.log" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/report/logs/2019-06-06_38-17_38_07_output.log" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/report/logs/2019-06-06_39-19_39_30_output.log" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/report/logs/2019-06-06_39-19_39_32_output.log" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/report/logs/2019-06-06_55-19_55_39_output.log" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/report/logs/2019-06-06_57-19_57_24_output.log" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/report/logs/2019-06-06_57-19_57_26_output.log" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/report/logs/2019-06-06_58-19_58_17_output.log" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/report/logs/2019-06-06_59-19_59_56_output.log" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/report/pages/shujia_page_1.xml" beforeDir="false" afterPath="$PROJECT_DIR$/report/pages/shujia_page_1.xml" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -26,16 +44,22 @@
   </component>
   <component name="CoverageDataManager">
     <SUITE FILE_PATH="coverage/autoTestAPP_demo_V1_2$test.coverage" NAME="test Coverage Results" MODIFIED="1559820340144" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/autoTestAPP_demo_V1_2$hello.coverage" NAME="hello Coverage Results" MODIFIED="1562212139438" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/autoTestAPP_demo_V1_2$jsontocsv.coverage" NAME="jsontocsv Coverage Results" MODIFIED="1559031409382" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/autoTestAPP_demo_V1_2$perssion.coverage" NAME="perssion Coverage Results" MODIFIED="1563451559354" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/autoTestAPP_demo_V1_0$elementApp.coverage" NAME="elementApp Coverage Results" MODIFIED="1545115996609" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/common" />
     <SUITE FILE_PATH="coverage/autoTestAPP_demo_V1_2$gongshi.coverage" NAME="gongshi Coverage Results" MODIFIED="1556275865929" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/autoTestAPP_demo_V1_2$debugtool_V2.coverage" NAME="debugtool-V2 Coverage Results" MODIFIED="1557811569807" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/autoTestAPP_demo_V1_2$Log.coverage" NAME="Log Coverage Results" MODIFIED="1559120492886" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/autoTestAPP_demo_V1_0$runAPPtest.coverage" NAME="runAPPtest Coverage Results" MODIFIED="1545189744671" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/autoTestAPP_demo_V1_0$hello.coverage" NAME="hello Coverage Results" MODIFIED="1544699000122" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/autoTestAPP_demo_V1_2$test_solver.coverage" NAME="test_solver Coverage Results" MODIFIED="1562212363860" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/autoTestAPP_demo_V1_2$get_devices_more.coverage" NAME="get_devices_more Coverage Results" MODIFIED="1563445281031" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/autoTestAPP_demo_V1_2$alllog.coverage" NAME="alllog Coverage Results" MODIFIED="1559121654847" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/autoTestAPP_demo_V1_2$elementApp.coverage" NAME="elementApp Coverage Results" MODIFIED="1557831929665" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/common" />
-    <SUITE FILE_PATH="coverage/autoTestAPP_demo_V1_2$runAPPtest.coverage" NAME="runAPPtest Coverage Results" MODIFIED="1559822296606" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/autoTestAPP_demo_V1_2$get_devices.coverage" NAME="get_devices Coverage Results" MODIFIED="1565864614061" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/autoTestAPP_demo_V1_2$runAPPtest.coverage" NAME="runAPPtest Coverage Results" MODIFIED="1560233306109" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/autoTestAPP_demo_V1_2$test_001.coverage" NAME="test_001 Coverage Results" MODIFIED="1562212951474" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/autoTestAPP_demo_V1_0$test_app_debug.coverage" NAME="test_app-debug Coverage Results" MODIFIED="1545104775521" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/autoTestAPP_demo_V1_0$sub.coverage" NAME="sub Coverage Results" MODIFIED="1545029295071" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
   </component>
@@ -125,17 +149,20 @@
     <session id="-1216314761">
       <usages-collector id="statistics.lifecycle.project">
         <counts>
-          <entry key="project.closed" value="13" />
+          <entry key="project.closed" value="19" />
           <entry key="project.open.time.0" value="1" />
           <entry key="project.open.time.1" value="1" />
+          <entry key="project.open.time.14" value="1" />
           <entry key="project.open.time.18" value="1" />
-          <entry key="project.open.time.20" value="1" />
+          <entry key="project.open.time.19" value="1" />
+          <entry key="project.open.time.20" value="4" />
           <entry key="project.open.time.21" value="3" />
           <entry key="project.open.time.22" value="2" />
           <entry key="project.open.time.23" value="4" />
           <entry key="project.open.time.25" value="1" />
+          <entry key="project.open.time.29" value="1" />
           <entry key="project.open.time.9" value="1" />
-          <entry key="project.opened" value="15" />
+          <entry key="project.opened" value="21" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.open">
@@ -143,30 +170,31 @@
           <entry key="csv" value="5" />
           <entry key="jpg" value="7" />
           <entry key="json" value="12" />
-          <entry key="log" value="48" />
+          <entry key="log" value="55" />
           <entry key="png" value="17" />
-          <entry key="py" value="115" />
-          <entry key="txt" value="3" />
+          <entry key="py" value="137" />
+          <entry key="txt" value="5" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.open">
         <counts>
           <entry key="Image" value="24" />
           <entry key="JSON" value="12" />
-          <entry key="PLAIN_TEXT" value="56" />
-          <entry key="Python" value="115" />
+          <entry key="PLAIN_TEXT" value="65" />
+          <entry key="Python" value="137" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
-          <entry key="py" value="8429" />
-          <entry key="txt" value="24" />
+          <entry key="Python Console" value="106" />
+          <entry key="py" value="9452" />
+          <entry key="txt" value="64" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
-          <entry key="PLAIN_TEXT" value="24" />
-          <entry key="Python" value="8429" />
+          <entry key="PLAIN_TEXT" value="64" />
+          <entry key="Python" value="9558" />
         </counts>
       </usages-collector>
     </session>
@@ -174,36 +202,35 @@
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/runAPPtest.py">
+        <entry file="file://$PROJECT_DIR$/test.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="393">
-              <caret line="224" column="35" lean-forward="true" selection-start-line="224" selection-start-column="35" selection-end-line="224" selection-end-column="35" />
-              <folding>
-                <element signature="e#15#51#0" expanded="true" />
-              </folding>
+            <state>
+              <caret line="104" column="3" selection-start-line="104" selection-start-column="3" selection-end-line="104" selection-end-column="3" />
             </state>
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/common/elementApp.py">
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/module/get_devices.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="233">
-              <caret line="1255" column="10" lean-forward="true" selection-start-line="1255" selection-start-column="10" selection-end-line="1255" selection-end-column="10" />
+            <state relative-caret-position="675">
+              <caret line="28" column="35" lean-forward="true" selection-start-line="28" selection-start-column="35" selection-end-line="28" selection-end-column="35" />
               <folding>
-                <element signature="e#15#43#0" expanded="true" />
-                <marker date="1559822292266" expanded="true" signature="33785:33790" ph="..." />
-                <marker date="1559822292266" expanded="true" signature="33785:33900" ph="..." />
+                <element signature="e#14#23#0" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/conf/conf.py">
+        <entry file="file://$PROJECT_DIR$/get_devices_more.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="315">
-              <caret line="32" column="12" lean-forward="true" selection-start-line="32" selection-start-column="12" selection-end-line="32" selection-end-column="12" />
+            <state relative-caret-position="606">
+              <caret line="90" column="25" lean-forward="true" selection-start-line="90" selection-start-column="25" selection-end-line="90" selection-end-column="25" />
+              <folding>
+                <element signature="e#49#58#0" expanded="true" />
+                <marker date="1563445340700" expanded="true" signature="1145:1160" ph="..." />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -211,8 +238,17 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/readme.txt">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="375">
-              <caret line="33" column="4" lean-forward="true" selection-start-line="33" selection-start-column="4" selection-end-line="33" selection-end-column="4" />
+            <state relative-caret-position="415">
+              <caret line="65" column="7" lean-forward="true" selection-start-line="65" selection-start-column="7" selection-end-line="65" selection-end-column="7" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/hello.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="425">
+              <caret line="17" lean-forward="true" selection-start-line="17" selection-end-line="17" />
             </state>
           </provider>
         </entry>
@@ -228,9 +264,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>swipttest</find>
-      <find>Fail</find>
-      <find>get_pagespir</find>
       <find>pagesource</find>
       <find>taprandom</find>
       <find>我的</find>
@@ -257,6 +290,10 @@
       <find>get_pagesource</find>
       <find>const</find>
       <find>get_const_value</find>
+      <find>@</find>
+      <find>number</find>
+      <find>start_log</find>
+      <find>logger</find>
     </findStrings>
     <replaceStrings>
       <replace>write_resule</replace>
@@ -269,7 +306,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/hello.py" />
         <option value="$PROJECT_DIR$/sub.py" />
         <option value="$PROJECT_DIR$/common/writeexcel.py" />
         <option value="$PROJECT_DIR$/gongshi.py" />
@@ -281,12 +317,18 @@
         <option value="$PROJECT_DIR$/common/Log.py" />
         <option value="$PROJECT_DIR$/Log.py" />
         <option value="$PROJECT_DIR$/alllog.py" />
-        <option value="$PROJECT_DIR$/common/allLog.py" />
         <option value="$PROJECT_DIR$/test.py" />
-        <option value="$PROJECT_DIR$/conf/conf.py" />
-        <option value="$PROJECT_DIR$/readme.txt" />
         <option value="$PROJECT_DIR$/runAPPtest.py" />
+        <option value="$PROJECT_DIR$/conf/conf.py" />
+        <option value="$PROJECT_DIR$/common/allLog.py" />
+        <option value="$PROJECT_DIR$/readme.txt" />
         <option value="$PROJECT_DIR$/common/elementApp.py" />
+        <option value="$PROJECT_DIR$/hello.py" />
+        <option value="$PROJECT_DIR$/test_solver.py" />
+        <option value="$PROJECT_DIR$/test_001.py" />
+        <option value="$PROJECT_DIR$/get_devices_more.py" />
+        <option value="$PROJECT_DIR$/perssion.py" />
+        <option value="$PROJECT_DIR$/get_devices.py" />
       </list>
     </option>
   </component>
@@ -297,10 +339,10 @@
     <sorting>DEFINITION_ORDER</sorting>
   </component>
   <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="460" />
-    <option name="y" value="110" />
+    <option name="x" value="45" />
+    <option name="y" value="30" />
     <option name="width" value="1940" />
-    <option name="height" value="800" />
+    <option name="height" value="1050" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectView">
@@ -308,7 +350,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -316,37 +357,29 @@
               <item name="autoTestAPP_demo_V1.2" type="b2602c69:ProjectViewProjectNode" />
               <item name="autoTestAPP_demo_V1.2" type="462c0819:PsiDirectoryNode" />
             </path>
-            <path>
-              <item name="autoTestAPP_demo_V1.2" type="b2602c69:ProjectViewProjectNode" />
-              <item name="autoTestAPP_demo_V1.2" type="462c0819:PsiDirectoryNode" />
-              <item name="conf" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="autoTestAPP_demo_V1.2" type="b2602c69:ProjectViewProjectNode" />
-              <item name="autoTestAPP_demo_V1.2" type="462c0819:PsiDirectoryNode" />
-              <item name="datadir" type="462c0819:PsiDirectoryNode" />
-            </path>
           </expand>
           <select />
         </subPane>
       </pane>
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="full.screen.before.presentation.mode" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="E:/script/lianxi" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
-    <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
+    <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
   </component>
   <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="E:\myworkspace\mygit\mygitworkspace\autoAPI\debug\autoTestAPP_demo_V1.2" />
+      <recent name="E:\myworkspace\mygit\mygitworkspace\autoAPI\debug\autoTestAPP_demo_V1.2\module" />
+    </key>
     <key name="CopyFile.RECENT_KEYS">
       <recent name="E:\myworkspace\mygit\mygitworkspace\autoAPI\debug\autoTestAPP_demo_V1.2\common" />
       <recent name="E:\myworkspace\mygit\mygitworkspace\autoAPI\debug\autoTestAPP_demo_V1.2" />
-    </key>
-    <key name="MoveFile.RECENT_KEYS">
-      <recent name="E:\myworkspace\mygit\mygitworkspace\autoAPI\debug\autoTestAPP_demo_V1.2\module" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -361,8 +394,8 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Python.runAPPtest">
-    <configuration name="Log" type="PythonConfigurationType" factoryName="Python" temporary="true">
+  <component name="RunManager" selected="Python.get_devices">
+    <configuration name="get_devices" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <module name="autoTestAPP_demo_V1.0" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -375,7 +408,7 @@
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/Log.py" />
+      <option name="SCRIPT_NAME" value="E:\myworkspace\mygit\mygitworkspace\autoAPI\debug\autoTestAPP_demo_V1.2\module\get_devices.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -384,7 +417,7 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
-    <configuration name="alllog" type="PythonConfigurationType" factoryName="Python" temporary="true">
+    <configuration name="get_devices_more" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <module name="autoTestAPP_demo_V1.0" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -397,7 +430,7 @@
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/alllog.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/get_devices_more.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -406,7 +439,7 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
-    <configuration name="jsontocsv" type="PythonConfigurationType" factoryName="Python" temporary="true">
+    <configuration name="hello" type="PythonConfigurationType" factoryName="Python">
       <module name="autoTestAPP_demo_V1.0" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -419,7 +452,7 @@
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
-      <option name="SCRIPT_NAME" value="E:\myworkspace\mygit\mygitworkspace\autoAPI\debug\autoTestAPP_demo_V1.2\module\jsontocsv.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/hello.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -428,7 +461,29 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
-    <configuration name="runAPPtest" type="PythonConfigurationType" factoryName="Python" temporary="true">
+    <configuration name="perssion" type="PythonConfigurationType" factoryName="Python" temporary="true">
+      <module name="autoTestAPP_demo_V1.0" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/perssion.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="runAPPtest" type="PythonConfigurationType" factoryName="Python">
       <module name="autoTestAPP_demo_V1.0" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -450,7 +505,7 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
-    <configuration name="test" type="PythonConfigurationType" factoryName="Python" temporary="true">
+    <configuration name="test_001" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <module name="autoTestAPP_demo_V1.0" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -463,7 +518,29 @@
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/test.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/test_001.py" />
+      <option name="PARAMETERS" value="hello java 25" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="test_solver" type="PythonConfigurationType" factoryName="Python" temporary="true">
+      <module name="autoTestAPP_demo_V1.0" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/test_solver.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -473,19 +550,21 @@
       <method v="2" />
     </configuration>
     <list>
+      <item itemvalue="Python.hello" />
       <item itemvalue="Python.runAPPtest" />
-      <item itemvalue="Python.test" />
-      <item itemvalue="Python.jsontocsv" />
-      <item itemvalue="Python.alllog" />
-      <item itemvalue="Python.Log" />
+      <item itemvalue="Python.test_solver" />
+      <item itemvalue="Python.test_001" />
+      <item itemvalue="Python.get_devices" />
+      <item itemvalue="Python.get_devices_more" />
+      <item itemvalue="Python.perssion" />
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="Python.runAPPtest" />
-        <item itemvalue="Python.test" />
-        <item itemvalue="Python.alllog" />
-        <item itemvalue="Python.Log" />
-        <item itemvalue="Python.jsontocsv" />
+        <item itemvalue="Python.get_devices" />
+        <item itemvalue="Python.perssion" />
+        <item itemvalue="Python.get_devices_more" />
+        <item itemvalue="Python.test_001" />
+        <item itemvalue="Python.test_solver" />
       </list>
     </recent_temporary>
   </component>
@@ -502,32 +581,41 @@
     </task>
     <servers />
   </component>
+  <component name="TodoView">
+    <todo-panel id="selected-file">
+      <is-autoscroll-to-source value="true" />
+    </todo-panel>
+    <todo-panel id="all">
+      <are-packages-shown value="true" />
+      <is-autoscroll-to-source value="true" />
+    </todo-panel>
+  </component>
   <component name="ToolWindowManager">
     <frame x="-7" y="-7" width="1550" height="838" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" weight="0.107908845" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.16823056" />
       <window_info id="Structure" order="1" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Docker" order="0" show_stripe_button="false" />
       <window_info anchor="bottom" id="Database Changes" order="1" show_stripe_button="false" />
-      <window_info anchor="bottom" id="Version Control" order="2" />
-      <window_info anchor="bottom" id="Python Console" order="3" />
-      <window_info anchor="bottom" id="Terminal" order="4" />
+      <window_info anchor="bottom" id="Version Control" order="2" weight="0.32907802" />
+      <window_info anchor="bottom" id="Python Console" order="3" weight="0.32907802" />
+      <window_info anchor="bottom" id="Terminal" order="4" weight="0.32907802" />
       <window_info anchor="bottom" id="Message" order="5" />
       <window_info anchor="bottom" id="Find" order="6" weight="0.069503546" />
-      <window_info anchor="bottom" id="Debug" order="7" weight="0.864215" />
+      <window_info anchor="bottom" id="Debug" order="7" weight="0.46241134" />
       <window_info anchor="bottom" id="Cvs" order="8" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="9" weight="0.4" />
-      <window_info anchor="bottom" id="TODO" order="10" />
+      <window_info anchor="bottom" id="TODO" order="10" weight="0.32907802" />
+      <window_info anchor="bottom" x="0" y="11" width="1536" height="801" id="Run" order="11" sideWeight="0.49933067" visible="true" weight="0.3177305" />
       <window_info anchor="right" id="SciView" order="0" />
       <window_info anchor="right" id="Database" order="1" />
       <window_info anchor="right" id="Data View" order="2" />
       <window_info anchor="right" id="Commander" order="3" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="4" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="5" weight="0.25" />
-      <window_info active="true" anchor="right" x="0" y="11" width="1536" height="801" id="Run" order="6" sideWeight="0.49933067" visible="true" weight="0.51675606" />
-      <window_info anchor="right" x="451" y="504" width="747" height="563" id="Event Log" order="7" sideWeight="0.50066936" side_tool="true" type="WINDOWED" weight="0.79632246" />
+      <window_info anchor="right" x="451" y="504" width="747" height="563" id="Event Log" order="6" sideWeight="0.50066936" side_tool="true" type="WINDOWED" weight="0.79632246" />
     </layout>
     <layout-to-restore>
       <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.16756032" />
@@ -560,17 +648,53 @@
   <component name="VcsContentAnnotationSettings">
     <option name="myLimit" value="2678400000" />
   </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/common/elementApp.py</url>
+          <line>1129</line>
+          <option name="timeStamp" value="1" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/hello.py</url>
+          <line>8</line>
+          <option name="timeStamp" value="3" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/hello.py</url>
+          <line>9</line>
+          <option name="timeStamp" value="4" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/hello.py</url>
+          <line>10</line>
+          <option name="timeStamp" value="5" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/hello.py</url>
+          <line>11</line>
+          <option name="timeStamp" value="6" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/hello.py</url>
+          <line>7</line>
+          <option name="timeStamp" value="7" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/hello.py</url>
+          <line>5</line>
+          <option name="timeStamp" value="9" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
+    <watches-manager>
+      <configuration name="PythonConfigurationType">
+        <watch expression="a" />
+      </configuration>
+    </watches-manager>
+  </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/report/logs/2019-05-29_12-17_12_12_error.log" />
-    <entry file="file://$PROJECT_DIR$/report/logs/2019-05-29_15-17_15_22_error.log" />
-    <entry file="file://$PROJECT_DIR$/report/logs/2019-05-29_15-17_15_22_output.log" />
-    <entry file="file://$PROJECT_DIR$/Log.py" />
-    <entry file="file://$PROJECT_DIR$/report/logs/2019-05-29_16-17_16_05_error.log" />
-    <entry file="file://$PROJECT_DIR$/report/logs/2019-05-29_16-17_16_05_output.log" />
-    <entry file="file://$PROJECT_DIR$/alllog.py" />
-    <entry file="file://$PROJECT_DIR$/report/logs/2019-05-29_20-17_20_59_error.log" />
-    <entry file="file://$PROJECT_DIR$/report/logs/2019-05-29_20-17_20_59_output.log" />
-    <entry file="file://$PROJECT_DIR$/report/logs/2019-05-29_25-17_25_34_output.log" />
     <entry file="file://$PROJECT_DIR$/report/logs/2019-05-29_25-17_25_34_error.log" />
     <entry file="file://$PROJECT_DIR$/report/logs/2019-05-29_49-17_49_20_output.log" />
     <entry file="file://$PROJECT_DIR$/report/logs/2019-05-29_49-17_49_20_error.log" />
@@ -588,23 +712,7 @@
     <entry file="file://$PROJECT_DIR$/report/logs/2019-05-30_33-17_33_05_output.log" />
     <entry file="file://$PROJECT_DIR$/report/logs/2019-05-30_09-20_09_36_output.log" />
     <entry file="file://$PROJECT_DIR$/report/logs/2019-05-30_25-20_25_27_output.log" />
-    <entry file="file://$PROJECT_DIR$/common/allLog.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="275">
-          <caret line="14" column="34" lean-forward="true" selection-start-line="14" selection-start-column="34" selection-end-line="14" selection-end-column="34" />
-          <folding>
-            <element signature="e#1#15#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/common/Log.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-2145">
-          <caret line="17" lean-forward="true" selection-start-line="17" selection-end-line="17" />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/common/Log.py" />
     <entry file="file://$PROJECT_DIR$/common/appInstallCommon.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="275">
@@ -612,20 +720,8 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/module/pil/pil_randomcode_demo.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="329">
-          <caret line="38" lean-forward="true" selection-start-line="38" selection-end-line="38" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/module/pil/pil_line_demo.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="505">
-          <caret line="47" lean-forward="true" selection-start-line="47" selection-end-line="47" />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/module/pil/pil_randomcode_demo.py" />
+    <entry file="file://$PROJECT_DIR$/module/pil/pil_line_demo.py" />
     <entry file="file://$PROJECT_DIR$/module/adbUtils.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-525">
@@ -633,20 +729,8 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/report/logs/2019-05-30_38-20_38_51_output.log">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="150">
-          <caret line="6" lean-forward="true" selection-start-line="6" selection-end-line="6" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/report/logs/2019-05-30_45-20_45_24_output.log">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="75">
-          <caret line="3" lean-forward="true" selection-start-line="3" selection-end-line="3" />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/report/logs/2019-05-30_38-20_38_51_output.log" />
+    <entry file="file://$PROJECT_DIR$/report/logs/2019-05-30_45-20_45_24_output.log" />
     <entry file="file://$PROJECT_DIR$/report/screenshot/screenshot__error_点击书架签到_6.png">
       <provider selected="true" editor-type-id="images" />
     </entry>
@@ -673,16 +757,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="250">
           <caret line="10" column="45" lean-forward="true" selection-start-line="10" selection-start-column="45" selection-end-line="10" selection-end-column="45" />
-          <folding>
-            <element signature="e#0#10#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/module/pil_common.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="450">
-          <caret line="58" column="9" lean-forward="true" selection-start-line="58" selection-start-column="9" selection-end-line="58" selection-end-column="9" />
         </state>
       </provider>
     </entry>
@@ -704,20 +778,10 @@
     <entry file="file://$PROJECT_DIR$/report/image/shujia_2.jpg">
       <provider selected="true" editor-type-id="images" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/setup.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="575">
-          <caret line="23" column="17" lean-forward="true" selection-start-line="23" selection-start-column="17" selection-end-line="23" selection-end-column="17" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/toast.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-475">
           <caret line="14" column="39" lean-forward="true" selection-start-line="14" selection-start-column="39" selection-end-line="14" selection-end-column="39" />
-          <folding>
-            <element signature="e#0#10#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -725,57 +789,129 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="100">
           <caret line="19" lean-forward="true" selection-start-line="19" selection-end-line="19" />
-          <folding>
-            <element signature="e#15#51#0" expanded="true" />
-          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/report/logs/2019-06-11_34-11_34_58_output.log" />
+    <entry file="file://$PROJECT_DIR$/module/pil_common.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="675">
+          <caret line="28" column="17" lean-forward="true" selection-start-line="28" selection-start-column="17" selection-end-line="28" selection-end-column="17" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/report/logs/2019-06-11_11_56_24_output.log">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-1100">
+          <caret line="7" column="49" lean-forward="true" selection-start-line="7" selection-start-column="49" selection-end-line="7" selection-end-column="49" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/conf/conf.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="315">
-          <caret line="32" column="12" lean-forward="true" selection-start-line="32" selection-start-column="12" selection-end-line="32" selection-end-column="12" />
+        <state relative-caret-position="390">
+          <caret line="35" column="16" lean-forward="true" selection-start-line="35" selection-start-column="16" selection-end-line="35" selection-end-column="16" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/test.py">
+    <entry file="file://$PROJECT_DIR$/common/allLog.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="866">
-          <caret line="104" column="3" lean-forward="true" selection-start-line="104" selection-start-column="3" selection-end-line="104" selection-end-column="3" />
+        <state relative-caret-position="575">
+          <caret line="29" lean-forward="true" selection-start-line="29" selection-end-line="29" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/report/logs/2019-06-11_11_53_35_output.log">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/report/logs/2019-06-11_11_53_33_output.log">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/common/elementApp.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="788">
+          <caret line="1185" column="25" lean-forward="true" selection-start-line="1185" selection-start-column="25" selection-end-line="1185" selection-end-column="25" />
           <folding>
-            <element signature="e#15#51#0" expanded="true" />
-            <marker date="1559813884055" expanded="true" signature="2065:2070" ph="..." />
-            <marker date="1559813884055" expanded="true" signature="2065:2365" ph="..." />
+            <element signature="e#15#43#0" expanded="true" />
+            <marker date="1560233460719" expanded="true" signature="34097:34102" ph="..." />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/readme.txt">
+    <entry file="file://$PROJECT_DIR$/perssion.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="375">
-          <caret line="33" column="4" lean-forward="true" selection-start-line="33" selection-start-column="4" selection-end-line="33" selection-end-column="4" />
+        <state relative-caret-position="-325">
+          <caret line="14" column="29" lean-forward="true" selection-start-line="14" selection-start-column="29" selection-end-line="14" selection-end-column="29" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/test_solver.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="50">
+          <caret line="2" column="18" lean-forward="true" selection-start-line="2" selection-start-column="18" selection-end-line="2" selection-end-column="18" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/test_001.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="225">
+          <caret line="9" column="12" lean-forward="true" selection-start-line="9" selection-start-column="12" selection-end-line="9" selection-end-column="12" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/runAPPtest.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="393">
-          <caret line="224" column="35" lean-forward="true" selection-start-line="224" selection-start-column="35" selection-end-line="224" selection-end-column="35" />
+        <state relative-caret-position="25">
+          <caret line="20" column="25" selection-start-line="20" selection-start-column="25" selection-end-line="20" selection-end-column="25" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/test.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret line="104" column="3" selection-start-line="104" selection-start-column="3" selection-end-line="104" selection-end-column="3" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/module/get_devices.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="675">
+          <caret line="28" column="35" lean-forward="true" selection-start-line="28" selection-start-column="35" selection-end-line="28" selection-end-column="35" />
           <folding>
-            <element signature="e#15#51#0" expanded="true" />
+            <element signature="e#14#23#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/common/elementApp.py">
+    <entry file="file://$PROJECT_DIR$/get_devices_more.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="233">
-          <caret line="1255" column="10" lean-forward="true" selection-start-line="1255" selection-start-column="10" selection-end-line="1255" selection-end-column="10" />
+        <state relative-caret-position="606">
+          <caret line="90" column="25" lean-forward="true" selection-start-line="90" selection-start-column="25" selection-end-line="90" selection-end-column="25" />
           <folding>
-            <element signature="e#15#43#0" expanded="true" />
-            <marker date="1559822292266" expanded="true" signature="33785:33790" ph="..." />
-            <marker date="1559822292266" expanded="true" signature="33785:33900" ph="..." />
+            <element signature="e#49#58#0" expanded="true" />
+            <marker date="1563445340700" expanded="true" signature="1145:1160" ph="..." />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/setup.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="575">
+          <caret line="23" column="17" lean-forward="true" selection-start-line="23" selection-start-column="17" selection-end-line="23" selection-end-column="17" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/readme.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="415">
+          <caret line="65" column="7" lean-forward="true" selection-start-line="65" selection-start-column="7" selection-end-line="65" selection-end-column="7" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/hello.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="425">
+          <caret line="17" lean-forward="true" selection-start-line="17" selection-end-line="17" />
         </state>
       </provider>
     </entry>
