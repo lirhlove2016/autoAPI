@@ -9,8 +9,8 @@ import os
 #desfile=r"E:\autoTestApi\datadir\myHttp123_result.xls"
 filepath=os.path.abspath(os.getcwd())
 #print(filepath)
-srcfile=os.path.join(filepath,'datadir/myHttp.xls')
-desfile=os.path.join(filepath,'datadir/myHttp_result.xls')
+srcfile=os.path.join(filepath,'datadir/mypostdata.xls')
+desfile=os.path.join(filepath,'datadir/mypostdata_result.xls')
 
 def run(line):
     if line[3]=='post':

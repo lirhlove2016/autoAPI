@@ -148,7 +148,7 @@ def add_header(hkey,jkey):
         elif jkey.startswith('{{'):        
             session.headers[hkey]=get_savejson(jkey)
             #写入
-            wirte_result('PASS',session.headers[hkey)
+            wirte_result('PASS',session.headers[hkey])
     #jkey为空
     else:
         session.headers[hkey]=jkey
@@ -255,7 +255,7 @@ def get_code(self):
 
 #正则匹配取参数值{{token}}
 def re_compile(srcStr):
-    #print('正则匹配-----------------',type(srcStr))
+    print('正则匹配-----------------',type(srcStr))
     findword="({{[a-zA-Z]+}})"  
     pattern = re.compile(findword)
     results =pattern.findall(srcStr)    

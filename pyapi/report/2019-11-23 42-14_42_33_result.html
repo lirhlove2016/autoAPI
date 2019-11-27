@@ -1,0 +1,408 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>测试报告</title>
+    <meta name="generator" content="HTMLTestRunner 0.8.4"/>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    
+<style type="text/css" media="screen">
+body        { font-family: verdana, arial, helvetica, sans-serif; font-size: 80%; }
+table       { font-size: 100%; }
+pre         {word-wrap:break-word;word-break:break_all;overflow:auto; }#处理报告中错误结果溢出表格
+
+/* -- heading ---------------------------------------------------------------------- */
+h1 {
+    font-size: 16pt;
+    color: gray;
+}
+.heading {
+    margin-top: 0ex;
+    margin-bottom: 1ex;
+}
+
+.heading .attribute {
+    margin-top: 1ex;
+    margin-bottom: 0;
+}
+
+.heading .description {
+    margin-top: 4ex;
+    margin-bottom: 6ex;
+}
+
+/* -- css div popup ------------------------------------------------------------------------ */
+a.popup_link {
+}
+
+a.popup_link:hover {
+    color: red;
+}
+.img{
+        text-align: center;
+        margin:0 auto;
+    width: 100%;
+    height: 100%;
+    border-collapse: collapse;
+        border: 1px solid #777;
+}
+
+.screenshots {
+    position:absolute;
+    left: 20%;
+    top: 20%;
+    display: none;
+}
+.close_shots {
+    position:absolute;
+    top:0; left:98%;
+    z-index:99;
+    width:20px;
+    cursor:pointer;
+}
+.popup_window {
+    display: none;
+    position: relative;
+    left: 0px;
+    top: 0px;
+    /*border: solid #627173 1px; */
+    padding: 10px;
+    background-color: #E6E6D6;
+    font-family: "Lucida Console", "Courier New", Courier, monospace;
+    text-align: left;
+    font-size: 8pt;
+    width: 500px;
+}
+
+}
+/* -- report ------------------------------------------------------------------------ */
+#show_detail_line {
+    margin-top: 3ex;
+    margin-bottom: 1ex;
+}
+#result_table {
+    width: 80%;
+    border-collapse: collapse;
+    border: 1px solid #777;
+}
+#header_row {
+    font-weight: bold;
+    color: white;
+    background-color: #777;
+}
+#result_table td {
+    border: 1px solid #777;
+    padding: 2px;
+}
+#total_row  { font-weight: bold; }
+.passClass  { background-color: #6c6; }
+.failClass  { background-color: #c60; }
+.errorClass { background-color: #c00; }
+.passCase   { color: #6c6; }
+.failCase   { color: #c60; font-weight: bold; }
+.errorCase  { color: #c00; font-weight: bold; }
+.hiddenRow  { display: none; }
+.testcase   { margin-left: 2em; }
+
+
+/* -- ending ---------------------------------------------------------------------- */
+#ending {
+}
+
+
+.piechart{
+    position:absolute;  ;
+    top:20px;
+    left:300px;
+    width: 200px;
+    float: left;
+    display:  inline;
+}
+
+
+</style>
+
+</head>
+<body>
+<script language="javascript" type="text/javascript">
+output_list = Array();
+
+/* level - 0:Summary; 1:Failed; 2:All */
+function showCase(level) {
+    trs = document.getElementsByTagName("tr");
+    for (var i = 0; i < trs.length; i++) {
+        tr = trs[i];
+        id = tr.id;
+        if (id.substr(0,2) == 'ft') {
+            if (level < 1) {
+                tr.className = 'hiddenRow';
+            }
+            else {
+                tr.className = '';
+            }
+        }
+        if (id.substr(0,2) == 'pt') {
+            if (level > 1) {
+                tr.className = '';
+            }
+            else {
+                tr.className = 'hiddenRow';
+            }
+        }
+    }
+}
+
+
+function showClassDetail(cid, count) {
+    var id_list = Array(count);
+    var toHide = 1;
+    for (var i = 0; i < count; i++) {
+        tid0 = 't' + cid.substr(1) + '.' + (i+1);
+        tid = 'f' + tid0;
+        tr = document.getElementById(tid);
+        if (!tr) {
+            tid = 'p' + tid0;
+            tr = document.getElementById(tid);
+        }
+        id_list[i] = tid;
+        if (tr.className) {
+            toHide = 0;
+        }
+    }
+    for (var i = 0; i < count; i++) {
+        tid = id_list[i];
+        if (toHide) {
+            document.getElementById('div_'+tid).style.display = 'none'
+            document.getElementById(tid).className = 'hiddenRow';
+        }
+        else {
+            document.getElementById(tid).className = '';
+        }
+    }
+}
+
+
+function showTestDetail(div_id){
+    var details_div = document.getElementById(div_id)
+    var displayState = details_div.style.display
+    // alert(displayState)
+    if (displayState != 'block' ) {
+        displayState = 'block'
+        details_div.style.display = 'block'
+    }
+    else {
+        details_div.style.display = 'none'
+    }
+}
+
+
+function html_escape(s) {
+    s = s.replace(/&/g,'&');
+    s = s.replace(/</g,'<');
+    s = s.replace(/>/g,'>');
+    return s;
+}
+
+function drawCircle(pass, fail, error){
+    var color = ["#6c6","#c60","#c00"];
+    var data = [pass,fail,error];
+    var text_arr = ["pass", "fail", "error"];
+
+    var canvas = document.getElementById("circle");
+    var ctx = canvas.getContext("2d");
+    var startPoint=0;
+    var width = 20, height = 10;
+    var posX = 112 * 2 + 20, posY = 30;
+    var textX = posX + width + 5, textY = posY + 10;
+    for(var i=0;i<data.length;i++){
+        ctx.fillStyle = color[i];
+        ctx.beginPath();
+        ctx.moveTo(112,84);
+        ctx.arc(112,84,84,startPoint,startPoint+Math.PI*2*(data[i]/(data[0]+data[1]+data[2])),false);
+        ctx.fill();
+        startPoint += Math.PI*2*(data[i]/(data[0]+data[1]+data[2]));
+        ctx.fillStyle = color[i];
+        ctx.fillRect(posX, posY + 20 * i, width, height);
+        ctx.moveTo(posX, posY + 20 * i);
+        ctx.font = 'bold 14px';
+        ctx.fillStyle = color[i];
+        var percent = text_arr[i] + ":"+data[i];
+        ctx.fillText(percent, textX, textY + 20 * i);
+
+    }
+}
+
+function show_shots(obj) {
+    obj.nextElementSibling.style.display="block";
+
+}
+
+function close_shots(obj) {
+    obj.parentElement.style.display="none";
+}
+
+</script>
+<div class="piechart">
+    <div>
+        <canvas id="circle" width="350" height="168" </canvas>
+    </div>
+</div>
+<div class='heading'>
+<h1>测试报告</h1>
+<p class='attribute'><strong>开始时间:</strong> 2019-11-23 14:42:33</p>
+<p class='attribute'><strong>耗时:</strong> 0:00:02.418698</p>
+<p class='attribute'><strong>状态:</strong> 错误 1</p>
+
+<p class='description'>用例执行情况</p>
+</div>
+
+
+
+<p id='show_detail_line'>显示
+<a href='javascript:showCase(0)'>概要</a>
+<a href='javascript:showCase(1)'>失败</a>
+<a href='javascript:showCase(2)'>所有</a>
+</p>
+
+<table id='result_table'>
+<colgroup>
+<col align='left' />
+<col align='right' />
+<col align='right' />
+<col align='right' />
+<col align='right' />
+<col align='right' />
+<col align='right' />
+</colgroup>
+<tr id='header_row'>
+    <td>测试组/测试用例</td>
+    <td>总数</td>
+    <td>通过</td>
+    <td>失败</td>
+    <td>错误</td>
+    <td>视图</td>
+    <td>错误截图</td>
+</tr>
+
+<tr class='errorClass'>
+    <td>TestFramework</td>
+    <td>1</td>
+    <td>0</td>
+    <td>0</td>
+    <td>1</td>
+    <td><a href="javascript:showClassDetail('c1',1)">详情</a></td>
+    <td> </td>
+</tr>
+
+<tr id='ft1.1'>
+    <td class='errorCase'><div class='testcase'>test_scan_datadir_xlsx_call</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_ft1.1')" >
+        错误</a>
+
+    <div id='div_ft1.1' class="popup_window">
+        <div style='text-align: right; color:red;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_ft1.1').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+ft1.1: 接口总数 1
+--正在进行接口测试，开始第1个请求---------------
+-------请求参数-----------------
+get
+http://http://api.kkyd.cn/asg/portal.do
+header: {'content-type': ''}
+data call=9000&amp;json={"pub":{"deviceId":"dz630761d39e7145a3850eedc4563e61ff","subPline":"2","screen":"1080x1920","appCode":"f002","dzPaySupport":"2","userId":"287214339","city":"%E5%8C%97%E4%BA%AC","utdid":"WVXnflOMWeEDAG79IwDB2QuM","apiVersion":"3.9.8.3069","province":"%E5%8C%97%E4%BA%AC%E5%B8%82","oaid":"","v":"4","afu":"0","imei":"dz_1573548212973","p":"66","clientAgent":"svnVer_1911131758","lsw":"1","apn":"wifi","imsi":"dz_1573548212973","channelFee":"KYY1001760","cmTel":"","pname":"com.ishugui","channelCode":"Google","os":"android23","brand":"Xiaomi","en":"{\"adsdk\":\"2\",\"geyan\":\"1\"}","model":"Redmi Note 4X"},"pri":{"pri":"","callNo":"1001"}}
+-------返回参数-----------------
+Traceback (most recent call last):
+  File "C:\Python34\lib\site-packages\urllib3\connection.py", line 159, in _new_conn
+    (self._dns_host, self.port), self.timeout, **extra_kw)
+  File "C:\Python34\lib\site-packages\urllib3\util\connection.py", line 57, in create_connection
+    for res in socket.getaddrinfo(host, port, family, socket.SOCK_STREAM):
+  File "C:\Python34\lib\socket.py", line 537, in getaddrinfo
+    for res in _socket.getaddrinfo(host, port, family, type, proto, flags):
+socket.gaierror: [Errno 11001] getaddrinfo failed
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Python34\lib\site-packages\urllib3\connectionpool.py", line 600, in urlopen
+    chunked=chunked)
+  File "C:\Python34\lib\site-packages\urllib3\connectionpool.py", line 354, in _make_request
+    conn.request(method, url, **httplib_request_kw)
+  File "C:\Python34\lib\http\client.py", line 1137, in request
+    self._send_request(method, url, body, headers)
+  File "C:\Python34\lib\http\client.py", line 1183, in _send_request
+    self.endheaders(body)
+  File "C:\Python34\lib\http\client.py", line 1133, in endheaders
+    self._send_output(message_body)
+  File "C:\Python34\lib\http\client.py", line 963, in _send_output
+    self.send(msg)
+  File "C:\Python34\lib\http\client.py", line 898, in send
+    self.connect()
+  File "C:\Python34\lib\site-packages\urllib3\connection.py", line 181, in connect
+    conn = self._new_conn()
+  File "C:\Python34\lib\site-packages\urllib3\connection.py", line 168, in _new_conn
+    self, "Failed to establish a new connection: %s" % e)
+urllib3.exceptions.NewConnectionError: &lt;urllib3.connection.HTTPConnection object at 0x00000000051B8A90&gt;: Failed to establish a new connection: [Errno 11001] getaddrinfo failed
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Python34\lib\site-packages\requests\adapters.py", line 449, in send
+    timeout=timeout
+  File "C:\Python34\lib\site-packages\urllib3\connectionpool.py", line 638, in urlopen
+    _stacktrace=sys.exc_info()[2])
+  File "C:\Python34\lib\site-packages\urllib3\util\retry.py", line 398, in increment
+    raise MaxRetryError(_pool, url, error or ResponseError(cause))
+urllib3.exceptions.MaxRetryError: HTTPConnectionPool(host='http', port=80): Max retries exceeded with url: //api.kkyd.cn/asg/portal.do?call=9000&amp;json=%7B%22pub%22:%7B%22deviceId%22:%22dz630761d39e7145a3850eedc4563e61ff%22,%22subPline%22:%222%22,%22screen%22:%221080x1920%22,%22appCode%22:%22f002%22,%22dzPaySupport%22:%222%22,%22userId%22:%22287214339%22,%22city%22:%22%E5%8C%97%E4%BA%AC%22,%22utdid%22:%22WVXnflOMWeEDAG79IwDB2QuM%22,%22apiVersion%22:%223.9.8.3069%22,%22province%22:%22%E5%8C%97%E4%BA%AC%E5%B8%82%22,%22oaid%22:%22%22,%22v%22:%224%22,%22afu%22:%220%22,%22imei%22:%22dz_1573548212973%22,%22p%22:%2266%22,%22clientAgent%22:%22svnVer_1911131758%22,%22lsw%22:%221%22,%22apn%22:%22wifi%22,%22imsi%22:%22dz_1573548212973%22,%22channelFee%22:%22KYY1001760%22,%22cmTel%22:%22%22,%22pname%22:%22com.ishugui%22,%22channelCode%22:%22Google%22,%22os%22:%22android23%22,%22brand%22:%22Xiaomi%22,%22en%22:%22%7B%5C%22adsdk%5C%22:%5C%222%5C%22,%5C%22geyan%5C%22:%5C%221%5C%22%7D%22,%22model%22:%22Redmi%20Note%204X%22%7D,%22pri%22:%7B%22pri%22:%22%22,%22callNo%22:%221001%22%7D%7D (Caused by NewConnectionError('&lt;urllib3.connection.HTTPConnection object at 0x00000000051B8A90&gt;: Failed to establish a new connection: [Errno 11001] getaddrinfo failed',))
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "E:\myworkspace\pyapi\runtest.py", line 53, in test_scan_datadir_xlsx_call
+    r = my_request.api_request()
+  File "E:\myworkspace\pyapi\common\apirequest.py", line 27, in api_request
+    r = requests.get(self.url, params=self.data,timeout=self.timeout,headers=self.headers)
+  File "C:\Python34\lib\site-packages\requests\api.py", line 75, in get
+    return request('get', url, params=params, **kwargs)
+  File "C:\Python34\lib\site-packages\requests\api.py", line 60, in request
+    return session.request(method=method, url=url, **kwargs)
+  File "C:\Python34\lib\site-packages\requests\sessions.py", line 524, in request
+    resp = self.send(prep, **send_kwargs)
+  File "C:\Python34\lib\site-packages\requests\sessions.py", line 637, in send
+    r = adapter.send(request, **kwargs)
+  File "C:\Python34\lib\site-packages\requests\adapters.py", line 516, in send
+    raise ConnectionError(e, request=request)
+requests.exceptions.ConnectionError: HTTPConnectionPool(host='http', port=80): Max retries exceeded with url: //api.kkyd.cn/asg/portal.do?call=9000&amp;json=%7B%22pub%22:%7B%22deviceId%22:%22dz630761d39e7145a3850eedc4563e61ff%22,%22subPline%22:%222%22,%22screen%22:%221080x1920%22,%22appCode%22:%22f002%22,%22dzPaySupport%22:%222%22,%22userId%22:%22287214339%22,%22city%22:%22%E5%8C%97%E4%BA%AC%22,%22utdid%22:%22WVXnflOMWeEDAG79IwDB2QuM%22,%22apiVersion%22:%223.9.8.3069%22,%22province%22:%22%E5%8C%97%E4%BA%AC%E5%B8%82%22,%22oaid%22:%22%22,%22v%22:%224%22,%22afu%22:%220%22,%22imei%22:%22dz_1573548212973%22,%22p%22:%2266%22,%22clientAgent%22:%22svnVer_1911131758%22,%22lsw%22:%221%22,%22apn%22:%22wifi%22,%22imsi%22:%22dz_1573548212973%22,%22channelFee%22:%22KYY1001760%22,%22cmTel%22:%22%22,%22pname%22:%22com.ishugui%22,%22channelCode%22:%22Google%22,%22os%22:%22android23%22,%22brand%22:%22Xiaomi%22,%22en%22:%22%7B%5C%22adsdk%5C%22:%5C%222%5C%22,%5C%22geyan%5C%22:%5C%221%5C%22%7D%22,%22model%22:%22Redmi%20Note%204X%22%7D,%22pri%22:%7B%22pri%22:%22%22,%22callNo%22:%221001%22%7D%7D (Caused by NewConnectionError('&lt;urllib3.connection.HTTPConnection object at 0x00000000051B8A90&gt;: Failed to establish a new connection: [Errno 11001] getaddrinfo failed',))
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+    <td></td>
+</tr>
+
+<tr id='total_row'>
+    <td>统计</td>
+    <td>1</td>
+    <td>0</td>
+    <td>0</td>
+    <td>1</td>
+    <td> </td>
+    <td> </td>
+</tr>
+</table>
+<script>
+    drawCircle(0, 0, 1)
+</script>
+
+<div id='ending'> </div>
+
+</body>
+</html>
